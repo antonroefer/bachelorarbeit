@@ -35,58 +35,13 @@ class RadarGUI(tk.Tk):
         self.background = None
         self._last_hist_update = 0
 
-        # Bild auf das Canvas setzen
-
         # Frame für die Kontrollelemente
         self.control_frame = ttk.Frame(self)
         self.control_frame.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
 
-        # Spinbox für Fenstergröße
-        self.field_size_var = tk.StringVar(value="14")
-        self.field_size_spinbox = ttk.Spinbox(
-            self.control_frame,
-            from_=2,
-            to=100,
-            textvariable=self.field_size_var,
-            width=5,
-            state="readonly",
-            command=self.on_field_size_change,  # Neue Callback-Methode
-        )
-        self.field_size_spinbox.pack(side=tk.LEFT, padx=5, pady=5)
-
-        # Label für die Fenstergröße neben der Spinbox
-        self.field_size_label = ttk.Label(
-            self.control_frame, text="Fensterabstand: 14 (29x29)"
-        )
-        self.field_size_label.pack(side=tk.LEFT, padx=5, pady=5)
-
         # Parameter Dropdown-Menü
         self.parameter_var = tk.StringVar(value="Amplitudenverteilung")
-        self.parameter_menu = ttk.Combobox(
-            self.control_frame, textvariable=self.parameter_var, state="readonly"
-        )
-        self.parameter_menu["values"] = [
-            "Amplitudenverteilung",
-            "Absoluter Gradient",
-            "Variation",
-            "Mittelwert",
-        ]
-        self.parameter_menu.pack(side=tk.LEFT, padx=5, pady=5)
 
-        # Dropdown-Menü für Verteilungsansicht
-        self.dist_parameter_menu = ttk.Combobox(
-            self, textvariable=self.parameter_var, state="readonly"
-        )
-        self.dist_parameter_menu["values"] = [
-            "Amplitudenverteilung",
-            "Absoluter Gradient",
-            "Variation",
-            "Mittelwert",
-        ]
-        self.dist_parameter_menu.pack(side=tk.LEFT, padx=10, pady=5)
-        self.dist_parameter_menu.bind(
-            "<<ComboboxSelected>>", self.update_distribution_view
-        )
         self.ax.imshow(radar_image, cmap="gray", origin="lower")
         self.ax.set_title("Radargramm")
         self.canvas.draw()
@@ -102,7 +57,7 @@ class RadarGUI(tk.Tk):
 
         # Dropdown-Menü für Parameterwahl (verwendet die gleiche Variable)
         self.parameter_menu = ttk.Combobox(
-            self, textvariable=self.parameter_var, state="readonly"
+            self.control_frame, textvariable=self.parameter_var, state="readonly"
         )
         self.parameter_menu["values"] = [
             "Amplitudenverteilung",
@@ -117,14 +72,16 @@ class RadarGUI(tk.Tk):
             value="14"
         )  # Voreinstellung: 29x29 (Abstand 14)
         self.field_size_menu = ttk.Combobox(
-            self, textvariable=self.field_size_var, state="readonly"
+            self.control_frame, textvariable=self.field_size_var, state="readonly"
         )
         # Generiere Liste von Abständen von 1 bis 100
         self.field_size_menu["values"] = list(range(2, 101))
         self.field_size_menu.pack(side=tk.RIGHT, padx=10, pady=5)
 
         # Label für die Fenstergröße
-        self.field_size_label = ttk.Label(self, text="Fensterabstand: 14 (29x29)")
+        self.field_size_label = ttk.Label(
+            self.control_frame, text="Fensterabstand: 14 (29x29)"
+        )
         self.field_size_label.pack(side=tk.RIGHT, padx=10, pady=5)
 
         # Binde Event an Größenänderung
@@ -311,7 +268,6 @@ class RadarGUI(tk.Tk):
 
     def calculate_window_statistics(self, x, y, size):
         """Berechnet Variation und Mittelwerte für alle Pixel im Fenster"""
-        window = radar_image[y - size : y + size + 1, x - size : x + size + 1]
         variations = []
         means = []
 
