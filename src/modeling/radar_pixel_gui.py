@@ -30,6 +30,9 @@ class RadarGUI(tk.Tk):
         self.canvas = FigureCanvasTkAgg(self.fig, self)
         self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
+        # Add this line:
+        self.fig.canvas.mpl_connect("resize_event", self.on_resize)
+
         # Initialize plot elements and variables
         self.rect_artist = None
         self.background = None
@@ -132,7 +135,7 @@ class RadarGUI(tk.Tk):
         if event.xdata is None or event.ydata is None:
             return
 
-        # Speichere das aktuelle Event
+        # Store current event
         self.last_event = event
 
         x, y = int(event.xdata), int(event.ydata)
@@ -144,72 +147,30 @@ class RadarGUI(tk.Tk):
             and y - size >= 0
             and y + size < radar_image.shape[0]
         ):
-            # Update histogram less frequently
-            if not hasattr(self, "_last_hist_update") or event.inaxes != self.ax:
+            current_time = time.time()
+            if not hasattr(self, "_last_hist_update"):
                 self._last_hist_update = 0
 
-            current_time = time.time()
+            # Update histogram less frequently
             if current_time - self._last_hist_update > 0.1:
                 self._last_hist_update = current_time
-                self.dist_ax.clear()
-                parameter = self.parameter_var.get()
+                self.update_histogram(x, y, size)
 
-                variations, means = self.calculate_window_statistics(x, y, size)
-
-                if parameter == "Variation":
-                    self.dist_ax.hist(
-                        variations,
-                        bins=20,
-                        color="r",
-                        density=True,
-                        alpha=0.6,
-                    )
-                    self.dist_ax.set_title(
-                        f"Variationen der Pixel im Fenster um ({x}, {y})"
-                    )
-                elif parameter == "Mittelwert":
-                    self.dist_ax.hist(
-                        means,
-                        bins=20,
-                        color="y",
-                        density=True,
-                        alpha=0.6,
-                    )
-                    self.dist_ax.set_title(
-                        f"Mittelwerte der Pixel im Fenster um ({x}, {y})"
-                    )
-                elif parameter == "Amplitudenverteilung":
-                    window = radar_image[
-                        y - size : y + size + 1, x - size : x + size + 1
-                    ]
-                    self.dist_ax.hist(
-                        window.flatten(), bins=20, color="g", density=True, alpha=0.6
-                    )
-                    self.dist_ax.set_title(f"Amplitudenverteilung um Pixel ({x}, {y})")
-                elif parameter == "Absoluter Gradient":
-                    grad_window = absolute_gradient[
-                        y - size : y + size + 1, x - size : x + size + 1
-                    ]
-                    self.dist_ax.hist(
-                        grad_window.flatten(),
-                        bins=20,
-                        color="b",
-                        density=True,
-                        alpha=0.6,
-                    )
-                    self.dist_ax.set_title(f"Absoluter Gradient um Pixel ({x}, {y})")
-
-                self.dist_canvas.draw()
-
-            # Efficient rectangle update using blitting
-            if self.background is None:
-                self.background = self.fig.canvas.copy_from_bbox(self.ax.bbox)
-
-            self.fig.canvas.restore_region(self.background)
-
+            # Clear previous rectangle
             if self.rect_artist is not None:
                 self.rect_artist.remove()
+                self.rect_artist = None
 
+            # Force redraw periodically
+            if not hasattr(self, "_last_full_redraw"):
+                self._last_full_redraw = 0
+
+            if current_time - self._last_full_redraw > 1.0:
+                self._last_full_redraw = current_time
+                self.ax.draw(self.canvas.renderer)
+                self.background = self.fig.canvas.copy_from_bbox(self.ax.bbox)
+
+            # Create new rectangle
             self.rect_artist = plt.Rectangle(
                 (x - size, y - size),
                 2 * size + 1,
@@ -220,8 +181,54 @@ class RadarGUI(tk.Tk):
             )
             self.ax.add_patch(self.rect_artist)
 
-            self.ax.draw_artist(self.rect_artist)
-            self.fig.canvas.blit(self.ax.bbox)
+            # Update display
+            self.canvas.draw_idle()
+            self.canvas.flush_events()
+
+    def update_histogram(self, x, y, size):
+        self.dist_ax.clear()
+        parameter = self.parameter_var.get()
+
+        variations, means = self.calculate_window_statistics(x, y, size)
+
+        if parameter == "Variation":
+            self.dist_ax.hist(
+                variations,
+                bins=20,
+                color="r",
+                density=True,
+                alpha=0.6,
+            )
+            self.dist_ax.set_title(f"Variationen der Pixel im Fenster um ({x}, {y})")
+        elif parameter == "Mittelwert":
+            self.dist_ax.hist(
+                means,
+                bins=20,
+                color="y",
+                density=True,
+                alpha=0.6,
+            )
+            self.dist_ax.set_title(f"Mittelwerte der Pixel im Fenster um ({x}, {y})")
+        elif parameter == "Amplitudenverteilung":
+            window = radar_image[y - size : y + size + 1, x - size : x + size + 1]
+            self.dist_ax.hist(
+                window.flatten(), bins=20, color="g", density=True, alpha=0.6
+            )
+            self.dist_ax.set_title(f"Amplitudenverteilung um Pixel ({x}, {y})")
+        elif parameter == "Absoluter Gradient":
+            grad_window = absolute_gradient[
+                y - size : y + size + 1, x - size : x + size + 1
+            ]
+            self.dist_ax.hist(
+                grad_window.flatten(),
+                bins=20,
+                color="b",
+                density=True,
+                alpha=0.6,
+            )
+            self.dist_ax.set_title(f"Absoluter Gradient um Pixel ({x}, {y})")
+
+        self.dist_canvas.draw()
 
     def update_distribution_view(self, event=None):
         parameter = self.parameter_var.get()  # Nutze die gemeinsame Variable
@@ -293,6 +300,11 @@ class RadarGUI(tk.Tk):
                     means.append(np.mean(pixel_window))
 
         return np.array(variations), np.array(means)
+
+    def on_resize(self, event):
+        # Update background cache on window resize
+        self.ax.draw(self.canvas.renderer)
+        self.background = self.fig.canvas.copy_from_bbox(self.ax.bbox)
 
 
 # Hauptprogramm starten
