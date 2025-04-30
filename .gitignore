@@ -92,5 +92,10 @@ target/
 # Exclude trained models
 /models/
 
+# Exlude Mat Data
+.mat
+
+feature_plots.ipynb
+
 # exclude data from source control by default
 # /data/

@@ -1,5 +1,5 @@
 % Pfad zur .mat-Datei
-matfile_path = 'C:\Users\anton\Documents\Studium\Bachelorarbeit\Anton_BSc\GPR_Daten_mat\radargrams.mat';
+matfile_path = 'C:\Users\anton\Documents\Studium\Bachelorarbeit\GPR_Daten_mat\radargrams.mat';
 
 % .mat-Datei laden
 load(matfile_path, 'radargrams');

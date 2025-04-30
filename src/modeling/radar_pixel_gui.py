@@ -5,6 +5,8 @@ import tkinter as tk
 from tkinter import ttk
 import time
 
+radar_data_path = "./../../../GPR_Daten_mat/radargrams.mat"
+
 # Radarbild auf 3000x1000 vergrößern
 radar_image = np.random.randn(1000, 3000)  # Zufällig generiertes Radarbild (1000x3000)
 
