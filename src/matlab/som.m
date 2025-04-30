@@ -1,113 +1,128 @@
 % Pfad zur .mat-Datei
 matfile_path = 'C:\Users\anton\Documents\Studium\Bachelorarbeit\GPR_Daten_mat\radargrams.mat';
 
-% .mat-Datei laden
+% .mat-Datei laden und in single konvertieren
 load(matfile_path, 'radargrams');
-
-% Radargramm-Daten aus der gewünschten Zelle holen
-data = radargrams{9};
+data = single(radargrams{9});
+clear radargrams
 
 [nt, nx] = size(data);
-dt = 1e-9; % Abtastintervall
+dt = single(1e-9);
 
-% Speicher für Attribute anlegen
-amplitude_envelope = zeros(nt, nx);
-instantaneous_phase = zeros(nt, nx);
-instantaneous_frequency = zeros(nt, nx);
-
-for ix = 1:nx
-    trace = data(:, ix);
-    analytic_signal = hilbert(trace);
-    amplitude_envelope(:, ix) = abs(analytic_signal);
-    instantaneous_phase(:, ix) = angle(analytic_signal);
-    instantaneous_frequency(:, ix) = [0; diff(unwrap(angle(analytic_signal))) / dt] / (2*pi);
-end
-
-% Parameter für Umgebung (env_size = 0 → 1x1, env_size = 1 → 3x3 usw.)
+% Parameter
 env_size = 7;
 window_size = 2 * env_size + 1;
+block_size = 50;  % Kleinere Blöcke
+num_blocks = ceil(nx/block_size);
+n_features = 16;  % Anzahl Features beibehalten
 
-% Pixelbezogener Absolutgradient (Sobel-Filter)
-[Gx, Gy] = gradient(double(data));
-abs_gradient = sqrt(Gx.^2 + Gy.^2);
+% Speicher vorallokieren für Endergebnis
+X = zeros(nt * nx, n_features, 'single');
 
-% Umgebungsbezogene Features über Moving Window (mit 'same' für zentriertes Fenster)
-mean_env    = movmean(movmean(data, window_size, 1, 'Endpoints','shrink'), window_size, 2, 'Endpoints','shrink');
-median_env  = medfilt2(data, [window_size, window_size], 'symmetric');
-std_env     = stdfilt(data, true(window_size)); % lokale Standardabweichung
+% Blockweise Verarbeitung
+for b = 1:num_blocks
+    start_idx = (b-1)*block_size + 1;
+    end_idx = min(b*block_size, nx);
+    block_width = end_idx - start_idx + 1;
+    
+    % Aktueller Block
+    current_block = data(:, start_idx:end_idx);
+    
+    % Hilbert Transform
+    temp_features = zeros(nt, block_width, n_features, 'single');
+    
+    for ix = 1:block_width
+        trace = current_block(:, ix);
+        analytic_signal = hilbert(trace);
+        temp_features(:,ix,1) = abs(analytic_signal);  % amplitude_envelope
+        temp_features(:,ix,2) = angle(analytic_signal); % instantaneous_phase
+        temp_features(:,ix,3) = [0; diff(unwrap(angle(analytic_signal))) / dt] / (2*pi); % inst_freq
+    end
+    
+    % Gradient Features
+    [Gx, Gy] = gradient(current_block);
+    temp_features(:,:,4) = sqrt(Gx.^2 + Gy.^2);  % abs_gradient
+    
+    % Statistische Features
+    kernel = ones(window_size, 'single') / window_size^2;
+    temp_features(:,:,5) = conv2(current_block, kernel, 'same');  % mean_env
+    temp_features(:,:,6) = medfilt2(current_block, [window_size, window_size], 'symmetric');  % median_env
+    temp_features(:,:,7) = stdfilt(current_block, true(window_size));  % std_env
+    temp_features(:,:,8) = entropyfilt(current_block, true(window_size));  % entropy_env
+    
+    % Ordnungsstatistiken
+    num_elements = window_size^2;
+    temp_features(:,:,9) = ordfilt2(current_block, num_elements, true(window_size));  % max
+    temp_features(:,:,10) = ordfilt2(current_block, 1, true(window_size));  % min
+    temp_features(:,:,11) = temp_features(:,:,9) - temp_features(:,:,10);  % range
+    
+    % Schiefe und Wölbung
+    mean_local = temp_features(:,:,5);
+    diff_local = current_block - mean_local;
+    var_local = conv2(diff_local.^2, kernel, 'same');
+    std_local = sqrt(var_local);
+    norm_diff = diff_local ./ std_local;
+    
+    temp_features(:,:,12) = conv2(norm_diff.^3, kernel, 'same');  % skewness
+    temp_features(:,:,13) = conv2(norm_diff.^4, kernel, 'same') - 3;  % kurtosis
+    
+    % Zusätzliche Features
+    temp_features(:,:,14) = conv2(temp_features(:,:,3), kernel, 'same');  % mean_inst_freq
+    [Gx_p, Gy_p] = gradient(temp_features(:,:,2));
+    temp_features(:,:,15) = sqrt(Gx_p.^2 + Gy_p.^2);  % abs_grad_phase
+    [Gx_s, Gy_s] = gradient(temp_features(:,:,12));
+    temp_features(:,:,16) = sqrt(Gx_s.^2 + Gy_s.^2);  % abs_grad_skew
+    
+    % In Ergebnismatrix einfügen
+    idx_range = (start_idx-1)*nt + 1 : end_idx*nt;
+    X(idx_range, :) = reshape(temp_features, [], n_features);
+    
+    % Zwischenspeicher freigeben
+    clear temp_features current_block
+end
 
-% Umgebungs-Entropie (lokale Texturmaßzahl)
-entropy_env = entropyfilt(data, true(window_size));
-
-% Umgebungsbezogene Features mit ordfilt2
-num_elements = window_size^2;
-max_env = ordfilt2(data, num_elements, true(window_size));
-min_env = ordfilt2(data, 1, true(window_size));
-p75 = ordfilt2(data, round(0.75 * num_elements), true(window_size));
-p25 = ordfilt2(data, round(0.25 * num_elements), true(window_size));
-
-% Range und IQR Berechnung
-range_env = max_env - min_env;
-iqr_env = p75 - p25;
-
-% Schiefe Berechnung nach Formel: a3 = Σ((xᵢ - x̄)/s)³/n
-kernel = ones(window_size) / window_size^2;  % Normalisierter Kernel für Moving Average
-mean_local = conv2(data, kernel, 'same');    % Lokaler Mittelwert x̄
-diff_local = data - mean_local;              % (xᵢ - x̄)
-var_local = conv2(diff_local.^2, kernel, 'same'); % Lokale Varianz
-std_local = sqrt(var_local);                 % Lokale Standardabweichung s
-norm_diff = diff_local ./ std_local;         % (xᵢ - x̄)/s
-skewness_env = conv2(norm_diff.^3, kernel, 'same'); % Σ((xᵢ - x̄)/s)³/n
-
-% Kurtosis (ähnliches Prinzip wie Schiefe)
-kurtosis_env = conv2(norm_diff.^4, kernel, 'same') - 3; % -3 für Excess Kurtosis
-
-% Neue Features berechnen
-% Mean instantaneous frequency über Umgebung
-mean_inst_freq = movmean(movmean(instantaneous_frequency, window_size, 1, 'Endpoints','shrink'), window_size, 2, 'Endpoints','shrink');
-
-% Gradient der instantaneous phase
-[Gx_phase, Gy_phase] = gradient(instantaneous_phase);
-abs_gradient_phase = sqrt(Gx_phase.^2 + Gy_phase.^2);
-
-% Mean der Wölbung über Umgebung
-mean_kurtosis = movmean(movmean(kurtosis_env, window_size, 1, 'Endpoints','shrink'), window_size, 2, 'Endpoints','shrink');
-
-% Gradient der Schiefe
-[Gx_skew, Gy_skew] = gradient(skewness_env);
-abs_gradient_skew = sqrt(Gx_skew.^2 + Gy_skew.^2);
-
-% Feature-Matrix erstellen (jede Zeile: ein Pixel, jede Spalte: ein Feature)
-features = cat(3, ...
-    data, abs_gradient, mean_env, median_env, std_env, entropy_env, ...
-    max_env, min_env, range_env, iqr_env, skewness_env, kurtosis_env, ...
-    mean_inst_freq, abs_gradient_phase, mean_kurtosis, abs_gradient_skew);
-
-[n1, n2, n_features] = size(features);
-X = reshape(features, [], n_features); % (nt*nx) x n_features
-
-% NaN/Inf entfernen (z.B. durch 0 ersetzen oder Zeilen löschen)
+% Nachbearbeitung
 X(~isfinite(X)) = 0;
+X = normalize(X, 'zscore');
 
-% Optional: Features normalisieren (z.B. z-score)
-X = normalize(X);
+% SOM Training mit zufälligen Batches
+batch_size = 10000;
+n_samples = size(X,1);
+num_batches = ceil(n_samples/batch_size);
 
-% SOM erstellen und trainieren
-dimension1 = 10; % z.B. 10x10 SOM
+% Zufällige Permutation aller Indizes
+all_indices = randperm(n_samples);
+
+% SOM Netzwerk initialisieren
+dimension1 = 10;
 dimension2 = 10;
 net = selforgmap([dimension1 dimension2]);
-net.trainParam.showWindow = false; % Trainingsfenster nicht anzeigen
-net = train(net, X');
+net.trainParam.showWindow = false;
 
-% SOM-Visualisierungen
-figure;
-plotsomhits(net, X');
+% Initiales Training mit erstem Batch
+batch_indices = all_indices(1:batch_size);
+initial_batch = X(batch_indices,:);
+net = train(net, initial_batch');
+
+% Weiteres Training mit restlichen Batches
+for i = 2:num_batches
+    start_idx = (i-1)*batch_size + 1;
+    end_idx = min(i*batch_size, n_samples);
+    batch_indices = all_indices(start_idx:end_idx);
+    current_batch = X(batch_indices,:);
+    net = adapt(net, current_batch');
+end
+
+% Visualisierung
+figure('Name', 'SOM Results');
+subplot(2,2,1);
+plotsomhits(net, X'); % Visualisierung mit reduziertem Datensatz
 title('SOM Hits');
 
-figure;
+subplot(2,2,2);
 plotsomnd(net);
-title('SOM Neighbor Distances (U-Matrix)');
+title('SOM Neighbor Distances');
 
-figure;
-plotsom(net, X');
-title('SOM Topology');
+subplot(2,2,3);
+plotsomplanes(net);
+title('SOM Planes');
