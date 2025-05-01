@@ -78,7 +78,7 @@ for b = 1:num_blocks
     X(idx_range, :) = reshape(temp_features, [], n_features);
     
     % Zwischenspeicher freigeben
-    clear temp_features current_block
+    clear temp_features current_block Gx Gy Gx_p Gy_p Gx_s Gy_s diff_local var_local std_local norm_diff mean_local;
 end
 
 % Nachbearbeitung
@@ -93,7 +93,13 @@ num_batches = ceil(n_samples/batch_size);
 % Zufällige Permutation aller Indizes
 all_indices = randperm(n_samples);
 
-% SOM Netzwerk initialisieren
+% Feature Namen definieren (vor dem Training)
+feature_names = {'Amplitude Envelope', 'Instantaneous Phase', 'Instantaneous Frequency', ...
+                'Absolute Gradient', 'Mean', 'Median', 'Standard Deviation', 'Entropy', ...
+                'Maximum', 'Minimum', 'Range', 'Skewness', 'Kurtosis', ...
+                'Mean Inst Freq', 'Abs Grad Phase', 'Abs Grad Skewness'};
+
+% SOM Netzwerk initialisieren mit Input Labels
 dimension1 = 10;
 dimension2 = 10;
 net = selforgmap([dimension1 dimension2]);
@@ -118,6 +124,12 @@ figure('Name', 'SOM Neighbor Distances');
 plotsomnd(net);
 title('SOM Neighbor Distances');
 
+% Visualisierung der Feature Planes mit manuellen Namen
 figure('Name', 'SOM Feature Planes');
 plotsomplanes(net);
-title('SOM Feature Planes');
+
+% Feature-Namen als Titel setzen
+for i = 1:length(feature_names)
+    subplot(4,4,i); % 4x4 für 16 Features
+    title(feature_names{i}, 'Interpreter', 'none');
+end
