@@ -98,31 +98,26 @@ dimension1 = 10;
 dimension2 = 10;
 net = selforgmap([dimension1 dimension2]);
 net.trainParam.showWindow = false;
+net.trainParam.epochs = 1;  % Ein Epoch pro Batch
 
-% Initiales Training mit erstem Batch
-batch_indices = all_indices(1:batch_size);
-initial_batch = X(batch_indices,:);
-net = train(net, initial_batch');
-
-% Weiteres Training mit restlichen Batches
-for i = 2:num_batches
+% Training mit allen Batches
+for i = 1:num_batches
     start_idx = (i-1)*batch_size + 1;
     end_idx = min(i*batch_size, n_samples);
     batch_indices = all_indices(start_idx:end_idx);
     current_batch = X(batch_indices,:);
-    net = adapt(net, current_batch');
+    net = train(net, current_batch');
 end
 
-% Visualisierung
-figure('Name', 'SOM Results');
-subplot(2,2,1);
-plotsomhits(net, X'); % Visualisierung mit reduziertem Datensatz
+% Visualisierung in separaten Fenstern
+figure('Name', 'SOM Hits');
+plotsomhits(net, X');
 title('SOM Hits');
 
-subplot(2,2,2);
+figure('Name', 'SOM Neighbor Distances');
 plotsomnd(net);
 title('SOM Neighbor Distances');
 
-subplot(2,2,3);
+figure('Name', 'SOM Feature Planes');
 plotsomplanes(net);
-title('SOM Planes');
+title('SOM Feature Planes');
