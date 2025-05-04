@@ -96,6 +96,10 @@ target/
 .mat
 
 feature_plots.ipynb
+*.png
+*.jpg
+*.jpeg
+*.html
 
 # exclude data from source control by default
 # /data/

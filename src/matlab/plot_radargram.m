@@ -35,18 +35,16 @@ for b = 1:num_blocks
     for ix = 1:block_width
         analytic_signal = hilbert(current_block(:, ix));
         temp_features(:,ix,1) = abs(analytic_signal);
-        temp_features(:,ix,3) = [0; diff(unwrap(angle(analytic_signal))) / dt] / (2*pi); % Inst. Freq
-        temp_features(:,ix,2) = 0; % Platzhalter für Abs Grad Phase (wird unten berechnet)
+        temp_features(:,ix,2) = [0; diff(unwrap(angle(analytic_signal))) / dt] / (2*pi); % Inst. Freq
+        temp_features(:,ix,3) = cos(angle(analytic_signal)); % Real Inst. Phase
+        temp_features(:,ix,4) = sin(angle(analytic_signal)); % Imag Inst. Phase
     end
 
-    % 2. Abs Grad Phase
-    phase_block = angle(hilbert(current_block));
-    [Gx_p, Gy_p] = gradient(phase_block);
-    temp_features(:,:,2) = sqrt(Gx_p.^2 + Gy_p.^2);
-
-    % 4. Mean
+    for it = 1:nt
+        temp_features(it,:,6) = skewness()
+    end
+    
     kernel = ones(window_size, 'single') / window_size^2;
-    temp_features(:,:,4) = conv2(current_block, kernel, 'same');
 
     % 5. Entropy
     temp_features(:,:,5) = entropyfilt(current_block, true(window_size));
@@ -60,9 +58,9 @@ for b = 1:num_blocks
     temp_features(:,:,6) = conv2(norm_diff.^3, kernel, 'same');      % Skewness
     temp_features(:,:,7) = conv2(norm_diff.^4, kernel, 'same') - 3;  % Kurtosis
 
-    % 8. Abs Grad Skewness
-    [Gx_s, Gy_s] = gradient(temp_features(:,:,6));
-    temp_features(:,:,8) = sqrt(Gx_s.^2 + Gy_s.^2);
+    % 8. Mean
+    temp_features(:,:,8) = conv2(current_block, kernel, 'same');
+
 
     % In Ergebnismatrix einfügen
     idx_range = (start_idx-1)*nt + 1 : end_idx*nt;
@@ -75,33 +73,21 @@ end
 X(~isfinite(X)) = 0;
 X = normalize(X, 'range');
 
-% SOM Training mit doppelter Batchsize
-batch_size = 20000; % vorher 10000
-n_samples = size(X,1);
-num_batches = ceil(n_samples/batch_size);
-
-% Zufällige Permutation aller Indizes
-all_indices = randperm(n_samples);
+% SOM Training mit allen Daten auf einmal
 
 % Feature Namen definieren (vor dem Training)
-feature_names = {'Envelope', 'Abs Grad Phase', 'Inst. Freq', 'Mean', ...
-                 'Entropy', 'Skewness', 'Kurtosis', 'Abs Grad Skewness'};
+feature_names = {'Envelope', 'Inst. Frequency', 'Real Inst. Phase', 'Imag. Inst. Phase', ...
+                 'Entropy', 'Skewness', 'Kurtosis', 'Mean'};
 
 % SOM Netzwerk initialisieren mit Input Labels
 dimension1 = 10;
 dimension2 = 10;
 net = selforgmap([dimension1 dimension2]);
 net.trainParam.showWindow = false;
-net.trainParam.epochs = 1;  % Ein Epoch pro Batch
+net.trainParam.epochs = 10;  % Anzahl der Epochen für das Training
 
-% Training mit allen Batches
-for i = 1:num_batches
-    start_idx = (i-1)*batch_size + 1;
-    end_idx = min(i*batch_size, n_samples);
-    batch_indices = all_indices(start_idx:end_idx);
-    current_batch = X(batch_indices,:);
-    net = train(net, current_batch');
-end
+% Training mit allen Daten
+net = train(net, X');
 
 % Visualisierung in separaten Fenstern
 figure('Name', 'SOM Hits');
@@ -112,19 +98,16 @@ figure('Name', 'SOM Neighbor Distances');
 plotsomnd(net);
 title('SOM Neighbor Distances');
 
-% Visualisierung der Feature Planes mit manuellen Namen
 figure('Name', 'SOM Feature Planes');
 plotsomplanes(net);
 
-% Feature-Namen als Titel setzen
-for i = 1:n_features
-    subplot(2,4,i); % 2x4 für 8 Features
-    title(feature_names{i}, 'Interpreter', 'none');
-end
+% Achsen finden und Titel setzen
+ax = findall(gcf, 'Type', 'axes');
+ax = flipud(ax); % MATLAB sortiert von zuletzt gezeichnet nach zuerst → umdrehen
 
-%figure('Name', 'SOM Unit Positions');
-%plotsompos(net);
-%title('SOM Unit Positions');
+for i = 1:n_features
+    title(ax(i), feature_names{i}, 'Interpreter', 'none');
+end
 
 % BMU für jeden Datenpunkt bestimmen
 bmu_indices = vec2ind(net(X'))'; % Länge: nt*nx
@@ -143,3 +126,5 @@ xlabel('Spur'); ylabel('Zeit (Samples)');
 title('BMU-Cluster (KMeans, K=10)');
 colormap(jet);
 colorbar;
+
+clear
