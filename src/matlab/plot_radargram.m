@@ -39,10 +39,6 @@ for b = 1:num_blocks
         temp_features(:,ix,3) = cos(angle(analytic_signal)); % Real Inst. Phase
         temp_features(:,ix,4) = sin(angle(analytic_signal)); % Imag Inst. Phase
     end
-
-    for it = 1:nt
-        temp_features(it,:,6) = skewness()
-    end
     
     kernel = ones(window_size, 'single') / window_size^2;
 
@@ -71,14 +67,17 @@ end
 
 % Nachbearbeitung
 X(~isfinite(X)) = 0;
-X = normalize(X, 'range');
+
+% Spaltenweise normalisieren (jedes Feature separat)
+for i = 1:n_features
+    X(:,i) = normalize(X(:,i), 'range');
+end
 
 % SOM Training mit allen Daten auf einmal
 
 % Feature Namen definieren (vor dem Training)
 feature_names = {'Envelope', 'Inst. Frequency', 'Real Inst. Phase', 'Imag. Inst. Phase', ...
                  'Entropy', 'Skewness', 'Kurtosis', 'Mean'};
-
 % SOM Netzwerk initialisieren mit Input Labels
 dimension1 = 10;
 dimension2 = 10;
@@ -93,6 +92,10 @@ net = train(net, X');
 figure('Name', 'SOM Hits');
 plotsomhits(net, X');
 title('SOM Hits');
+
+figure('Name', 'SOM Weight Positions');
+plotsompos(net);
+title('SOM Weight Positions');
 
 figure('Name', 'SOM Neighbor Distances');
 plotsomnd(net);
