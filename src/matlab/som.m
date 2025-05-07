@@ -1,3 +1,12 @@
+function bmu_indices = get_bmu_indices(net, X_sample)
+% Gibt für jede Zeile in X_sample den BMU-Index (1-basiert) zurück
+% net: trainiertes SOM-Netzwerk
+% X_sample: (n_samples x n_features) Matrix
+
+    bmu_indices = vec2ind(net(X_sample')); % Ergebnis: 1 x n_samples
+    bmu_indices = bmu_indices(:);          % als Spaltenvektor zurückgeben
+end
+
 % Pfad zur .mat-Datei
 matfile_path = 'C:\Users\anton\Documents\Studium\Bachelorarbeit\GPR_Daten_mat\radargrams.mat';
 
