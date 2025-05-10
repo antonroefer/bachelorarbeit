@@ -93,7 +93,7 @@ target/
 /models/
 
 # Exlude Mat Data
-.mat
+*.mat
 
 feature_plots.ipynb
 *.png
