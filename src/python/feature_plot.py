@@ -3,8 +3,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import h5py
 
+raw = False
+
 # Load MAT file in v7.3 format using h5py
-file_path = "./../../data/processed/radargrams.mat"
+file_path = (
+    "./../../data/raw/radargrams.mat"
+    if raw
+    else "./../../../GPR_Daten_mat/radargrams.mat"
+)
 
 # First, explore the structure of the file
 with h5py.File(file_path, "r") as f:
@@ -39,10 +45,11 @@ with h5py.File(file_path, "r") as f:
 
 # Create Radargram instance
 rg = Radargram(data)
+rg.apply_gain() if raw else None
 
 # Plot original data
 plt.figure(figsize=(10, 6))
-plt.imshow(data, aspect="auto", cmap="jet")
+plt.imshow(rg.data, aspect="auto", cmap="jet")
 plt.title("Original Radargram")
 plt.colorbar(label="Amplitude")
 plt.xlabel("Trace")

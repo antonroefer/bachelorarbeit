@@ -1,7 +1,15 @@
 import numpy as np
+from scipy.ndimage import (
+    generic_filter,
+    uniform_filter,
+    maximum_filter,
+    minimum_filter,
+    median_filter,
+)
 from scipy import signal
-from scipy import stats
 from skimage.filters import sobel
+from scipy.optimize import curve_fit
+import matplotlib.pyplot as plt
 
 
 class Radargram:
@@ -75,7 +83,7 @@ class Radargram:
         # Return real and imaginary parts
         return np.cos(phase), np.sin(phase)
 
-    def instantaneous_frequency(self, data=None, dt=1.0):
+    def instantaneous_frequency(self, data=None, dt=0.1173):
         """
         Calculate the instantaneous frequency using the derivative of instantaneous phase.
 
@@ -84,7 +92,7 @@ class Radargram:
         data : ndarray, optional
             2D radar amplitude data. If None, uses self.data
         dt : float, optional
-            Time sampling interval, defaults to 1.0
+            Time sampling interval, defaults to 0.1173
 
         Returns:
         --------
@@ -151,7 +159,6 @@ class Radargram:
         ndarray
             2D array of average energy
         """
-        from scipy.ndimage import uniform_filter
 
         data = self._get_data(data)
         squared_data = data**2
@@ -205,7 +212,6 @@ class Radargram:
         ndarray
             2D array of coherence
         """
-        from scipy.ndimage import uniform_filter, generic_filter
 
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
@@ -247,7 +253,6 @@ class Radargram:
         ndarray
             2D array of entropy
         """
-        from scipy.ndimage import generic_filter
 
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
@@ -283,7 +288,6 @@ class Radargram:
         ndarray
             2D array of mean values
         """
-        from scipy.ndimage import uniform_filter
 
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
@@ -309,7 +313,6 @@ class Radargram:
         ndarray
             2D array of median values
         """
-        from scipy.ndimage import median_filter
 
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
@@ -335,7 +338,6 @@ class Radargram:
         ndarray
             2D array of standard deviation values
         """
-        from scipy.ndimage import uniform_filter
 
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
@@ -350,9 +352,9 @@ class Radargram:
         variance = np.maximum(variance, 0)
         return np.sqrt(variance)
 
-    def skewness(self, data=None, x_dis=1, y_dis=1, mode="symmetric"):
+    def skewness(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
-        Calculate the skewness within a window.
+        Calculate the skewness within a window using central moments formula.
 
         Parameters:
         -----------
@@ -363,7 +365,7 @@ class Radargram:
         y_dis : int, optional
             Distance to window edge in y-direction, defaults to 1
         mode : str, optional
-            Padding mode for numpy.pad, defaults to 'symmetric'
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
 
         Returns:
         --------
@@ -371,11 +373,29 @@ class Radargram:
             2D array of skewness values
         """
         data = self._get_data(data)
-        return self._apply_window_operation(data, stats.skew, x_dis, y_dis, mode)
+        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
 
-    def kurtosis(self, data=None, x_dis=1, y_dis=1, mode="symmetric"):
+        # Get mean and std
+        local_mean = self.mean(data, x_dis, y_dis, mode)
+        local_std = self.std(data, x_dis, y_dis, mode)
+
+        # Calculate third central moment using uniform_filter
+        # (x-μ)^3
+        diff_cubed = (data - local_mean) ** 3
+        third_moment = uniform_filter(diff_cubed, size=window_size, mode=mode)
+
+        # Normalize by std^3 to get skewness
+        with np.errstate(divide="ignore", invalid="ignore"):
+            skew = third_moment / (local_std**3)
+
+        # Fix potential NaN or inf values
+        return np.nan_to_num(skew, nan=0.0, posinf=0.0, neginf=0.0)
+
+    def kurtosis(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
-        Calculate the kurtosis within a window.
+        Calculate the kurtosis within a window using central moments formula.
+
+        Returns kurtosis - 3 (excess kurtosis) to match scipy.stats.kurtosis.
 
         Parameters:
         -----------
@@ -386,19 +406,38 @@ class Radargram:
         y_dis : int, optional
             Distance to window edge in y-direction, defaults to 1
         mode : str, optional
-            Padding mode for numpy.pad, defaults to 'symmetric'
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
 
         Returns:
         --------
         ndarray
-            2D array of kurtosis values
+            2D array of excess kurtosis values
         """
         data = self._get_data(data)
-        return self._apply_window_operation(data, stats.kurtosis, x_dis, y_dis, mode)
+        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
 
-    def max(self, data=None, x_dis=1, y_dis=1, mode="symmetric"):
+        # Get mean and std
+        local_mean = self.mean(data, x_dis, y_dis, mode)
+        local_std = self.std(data, x_dis, y_dis, mode)
+
+        # Calculate fourth central moment using uniform_filter
+        # (x-μ)^4
+        diff_to_4th = (data - local_mean) ** 4
+        fourth_moment = uniform_filter(diff_to_4th, size=window_size, mode=mode)
+
+        # Normalize by std^4 to get kurtosis
+        with np.errstate(divide="ignore", invalid="ignore"):
+            kurt = fourth_moment / (local_std**4)
+
+        # Subtract 3 to get excess kurtosis (normal distribution has kurtosis=3)
+        excess_kurt = kurt - 3
+
+        # Fix potential NaN or inf values
+        return np.nan_to_num(excess_kurt, nan=0.0, posinf=0.0, neginf=0.0)
+
+    def min(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
-        Calculate the maximum value within a window.
+        Calculate the minimum value within a window (optimized version).
 
         Parameters:
         -----------
@@ -409,40 +448,44 @@ class Radargram:
         y_dis : int, optional
             Distance to window edge in y-direction, defaults to 1
         mode : str, optional
-            Padding mode for numpy.pad, defaults to 'symmetric'
-
-        Returns:
-        --------
-        ndarray
-            2D array of maximum values
-        """
-        data = self._get_data(data)
-        return self._apply_window_operation(data, np.max, x_dis, y_dis, mode)
-
-    def min(self, data=None, x_dis=1, y_dis=1, mode="symmetric"):
-        """
-        Calculate the minimum value within a window.
-
-        Parameters:
-        -----------
-        data : ndarray, optional
-            2D radar amplitude data. If None, uses self.data
-        x_dis : int, optional
-            Distance to window edge in x-direction, defaults to 1
-        y_dis : int, optional
-            Distance to window edge in y-direction, defaults to 1
-        mode : str, optional
-            Padding mode for numpy.pad, defaults to 'symmetric'
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
 
         Returns:
         --------
         ndarray
             2D array of minimum values
         """
-        data = self._get_data(data)
-        return self._apply_window_operation(data, np.min, x_dis, y_dis, mode)
 
-    def range(self, data=None, x_dis=1, y_dis=1, mode="symmetric"):
+        data = self._get_data(data)
+        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
+        return minimum_filter(data, size=window_size, mode=mode)
+
+    def max(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+        """
+        Calculate the maximum value within a window (optimized version).
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        x_dis : int, optional
+            Distance to window edge in x-direction, defaults to 1
+        y_dis : int, optional
+            Distance to window edge in y-direction, defaults to 1
+        mode : str, optional
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
+
+        Returns:
+        --------
+        ndarray
+            2D array of maximum values
+        """
+
+        data = self._get_data(data)
+        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
+        return maximum_filter(data, size=window_size, mode=mode)
+
+    def range(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the range (max - min) within a window.
 
@@ -455,7 +498,7 @@ class Radargram:
         y_dis : int, optional
             Distance to window edge in y-direction, defaults to 1
         mode : str, optional
-            Padding mode for numpy.pad, defaults to 'symmetric'
+            Padding mode for numpy.pad, defaults to 'mirror'
 
         Returns:
         --------
@@ -467,6 +510,235 @@ class Radargram:
         return max_vals - min_vals
 
     # ---- Helper methods ----
+
+    def apply_gain(
+        self,
+        data=None,
+        method="exponential",
+        params=None,
+        window_size=None,
+        visualize=False,
+    ):
+        """
+        Apply a gain function to compensate for signal attenuation.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        method : str, optional
+            Method for fitting the damping function:
+            - 'exponential': A*exp(-α*t)
+            - 'power': A*t^(-α)
+            - 'combined': A*t^(-1)*exp(-α*t)
+            - 'polynomial': polynomial of degree specified in params
+            - 'moving_average': smoothed empirical function
+            Defaults to 'exponential'
+        params : dict, optional
+            Additional parameters for the fitting method:
+            - For 'polynomial': {'degree': n} where n is the polynomial degree
+            - For 'moving_average': {'window_length': w} for smoothing window
+        window_size : int, optional
+            Size of averaging window for smoothing the mean trace.
+            If None, no smoothing is applied. Defaults to None.
+        visualize : bool, optional
+            If True, displays plots of mean trace, fitted function,
+            and before/after comparison. Defaults to False.
+
+        Returns:
+        --------
+        ndarray
+            Gain-corrected data with same shape as input
+        """
+
+        # Get data and compute mean trace
+        data = self._get_data(data)
+        data = self.instantaneous_amplitude(data)
+        mean_trace = np.mean(data, axis=1)
+
+        # Smooth mean trace if window_size provided
+        if window_size is not None:
+            mean_trace = signal.savgol_filter(mean_trace, window_size, 2)
+
+        # Time axis (sample indices)
+        t = np.arange(len(mean_trace))
+
+        # Define fitting functions based on method
+        if method == "exponential":
+            # A*exp(-α*t)
+            def damping_func(t, A, alpha):
+                return A * np.exp(-alpha * t)
+
+            # Initial guess
+            p0 = [np.max(mean_trace), 0.01]
+
+            # Fit the function to mean trace
+            try:
+                popt, _ = curve_fit(
+                    damping_func,
+                    t,
+                    mean_trace,
+                    p0=p0,
+                    bounds=([0, 0], [np.inf, np.inf]),
+                )
+                fitted_curve = damping_func(t, *popt)
+
+                plt.figure(figsize=(4, 8))
+                plt.plot(mean_trace, t, "b-", label="Mean Trace")
+                plt.plot(fitted_curve, t, "r--", label="Fitted Curve")
+                plt.gca().invert_yaxis()
+                plt.xlabel("Amplitude")
+                plt.ylabel("Time (samples)")
+                plt.title("Mean Trace and Fitted Curve")
+                plt.legend()
+                plt.grid(True)
+                plt.show()
+
+                gain_factor = 1.0 / fitted_curve
+                gain_factor = gain_factor / gain_factor[0]  # Normalize
+            except RuntimeError:
+                print("Warning: Exponential fitting failed, using empirical gain")
+                # Fallback to empirical approach
+                fitted_curve = mean_trace
+                gain_factor = np.max(mean_trace) / mean_trace
+                gain_factor = np.clip(gain_factor, 1.0, 1000.0)  # Limit extreme values
+
+        elif method == "power":
+            # A*t^(-α)
+            def damping_func(t, A, alpha):
+                # Avoid division by zero
+                t_safe = np.maximum(t, 0.1)
+                return A * t_safe ** (-alpha)
+
+            # Initial guess
+            p0 = [np.max(mean_trace) * 10, 0.5]
+
+            # Fit the function to mean trace (skip first few samples)
+            start_idx = 5  # Skip first few samples
+            try:
+                popt, _ = curve_fit(
+                    damping_func,
+                    t[start_idx:],
+                    mean_trace[start_idx:],
+                    p0=p0,
+                    bounds=([0, 0], [np.inf, np.inf]),
+                )
+                fitted_curve = np.zeros_like(mean_trace)
+                fitted_curve[start_idx:] = damping_func(t[start_idx:], *popt)
+                fitted_curve[:start_idx] = fitted_curve[
+                    start_idx
+                ]  # Fill in skipped values
+                gain_factor = np.max(mean_trace) / fitted_curve
+            except RuntimeError:
+                print("Warning: Power law fitting failed, using empirical gain")
+                # Fallback
+                fitted_curve = mean_trace
+                gain_factor = np.max(mean_trace) / mean_trace
+                gain_factor = np.clip(gain_factor, 1.0, 1000.0)
+
+        elif method == "combined":
+            # A*t^(-1)*exp(-α*t)
+            def damping_func(t, A, alpha):
+                # Avoid division by zero
+                t_safe = np.maximum(t, 0.1)
+                return A * t_safe ** (-1) * np.exp(-alpha * t_safe)
+
+            # Initial guess
+            p0 = [np.max(mean_trace) * 10, 0.01]
+
+            # Fit the function
+            start_idx = 5  # Skip first few samples
+            try:
+                popt, _ = curve_fit(
+                    damping_func,
+                    t[start_idx:],
+                    mean_trace[start_idx:],
+                    p0=p0,
+                    bounds=([0, 0], [np.inf, np.inf]),
+                )
+                fitted_curve = np.zeros_like(mean_trace)
+                fitted_curve[start_idx:] = damping_func(t[start_idx:], *popt)
+                fitted_curve[:start_idx] = fitted_curve[
+                    start_idx
+                ]  # Fill in skipped values
+                gain_factor = np.max(mean_trace) / fitted_curve
+            except RuntimeError:
+                print("Warning: Combined fitting failed, using empirical gain")
+                # Fallback
+                fitted_curve = mean_trace
+                gain_factor = np.max(mean_trace) / mean_trace
+                gain_factor = np.clip(gain_factor, 1.0, 1000.0)
+
+        elif method == "polynomial":
+            degree = 3  # Default polynomial degree
+            if params and "degree" in params:
+                degree = params["degree"]
+
+            # Fit polynomial
+            poly_coeffs = np.polyfit(t, mean_trace, degree)
+            fitted_curve = np.polyval(poly_coeffs, t)
+
+            # Generate gain factor
+            gain_factor = np.max(mean_trace) / fitted_curve
+            # Limit extreme values
+            gain_factor = np.clip(gain_factor, 1.0, 1000.0)
+
+        elif method == "moving_average":
+            window_length = 51  # Default
+            if params and "window_length" in params:
+                window_length = params["window_length"]
+
+            fitted_curve = signal.savgol_filter(mean_trace, window_length, 2)
+            gain_factor = np.max(mean_trace) / fitted_curve
+            gain_factor = np.clip(gain_factor, 1.0, 1000.0)
+
+        else:
+            raise ValueError(f"Unknown method: {method}")
+
+        # Apply gain to data
+        gained_data = data * gain_factor[:, np.newaxis]  # Broadcasting
+
+        # Normalize output data to have similar amplitude range as input
+        max_val = np.max(np.abs(data))
+        gained_data = gained_data * (max_val / np.max(np.abs(gained_data)))
+
+        # Visualize if requested
+        if visualize:
+            fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+            # Plot mean trace and fitted curve
+            axes[0].plot(t, mean_trace, "b-", label="Mean Trace")
+            axes[0].plot(t, fitted_curve, "r--", label="Fitted Curve")
+            axes[0].set_title("Mean Trace and Fitted Curve")
+            axes[0].set_xlabel("Sample")
+            axes[0].set_ylabel("Amplitude")
+            axes[0].legend()
+
+            # Plot gain factor
+            axes[1].plot(t, gain_factor)
+            axes[1].set_title("Gain Factor")
+            axes[1].set_xlabel("Sample")
+            axes[1].set_ylabel("Gain")
+
+            # Plot before/after comparison
+            vmax = np.percentile(np.abs(gained_data), 99.5)
+            axes[2].imshow(data, aspect="auto", cmap="gray", vmax=vmax)
+            axes[2].set_title("Before")
+            axes[2].set_xlabel("Trace")
+            axes[2].set_ylabel("Time Sample")
+
+            fig.tight_layout()
+
+            # Second figure for gained data
+            fig2, ax = plt.subplots(figsize=(6, 5))
+            im = ax.imshow(gained_data, aspect="auto", cmap="gray", vmax=vmax)
+            ax.set_title("After Gain")
+            ax.set_xlabel("Trace")
+            ax.set_ylabel("Time Sample")
+            fig2.colorbar(im)
+            plt.show()
+
+        self.data = gained_data
 
     def _get_data(self, data):
         """Helper method to get the data array to use."""
@@ -502,7 +774,6 @@ class Radargram:
         ndarray
             Result of applying the operation to each window
         """
-        from scipy.ndimage import generic_filter
 
         # Create a window for the operation
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
