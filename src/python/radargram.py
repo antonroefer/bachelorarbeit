@@ -17,9 +17,12 @@ class Radargram:
     A class for computing various attributes of radar data.
 
     Attributes can be pixel-based or window-based, with configurable window sizes.
+    Supports two modes:
+    1. On-demand mode: Radargram(data) - attributes are calculated when requested
+    2. Pre-computed mode: Radargram(data, x_dis, y_dis) - attributes are calculated during initialization
     """
 
-    def __init__(self, data=None):
+    def __init__(self, data=None, x_dis=None, y_dis=None):
         """
         Initialize the Radargram object.
 
@@ -27,12 +30,87 @@ class Radargram:
         -----------
         data : ndarray, optional
             2D radar amplitude data array
+        x_dis : int, optional
+            Distance to window edge in x-direction for pre-computing attributes
+        y_dis : int, optional
+            Distance to window edge in y-direction for pre-computing attributes
+        mode : str, optional
+            Padding mode for window operations, defaults to 'mirror'
+        dt : float, optional
+            Time sampling interval for instantaneous frequency calculation
         """
         self.data = data
+        self._precalc = x_dis is not None and y_dis is not None
+        self._x_dis = 1 if x_dis is None else x_dis
+        self._y_dis = 1 if y_dis is None else y_dis
+
+        # Storage for pre-calculated attributes
+        self.instantaneous_amplitude = None
+        self.instantaneous_phase_real = None
+        self.instantaneous_phase_imag = None
+        self.instantaneous_frequency = None
+        self.absolute_gradient = None
+        self.average_energy = None
+        self.rms_amplitude = None
+        self.coherence = None
+        self.entropy = None
+        self.mean = None
+        self.median = None
+        self.std = None
+        self.skewness = None
+        self.kurtosis = None
+        self.max = None
+        self.min = None
+        self.range = None
+
+        # Pre-calculate attributes if in pre-computed mode
+        if self._precalc and data is not None:
+            print(
+                f"Pre-calculating attributes with window size {2 * self._x_dis + 1}x{2 * self._y_dis + 1}..."
+            )
+            print("Calculating Instantaneous Amplitude ...")
+            self.instantaneous_amplitude = self.calc_instantaneous_amplitude()
+            print("Calculating Instantaneous Phase ...")
+            self.instantaneous_phase_real, self.instantaneous_phase_imag = (
+                self.calc_instantaneous_phase()
+            )
+            print("Calculating Instantaneous Frequency ...")
+            self.instantaneous_frequency = self.calc_instantaneous_frequency()
+            print("Calculating Sweetness ...")
+            self.sweetness = self.calc_sweetness()
+            print("Calculating Absolute Gradient ...")
+            self.absolute_gradient = self.calc_absolute_gradient()
+            print("Calculating Average Energy ...")
+            self.average_energy = self.calc_average_energy(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating RMS Amplitude ...")
+            self.rms_amplitude = self.calc_rms_amplitude(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Coherence ...")
+            self.coherence = self.calc_coherence(x_dis=x_dis, y_dis=y_dis)
+            print("Skip Entropy ...")
+            # self.entropy = self.calc_entropy(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Mean ...")
+            self.mean = self.calc_mean(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Mean of Squared Values ...")
+            self.mean_sq = self.calc_mean_sq(x_dis=x_dis, y_dis=y_dis)
+            print("Skip Median ...")
+            # self.median = self.calc_median(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Standard Deviation ...")
+            self.std = self.calc_std(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Skewness ...")
+            self.skewness = self.calc_skewness(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Kurtosis ...")
+            self.kurtosis = self.calc_kurtosis(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Maximum ...")
+            self.max = self.calc_max(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Minimum ...")
+            self.min = self.calc_min(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Range ...")
+            self.range = self.calc_range(x_dis=x_dis, y_dis=y_dis)
+            print("Pre-calculation complete.")
 
     # ---- Pixel-based attribute calculations ----
 
-    def instantaneous_amplitude(self, data=None):
+    def calc_instantaneous_amplitude(self, data=None):
         """
         Calculate the instantaneous amplitude (envelope) using Hilbert transform.
 
@@ -57,7 +135,7 @@ class Radargram:
 
         return envelope
 
-    def instantaneous_phase(self, data=None):
+    def calc_instantaneous_phase(self, data=None):
         """
         Calculate the instantaneous phase using Hilbert transform.
 
@@ -83,7 +161,7 @@ class Radargram:
         # Return real and imaginary parts
         return np.cos(phase), np.sin(phase)
 
-    def instantaneous_frequency(self, data=None, dt=0.1173):
+    def calc_instantaneous_frequency(self, data=None, dt=0.1173):
         """
         Calculate the instantaneous frequency using the derivative of instantaneous phase.
 
@@ -115,7 +193,39 @@ class Radargram:
 
         return freq
 
-    def absolute_gradient(self, data=None):
+    def calc_sweetness(self, data=None):
+        """
+        Calculate the sweetness attribute, defined as instantaneous amplitude
+        divided by instantaneous frequency.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+
+        Returns:
+        --------
+        ndarray
+            2D array of sweetness values
+        """
+        if (
+            self._precalc
+            and self.instantaneous_amplitude is not None
+            and self.instantaneous_frequency is not None
+        ):
+            inst_amp = self.instantaneous_amplitude
+            inst_freq = self.instantaneous_frequency
+        else:
+            inst_amp = self.instantaneous_amplitude(data)
+            inst_freq = self.instantaneous_frequency(data)
+
+        with np.errstate(divide="ignore", invalid="ignore"):
+            sweetness = inst_amp / inst_freq
+            sweetness = np.nan_to_num(sweetness, nan=0.0, posinf=0.0, neginf=0.0)
+
+        return sweetness
+
+    def calc_absolute_gradient(self, data=None):
         """
         Calculate the absolute gradient using Sobel filter.
 
@@ -137,7 +247,7 @@ class Radargram:
 
     # ---- Window-based attribute calculations ----
 
-    def average_energy(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_average_energy(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the average energy within a window (optimized version).
 
@@ -167,7 +277,7 @@ class Radargram:
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
         return uniform_filter(squared_data, size=window_size, mode=mode)
 
-    def rms_amplitude(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_rms_amplitude(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the RMS amplitude within a window.
 
@@ -189,10 +299,13 @@ class Radargram:
         ndarray
             2D array of RMS amplitude
         """
-        avg_energy = self.average_energy(data, x_dis, y_dis, mode)
+        if self._precalc and self.average_energy is not None:
+            avg_energy = self.average_energy
+        else:
+            avg_energy = self.calc_average_energy(data, x_dis, y_dis, mode)
         return np.sqrt(avg_energy)
 
-    def coherence(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_coherence(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the coherence within a window (optimized version).
 
@@ -231,7 +344,7 @@ class Radargram:
         coherence = np.nan_to_num(coherence, nan=0, posinf=1, neginf=0)
         return coherence
 
-    def entropy(self, data=None, x_dis=1, y_dis=1, mode="mirror", bins=16):
+    def calc_entropy(self, data=None, x_dis=1, y_dis=1, mode="mirror", bins=16):
         """
         Calculate the entropy within a window (optimized version).
 
@@ -258,7 +371,7 @@ class Radargram:
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
 
         # Define a function to calculate entropy of a window
-        def calc_entropy(window):
+        def calc_calc_entropy(window):
             hist, _ = np.histogram(window, bins=bins, density=True)
             nonzero = hist > 0
             if np.any(nonzero):
@@ -266,9 +379,9 @@ class Radargram:
             return 0
 
         # Apply the filter
-        return generic_filter(data, calc_entropy, size=window_size, mode=mode)
+        return generic_filter(data, calc_calc_entropy, size=window_size, mode=mode)
 
-    def mean(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_mean(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the mean within a window (optimized version).
 
@@ -293,7 +406,31 @@ class Radargram:
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
         return uniform_filter(data, size=window_size, mode=mode)
 
-    def median(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_mean_sq(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+        """
+        Calculate the mean of squared values within a window (optimized version).
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        x_dis : int, optional
+            Distance to window edge in x-direction, defaults to 1
+        y_dis : int, optional
+            Distance to window edge in y-direction, defaults to 1
+        mode : str, optional
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
+
+        Returns:
+        --------
+        ndarray
+            2D array of mean squared values
+        """
+        data = self._get_data(data)
+        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
+        return uniform_filter(data**2, size=window_size, mode=mode)
+
+    def calc_median(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the median within a window (optimized version).
 
@@ -318,7 +455,7 @@ class Radargram:
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
         return median_filter(data, size=window_size, mode=mode)
 
-    def std(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_std(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the standard deviation within a window (optimized version).
 
@@ -342,9 +479,13 @@ class Radargram:
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
 
-        # Calculate mean and mean of squares
-        mean = uniform_filter(data, size=window_size, mode=mode)
-        mean_sq = uniform_filter(data**2, size=window_size, mode=mode)
+        # Use precomputed mean and mean_sq if available
+        if self._precalc and self.mean is not None and self.mean_sq is not None:
+            mean = self.mean
+            mean_sq = self.mean_sq
+        else:
+            mean = uniform_filter(data, size=window_size, mode=mode)
+            mean_sq = uniform_filter(data**2, size=window_size, mode=mode)
 
         # Calculate std dev
         variance = mean_sq - mean**2
@@ -352,7 +493,7 @@ class Radargram:
         variance = np.maximum(variance, 0)
         return np.sqrt(variance)
 
-    def skewness(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_skewness(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the skewness within a window using central moments formula.
 
@@ -375,9 +516,13 @@ class Radargram:
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
 
-        # Get mean and std
-        local_mean = self.mean(data, x_dis, y_dis, mode)
-        local_std = self.std(data, x_dis, y_dis, mode)
+        # Use precomputed mean and std if available
+        if self._precalc and self.mean is not None and self.std is not None:
+            local_mean = self.mean
+            local_std = self.std
+        else:
+            local_mean = self.mean(data, x_dis, y_dis, mode)
+            local_std = self.std(data, x_dis, y_dis, mode)
 
         # Calculate third central moment using uniform_filter
         # (x-μ)^3
@@ -391,7 +536,7 @@ class Radargram:
         # Fix potential NaN or inf values
         return np.nan_to_num(skew, nan=0.0, posinf=0.0, neginf=0.0)
 
-    def kurtosis(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_kurtosis(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the kurtosis within a window using central moments formula.
 
@@ -416,9 +561,13 @@ class Radargram:
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
 
-        # Get mean and std
-        local_mean = self.mean(data, x_dis, y_dis, mode)
-        local_std = self.std(data, x_dis, y_dis, mode)
+        # Use precomputed mean and std if available
+        if self._precalc and self.mean is not None and self.std is not None:
+            local_mean = self.mean
+            local_std = self.std
+        else:
+            local_mean = self.mean(data, x_dis, y_dis, mode)
+            local_std = self.std(data, x_dis, y_dis, mode)
 
         # Calculate fourth central moment using uniform_filter
         # (x-μ)^4
@@ -435,7 +584,7 @@ class Radargram:
         # Fix potential NaN or inf values
         return np.nan_to_num(excess_kurt, nan=0.0, posinf=0.0, neginf=0.0)
 
-    def min(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_min(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the minimum value within a window (optimized version).
 
@@ -460,7 +609,7 @@ class Radargram:
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
         return minimum_filter(data, size=window_size, mode=mode)
 
-    def max(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_max(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the maximum value within a window (optimized version).
 
@@ -485,7 +634,7 @@ class Radargram:
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
         return maximum_filter(data, size=window_size, mode=mode)
 
-    def range(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+    def calc_range(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the range (max - min) within a window.
 
@@ -505,8 +654,12 @@ class Radargram:
         ndarray
             2D array of range values
         """
-        max_vals = self.max(data, x_dis, y_dis, mode)
-        min_vals = self.min(data, x_dis, y_dis, mode)
+        if self._precalc and self.max is not None and self.min is not None:
+            max_vals = self.max
+            min_vals = self.min
+        else:
+            max_vals = self.max(data, x_dis, y_dis, mode)
+            min_vals = self.min(data, x_dis, y_dis, mode)
         return max_vals - min_vals
 
     # ---- Helper methods ----
@@ -748,6 +901,19 @@ class Radargram:
             return self.data
         return data
 
+    def __getattr__(self, name):
+        # Wird nur aufgerufen, wenn das Attribut nicht normal gefunden wird
+        # Prüfe, ob es ein vorberechnetes Attribut gibt
+        if self._precalc and name in self.__dict__:
+            return self.__dict__[name]
+        # Prüfe, ob es eine Berechnungsmethode gibt
+        calc_method = f"calc_{name}"
+        if hasattr(self, calc_method):
+            return getattr(self, calc_method)()
+        raise AttributeError(
+            f"'{type(self).__name__}' object has no attribute '{name}'"
+        )
+
     def _apply_window_operation_fast(
         self, data, operation, x_dis, y_dis, mode, normalize=False
     ):
@@ -842,26 +1008,4 @@ class Radargram:
 
 # Example usage:
 if __name__ == "__main__":
-    # Generate sample data
-    x = np.linspace(0, 10, 100)
-    y = np.linspace(0, 5, 50)
-    X, Y = np.meshgrid(x, y)
-    Z = np.sin(X) * np.cos(Y)
-
-    # Create radargram object
-    rg = Radargram(Z)
-
-    # Calculate attributes
-    envelope = rg.instantaneous_amplitude()
-    phase_real, phase_imag = rg.instantaneous_phase()
-    freq = rg.instantaneous_frequency()
-    avg_energy = rg.average_energy(x_dis=2, y_dis=2)
-    rms = rg.rms_amplitude(x_dis=2, y_dis=2)
-
-    # Print shapes
-    print(f"Data shape: {Z.shape}")
-    print(f"Envelope shape: {envelope.shape}")
-    print(f"Phase real shape: {phase_real.shape}")
-    print(f"Frequency shape: {freq.shape}")
-    print(f"Average energy shape: {avg_energy.shape}")
-    print(f"RMS amplitude shape: {rms.shape}")
+    None

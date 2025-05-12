@@ -44,12 +44,12 @@ with h5py.File(file_path, "r") as f:
     print(f"Data shape: {data.shape}")
 
 # Create Radargram instance
-rg = Radargram(data)
+rg = Radargram(data, 20, 20)
 rg.apply_gain() if raw else None
 
 # Plot original data
 plt.figure(figsize=(10, 6))
-plt.imshow(rg.data, aspect="auto", cmap="jet")
+plt.imshow(data, aspect="auto", cmap="jet")
 plt.title("Original Radargram")
 plt.colorbar(label="Amplitude")
 plt.xlabel("Trace")
@@ -59,16 +59,16 @@ plt.ylabel("Sample")
 attributes = [
     # Attribute name, title, is_tuple, tuple_index
     ("instantaneous_amplitude", "Instantaneous Amplitude (Envelope)", False, None),
-    ("instantaneous_phase", "Instantaneous Phase (Real Part)", True, 0),
-    ("instantaneous_phase", "Instantaneous Phase (Imaginary Part)", True, 1),
+    ("instantaneous_phase_real", "Instantaneous Phase (Real Part)", True, 0),
+    ("instantaneous_phase_imag", "Instantaneous Phase (Imaginary Part)", True, 1),
     ("instantaneous_frequency", "Instantaneous Frequency", False, None),
     ("absolute_gradient", "Absolute Gradient", False, None),
     ("average_energy", "Average Energy", False, None),
     ("rms_amplitude", "RMS Amplitude", False, None),
     ("coherence", "Coherence", False, None),
-    ("entropy", "Entropy", False, None),
+    # ("entropy", "Entropy", False, None),
     ("mean", "Mean", False, None),
-    ("median", "Median", False, None),
+    # ("median", "Median", False, None),
     ("std", "Standard Deviation", False, None),
     ("skewness", "Skewness", False, None),
     ("kurtosis", "Kurtosis", False, None),
@@ -77,7 +77,7 @@ attributes = [
     ("range", "Range (Max-Min)", False, None),
 ]
 
-plt.ion()
+plt.show()
 
 # Plot each attribute in a separate figure
 for attr_name, title, is_tuple, tuple_idx in attributes:
@@ -85,17 +85,13 @@ for attr_name, title, is_tuple, tuple_idx in attributes:
     plt.figure(figsize=(10, 6))
 
     try:
-        # Get attribute data
+        # Get attribute data using Radargram's __getattr__
+        attr_data = getattr(rg, attr_name)
         if is_tuple:
             # For methods that return tuples (like instantaneous_phase)
-            attr_data = getattr(rg, attr_name)()[tuple_idx]
-            if tuple_idx == 0:
-                label = "Real Part"
-            else:
-                label = "Imaginary Part"
+            attr_data = attr_data[tuple_idx]
+            label = "Real Part" if tuple_idx == 0 else "Imaginary Part"
         else:
-            # For methods that return a single array
-            attr_data = getattr(rg, attr_name)()
             label = "Value"
 
         # Plot the attribute
