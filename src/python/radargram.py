@@ -78,6 +78,8 @@ class Radargram:
             self.instantaneous_frequency = self.calc_instantaneous_frequency()
             print("Calculating Sweetness ...")
             self.sweetness = self.calc_sweetness()
+            print("Calculating FFT ...")
+            self.fft = self.calc_fft()
             print("Calculating Absolute Gradient ...")
             self.absolute_gradient = self.calc_absolute_gradient()
             print("Calculating Average Energy ...")
@@ -86,14 +88,16 @@ class Radargram:
             self.rms_amplitude = self.calc_rms_amplitude(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Coherence ...")
             self.coherence = self.calc_coherence(x_dis=x_dis, y_dis=y_dis)
-            print("Skip Entropy ...")
-            # self.entropy = self.calc_entropy(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Entropy ...")
+            self.entropy = self.calc_entropy(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Semblance ...")
+            self.semblance = self.calc_semblance(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Mean ...")
             self.mean = self.calc_mean(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Mean of Squared Values ...")
             self.mean_sq = self.calc_mean_sq(x_dis=x_dis, y_dis=y_dis)
-            print("Skip Median ...")
-            # self.median = self.calc_median(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Median ...")
+            self.median = self.calc_median(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Standard Deviation ...")
             self.std = self.calc_std(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Skewness ...")
@@ -225,161 +229,32 @@ class Radargram:
 
         return sweetness
 
-    def calc_absolute_gradient(self, data=None):
+    def calc_fft(self, data=None, shift=False, log_scale=True):
         """
-        Calculate the absolute gradient using Sobel filter.
+        Calculate the 2D FFT (Fast Fourier Transform) of the radargram.
 
         Parameters:
         -----------
         data : ndarray, optional
             2D radar amplitude data. If None, uses self.data
+        shift : bool, optional
+            If True, shift the zero-frequency component to the center
+        log_scale : bool, optional
+            If True, return the log-magnitude spectrum
 
         Returns:
         --------
         ndarray
-            2D array of absolute gradient
+            2D FFT magnitude (optionally log-scaled)
         """
         data = self._get_data(data)
-        # Use sobel filter for gradient calculation
-        sobel_h = sobel(data, axis=0)
-        sobel_v = sobel(data, axis=1)
-        return np.sqrt(sobel_h**2 + sobel_v**2)
-
-    # ---- Window-based attribute calculations ----
-
-    def calc_average_energy(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
-        """
-        Calculate the average energy within a window (optimized version).
-
-        Sum of squared amplitudes divided by the number of samples in the window.
-
-        Parameters:
-        -----------
-        data : ndarray, optional
-            2D radar amplitude data. If None, uses self.data
-        x_dis : int, optional
-            Distance to window edge in x-direction, defaults to 1
-        y_dis : int, optional
-            Distance to window edge in y-direction, defaults to 1
-        mode : str, optional
-            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
-
-        Returns:
-        --------
-        ndarray
-            2D array of average energy
-        """
-
-        data = self._get_data(data)
-        squared_data = data**2
-
-        # Use uniform filter (moving average) which is much faster
-        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
-        return uniform_filter(squared_data, size=window_size, mode=mode)
-
-    def calc_rms_amplitude(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
-        """
-        Calculate the RMS amplitude within a window.
-
-        Square root of the sum of squared amplitudes divided by the number of samples in the window.
-
-        Parameters:
-        -----------
-        data : ndarray, optional
-            2D radar amplitude data. If None, uses self.data
-        x_dis : int, optional
-            Distance to window edge in x-direction, defaults to 1
-        y_dis : int, optional
-            Distance to window edge in y-direction, defaults to 1
-        mode : str, optional
-            Padding mode for numpy.pad, defaults to 'mirror'
-
-        Returns:
-        --------
-        ndarray
-            2D array of RMS amplitude
-        """
-        if self._precalc and self.average_energy is not None:
-            avg_energy = self.average_energy
-        else:
-            avg_energy = self.calc_average_energy(data, x_dis, y_dis, mode)
-        return np.sqrt(avg_energy)
-
-    def calc_coherence(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
-        """
-        Calculate the coherence within a window (optimized version).
-
-        Parameters:
-        -----------
-        data : ndarray, optional
-            2D radar amplitude data. If None, uses self.data
-        x_dis : int, optional
-            Distance to window edge in x-direction, defaults to 1
-        y_dis : int, optional
-            Distance to window edge in y-direction, defaults to 1
-        mode : str, optional
-            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
-
-        Returns:
-        --------
-        ndarray
-            2D array of coherence
-        """
-
-        data = self._get_data(data)
-        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
-
-        # Calculate mean and std using fast filters
-        local_mean = uniform_filter(data, size=window_size, mode=mode)
-        local_mean_sq = uniform_filter(data**2, size=window_size, mode=mode)
-        local_std = np.sqrt(local_mean_sq - local_mean**2)
-
-        # Calculate coherence
-        with np.errstate(
-            divide="ignore", invalid="ignore"
-        ):  # Ignore division by zero warnings
-            coherence = 1 - (local_std / np.abs(local_mean))
-
-        # Fix NaN and inf values
-        coherence = np.nan_to_num(coherence, nan=0, posinf=1, neginf=0)
-        return coherence
-
-    def calc_entropy(self, data=None, x_dis=1, y_dis=1, mode="mirror", bins=16):
-        """
-        Calculate the entropy within a window (optimized version).
-
-        Parameters:
-        -----------
-        data : ndarray, optional
-            2D radar amplitude data. If None, uses self.data
-        x_dis : int, optional
-            Distance to window edge in x-direction, defaults to 1
-        y_dis : int, optional
-            Distance to window edge in y-direction, defaults to 1
-        mode : str, optional
-            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
-        bins : int, optional
-            Number of bins for histogram, reduced to 16 for performance, defaults to 16
-
-        Returns:
-        --------
-        ndarray
-            2D array of entropy
-        """
-
-        data = self._get_data(data)
-        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
-
-        # Define a function to calculate entropy of a window
-        def calc_calc_entropy(window):
-            hist, _ = np.histogram(window, bins=bins, density=True)
-            nonzero = hist > 0
-            if np.any(nonzero):
-                return -np.sum(hist[nonzero] * np.log2(hist[nonzero]))
-            return 0
-
-        # Apply the filter
-        return generic_filter(data, calc_calc_entropy, size=window_size, mode=mode)
+        fft2 = np.fft.fft2(data)
+        if shift:
+            fft2 = np.fft.fftshift(fft2)
+        magnitude = np.abs(fft2)
+        if log_scale:
+            magnitude = np.log1p(magnitude)
+        return magnitude
 
     def calc_mean(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
@@ -492,6 +367,203 @@ class Radargram:
         # Fix potential small negative values due to floating-point errors
         variance = np.maximum(variance, 0)
         return np.sqrt(variance)
+
+    def calc_absolute_gradient(self, data=None):
+        """
+        Calculate the absolute gradient using Sobel filter.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+
+        Returns:
+        --------
+        ndarray
+            2D array of absolute gradient
+        """
+        data = self._get_data(data)
+        # Use sobel filter for gradient calculation
+        sobel_h = sobel(data, axis=0)
+        sobel_v = sobel(data, axis=1)
+        return np.sqrt(sobel_h**2 + sobel_v**2)
+
+    # ---- Window-based attribute calculations ----
+
+    def calc_average_energy(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+        """
+        Calculate the average energy within a window (optimized version).
+
+        Sum of squared amplitudes divided by the number of samples in the window.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        x_dis : int, optional
+            Distance to window edge in x-direction, defaults to 1
+        y_dis : int, optional
+            Distance to window edge in y-direction, defaults to 1
+        mode : str, optional
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
+
+        Returns:
+        --------
+        ndarray
+            2D array of average energy
+        """
+
+        data = self._get_data(data)
+        squared_data = data**2
+
+        # Use uniform filter (moving average) which is much faster
+        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
+        return uniform_filter(squared_data, size=window_size, mode=mode)
+
+    def calc_rms_amplitude(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+        """
+        Calculate the RMS amplitude within a window.
+
+        Square root of the sum of squared amplitudes divided by the number of samples in the window.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        x_dis : int, optional
+            Distance to window edge in x-direction, defaults to 1
+        y_dis : int, optional
+            Distance to window edge in y-direction, defaults to 1
+        mode : str, optional
+            Padding mode for numpy.pad, defaults to 'mirror'
+
+        Returns:
+        --------
+        ndarray
+            2D array of RMS amplitude
+        """
+        if self._precalc and self.average_energy is not None:
+            avg_energy = self.average_energy
+        else:
+            avg_energy = self.calc_average_energy(data, x_dis, y_dis, mode)
+        return np.sqrt(avg_energy)
+
+    def calc_coherence(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+        """
+        Calculate the coherence within a window (optimized version).
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        x_dis : int, optional
+            Distance to window edge in x-direction, defaults to 1
+        y_dis : int, optional
+            Distance to window edge in y-direction, defaults to 1
+        mode : str, optional
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
+
+        Returns:
+        --------
+        ndarray
+            2D array of coherence
+        """
+
+        data = self._get_data(data)
+        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
+
+        # Use precomputed mean and std if available
+        if self._precalc and self.mean is not None and self.std is not None:
+            local_mean = self.mean
+            local_std = self.std
+        else:
+            local_mean = uniform_filter(data, size=window_size, mode=mode)
+            local_mean_sq = uniform_filter(data**2, size=window_size, mode=mode)
+            local_std = np.sqrt(local_mean_sq - local_mean**2)
+
+        # Calculate coherence
+        with np.errstate(divide="ignore", invalid="ignore"):
+            coherence = 1 - (local_std / np.abs(local_mean))
+
+        # Fix NaN and inf values
+        coherence = np.nan_to_num(coherence, nan=0, posinf=1, neginf=0)
+        return coherence
+
+    def calc_entropy(self, data=None, x_dis=1, y_dis=1, mode="mirror", bins=16):
+        """
+        Calculate the entropy within a window (optimized version).
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        x_dis : int, optional
+            Distance to window edge in x-direction, defaults to 1
+        y_dis : int, optional
+            Distance to window edge in y-direction, defaults to 1
+        mode : str, optional
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
+        bins : int, optional
+            Number of bins for histogram, reduced to 16 for performance, defaults to 16
+
+        Returns:
+        --------
+        ndarray
+            2D array of entropy
+        """
+
+        data = self._get_data(data)
+        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
+
+        # Define a function to calculate entropy of a window
+        def entropy_func(window):
+            hist, _ = np.histogram(window, bins=bins, density=True)
+            nonzero = hist > 0
+            if np.any(nonzero):
+                return -np.sum(hist[nonzero] * np.log2(hist[nonzero]))
+            return 0
+
+        # Apply the filter
+        return generic_filter(data, entropy_func, size=window_size, mode=mode)
+
+    def calc_semblance(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+        """
+        Calculate the semblance attribute within a window.
+
+        Semblance is a measure of similarity of traces in a window, often used in seismic processing.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        x_dis : int, optional
+            Distance to window edge in x-direction, defaults to 1
+        y_dis : int, optional
+            Distance to window edge in y-direction, defaults to 1
+        mode : str, optional
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
+
+        Returns:
+        --------
+        ndarray
+            2D array of semblance values
+        """
+        data = self._get_data(data)
+        window_shape = (2 * y_dis + 1, 2 * x_dis + 1)
+        n_samples = window_shape[0] * window_shape[1]
+
+        def semblance_func(window):
+            # window is flattened
+            if np.all(window == 0):
+                return 0.0
+            sum_traces = np.sum(window)
+            sum_traces_sq = sum_traces**2
+            sum_sq_traces = np.sum(window**2)
+            if sum_sq_traces == 0:
+                return 0.0
+            return sum_traces_sq / (n_samples * sum_sq_traces)
+
+        return generic_filter(data, semblance_func, size=window_shape, mode=mode)
 
     def calc_skewness(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
@@ -1008,4 +1080,4 @@ class Radargram:
 
 # Example usage:
 if __name__ == "__main__":
-    None
+    rg = Radargram()

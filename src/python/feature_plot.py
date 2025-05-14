@@ -55,53 +55,64 @@ plt.colorbar(label="Amplitude")
 plt.xlabel("Trace")
 plt.ylabel("Sample")
 
-# List of all attributes to calculate and plot
+# List of all attributes to calculate and plot, now with vmin and vmax
 attributes = [
-    # Attribute name, title, is_tuple, tuple_index
-    ("instantaneous_amplitude", "Instantaneous Amplitude (Envelope)", False, None),
-    ("instantaneous_phase_real", "Instantaneous Phase (Real Part)", True, 0),
-    ("instantaneous_phase_imag", "Instantaneous Phase (Imaginary Part)", True, 1),
-    ("instantaneous_frequency", "Instantaneous Frequency", False, None),
-    ("absolute_gradient", "Absolute Gradient", False, None),
-    ("average_energy", "Average Energy", False, None),
-    ("rms_amplitude", "RMS Amplitude", False, None),
-    ("coherence", "Coherence", False, None),
-    # ("entropy", "Entropy", False, None),
-    ("mean", "Mean", False, None),
-    # ("median", "Median", False, None),
-    ("std", "Standard Deviation", False, None),
-    ("skewness", "Skewness", False, None),
-    ("kurtosis", "Kurtosis", False, None),
-    ("max", "Maximum", False, None),
-    ("min", "Minimum", False, None),
-    ("range", "Range (Max-Min)", False, None),
+    # Attribute name, title, vmin, vmax
+    ("instantaneous_amplitude", "Instantaneous Amplitude (Envelope)", None, None),
+    ("instantaneous_phase_real", "Instantaneous Phase (Real Part)", None, None),
+    ("instantaneous_phase_imag", "Instantaneous Phase (Imaginary Part)", None, None),
+    ("instantaneous_frequency", "Instantaneous Frequency", 0.5, -0.5),
+    ("fft", "FFT (Magnitude Spectrum)", None, None),
+    ("absolute_gradient", "Absolute Gradient", None, None),
+    ("average_energy", "Average Energy", None, None),
+    ("rms_amplitude", "RMS Amplitude", None, None),
+    ("coherence", "Coherence", 100, -100),
+    ("semblance", "Semblance", None, None),
+    ("entropy", "Entropy", None, None),
+    ("mean", "Mean", None, None),
+    ("median", "Median", None, None),
+    ("std", "Standard Deviation", None, None),
+    ("skewness", "Skewness", None, None),
+    ("kurtosis", "Kurtosis", 5, -5),
+    ("max", "Maximum", None, None),
+    ("min", "Minimum", None, None),
+    ("range", "Range (Max-Min)", None, None),
 ]
 
-plt.show()
-
 # Plot each attribute in a separate figure
-for attr_name, title, is_tuple, tuple_idx in attributes:
+for attr_name, title, vmax, vmin in attributes:
     print(f"Processing {title}...")
     plt.figure(figsize=(10, 6))
 
     try:
         # Get attribute data using Radargram's __getattr__
         attr_data = getattr(rg, attr_name)
-        if is_tuple:
-            # For methods that return tuples (like instantaneous_phase)
-            attr_data = attr_data[tuple_idx]
-            label = "Real Part" if tuple_idx == 0 else "Imaginary Part"
-        else:
-            label = "Value"
+        label = "Value"
 
         # Plot the attribute
-        plt.imshow(attr_data, aspect="auto", cmap="jet")
+        plt.imshow(
+            attr_data,
+            aspect="auto",
+            cmap="jet",
+            vmin=vmin,
+            vmax=vmax,
+        )
+        plt.title(title)
+        plt.get_current_fig_manager().set_window_title(title)
+        plt.colorbar(label=label)
+        plt.xlabel("Trace")
+        plt.ylabel("Sample")
+        plt.draw()
+        plt.pause(0.01)  # Pause to allow the plot to update
+
+    except Exception as e:
+        print(f"Error processing {attr_name}: {e}")
         plt.title(title)
         plt.colorbar(label=label)
         plt.xlabel("Trace")
         plt.ylabel("Sample")
         plt.draw()
-        plt.pause(0.1)  # Pause to allow the plot to update
+        plt.pause(0.01)  # Pause to allow the plot to update
 
     except Exception as e:
         print(f"Error processing {attr_name}: {e}")
