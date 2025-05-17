@@ -9,7 +9,12 @@ from scipy.ndimage import (
 from scipy import signal
 from skimage.filters import sobel
 from scipy.optimize import curve_fit
+from scipy.signal import morlet2, ricker, cwt
 import matplotlib.pyplot as plt
+
+import warnings
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 class Radargram:
@@ -838,6 +843,60 @@ class Radargram:
             min_vals = self.min(data, x_dis, y_dis, mode)
         return max_vals - min_vals
 
+    def calc_cwt(
+        self, data=None, widths=[5, 10, 20, 35, 55, 80], wavelet="ricker", axis=0
+    ):
+        """
+        Calculate the Continuous Wavelet Transform (CWT) of the radargram.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        widths : array-like, optional
+            Widths (scales) to use for the CWT. If None, uses np.arange(1, 32)
+        wavelet : str or callable, optional
+            Wavelet function to use ('morlet', 'ricker', or a custom function). Defaults to 'ricker'
+        axis : int, optional
+            Axis along which to apply the CWT (0: along traces, 1: along samples). Defaults to 0
+
+        Returns:
+        --------
+        ndarray
+            3D array of CWT coefficients with shape (n_scales, n_samples, n_traces)
+        """
+
+        data = self._get_data(data)
+
+        if wavelet == "morlet":
+            # Use Morlet wavelet with default omega0=6
+            def wavelet_func(M, s):
+                return morlet2(M, s, w=6)
+        elif wavelet == "ricker":
+            wavelet_func = ricker
+        elif callable(wavelet):
+            wavelet_func = wavelet
+        else:
+            raise ValueError("Unknown wavelet type: {}".format(wavelet))
+
+        # Apply CWT along the specified axis for each trace/sample
+        if axis == 0:
+            # Along each trace (column)
+            n_traces = data.shape[1]
+            n_samples = data.shape[0]
+            cwt_coeffs = np.zeros((len(widths), n_samples, n_traces), dtype=complex)
+            for i in range(n_traces):
+                cwt_coeffs[:, :, i] = cwt(data[:, i], wavelet_func, widths)
+        else:
+            # Along each sample (row)
+            n_samples = data.shape[0]
+            n_traces = data.shape[1]
+            cwt_coeffs = np.zeros((len(widths), n_samples, n_traces), dtype=complex)
+            for i in range(n_samples):
+                cwt_coeffs[:, i, :] = cwt(data[i, :], wavelet_func, widths)
+
+        return cwt_coeffs
+
     # ---- Helper methods ----
 
     def apply_gain(
@@ -1184,4 +1243,51 @@ class Radargram:
 
 # Example usage:
 if __name__ == "__main__":
-    rg = Radargram()
+    import h5py
+
+    raw = False  # Set to True if using raw data
+
+    # Load MAT file in v7.3 format using h5py
+    file_path = (
+        "./../../data/raw/radargrams.mat"
+        if raw
+        else "./../../../GPR_Daten_mat/radargrams.mat"
+    )
+
+    # First, explore the structure of the file
+    with h5py.File(file_path, "r") as f:
+        print("Top-level keys:", list(f.keys()))
+
+        # Explore first level of structure
+        for key in f.keys():
+            if isinstance(f[key], h5py.Group):
+                print(f"{key} (Group): {list(f[key].keys())}")
+            else:
+                print(f"{key} (Dataset): shape={f[key].shape}, dtype={f[key].dtype}")
+
+        # Load data from the first available key
+        first_key = list(f.keys())[0]  # second key
+
+        if isinstance(f[first_key], h5py.Group):
+            # If it's a group, look for a dataset inside
+            nested_keys = list(f[first_key].keys())
+            if nested_keys:
+                data_path = f"{first_key}/{nested_keys[30]}"
+                print(f"Loading data from: {data_path}")
+                data = np.array(
+                    f[data_path][:]
+                ).T  # Transpose to match MATLAB's orientation
+        else:
+            # If it's directly a dataset
+            data = np.array(f[first_key][:]).T
+            print(f"Loading data from: {first_key}")
+
+        # Print data shape
+        print(f"Data shape: {data.shape}")
+
+    # Create Radargram instance
+    rg = Radargram(data)
+
+    cwts = rg.calc_cwt(wavelet="morlet")
+
+    plt.imshow(np.angle(cwts[5]))
