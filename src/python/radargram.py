@@ -77,6 +77,10 @@ class Radargram:
             print("Calculating Instantaneous Frequency ...")
             self.instantaneous_frequency = self.calc_instantaneous_frequency()
             print("Calculating Sweetness ...")
+            print("Calculating Quadrature ...")
+            self.quadrature = self.calc_quadrature()
+            print("Calculating Instantaneous Q ...")
+            self.instantaneous_q = self.calc_instantaneous_q()
             self.sweetness = self.calc_sweetness()
             print("Calculating FFT ...")
             self.fft = self.calc_fft()
@@ -89,15 +93,15 @@ class Radargram:
             print("Calculating Coherence ...")
             self.coherence = self.calc_coherence(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Entropy ...")
-            self.entropy = self.calc_entropy(x_dis=x_dis, y_dis=y_dis)
+            # self.entropy = self.calc_entropy(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Semblance ...")
-            self.semblance = self.calc_semblance(x_dis=x_dis, y_dis=y_dis)
+            # self.semblance = self.calc_semblance(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Mean ...")
             self.mean = self.calc_mean(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Mean of Squared Values ...")
             self.mean_sq = self.calc_mean_sq(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Median ...")
-            self.median = self.calc_median(x_dis=x_dis, y_dis=y_dis)
+            # self.median = self.calc_median(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Standard Deviation ...")
             self.std = self.calc_std(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Skewness ...")
@@ -196,6 +200,67 @@ class Radargram:
             freq[0, i] = freq[1, i]
 
         return freq
+
+    def calc_quadrature(self, data=None):
+        """
+        Calculate the quadrature component (imaginary part of analytic signal) using Hilbert transform.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+
+        Returns:
+        --------
+        ndarray
+            2D array of quadrature (imaginary) values
+        """
+        data = self._get_data(data)
+        quadrature = np.zeros_like(data, dtype=float)
+
+        # Process each trace (column) separately
+        for i in range(data.shape[1]):
+            trace = data[:, i]
+            analytic_signal = signal.hilbert(trace)
+            quadrature[:, i] = np.imag(analytic_signal)
+
+        return quadrature
+
+    def calc_instantaneous_q(self, data=None, dt=0.1173):
+        """
+        Calculate the instantaneous Q factor (quality factor) using amplitude and frequency.
+
+        Q = (pi * instantaneous frequency * envelope) / |d(envelope)/dt|
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        dt : float, optional
+            Time sampling interval, defaults to 0.1173
+
+        Returns:
+        --------
+        ndarray
+            2D array of instantaneous Q values
+        """
+        if (
+            self._precalc
+            and self.instantaneous_amplitude is not None
+            and self.instantaneous_frequency is not None
+        ):
+            envelope = self.instantaneous_amplitude
+            freq = self.instantaneous_frequency
+        else:
+            envelope = self.calc_instantaneous_amplitude(data)
+            freq = self.calc_instantaneous_frequency(data, dt=dt)
+
+        # Compute derivative of envelope along time axis (axis=0)
+        d_env = np.gradient(envelope, dt, axis=0)
+        with np.errstate(divide="ignore", invalid="ignore"):
+            Q = (np.pi * freq * envelope) / np.abs(d_env)
+            Q = np.nan_to_num(Q, nan=0.0, posinf=0.0, neginf=0.0)
+        return Q
 
     def calc_sweetness(self, data=None):
         """
@@ -564,6 +629,45 @@ class Radargram:
             return sum_traces_sq / (n_samples * sum_sq_traces)
 
         return generic_filter(data, semblance_func, size=window_shape, mode=mode)
+
+    def calc_correlation(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
+        """
+        Calculate the local correlation coefficient between each trace and the mean trace in a window.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+        x_dis : int, optional
+            Distance to window edge in x-direction, defaults to 1
+        y_dis : int, optional
+            Distance to window edge in y-direction, defaults to 1
+        mode : str, optional
+            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
+
+        Returns:
+        --------
+        ndarray
+            2D array of local correlation coefficients
+        """
+        data = self._get_data(data)
+        window_shape = (2 * y_dis + 1, 2 * x_dis + 1)
+
+        def corr_func(window):
+            window = window.reshape(window_shape)
+            # Correlate center trace with mean of window
+            center_idx = window_shape[1] // 2
+            center_trace = window[:, center_idx]
+            mean_trace = np.mean(window, axis=1)
+            # Remove mean
+            ct = center_trace - np.mean(center_trace)
+            mt = mean_trace - np.mean(mean_trace)
+            denom = np.linalg.norm(ct) * np.linalg.norm(mt)
+            if denom == 0:
+                return 0.0
+            return np.dot(ct, mt) / denom
+
+        return generic_filter(data, corr_func, size=window_shape, mode=mode)
 
     def calc_skewness(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
