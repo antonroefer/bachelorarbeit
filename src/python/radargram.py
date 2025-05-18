@@ -67,6 +67,8 @@ class Radargram:
         self.max = None
         self.min = None
         self.range = None
+        self.dip = None
+        self.azimuth = None
 
         # Pre-calculate attributes if in pre-computed mode
         if self._precalc and data is not None:
@@ -119,6 +121,10 @@ class Radargram:
             self.min = self.calc_min(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Range ...")
             self.range = self.calc_range(x_dis=x_dis, y_dis=y_dis)
+            print("Calculating Dip ...")
+            self.dip_real, self.dip_imag = self.calc_dip()
+            print("Calculating Azimuth ...")
+            self.azimuth = self.calc_azimuth()
             print("Pre-calculation complete.")
 
     # ---- Pixel-based attribute calculations ----
@@ -843,6 +849,51 @@ class Radargram:
             min_vals = self.min(data, x_dis, y_dis, mode)
         return max_vals - min_vals
 
+    def calc_dip(self, data=None):
+        """
+        Calculate the local dip (in radians) within a window using the Sobel operator.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+
+        Returns:
+        --------
+        ndarray
+            2D array of dip angles (in radians)
+        """
+        data = self._get_data(data)
+        # Compute gradients
+        grad_y = sobel(data, axis=0)
+        grad_x = sobel(data, axis=1)
+        # Dip is arctangent of vertical over horizontal gradient
+        dip = np.arctan2(grad_y, grad_x)
+        return np.cos(dip), np.sin(dip)
+
+    def calc_azimuth(self, data=None):
+        """
+        Calculate the local azimuth (in degrees) within a window using the Sobel operator.
+
+        Parameters:
+        -----------
+        data : ndarray, optional
+            2D radar amplitude data. If None, uses self.data
+
+        Returns:
+        --------
+        ndarray
+            2D array of azimuth angles (in degrees, 0 = x-direction, 90 = y-direction)
+        """
+        data = self._get_data(data)
+        grad_y = sobel(data, axis=0)
+        grad_x = sobel(data, axis=1)
+        # Azimuth is angle in the x-y plane, measured from x-axis
+        azimuth = np.degrees(np.arctan2(grad_y, grad_x))
+        # Normalize to [0, 180)
+        azimuth = np.mod(azimuth, 180)
+        return azimuth
+
     def calc_cwt(
         self, data=None, widths=[5, 10, 20, 35, 55, 80], wavelet="ricker", axis=0
     ):
@@ -1148,97 +1199,6 @@ class Radargram:
         raise AttributeError(
             f"'{type(self).__name__}' object has no attribute '{name}'"
         )
-
-    def _apply_window_operation_fast(
-        self, data, operation, x_dis, y_dis, mode, normalize=False
-    ):
-        """
-        Apply a window operation to the data using fast methods.
-
-        Parameters:
-        -----------
-        data : ndarray
-            Input data
-        operation : callable
-            Function to apply to each window
-        x_dis : int
-            Distance to window edge in x-direction
-        y_dis : int
-            Distance to window edge in y-direction
-        mode : str
-            Padding mode for numpy.pad
-        normalize : bool, optional
-            Whether to normalize by window size, defaults to False
-
-        Returns:
-        --------
-        ndarray
-            Result of applying the operation to each window
-        """
-
-        # Create a window for the operation
-        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
-
-        # Apply the filter
-        result = generic_filter(
-            data, lambda x: operation(x), size=window_size, mode=mode
-        )
-
-        # Normalize if required
-        if normalize:
-            result /= np.prod(window_size)
-
-        return result
-
-    def _apply_window_operation(
-        self, data, operation, x_dis, y_dis, mode, normalize=False
-    ):
-        """
-        Apply a window operation to the data.
-
-        Parameters:
-        -----------
-        data : ndarray
-            Input data
-        operation : callable
-            Function to apply to each window
-        x_dis : int
-            Distance to window edge in x-direction
-        y_dis : int
-            Distance to window edge in y-direction
-        mode : str
-            Padding mode for numpy.pad
-        normalize : bool, optional
-            Whether to normalize by window size, defaults to False
-
-        Returns:
-        --------
-        ndarray
-            Result of applying the operation to each window
-        """
-        padded_data = np.pad(data, ((y_dis, y_dis), (x_dis, x_dis)), mode=mode)
-        result = np.zeros_like(data, dtype=float)
-
-        window_size = (2 * y_dis + 1) * (2 * x_dis + 1)
-
-        # For each pixel, apply the operation to its neighborhood
-        for i in range(data.shape[0]):
-            for j in range(data.shape[1]):
-                # Extract window
-                window = padded_data[
-                    i : i + 2 * y_dis + 1, j : j + 2 * x_dis + 1
-                ].flatten()
-                # Apply operation
-                try:
-                    if normalize:
-                        result[i, j] = operation(window) / window_size
-                    else:
-                        result[i, j] = operation(window)
-                except:
-                    # Handle cases where the operation fails (e.g., all NaN)
-                    result[i, j] = np.nan
-
-        return result
 
 
 # Example usage:
