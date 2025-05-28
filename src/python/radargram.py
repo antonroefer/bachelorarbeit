@@ -9,7 +9,7 @@ from scipy.ndimage import (
 from scipy import signal
 from skimage.filters import sobel
 from scipy.optimize import curve_fit
-from scipy.signal import morlet2, ricker, cwt
+from scipy.signal import morlet2, ricker, cwt, argrelextrema
 import matplotlib.pyplot as plt
 
 import warnings
@@ -956,7 +956,7 @@ class Radargram:
         method="exponential",
         params=None,
         window_size=None,
-        visualize=False,
+        visualize=True,
     ):
         """
         Apply a gain function to compensate for signal attenuation.
@@ -992,192 +992,71 @@ class Radargram:
 
         # Get data and compute mean trace
         data = self._get_data(data)
-        data = self.instantaneous_amplitude(data)
         mean_trace = np.mean(data, axis=1)
 
-        # Smooth mean trace if window_size provided
-        if window_size is not None:
-            mean_trace = signal.savgol_filter(mean_trace, window_size, 2)
+        # Find local maxima of the mean trace
+        local_max_indices = argrelextrema(mean_trace, np.greater)[0]
+        # Only keep maxima above zero
+        mask = mean_trace[local_max_indices] > -1
+        local_max_indices = local_max_indices[mask]
+        local_max_values = mean_trace[local_max_indices]
 
-        # Time axis (sample indices)
-        t = np.arange(len(mean_trace))
+        # Fit an exponential function to the local maxima using curve_fit
+        def exp_func(x, alpha, n):
+            return local_max_values[0] * np.exp(-alpha * (x - local_max_indices[0])) + n
 
-        # Define fitting functions based on method
-        if method == "exponential":
-            # A*exp(-α*t)
-            def damping_func(t, A, alpha):
-                return A * np.exp(-alpha * t)
+        x_data = local_max_indices
+        y_data = local_max_values
 
-            # Initial guess
-            p0 = [np.max(mean_trace), 0.01]
+        try:
+            popt, _ = curve_fit(exp_func, x_data, y_data, p0=[1e-2, -5], maxfev=10000)
+            print(f"Fitted parameters: {popt}")
+            fitted_curve = exp_func(np.arange(mean_trace.size), *popt)
+            linear_offset = popt[1] * np.ones_like(mean_trace)
 
-            # Fit the function to mean trace
-            try:
-                popt, _ = curve_fit(
-                    damping_func,
-                    t,
-                    mean_trace,
-                    p0=p0,
-                    bounds=([0, 0], [np.inf, np.inf]),
-                )
-                fitted_curve = damping_func(t, *popt)
+        except Exception as e:
+            print(f"Exponential fit failed: {e}")
+            fitted_curve = np.ones_like(mean_trace)
 
-                plt.figure(figsize=(4, 8))
-                plt.plot(mean_trace, t, "b-", label="Mean Trace")
-                plt.plot(fitted_curve, t, "r--", label="Fitted Curve")
-                plt.gca().invert_yaxis()
-                plt.xlabel("Amplitude")
-                plt.ylabel("Time (samples)")
-                plt.title("Mean Trace and Fitted Curve")
-                plt.legend()
-                plt.grid(True)
-                plt.show()
+        # Apply gain correction based on the selected method
+        # Only apply gain correction for indices >= local_max_indices[0]
+        gain = np.ones_like(mean_trace)
+        start_idx = local_max_indices[0]
+        gain[start_idx:] = local_max_values[0] / (fitted_curve[start_idx:] - popt[1])
 
-                gain_factor = 1.0 / fitted_curve
-                gain_factor = gain_factor / gain_factor[0]  # Normalize
-            except RuntimeError:
-                print("Warning: Exponential fitting failed, using empirical gain")
-                # Fallback to empirical approach
-                fitted_curve = mean_trace
-                gain_factor = np.max(mean_trace) / mean_trace
-                gain_factor = np.clip(gain_factor, 1.0, 1000.0)  # Limit extreme values
+        # Apply gain to each trace (column)
+        corrected_data = (data + 1.5) * gain[:, np.newaxis]
 
-        elif method == "power":
-            # A*t^(-α)
-            def damping_func(t, A, alpha):
-                # Avoid division by zero
-                t_safe = np.maximum(t, 0.1)
-                return A * t_safe ** (-alpha)
-
-            # Initial guess
-            p0 = [np.max(mean_trace) * 10, 0.5]
-
-            # Fit the function to mean trace (skip first few samples)
-            start_idx = 5  # Skip first few samples
-            try:
-                popt, _ = curve_fit(
-                    damping_func,
-                    t[start_idx:],
-                    mean_trace[start_idx:],
-                    p0=p0,
-                    bounds=([0, 0], [np.inf, np.inf]),
-                )
-                fitted_curve = np.zeros_like(mean_trace)
-                fitted_curve[start_idx:] = damping_func(t[start_idx:], *popt)
-                fitted_curve[:start_idx] = fitted_curve[
-                    start_idx
-                ]  # Fill in skipped values
-                gain_factor = np.max(mean_trace) / fitted_curve
-            except RuntimeError:
-                print("Warning: Power law fitting failed, using empirical gain")
-                # Fallback
-                fitted_curve = mean_trace
-                gain_factor = np.max(mean_trace) / mean_trace
-                gain_factor = np.clip(gain_factor, 1.0, 1000.0)
-
-        elif method == "combined":
-            # A*t^(-1)*exp(-α*t)
-            def damping_func(t, A, alpha):
-                # Avoid division by zero
-                t_safe = np.maximum(t, 0.1)
-                return A * t_safe ** (-1) * np.exp(-alpha * t_safe)
-
-            # Initial guess
-            p0 = [np.max(mean_trace) * 10, 0.01]
-
-            # Fit the function
-            start_idx = 5  # Skip first few samples
-            try:
-                popt, _ = curve_fit(
-                    damping_func,
-                    t[start_idx:],
-                    mean_trace[start_idx:],
-                    p0=p0,
-                    bounds=([0, 0], [np.inf, np.inf]),
-                )
-                fitted_curve = np.zeros_like(mean_trace)
-                fitted_curve[start_idx:] = damping_func(t[start_idx:], *popt)
-                fitted_curve[:start_idx] = fitted_curve[
-                    start_idx
-                ]  # Fill in skipped values
-                gain_factor = np.max(mean_trace) / fitted_curve
-            except RuntimeError:
-                print("Warning: Combined fitting failed, using empirical gain")
-                # Fallback
-                fitted_curve = mean_trace
-                gain_factor = np.max(mean_trace) / mean_trace
-                gain_factor = np.clip(gain_factor, 1.0, 1000.0)
-
-        elif method == "polynomial":
-            degree = 3  # Default polynomial degree
-            if params and "degree" in params:
-                degree = params["degree"]
-
-            # Fit polynomial
-            poly_coeffs = np.polyfit(t, mean_trace, degree)
-            fitted_curve = np.polyval(poly_coeffs, t)
-
-            # Generate gain factor
-            gain_factor = np.max(mean_trace) / fitted_curve
-            # Limit extreme values
-            gain_factor = np.clip(gain_factor, 1.0, 1000.0)
-
-        elif method == "moving_average":
-            window_length = 51  # Default
-            if params and "window_length" in params:
-                window_length = params["window_length"]
-
-            fitted_curve = signal.savgol_filter(mean_trace, window_length, 2)
-            gain_factor = np.max(mean_trace) / fitted_curve
-            gain_factor = np.clip(gain_factor, 1.0, 1000.0)
-
-        else:
-            raise ValueError(f"Unknown method: {method}")
-
-        # Apply gain to data
-        gained_data = data * gain_factor[:, np.newaxis]  # Broadcasting
-
-        # Normalize output data to have similar amplitude range as input
-        max_val = np.max(np.abs(data))
-        gained_data = gained_data * (max_val / np.max(np.abs(gained_data)))
-
-        # Visualize if requested
+        # Plot mean trace and local maxima
         if visualize:
-            fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-
-            # Plot mean trace and fitted curve
-            axes[0].plot(t, mean_trace, "b-", label="Mean Trace")
-            axes[0].plot(t, fitted_curve, "r--", label="Fitted Curve")
-            axes[0].set_title("Mean Trace and Fitted Curve")
-            axes[0].set_xlabel("Sample")
-            axes[0].set_ylabel("Amplitude")
-            axes[0].legend()
-
-            # Plot gain factor
-            axes[1].plot(t, gain_factor)
-            axes[1].set_title("Gain Factor")
-            axes[1].set_xlabel("Sample")
-            axes[1].set_ylabel("Gain")
-
-            # Plot before/after comparison
-            vmax = np.percentile(np.abs(gained_data), 99.5)
-            axes[2].imshow(data, aspect="auto", cmap="gray", vmax=vmax)
-            axes[2].set_title("Before")
-            axes[2].set_xlabel("Trace")
-            axes[2].set_ylabel("Time Sample")
-
-            fig.tight_layout()
-
-            # Second figure for gained data
-            fig2, ax = plt.subplots(figsize=(6, 5))
-            im = ax.imshow(gained_data, aspect="auto", cmap="gray", vmax=vmax)
-            ax.set_title("After Gain")
-            ax.set_xlabel("Trace")
-            ax.set_ylabel("Time Sample")
-            fig2.colorbar(im)
+            plt.figure(figsize=(10, 5))
+            plt.plot(mean_trace, label="Mean Trace")
+            plt.plot(
+                fitted_curve,
+                label="Fitted Exponential Curve",
+                linestyle="--",
+                color="purple",
+            )
+            plt.plot(
+                linear_offset,
+                label="Linear Offset (mx+n)",
+                linestyle="--",
+                color="orange",
+            )
+            plt.plot(
+                np.mean(corrected_data, axis=1),
+                label="Corrected Mean Trace",
+                color="green",
+            )
+            plt.scatter(
+                local_max_indices, local_max_values, color="red", label="Local Maxima"
+            )
+            plt.xlabel("Sample Index")
+            plt.ylabel("Amplitude")
+            plt.title("Mean Trace with Local Maxima")
+            plt.grid(True)
+            plt.legend()
             plt.show()
-
-        self.data = gained_data
 
     def _get_data(self, data):
         """Helper method to get the data array to use."""
@@ -1205,7 +1084,7 @@ class Radargram:
 if __name__ == "__main__":
     import h5py
 
-    raw = False  # Set to True if using raw data
+    raw = True  # Set to True if using raw data
 
     # Load MAT file in v7.3 format using h5py
     file_path = (
@@ -1248,6 +1127,4 @@ if __name__ == "__main__":
     # Create Radargram instance
     rg = Radargram(data)
 
-    cwts = rg.calc_cwt(wavelet="morlet")
-
-    plt.imshow(np.angle(cwts[5]))
+    rg.apply_gain()

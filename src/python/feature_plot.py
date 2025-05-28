@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import h5py
 
-raw = False
+raw = True
 
 # Load MAT file in v7.3 format using h5py
 file_path = (
@@ -92,6 +92,7 @@ for attr_name, title, vmax, vmin in attributes:
     try:
         # Get attribute data using Radargram's __getattr__
         attr_data = getattr(rg, attr_name)
+        attr_data = np.clip(attr_data, a_min=vmin, a_max=vmax)
         label = "Value"
 
         # Plot the attribute
