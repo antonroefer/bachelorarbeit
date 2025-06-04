@@ -992,6 +992,8 @@ class Radargram:
 
         # Get data and compute mean trace
         data = self._get_data(data)
+        # Set the first five samples of each trace to 0
+        data[:5, :] = 0
         mean_trace = np.mean(data, axis=1)
 
         # Find local maxima of the mean trace
@@ -1025,7 +1027,51 @@ class Radargram:
         gain[start_idx:] = local_max_values[0] / (fitted_curve[start_idx:] - popt[1])
 
         # Apply gain to each trace (column)
-        corrected_data = (data + 1.5) * gain[:, np.newaxis]
+        # Apply bandpass filter before gain correction
+
+        # Sampling interval in nanoseconds, convert to seconds
+        dt_ns = 0.1173
+        dt = dt_ns * 1e-9  # seconds
+        fs = 1.0 / dt  # Hz
+
+        # Bandpass filter design: 100 MHz to 800 MHz
+        lowcut = 20e6
+        highcut = 800e6
+        nyq = 0.5 * fs
+        low = lowcut / nyq
+        high = highcut / nyq
+
+        b, a = butter(N=4, Wn=[low, high], btype="band")
+
+        # Apply filter to each trace (column)
+        filtered_data = np.zeros_like(data)
+        for i in range(data.shape[1]):
+            filtered_data[:, i] = filtfilt(b, a, data[:, i])
+
+        corrected_data = filtered_data * gain[:, np.newaxis]
+
+        # Calculate the envelope (instantaneous amplitude) of the filtered data
+        envelope_filtered = self.calc_instantaneous_amplitude(filtered_data)
+
+        # Plot comparison between mean trace of original and filtered data
+        plt.figure(figsize=(10, 5))
+        plt.plot(np.mean(data, axis=1), label="Original Mean Trace", color="blue")
+        plt.plot(
+            np.mean(filtered_data, axis=1), label="Filtered Mean Trace", color="orange"
+        )
+        plt.plot(
+            envelope_filtered.mean(axis=1),
+            label="Envelope of Filtered Data",
+            color="red",
+            linestyle="--",
+        )
+        plt.xlabel("Sample Index")
+        plt.ylabel("Mean Amplitude")
+        plt.title("Comparison of Mean Trace: Original vs. Filtered Data")
+        plt.legend()
+        plt.grid(True)
+        plt.tight_layout()
+        plt.show()
 
         # Plot mean trace and local maxima
         if visualize:
@@ -1083,6 +1129,7 @@ class Radargram:
 # Example usage:
 if __name__ == "__main__":
     import h5py
+    from scipy.signal import butter, filtfilt
 
     raw = True  # Set to True if using raw data
 
