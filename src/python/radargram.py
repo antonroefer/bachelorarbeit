@@ -180,7 +180,7 @@ class Radargram:
         # Return real and imaginary parts
         return np.cos(phase), np.sin(phase)
 
-    def calc_instantaneous_frequency(self, data=None, dt=0.1173):
+    def calc_instantaneous_frequency(self, data=None, dt=0.1173e-9):
         """
         Calculate the instantaneous frequency using the derivative of instantaneous phase.
 
@@ -189,7 +189,7 @@ class Radargram:
         data : ndarray, optional
             2D radar amplitude data. If None, uses self.data
         dt : float, optional
-            Time sampling interval, defaults to 0.1173
+            Time sampling interval, defaults to 0.1173e-9
 
         Returns:
         --------
@@ -237,7 +237,7 @@ class Radargram:
 
         return quadrature
 
-    def calc_instantaneous_q(self, data=None, dt=0.1173):
+    def calc_instantaneous_q(self, data=None, dt=0.1173e-9):
         """
         Calculate the instantaneous Q factor (quality factor) using amplitude and frequency.
 
@@ -248,7 +248,7 @@ class Radargram:
         data : ndarray, optional
             2D radar amplitude data. If None, uses self.data
         dt : float, optional
-            Time sampling interval, defaults to 0.1173
+            Time sampling interval, defaults to 0.1173e-9
 
         Returns:
         --------
