@@ -994,48 +994,15 @@ class Radargram:
         data = self._get_data(data)
         # Set the first five samples of each trace to 0
         data[:5, :] = 0
-        mean_trace = np.mean(data, axis=1)
 
-        # Find local maxima of the mean trace
-        local_max_indices = argrelextrema(mean_trace, np.greater)[0]
-        # Only keep maxima above zero
-        mask = mean_trace[local_max_indices] > -1
-        local_max_indices = local_max_indices[mask]
-        local_max_values = mean_trace[local_max_indices]
-
-        # Fit an exponential function to the local maxima using curve_fit
-        def exp_func(x, alpha, n):
-            return local_max_values[0] * np.exp(-alpha * (x - local_max_indices[0])) + n
-
-        x_data = local_max_indices
-        y_data = local_max_values
-
-        try:
-            popt, _ = curve_fit(exp_func, x_data, y_data, p0=[1e-2, -5], maxfev=10000)
-            print(f"Fitted parameters: {popt}")
-            fitted_curve = exp_func(np.arange(mean_trace.size), *popt)
-            linear_offset = popt[1] * np.ones_like(mean_trace)
-
-        except Exception as e:
-            print(f"Exponential fit failed: {e}")
-            fitted_curve = np.ones_like(mean_trace)
-
-        # Apply gain correction based on the selected method
-        # Only apply gain correction for indices >= local_max_indices[0]
-        gain = np.ones_like(mean_trace)
-        start_idx = local_max_indices[0]
-        gain[start_idx:] = local_max_values[0] / (fitted_curve[start_idx:] - popt[1])
-
-        # Apply gain to each trace (column)
         # Apply bandpass filter before gain correction
 
         # Sampling interval in nanoseconds, convert to seconds
-        dt_ns = 0.1173
-        dt = dt_ns * 1e-9  # seconds
+        dt = 0.1173e-9  # seconds
         fs = 1.0 / dt  # Hz
 
         # Bandpass filter design: 100 MHz to 800 MHz
-        lowcut = 20e6
+        lowcut = 1e6
         highcut = 800e6
         nyq = 0.5 * fs
         low = lowcut / nyq
@@ -1047,6 +1014,55 @@ class Radargram:
         filtered_data = np.zeros_like(data)
         for i in range(data.shape[1]):
             filtered_data[:, i] = filtfilt(b, a, data[:, i])
+
+        mean_trace = np.mean(filtered_data, axis=1)
+
+        # Plot the Fourier Transform of the mean trace
+        mean_trace_fft = np.fft.fft(mean_trace)
+        freqs = np.fft.fftfreq(mean_trace.size, d=dt)
+        plt.figure(figsize=(10, 5))
+        plt.loglog(
+            freqs[: mean_trace.size // 2] / 1e6,
+            np.abs(mean_trace_fft[: mean_trace.size // 2]),
+        )
+        plt.xlabel("Frequency (MHz)")
+        plt.ylabel("Amplitude")
+        plt.title("Fourier Transform of Mean Trace")
+        plt.grid(True, which="both", linestyle="--")
+        plt.tight_layout()
+        plt.show()
+
+        # Find local maxima of the mean trace
+        local_max_indices = argrelextrema(mean_trace, np.greater)[0]
+        # Only keep maxima above zero
+        mask = (mean_trace[local_max_indices] > -1) & (local_max_indices > 50)
+        local_max_indices = local_max_indices[mask]
+        local_max_values = mean_trace[local_max_indices]
+
+        # Fit an exponential function to the local maxima using curve_fit
+        def exp_func(x, alpha):
+            return local_max_values[0] * np.exp(-alpha * (x - local_max_indices[0]))
+
+        x_data = local_max_indices
+        y_data = local_max_values
+
+        try:
+            popt, _ = curve_fit(exp_func, x_data, y_data, p0=[1e-2], maxfev=10000)
+            print(f"Fitted parameters: {popt}")
+            fitted_curve = exp_func(np.arange(mean_trace.size), *popt)
+
+        except Exception as e:
+            print(f"Exponential fit failed: {e}")
+            fitted_curve = np.ones_like(mean_trace)
+
+        # Apply gain correction based on the selected method
+        # Only apply gain correction for indices >= local_max_indices[0]
+        gain = np.ones_like(mean_trace)
+        start_idx = local_max_indices[0]
+        gain[start_idx:] = local_max_values[0] / fitted_curve[start_idx:]
+        np.clip(gain, None, local_max_values[0], out=gain)  # Limit gain to max value
+
+        # Apply gain to each trace (column)
 
         corrected_data = filtered_data * gain[:, np.newaxis]
 
@@ -1078,14 +1094,14 @@ class Radargram:
             plt.figure(figsize=(10, 5))
             plt.plot(mean_trace, label="Mean Trace")
             plt.plot(
-                fitted_curve,
-                label="Fitted Exponential Curve",
+                gain,
+                label="Gain Function",
                 linestyle="--",
                 color="purple",
             )
             plt.plot(
-                linear_offset,
-                label="Linear Offset (mx+n)",
+                fitted_curve,
+                label="Fitted Exponential Function",
                 linestyle="--",
                 color="orange",
             )
