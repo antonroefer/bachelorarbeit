@@ -10,6 +10,7 @@ from scipy import signal
 from skimage.filters import sobel
 from scipy.optimize import curve_fit
 from scipy.signal import morlet2, ricker, cwt
+from scipy.stats import entropy
 import matplotlib.pyplot as plt
 
 import warnings
@@ -68,7 +69,6 @@ class Radargram:
         self.min = None
         self.range = None
         self.dip = None
-        self.azimuth = None
 
         # Pre-calculate attributes if in pre-computed mode
         if self._precalc and data is not None:
@@ -102,13 +102,13 @@ class Radargram:
             print("Calculating Entropy ...")
             # self.entropy = self.calc_entropy(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Semblance ...")
-            self.semblance = self.calc_semblance(x_dis=x_dis, y_dis=y_dis)
+            # self.semblance = self.calc_semblance(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Mean ...")
             self.mean = self.calc_mean(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Mean of Squared Values ...")
             self.mean_sq = self.calc_mean_sq(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Median ...")
-            self.median = self.calc_median(x_dis=x_dis, y_dis=y_dis)
+            # self.median = self.calc_median(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Standard Deviation ...")
             self.std = self.calc_std(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Skewness ...")
@@ -123,8 +123,6 @@ class Radargram:
             self.range = self.calc_range(x_dis=x_dis, y_dis=y_dis)
             print("Calculating Dip ...")
             self.dip_real, self.dip_imag = self.calc_dip()
-            print("Calculating Azimuth ...")
-            self.azimuth = self.calc_azimuth()
             print("Pre-calculation complete.")
 
     # ---- Pixel-based attribute calculations ----
@@ -591,16 +589,8 @@ class Radargram:
         data = self._get_data(data)
         window_size = (2 * y_dis + 1, 2 * x_dis + 1)
 
-        # Define a function to calculate entropy of a window
-        def entropy_func(window):
-            hist, _ = np.histogram(window, bins=bins, density=True)
-            nonzero = hist > 0
-            if np.any(nonzero):
-                return -np.sum(hist[nonzero] * np.log2(hist[nonzero]))
-            return 0
-
         # Apply the filter
-        return generic_filter(data, entropy_func, size=window_size, mode=mode)
+        return generic_filter(data, entropy, size=window_size, mode=mode)
 
     def calc_semblance(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
@@ -708,8 +698,8 @@ class Radargram:
             local_mean = self.mean
             local_std = self.std
         else:
-            local_mean = self.mean(data, x_dis, y_dis, mode)
-            local_std = self.std(data, x_dis, y_dis, mode)
+            local_mean = self.calc_mean(data, x_dis, y_dis, mode)
+            local_std = self.calc_std(data, x_dis, y_dis, mode)
 
         # Calculate third central moment using uniform_filter
         # (x-μ)^3
@@ -753,8 +743,8 @@ class Radargram:
             local_mean = self.mean
             local_std = self.std
         else:
-            local_mean = self.mean(data, x_dis, y_dis, mode)
-            local_std = self.std(data, x_dis, y_dis, mode)
+            local_mean = self.calc_mean(data, x_dis, y_dis, mode)
+            local_std = self.calc_std(data, x_dis, y_dis, mode)
 
         # Calculate fourth central moment using uniform_filter
         # (x-μ)^4
@@ -864,35 +854,13 @@ class Radargram:
             2D array of dip angles (in radians)
         """
         data = self._get_data(data)
+        data = self.calc_instantaneous_amplitude(data)
+
         # Compute gradients
         grad_y = sobel(data, axis=0)
         grad_x = sobel(data, axis=1)
-        # Dip is arctangent of vertical over horizontal gradient
         dip = np.arctan2(grad_y, grad_x)
-        return np.cos(dip), np.sin(dip)
-
-    def calc_azimuth(self, data=None):
-        """
-        Calculate the local azimuth (in degrees) within a window using the Sobel operator.
-
-        Parameters:
-        -----------
-        data : ndarray, optional
-            2D radar amplitude data. If None, uses self.data
-
-        Returns:
-        --------
-        ndarray
-            2D array of azimuth angles (in degrees, 0 = x-direction, 90 = y-direction)
-        """
-        data = self._get_data(data)
-        grad_y = sobel(data, axis=0)
-        grad_x = sobel(data, axis=1)
-        # Azimuth is angle in the x-y plane, measured from x-axis
-        azimuth = np.degrees(np.arctan2(grad_y, grad_x))
-        # Normalize to [0, 180)
-        azimuth = np.mod(azimuth, 180)
-        return azimuth
+        return dip
 
     def calc_cwt(
         self, data=None, widths=[5, 10, 20, 35, 55, 80], wavelet="ricker", axis=0
