@@ -294,8 +294,8 @@ class Radargram:
             inst_amp = self.instantaneous_amplitude
             inst_freq = self.instantaneous_frequency
         else:
-            inst_amp = self.instantaneous_amplitude(data)
-            inst_freq = self.instantaneous_frequency(data)
+            inst_amp = self.calc_instantaneous_amplitude(data)
+            inst_freq = self.calc_instantaneous_frequency(data)
 
         with np.errstate(divide="ignore", invalid="ignore"):
             sweetness = inst_amp / inst_freq
