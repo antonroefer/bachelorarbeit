@@ -5,3 +5,4 @@ scipy==1.14.1
 scikit-image>=0.18.0
 matplotlib>=3.4.0
 h5py>=3.3.0
+tqdm
