@@ -100,6 +100,6 @@ print("Training beendet.")
 # Den Plot erstellen
 print("Erstelle Neighbor Distance Plot...")
 som.plot_som_neighbor_distances(
-    cmap="hot", figsize=(10, 8)
+    cmap="hot", figsize=(10, 8), save=False
 )  # cmap='hot' ist gut für Distanzen
-som.plot_som_hits(data)
+som.plot_som_hits(data, save=False)

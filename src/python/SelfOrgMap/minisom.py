@@ -687,6 +687,7 @@ class MiniSom(object):
         edge_color="white",
         text_color="white",
         min_radius_ratio=0.4,
+        save=False,
     ):
         """
         Visualisiert die Anzahl der Treffer (BMU-Zuweisungen) pro Neuron im hexagonalen SOM-Gitter.
@@ -838,10 +839,10 @@ class MiniSom(object):
         ax.set_yticks([])
         ax.set_title("SOM Neuron Hits (Python)")
         plt.tight_layout()
-        plt.savefig("som_hits.png", dpi=300)
+        plt.savefig("som_hits.png", dpi=300) if save else None
         plt.show()
 
-    def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8)):
+    def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8), save=False):
         if self.topology != "hexagonal":
             raise NotImplementedError(
                 "This visualization currently supports hexagonal topology only."
@@ -1118,7 +1119,7 @@ class MiniSom(object):
         ax.set_yticks([])
         ax.set_title("SOM Neighbor Weight Distances (Python)")
         plt.tight_layout()
-        plt.savefig("som_nd.png", dpi=300)
+        plt.savefig("som_nd.png", dpi=300) if save else None
         plt.show()
 
     def activation_response(self, data):
