@@ -680,7 +680,7 @@ class MiniSom(object):
 
         return um / um.max()
 
-    def plot_u_matrix(self, figsize=(10, 8), cmap="hot"):
+    def plot_u_matrix(self, figsize=(10, 8), cmap="hot", save=False):
         """
         Visualisiert die Unified Distance Matrix (U-Matrix) des SOM.
         Die U-Matrix zeigt die durchschnittlichen Abstände zwischen einem Neuron
@@ -705,9 +705,7 @@ class MiniSom(object):
 
         fig, ax = plt.subplots(figsize=figsize)
         ax.set_aspect("equal")
-        ax.set_facecolor(
-            "lightgray"
-        )  # Hintergrund des Plotbereichs auf hellgrau setzen
+        ax.set_facecolor("#858585")  # Hintergrund des Plotbereichs auf hellgrau setzen
 
         neuron_plot_radius = 1 / sqrt(3)  # Radius für "Rand an Rand" Darstellung
 
@@ -733,7 +731,6 @@ class MiniSom(object):
                     radius=neuron_plot_radius,
                     orientation=0,  # Flat-top Ausrichtung
                     facecolor=color,
-                    edgecolor="darkgray",
                     linewidth=0.5,
                     zorder=0,
                 )
@@ -759,9 +756,10 @@ class MiniSom(object):
         cbar.set_label("Distance in Feature Space")
 
         plt.tight_layout()
+        plt.savefig("som_u_matrix.png", dpi=300) if save else None
         plt.show()
 
-    def plot_som_planes(self, figsize=(12, 12), cmap="hot"):
+    def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=False):
         """
         Visualisiert die einzelnen Feature-Ebenen (Component Planes) des SOM.
         Für jedes Feature wird ein separates Subplot erstellt, das die Gewichte
@@ -805,7 +803,7 @@ class MiniSom(object):
             ax = axes[feature_idx]
             ax.set_aspect("equal")
             ax.set_facecolor(
-                "lightgray"
+                "#858585"
             )  # Hintergrund des Plotbereichs auf hellgrau setzen
 
             feature_plane = self._weights[:, :, feature_idx]
@@ -828,7 +826,6 @@ class MiniSom(object):
                         radius=neuron_plot_radius,
                         orientation=0,  # Flat-top Ausrichtung
                         facecolor=color,
-                        edgecolor="darkgray",
                         linewidth=0.5,
                         zorder=0,
                     )
@@ -860,6 +857,7 @@ class MiniSom(object):
             axes[k].set_visible(False)
 
         plt.tight_layout()
+        plt.savefig("som_planes.png", dpi=300) if save else None
         plt.show()
 
     def plot_som_hits(
@@ -912,7 +910,7 @@ class MiniSom(object):
         ax.set_aspect("equal")
 
         # Hintergrund des Plotbereichs auf hellgrau setzen
-        ax.set_facecolor("lightgray")
+        ax.set_facecolor("#858585")
 
         neuron_centers_display = {}
 
@@ -1036,6 +1034,7 @@ class MiniSom(object):
 
         fig, ax = plt.subplots(figsize=figsize)
         ax.set_aspect("equal")
+        ax.set_facecolor("#858585")
 
         neuron_centers_display = {}
 

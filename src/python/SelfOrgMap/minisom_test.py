@@ -1,6 +1,7 @@
 from minisom import MiniSom  # Importiere deine aktualisierte Klasse
 from sklearn.datasets import load_iris
 import numpy as np
+from sklearn.preprocessing import StandardScaler
 
 iris = load_iris()
 data = iris.data
@@ -70,14 +71,17 @@ data = (data - data_min) / (data_max - data_min)
 # --- NEU: input_len dynamisch bestimmen ---
 # Die Anzahl der Merkmale ist die Anzahl der Spalten im 2D-Datenarray
 data = iris.data
+# Daten normalisieren (spaltenweise) mit StandardScaler
+scaler = StandardScaler()
+data = scaler.fit_transform(data)
 num_features = data.shape[1]
 print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
 som = MiniSom(
-    x=10,
-    y=10,
+    x=6,
+    y=6,
     input_len=num_features,  # Verwende die tatsächliche Anzahl der Merkmale
     sigma=0.6,
     learning_rate=0.9,
@@ -86,21 +90,23 @@ som = MiniSom(
 )
 
 # Gewichte initialisieren (z.B. zufällig oder PCA)
-som.random_weights_init(data)
+som.pca_weights_init(data)
 
 # SOM trainieren
 print("Starte Training...")
 # Setze eine realistische Anzahl von Epochen (z.B. 1 oder 2, nicht 10.000)
-num_epochs = 30
+num_epochs = 1000
 som.train(
     data, num_iteration=num_epochs, random_order=True, use_epochs=True, verbose=True
 )
 print("Training beendet.")
 
 # Den Plot erstellen
-som.plot_u_matrix()
+save_plots = True  # Setze auf True, um die Plots zu speichern
+
+som.plot_u_matrix(save=save_plots)  # U-Matrix Plot
 som.plot_som_neighbor_distances(
-    cmap="hot", figsize=(10, 8), save=False
+    cmap="hot", figsize=(10, 8), save=save_plots
 )  # cmap='hot' ist gut für Distanzen
-som.plot_som_hits(data, save=False)
-som.plot_som_planes()
+som.plot_som_hits(data, save=save_plots)
+som.plot_som_planes(save=save_plots)
