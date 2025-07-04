@@ -23,6 +23,7 @@ from numpy import (
     prod,
     nan,
     sqrt,
+    ceil,
     hstack,
     diff,
     argmin,
@@ -678,6 +679,188 @@ class MiniSom(object):
             um = nansum(um, axis=2)
 
         return um / um.max()
+
+    def plot_u_matrix(self, figsize=(10, 8), cmap="hot"):
+        """
+        Visualisiert die Unified Distance Matrix (U-Matrix) des SOM.
+        Die U-Matrix zeigt die durchschnittlichen Abstände zwischen einem Neuron
+        und seinen direkten Nachbarn im Feature-Raum.
+
+        Parameter
+        ----------
+        figsize : tuple, optional (default=(10, 8))
+            Größe der Matplotlib-Figure.
+        cmap : str, optional (default='hot')
+            Colormap, die für die Einfärbung der Distanzen verwendet wird.
+        """
+        if self.topology != "hexagonal":
+            raise NotImplementedError(
+                "This visualization currently supports hexagonal topology only."
+            )
+
+        u_matrix = (
+            self.distance_map()
+        )  # MiniSom's distance_map gibt bereits ein (x_dim, y_dim) Array zurück
+        x_dim, y_dim = u_matrix.shape
+
+        fig, ax = plt.subplots(figsize=figsize)
+        ax.set_aspect("equal")
+        ax.set_facecolor(
+            "lightgray"
+        )  # Hintergrund des Plotbereichs auf hellgrau setzen
+
+        neuron_plot_radius = 1 / sqrt(3)  # Radius für "Rand an Rand" Darstellung
+
+        # Normalisierung und Colormap-Mapper
+        norm = plt.Normalize(vmin=u_matrix.min(), vmax=u_matrix.max())
+        mapper = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
+
+        neuron_centers_display = {}
+
+        # Plotten der U-Matrix Hexagone
+        for i in range(x_dim):
+            for j in range(y_dim):
+                cx_display = j * 1.0 + (i % 2) * 0.5
+                cy_display = i * (sqrt(3) / 2.0)
+                neuron_centers_display[(i, j)] = (cx_display, cy_display)
+
+                # Farbe basierend auf dem U-Matrix-Wert
+                color = mapper.to_rgba(u_matrix[i, j])
+
+                hexagon_patch = RegularPolygon(
+                    (cx_display, cy_display),
+                    numVertices=6,
+                    radius=neuron_plot_radius,
+                    orientation=0,  # Flat-top Ausrichtung
+                    facecolor=color,
+                    edgecolor="darkgray",
+                    linewidth=0.5,
+                    zorder=0,
+                )
+                ax.add_patch(hexagon_patch)
+
+        # Achsenlimits dynamisch anpassen
+        x_min_display = 0 - neuron_plot_radius
+        x_max_display = (y_dim - 1) * 1.0 + ((x_dim - 1) % 2) * 0.5 + neuron_plot_radius
+        y_min_display = 0 - neuron_plot_radius
+        y_max_display = (x_dim - 1) * (sqrt(3) / 2.0) + neuron_plot_radius
+
+        ax.set_xlim(x_min_display, x_max_display)
+        ax.set_ylim(y_min_display, y_max_display)
+
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.set_title("SOM U-Matrix")
+
+        # Colorbar hinzufügen
+        cbar = fig.colorbar(
+            mapper, ax=ax, orientation="vertical", fraction=0.046, pad=0.04
+        )
+        cbar.set_label("Distance in Feature Space")
+
+        plt.tight_layout()
+        plt.show()
+
+    def plot_som_planes(self, figsize=(12, 12), cmap="hot"):
+        """
+        Visualisiert die einzelnen Feature-Ebenen (Component Planes) des SOM.
+        Für jedes Feature wird ein separates Subplot erstellt, das die Gewichte
+        der Neuronen für dieses spezifische Feature anzeigt.
+
+        Parameter
+        ----------
+        figsize : tuple, optional (default=(12, 12))
+            Größe der Matplotlib-Figure.
+        cmap : str, optional (default='hot')
+            Colormap, die für die Einfärbung der Feature-Werte verwendet wird.
+        """
+        if self.topology != "hexagonal":
+            raise NotImplementedError(
+                "This visualization currently supports hexagonal topology only."
+            )
+
+        x_dim, y_dim, n_features = self._weights.shape
+
+        # Bestimme die Größe des Subplot-Gitters
+        subplot_grid_size = int(ceil(sqrt(n_features)))
+        n_rows = subplot_grid_size
+        n_cols = subplot_grid_size
+
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=figsize)
+        # Flatten axes, um auch bei 1xN oder Nx1 Subplots einfach iterieren zu können
+        axes = axes.flatten()
+
+        neuron_plot_radius = 1 / sqrt(3)  # Radius für "Rand an Rand" Darstellung
+
+        neuron_centers_display = {}
+        # Berechne Neuron-Mittelpunkte einmalig
+        for i in range(x_dim):
+            for j in range(y_dim):
+                cx_display = j * 1.0 + (i % 2) * 0.5
+                cy_display = i * (sqrt(3) / 2.0)
+                neuron_centers_display[(i, j)] = (cx_display, cy_display)
+
+        # Iteriere über jedes Feature
+        for feature_idx in range(n_features):
+            ax = axes[feature_idx]
+            ax.set_aspect("equal")
+            ax.set_facecolor(
+                "lightgray"
+            )  # Hintergrund des Plotbereichs auf hellgrau setzen
+
+            feature_plane = self._weights[:, :, feature_idx]
+
+            # Normalisierung und Colormap-Mapper für das aktuelle Feature-Plane
+            norm = plt.Normalize(vmin=feature_plane.min(), vmax=feature_plane.max())
+            mapper = plt.cm.ScalarMappable(norm=norm, cmap=cmap)
+
+            # Plotten der Feature-Plane Hexagone
+            for i in range(x_dim):
+                for j in range(y_dim):
+                    cx, cy = neuron_centers_display[(i, j)]
+
+                    # Farbe basierend auf dem Feature-Wert
+                    color = mapper.to_rgba(feature_plane[i, j])
+
+                    hexagon_patch = RegularPolygon(
+                        (cx, cy),
+                        numVertices=6,
+                        radius=neuron_plot_radius,
+                        orientation=0,  # Flat-top Ausrichtung
+                        facecolor=color,
+                        edgecolor="darkgray",
+                        linewidth=0.5,
+                        zorder=0,
+                    )
+                    ax.add_patch(hexagon_patch)
+
+            # Achsenlimits dynamisch anpassen
+            x_min_display = 0 - neuron_plot_radius
+            x_max_display = (
+                (y_dim - 1) * 1.0 + ((x_dim - 1) % 2) * 0.5 + neuron_plot_radius
+            )
+            y_min_display = 0 - neuron_plot_radius
+            y_max_display = (x_dim - 1) * (sqrt(3) / 2.0) + neuron_plot_radius
+
+            ax.set_xlim(x_min_display, x_max_display)
+            ax.set_ylim(y_min_display, y_max_display)
+
+            ax.set_xticks([])
+            ax.set_yticks([])
+            ax.set_title(f"Feature {feature_idx + 1}")
+
+            # Colorbar für jedes Subplot hinzufügen
+            cbar = fig.colorbar(
+                mapper, ax=ax, orientation="vertical", fraction=0.046, pad=0.04
+            )
+            cbar.set_label(f"Feature {feature_idx + 1} Value")
+
+        # Leere Subplots ausblenden, falls n_features keine perfekte Quadratzahl ist
+        for k in range(n_features, len(axes)):
+            axes[k].set_visible(False)
+
+        plt.tight_layout()
+        plt.show()
 
     def plot_som_hits(
         self,

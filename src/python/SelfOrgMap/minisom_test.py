@@ -91,15 +91,16 @@ som.random_weights_init(data)
 # SOM trainieren
 print("Starte Training...")
 # Setze eine realistische Anzahl von Epochen (z.B. 1 oder 2, nicht 10.000)
-num_epochs = 2
+num_epochs = 30
 som.train(
     data, num_iteration=num_epochs, random_order=True, use_epochs=True, verbose=True
 )
 print("Training beendet.")
 
 # Den Plot erstellen
-print("Erstelle Neighbor Distance Plot...")
+som.plot_u_matrix()
 som.plot_som_neighbor_distances(
     cmap="hot", figsize=(10, 8), save=False
 )  # cmap='hot' ist gut für Distanzen
 som.plot_som_hits(data, save=False)
+som.plot_som_planes()
