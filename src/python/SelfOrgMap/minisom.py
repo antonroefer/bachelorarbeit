@@ -838,6 +838,7 @@ class MiniSom(object):
         ax.set_yticks([])
         ax.set_title("SOM Neuron Hits (Python)")
         plt.tight_layout()
+        plt.savefig("som_hits.png", dpi=300)
         plt.show()
 
     def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8)):
@@ -1117,6 +1118,7 @@ class MiniSom(object):
         ax.set_yticks([])
         ax.set_title("SOM Neighbor Weight Distances (Python)")
         plt.tight_layout()
+        plt.savefig("som_nd.png", dpi=300)
         plt.show()
 
     def activation_response(self, data):

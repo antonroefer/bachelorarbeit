@@ -96,7 +96,6 @@ target/
 *.mat
 
 feature_plots.ipynb
-*.png
 *.jpg
 *.jpeg
 *.html

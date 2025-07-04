@@ -69,6 +69,7 @@ data = (data - data_min) / (data_max - data_min)
 
 # --- NEU: input_len dynamisch bestimmen ---
 # Die Anzahl der Merkmale ist die Anzahl der Spalten im 2D-Datenarray
+data = iris.data
 num_features = data.shape[1]
 print(f"Anzahl der erkannten Merkmale: {num_features}")
 
