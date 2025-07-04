@@ -3,9 +3,10 @@ matfile_path = 'C:\Users\anton\Documents\Studium\Bachelorarbeit\GPR_Daten_mat\ra
 
 % .mat-Datei laden und in single konvertieren
 load(matfile_path, 'radargrams');
-data = single(radargrams{9});
+data = single(radargrams{30});
 clear radargrams
 
+%data = data(:, 4000:6000);
 [nt, nx] = size(data);
 dt = single(1e-9);
 
@@ -14,7 +15,7 @@ env_size = 7;
 window_size = 2 * env_size + 1;
 block_size = 50;  % Kleinere Blöcke
 num_blocks = ceil(nx/block_size);
-n_features = 16;  % Anzahl Features beibehalten
+n_features = 8;  % Nur 8 Features
 
 % Speicher vorallokieren für Endergebnis
 X = zeros(nt * nx, n_features, 'single');
@@ -24,69 +25,58 @@ for b = 1:num_blocks
     start_idx = (b-1)*block_size + 1;
     end_idx = min(b*block_size, nx);
     block_width = end_idx - start_idx + 1;
-    
-    % Aktueller Block
+
     current_block = data(:, start_idx:end_idx);
-    
-    % Hilbert Transform
+
+    % Feature-Berechnung für die 8 gewünschten Features
     temp_features = zeros(nt, block_width, n_features, 'single');
-    
+
+    % 1. Envelope
     for ix = 1:block_width
-        trace = current_block(:, ix);
-        analytic_signal = hilbert(trace);
-        temp_features(:,ix,1) = abs(analytic_signal);  % amplitude_envelope
-        temp_features(:,ix,2) = angle(analytic_signal); % instantaneous_phase
-        temp_features(:,ix,3) = [0; diff(unwrap(angle(analytic_signal))) / dt] / (2*pi); % inst_freq
+        analytic_signal = hilbert(current_block(:, ix));
+        temp_features(:,ix,1) = abs(analytic_signal);
+        temp_features(:,ix,3) = [0; diff(unwrap(angle(analytic_signal))) / dt] / (2*pi); % Inst. Freq
+        temp_features(:,ix,2) = 0; % Platzhalter für Abs Grad Phase (wird unten berechnet)
     end
-    
-    % Gradient Features
-    [Gx, Gy] = gradient(current_block);
-    temp_features(:,:,4) = sqrt(Gx.^2 + Gy.^2);  % abs_gradient
-    
-    % Statistische Features
+
+    % 2. Abs Grad Phase
+    phase_block = angle(hilbert(current_block));
+    [Gx_p, Gy_p] = gradient(phase_block);
+    temp_features(:,:,2) = sqrt(Gx_p.^2 + Gy_p.^2);
+
+    % 4. Mean
     kernel = ones(window_size, 'single') / window_size^2;
-    temp_features(:,:,5) = conv2(current_block, kernel, 'same');  % mean_env
-    temp_features(:,:,6) = medfilt2(current_block, [window_size, window_size], 'symmetric');  % median_env
-    temp_features(:,:,7) = stdfilt(current_block, true(window_size));  % std_env
-    temp_features(:,:,8) = entropyfilt(current_block, true(window_size));  % entropy_env
-    
-    % Ordnungsstatistiken
-    num_elements = window_size^2;
-    temp_features(:,:,9) = ordfilt2(current_block, num_elements, true(window_size));  % max
-    temp_features(:,:,10) = ordfilt2(current_block, 1, true(window_size));  % min
-    temp_features(:,:,11) = temp_features(:,:,9) - temp_features(:,:,10);  % range
-    
-    % Schiefe und Wölbung
-    mean_local = temp_features(:,:,5);
+    temp_features(:,:,4) = conv2(current_block, kernel, 'same');
+
+    % 5. Entropy
+    temp_features(:,:,5) = entropyfilt(current_block, true(window_size));
+
+    % 6. Skewness & 7. Kurtosis
+    mean_local = temp_features(:,:,4);
     diff_local = current_block - mean_local;
     var_local = conv2(diff_local.^2, kernel, 'same');
     std_local = sqrt(var_local);
     norm_diff = diff_local ./ std_local;
-    
-    temp_features(:,:,12) = conv2(norm_diff.^3, kernel, 'same');  % skewness
-    temp_features(:,:,13) = conv2(norm_diff.^4, kernel, 'same') - 3;  % kurtosis
-    
-    % Zusätzliche Features
-    temp_features(:,:,14) = conv2(temp_features(:,:,3), kernel, 'same');  % mean_inst_freq
-    [Gx_p, Gy_p] = gradient(temp_features(:,:,2));
-    temp_features(:,:,15) = sqrt(Gx_p.^2 + Gy_p.^2);  % abs_grad_phase
-    [Gx_s, Gy_s] = gradient(temp_features(:,:,12));
-    temp_features(:,:,16) = sqrt(Gx_s.^2 + Gy_s.^2);  % abs_grad_skew
-    
+    temp_features(:,:,6) = conv2(norm_diff.^3, kernel, 'same');      % Skewness
+    temp_features(:,:,7) = conv2(norm_diff.^4, kernel, 'same') - 3;  % Kurtosis
+
+    % 8. Abs Grad Skewness
+    [Gx_s, Gy_s] = gradient(temp_features(:,:,6));
+    temp_features(:,:,8) = sqrt(Gx_s.^2 + Gy_s.^2);
+
     % In Ergebnismatrix einfügen
     idx_range = (start_idx-1)*nt + 1 : end_idx*nt;
     X(idx_range, :) = reshape(temp_features, [], n_features);
-    
-    % Zwischenspeicher freigeben
-    clear temp_features current_block Gx Gy Gx_p Gy_p Gx_s Gy_s diff_local var_local std_local norm_diff mean_local;
+
+    clear temp_features current_block Gx_p Gy_p Gx_s Gy_s diff_local var_local std_local norm_diff mean_local phase_block;
 end
 
 % Nachbearbeitung
 X(~isfinite(X)) = 0;
-X = normalize(X, 'zscore');
+X = normalize(X, 'range');
 
-% SOM Training mit zufälligen Batches
-batch_size = 10000;
+% SOM Training mit doppelter Batchsize
+batch_size = 20000; % vorher 10000
 n_samples = size(X,1);
 num_batches = ceil(n_samples/batch_size);
 
@@ -94,10 +84,8 @@ num_batches = ceil(n_samples/batch_size);
 all_indices = randperm(n_samples);
 
 % Feature Namen definieren (vor dem Training)
-feature_names = {'Amplitude Envelope', 'Instantaneous Phase', 'Instantaneous Frequency', ...
-                'Absolute Gradient', 'Mean', 'Median', 'Standard Deviation', 'Entropy', ...
-                'Maximum', 'Minimum', 'Range', 'Skewness', 'Kurtosis', ...
-                'Mean Inst Freq', 'Abs Grad Phase', 'Abs Grad Skewness'};
+feature_names = {'Envelope', 'Abs Grad Phase', 'Inst. Freq', 'Mean', ...
+                 'Entropy', 'Skewness', 'Kurtosis', 'Abs Grad Skewness'};
 
 % SOM Netzwerk initialisieren mit Input Labels
 dimension1 = 10;
@@ -129,7 +117,29 @@ figure('Name', 'SOM Feature Planes');
 plotsomplanes(net);
 
 % Feature-Namen als Titel setzen
-for i = 1:length(feature_names)
-    subplot(4,4,i); % 4x4 für 16 Features
+for i = 1:n_features
+    subplot(2,4,i); % 2x4 für 8 Features
     title(feature_names{i}, 'Interpreter', 'none');
 end
+
+%figure('Name', 'SOM Unit Positions');
+%plotsompos(net);
+%title('SOM Unit Positions');
+
+% BMU für jeden Datenpunkt bestimmen
+bmu_indices = vec2ind(net(X'))'; % Länge: nt*nx
+
+% KMeans-Clustering der BMUs (K=10)
+K = 10;
+bmu_cluster = kmeans(double(bmu_indices), K, 'Replicates', 5);
+
+% In Bildform bringen (Cluster-Labels)
+bmu_cluster_img = reshape(bmu_cluster, nt, nx);
+
+% Plotten
+figure('Name', 'Radargramm BMU-KMeans-Cluster');
+imagesc(bmu_cluster_img);
+xlabel('Spur'); ylabel('Zeit (Samples)');
+title('BMU-Cluster (KMeans, K=10)');
+colormap(jet);
+colorbar;

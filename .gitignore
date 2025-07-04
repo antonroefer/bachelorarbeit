@@ -94,9 +94,12 @@ target/
 
 # Exlude Mat Data
 *.mat
-*.npz
 
 feature_plots.ipynb
+*.jpg
+*.jpeg
+*.html
+*.npz
 
 # exclude data from source control by default
 # /data/
