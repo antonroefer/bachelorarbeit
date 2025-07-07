@@ -757,7 +757,7 @@ class MiniSom(object):
 
         plt.tight_layout()
         plt.savefig("som_u_matrix.png", dpi=300) if save else None
-        plt.show()
+        # plt.show()
 
     def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=False):
         """
@@ -858,7 +858,7 @@ class MiniSom(object):
 
         plt.tight_layout()
         plt.savefig("som_planes.png", dpi=300) if save else None
-        plt.show()
+        # plt.show()
 
     def plot_som_hits(
         self,
@@ -957,7 +957,7 @@ class MiniSom(object):
             ax.set_yticks([])
             ax.set_title("SOM Neuron Hits (Python)")
             plt.tight_layout()
-            plt.show()
+            # plt.show()
             return
 
         # Plot der Treffer-Hexagone und Texte
@@ -1021,7 +1021,7 @@ class MiniSom(object):
         ax.set_title("SOM Neuron Hits (Python)")
         plt.tight_layout()
         plt.savefig("som_hits.png", dpi=300) if save else None
-        plt.show()
+        # plt.show()
 
     def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8), save=False):
         if self.topology != "hexagonal":
@@ -1302,7 +1302,7 @@ class MiniSom(object):
         ax.set_title("SOM Neighbor Weight Distances (Python)")
         plt.tight_layout()
         plt.savefig("som_nd.png", dpi=300) if save else None
-        plt.show()
+        # plt.show()
 
     def activation_response(self, data):
         """
