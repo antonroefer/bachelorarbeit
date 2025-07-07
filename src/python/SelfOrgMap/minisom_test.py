@@ -68,20 +68,14 @@ data_min = data.min(axis=0)
 data_max = data.max(axis=0)
 data = (data - data_min) / (data_max - data_min)
 
-# --- NEU: input_len dynamisch bestimmen ---
-# Die Anzahl der Merkmale ist die Anzahl der Spalten im 2D-Datenarray
-data = iris.data
-# Daten normalisieren (spaltenweise) mit StandardScaler
-scaler = StandardScaler()
-data = scaler.fit_transform(data)
 num_features = data.shape[1]
 print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
 som = MiniSom(
-    x=6,
-    y=6,
+    x=12,
+    y=12,
     input_len=num_features,  # Verwende die tatsächliche Anzahl der Merkmale
     sigma=0.6,
     learning_rate=0.9,
@@ -90,12 +84,12 @@ som = MiniSom(
 )
 
 # Gewichte initialisieren (z.B. zufällig oder PCA)
-som.pca_weights_init(data)
+som.random_weights_init(data)
 
 # SOM trainieren
 print("Starte Training...")
 # Setze eine realistische Anzahl von Epochen (z.B. 1 oder 2, nicht 10.000)
-num_epochs = 1000
+num_epochs = 10
 som.train(
     data, num_iteration=num_epochs, random_order=True, use_epochs=True, verbose=True
 )
