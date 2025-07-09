@@ -91,7 +91,7 @@ som.random_weights_init(data)
 # SOM trainieren
 print("Starte Training...")
 # Setze eine realistische Anzahl von Epochen (z.B. 1 oder 2, nicht 10.000)
-num_epochs = 10
+num_epochs = 50
 som.train(
     data, num_iteration=num_epochs, random_order=True, use_epochs=True, verbose=True
 )
