@@ -1,7 +1,7 @@
 from minisom import MiniSom  # Importiere deine aktualisierte Klasse
 from sklearn.datasets import load_iris
 import numpy as np
-from sklearn.preprocessing import StandardScaler
+import os
 
 iris = load_iris()
 data = iris.data
@@ -9,7 +9,9 @@ data = iris.data
 data = (data - data.min(axis=0)) / (data.max(axis=0) - data.min(axis=0))
 
 # Eigene Daten laden
-data_path = "feature_vectors.npz"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_file = "feature_vectors.npz"
+data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
     print("Arrays in der Datei:", npzfile.files)
