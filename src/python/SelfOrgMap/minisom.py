@@ -756,7 +756,9 @@ class MiniSom(object):
         cbar.set_label("Distance in Feature Space")
 
         plt.tight_layout()
-        plt.savefig("som_u_matrix.png", dpi=300) if save else None
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            plt.savefig(os.path.join(script_dir, "som_u_matrix.png"), dpi=300)
         # plt.show()
 
     def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=False):
@@ -857,7 +859,9 @@ class MiniSom(object):
             axes[k].set_visible(False)
 
         plt.tight_layout()
-        plt.savefig("som_planes.png", dpi=300) if save else None
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            plt.savefig(os.path.join(script_dir, "som_planes.png"), dpi=300)
         # plt.show()
 
     def plot_som_hits(
@@ -1020,7 +1024,9 @@ class MiniSom(object):
         ax.set_yticks([])
         ax.set_title("SOM Neuron Hits (Python)")
         plt.tight_layout()
-        plt.savefig("som_hits.png", dpi=300) if save else None
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            plt.savefig(os.path.join(script_dir, "som_hits.png"), dpi=300)
         # plt.show()
 
     def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8), save=False):
@@ -1301,7 +1307,9 @@ class MiniSom(object):
         ax.set_yticks([])
         ax.set_title("SOM Neighbor Weight Distances (Python)")
         plt.tight_layout()
-        plt.savefig("som_nd.png", dpi=300) if save else None
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            plt.savefig(os.path.join(script_dir, "som_nd.png"), dpi=300)
         # plt.show()
 
     def activation_response(self, data):
