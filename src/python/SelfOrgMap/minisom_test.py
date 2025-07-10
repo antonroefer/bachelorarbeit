@@ -65,11 +65,6 @@ if data.ndim == 3:
 # Entferne Zeilen mit NaN-Werten, die beim Normalisieren Probleme verursachen könnten
 data = data[~np.isnan(data).any(axis=1)]
 
-# Daten normalisieren (spaltenweise)
-data_min = data.min(axis=0)
-data_max = data.max(axis=0)
-data = (data - data_min) / (data_max - data_min)
-
 num_features = data.shape[1]
 print(f"Anzahl der erkannten Merkmale: {num_features}")
 
@@ -85,8 +80,12 @@ som = MiniSom(
     random_seed=42,
 )
 
+# Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
+for i in range(data.shape[1]):
+    data[:, i] = som.min_max_scaler(data[:, i])
+
 # Gewichte initialisieren (z.B. zufällig oder PCA)
-som.random_weights_init(data)
+som.normalize_random_weights_init(data)
 
 # SOM trainieren
 print("Starte Training...")

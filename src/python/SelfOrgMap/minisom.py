@@ -37,6 +37,7 @@ from numpy import (
     nanmin,
     isnan,
     zeros_like,
+    full_like,
 )
 from numpy.linalg import norm
 from collections import defaultdict, Counter
@@ -465,7 +466,13 @@ class MiniSom(object):
         winners_coords = argmin(self._distance_from_weights(data), axis=1)
         return self._weights[unravel_index(winners_coords, self._weights.shape[:2])]
 
-    def random_weights_init(self, data):
+    def normalize_random_weights_init(self, data):
+        """Initializes the weights of the SOM
+        picking random numbers between 0 and 1."""
+        self._check_input_len(data)
+        self._weights = self._random_generator.rand(*self._weights.shape)
+
+    def random_data_weights_init(self, data):
         """Initializes the weights of the SOM
         picking random samples from data."""
         self._check_input_len(data)
@@ -500,6 +507,33 @@ class MiniSom(object):
         for i, c1 in enumerate(linspace(-1, 1, len(self._neigx))):
             for j, c2 in enumerate(linspace(-1, 1, len(self._neigy))):
                 self._weights[i, j] = c1 * pc[pc_order[0]] + c2 * pc[pc_order[1]]
+
+    def min_max_scale(arr, new_min=0, new_max=1):
+        """
+        Skaliert ein NumPy-Array auf einen neuen Wertebereich (new_min, new_max).
+
+        Args:
+            arr (ndarray): Das Eingangs-Array.
+            new_min (float): Der gewünschte minimale Wert des neuen Bereichs.
+            new_max (float): Der gewünschte maximale Wert des neuen Bereichs.
+
+        Returns:
+            ndarray: Das skalierte Array.
+        """
+        # Finde den originalen Minimal- und Maximalwert des Arrays
+        original_min = min(arr)
+        original_max = max(arr)
+
+        # Vermeide Division durch Null, falls alle Werte im Array gleich sind
+        if original_max == original_min:
+            # Wenn alle Werte gleich sind, sind sie im neuen Bereich einfach der Mittelwert
+            return full_like(arr, (new_min + new_max) / 2)
+
+        # Führe die Min-Max-Skalierung durch
+        scaled_arr = ((arr - original_min) / (original_max - original_min)) * (
+            new_max - new_min
+        ) + new_min
+        return scaled_arr
 
     def _check_fixed_points(self, fixed_points, data):
         for k in fixed_points.keys():
