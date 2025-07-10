@@ -98,12 +98,14 @@ def _wrap_index__in_verbose(iterations):
     stdout.write(progress)
     for i, it in enumerate(iterations):
         yield it
-        sec_left = ((m - i + 1) * (time() - beginning)) / (i + 1)
-        time_left = str(timedelta(seconds=sec_left))[:7]
-        progress = "\r [ {i:{d}} / {m} ]".format(i=i + 1, d=digits, m=m)
-        progress += " {p:3.0f}%".format(p=100 * (i + 1) / m)
-        progress += " - {time_left} left ".format(time_left=time_left)
-        stdout.write(progress)
+        # Only update progress every 100000 iterations
+        if (i + 1) % 100000 == 0 or i == m - 1:
+            sec_left = ((m - i + 1) * (time() - beginning)) / (i + 1)
+            time_left = str(timedelta(seconds=sec_left))[:7]
+            progress = "\r [ {i:{d}} / {m} ]".format(i=i + 1, d=digits, m=m)
+            progress += " {p:3.0f}%".format(p=100 * (i + 1) / m)
+            progress += " - {time_left} left ".format(time_left=time_left)
+            stdout.write(progress)
 
 
 def fast_norm(x):
@@ -507,33 +509,6 @@ class MiniSom(object):
         for i, c1 in enumerate(linspace(-1, 1, len(self._neigx))):
             for j, c2 in enumerate(linspace(-1, 1, len(self._neigy))):
                 self._weights[i, j] = c1 * pc[pc_order[0]] + c2 * pc[pc_order[1]]
-
-    def min_max_scale(arr, new_min=0, new_max=1):
-        """
-        Skaliert ein NumPy-Array auf einen neuen Wertebereich (new_min, new_max).
-
-        Args:
-            arr (ndarray): Das Eingangs-Array.
-            new_min (float): Der gewünschte minimale Wert des neuen Bereichs.
-            new_max (float): Der gewünschte maximale Wert des neuen Bereichs.
-
-        Returns:
-            ndarray: Das skalierte Array.
-        """
-        # Finde den originalen Minimal- und Maximalwert des Arrays
-        original_min = min(arr)
-        original_max = max(arr)
-
-        # Vermeide Division durch Null, falls alle Werte im Array gleich sind
-        if original_max == original_min:
-            # Wenn alle Werte gleich sind, sind sie im neuen Bereich einfach der Mittelwert
-            return full_like(arr, (new_min + new_max) / 2)
-
-        # Führe die Min-Max-Skalierung durch
-        scaled_arr = ((arr - original_min) / (original_max - original_min)) * (
-            new_max - new_min
-        ) + new_min
-        return scaled_arr
 
     def _check_fixed_points(self, fixed_points, data):
         for k in fixed_points.keys():

@@ -3,6 +3,35 @@ from sklearn.datasets import load_iris
 import numpy as np
 import os
 
+
+def min_max_scale(arr, new_min=0, new_max=1):
+    """
+    Skaliert ein NumPy-Array auf einen neuen Wertebereich (new_min, new_max).
+
+    Args:
+        arr (ndarray): Das Eingangs-Array.
+        new_min (float): Der gewünschte minimale Wert des neuen Bereichs.
+        new_max (float): Der gewünschte maximale Wert des neuen Bereichs.
+
+    Returns:
+        ndarray: Das skalierte Array.
+    """
+    # Finde den originalen Minimal- und Maximalwert des Arrays
+    original_min = arr.min()
+    original_max = arr.max()
+
+    # Vermeide Division durch Null, falls alle Werte im Array gleich sind
+    if original_max == original_min:
+        # Wenn alle Werte gleich sind, sind sie im neuen Bereich einfach der Mittelwert
+        return np.full_like(arr, (new_min + new_max) / 2)
+
+    # Führe die Min-Max-Skalierung durch
+    scaled_arr = ((arr - original_min) / (original_max - original_min)) * (
+        new_max - new_min
+    ) + new_min
+    return scaled_arr
+
+
 iris = load_iris()
 data = iris.data
 # Daten normalisieren (spaltenweise)
@@ -82,7 +111,7 @@ som = MiniSom(
 
 # Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
 for i in range(data.shape[1]):
-    data[:, i] = som.min_max_scaler(data[:, i])
+    data[:, i] = min_max_scale(data[:, i])
 
 # Gewichte initialisieren (z.B. zufällig oder PCA)
 som.normalize_random_weights_init(data)
@@ -92,7 +121,7 @@ print("Starte Training...")
 # Setze eine realistische Anzahl von Epochen (z.B. 1 oder 2, nicht 10.000)
 num_epochs = 30
 som.train(
-    data, num_iteration=num_epochs, random_order=True, use_epochs=True, verbose=False
+    data, num_iteration=num_epochs, random_order=True, use_epochs=True, verbose=True
 )
 print("Training beendet.")
 
