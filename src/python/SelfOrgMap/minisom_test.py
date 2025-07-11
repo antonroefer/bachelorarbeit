@@ -39,13 +39,13 @@ raw = False  # Use raw data or processed data
 i_rg = 6  # Radargram number
 
 # Load MAT file in v7.3 format using h5py
-file_path = (
-    "./../../../data/processed/radargrams.mat"
-    if raw
-    else "./../../../data/raw/radargrams.mat"
-)
-x_path = "./../../../data/raw/x.mat" if raw else "./../../../data/processed/x.mat"
-t_path = "./../../../data/raw/t.mat" if raw else "./../../../data/processed/t.mat"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+base_data_dir = os.path.join(script_dir, "..", "..", "..", "data")
+data_type = "raw" if raw else "processed"
+
+file_path = os.path.join(base_data_dir, data_type, "radargrams.mat")
+x_path = os.path.join(base_data_dir, "raw" if raw else "processed", "x.mat")
+t_path = os.path.join(base_data_dir, "raw" if raw else "processed", "t.mat")
 
 # First, explore the structure of the file
 with h5py.File(file_path, "r") as f:
