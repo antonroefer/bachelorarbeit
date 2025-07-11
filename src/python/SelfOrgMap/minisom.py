@@ -37,7 +37,8 @@ from numpy import (
     nanmin,
     isnan,
     zeros_like,
-    full_like,
+    unique,
+    all,
 )
 from numpy.linalg import norm
 from collections import defaultdict, Counter
@@ -57,6 +58,16 @@ import matplotlib.pyplot as plt
 from matplotlib.patches import RegularPolygon, Polygon
 from matplotlib.collections import PatchCollection
 from tqdm import tqdm
+
+from pycolormap_2d import (
+    ColorMap2DZiegler,
+    ColorMap2DBremm,
+    ColorMap2DCubeDiagonal,
+    ColorMap2DSchumann,
+    ColorMap2DSteiger,
+    ColorMap2DTeuling2,
+    BaseColorMap2D,
+)
 
 """
     Minimalistic implementation of the Self Organizing Maps (SOM).
@@ -235,7 +246,7 @@ class MiniSom(object):
         self._xx = self._xx.astype(float)
         self._yy = self._yy.astype(float)
         if topology == "hexagonal":
-            self._xx[::-2] -= 0.5
+            self._xx[1::2] += 0.5
             self._yy *= self.Y_HEX_CONV_FACTOR
             if neighborhood_function in ["triangle"]:
                 warn(
@@ -882,6 +893,7 @@ class MiniSom(object):
         text_color="white",
         min_radius_ratio=0.4,
         save=False,
+        colormap=ColorMap2DZiegler,
     ):
         """
         Visualisiert die Anzahl der Treffer (BMU-Zuweisungen) pro Neuron im hexagonalen SOM-Gitter.
@@ -907,6 +919,19 @@ class MiniSom(object):
             Verhältnis des Mindestradius des Treffer-Hexagons zum vollen Neuron-Radius.
             Bei 1 Treffer ist der Radius min_radius_ratio * neuron_plot_radius.
         """
+
+        def getColor(bmu, colormap=ColorMap2DZiegler):
+            """Holt die Farbe aus dem Colormap-Objekt und gibt sie als hex Farbcode zurück."""
+            # Hole die euklidischen Koordinaten des BMU
+            x_coord, y_coord = self.get_euclidean_coordinates()
+            cmap = colormap(
+                range_x=(float(x_coord.min()), float(x_coord.max())),
+                range_y=(float(y_coord.min()), float(y_coord.max())),
+            )
+            color = cmap(bmu[0], bmu[1])
+            # Convert RGB array to hex string
+            return f"#{int(color[0]):02x}{int(color[1]):02x}{int(color[2]):02x}"
+
         if self.topology != "hexagonal":
             raise NotImplementedError(
                 "This visualization currently supports hexagonal topology only."
@@ -1001,18 +1026,26 @@ class MiniSom(object):
                         numVertices=6,
                         radius=scaled_radius,
                         orientation=0,
-                        facecolor=hit_color,
-                        edgecolor=edge_color,
+                        facecolor=getColor((cx, cy), colormap),
+                        edgecolor=getColor((cx, cy), colormap),
                         linewidth=0.8,
                         zorder=1,
                     )  # Über dem Hintergrund-Hexagon
                     ax.add_patch(hit_hexagon_patch)
 
                     # Trefferanzahl als Text
+                    # Format numbers in compact scientific notation
+                    if hits >= 1000:
+                        exponent = len(str(int(hits))) - 1
+                        mantissa = hits // (10 ** (exponent - 1))
+                        hit_text = f"{mantissa}e{exponent - 1}"
+                    else:
+                        hit_text = str(int(hits))
+
                     ax.text(
                         cx,
                         cy,
-                        str(int(hits)),
+                        hit_text,
                         color=text_color,
                         fontsize=10,
                         ha="center",
@@ -1320,6 +1353,130 @@ class MiniSom(object):
             script_dir = os.path.dirname(os.path.abspath(__file__))
             plt.savefig(os.path.join(script_dir, "som_nd.png"), dpi=300)
         # plt.show()
+
+    def plot_bmu_radargram(
+        self,
+        data,
+        x,
+        t,
+        title=None,
+        cmap_2d_class=ColorMap2DZiegler,
+        save=False,
+        dpi=300,
+    ):
+        """
+        Stellt ein Radargramm dar, bei dem die Pixel nach den Koordinaten ihrer
+        Best Matching Unit (BMU) auf dem SOM-Gitter eingefärbt sind.
+
+        Diese Funktion berechnet die BMU-Karte intern aus den bereitgestellten Daten.
+
+        Parameter:
+        - data (numpy.ndarray): Das ursprüngliche Radargramm-Datenarray. Es sollte eine
+                                flache Ansicht des Radargramms sein, z.B. (Anzahl der Pixel, Anzahl der Features).
+                                Die Anzahl der Pixel muss len(x) * len(t) entsprechen.
+        - x (numpy.ndarray): 1D-Array der x-Achse (z.B. Distanz).
+        - t (numpy.ndarray): 1D-Array der y-Achse (z.B. Zeit).
+        - title (str): Titel des Plots.
+        - cmap_2d_class (pycolormap_2d.ColorMap2D): Die zu verwendende 2D-Colormap-Klasse.
+                                                Standardmäßig ColorMap2DZiegler.
+        - save (bool): True, wenn der Plot gespeichert werden soll.
+        - fname (str): Dateiname inkl. Pfad für den Export.
+        - dpi (int): Auflösung für den Export.
+        """
+        if self.topology != "hexagonal":
+            raise NotImplementedError(
+                "Diese Visualisierung unterstützt derzeit nur eine hexagonale Topologie."
+            )
+
+        # 1. BMU-Karte aus den Daten selbst erstellen
+        radargram_height = len(t)
+        radargram_width = len(x)
+
+        # Sicherstellen, dass die Daten die erwartete Anzahl von Samples haben
+        expected_samples = radargram_height * radargram_width
+        if data.shape[0] * data.shape[1] != expected_samples:
+            raise ValueError(
+                f"`data` muss {expected_samples} Samples enthalten, aber es wurden {data.shape[0]} gefunden. "
+                f"Stellen Sie sicher, dass `data` eine abgeflachte Ansicht des Radargramms ist (Höhe * Breite, Features)."
+            )
+
+        bmu_map_flat = zeros((expected_samples, 2), dtype=int)
+        for i, sample in enumerate(data):
+            bmu_map_flat[i] = self.winner(sample)
+
+        bmu_map = bmu_map_flat.reshape(radargram_height, radargram_width, 2)
+
+        # Rest der ursprünglichen Funktion
+        # 1. Figur und Hauptachse erstellen
+        fig, ax = plt.subplots(figsize=(15, 7))
+
+        # 2. 2D-Colormap initialisieren
+        xx, yy = self.get_euclidean_coordinates()
+        range_x = (float(xx.min()), float(xx.max()))
+        range_y = (float(yy.min()), float(yy.max()))
+        colormap_2d = cmap_2d_class(range_x=range_x, range_y=range_y)
+
+        # 3. BMU-Koordinaten in ein RGB-Bild umwandeln (vektorisierter Ansatz)
+        radargram_rgb = zeros((bmu_map.shape[0], bmu_map.shape[1], 3))
+        # Using unique on a 2D array where rows are coordinates, returns unique rows
+        unique_bmus = unique(bmu_map.reshape(-1, 2), axis=0)
+
+        for bmu in unique_bmus:
+            cx, cy = self.convert_map_to_euclidean(tuple(bmu))
+            color = colormap_2d(cx, cy)
+            mask = all(bmu_map == bmu, axis=-1)
+            radargram_rgb[mask] = color
+
+        # 4. Das eingefärbte Radargramm anzeigen
+        ax.imshow(
+            radargram_rgb.astype(int),
+            aspect="auto",
+            extent=[x.min(), x.max(), t.max(), t.min()],
+        )
+
+        ax.set_title(title, fontsize=22)
+        ax.set_xlabel("Distance (m)", fontsize=18)
+        ax.set_ylabel("Time (ns)", fontsize=18)
+        ax.tick_params(labelsize=14)
+
+        # # 5. KORRIGIERT: Eine benutzerdefinierte 2D-Colorbar manuell erstellen
+        # cbar_ax = fig.add_axes([0.9, 0.15, 0.08, 0.7])
+
+        # # Ein Gitter für die Colorbar mit einer Auflösung von 100x100 Pixeln erstellen
+        # cbar_resolution = 100
+        # x_grid = linspace(range_x[0], range_x[1], cbar_resolution)
+        # y_grid = linspace(range_y[0], range_y[1], cbar_resolution)
+        # xx_grid, yy_grid = meshgrid(x_grid, y_grid)
+
+        # # Die Colormap auf das Gitter anwenden, um ein RGB-Bild zu erzeugen.
+        # # pycolormap_2d-Objekte können nur einzelne tuple verarbeiten, deshalb iterieren wir über das Gitter.
+        # cbar_img = zeros((cbar_resolution, cbar_resolution, 3))
+        # for i in range(cbar_resolution):
+        #     for j in range(cbar_resolution):
+        #         cbar_img[i, j] = colormap_2d(xx_grid[i, j], yy_grid[i, j])
+
+        # cbar_ax.imshow(
+        #     cbar_img,
+        #     origin="lower",
+        #     extent=[range_x[0], range_x[1], range_y[0], range_y[1]],
+        #     aspect="auto",
+        # )
+        # cbar_ax.set_title("BMU Farb-Legende")
+        # cbar_ax.set_xlabel("SOM X")
+        # cbar_ax.set_ylabel("SOM Y")
+        # cbar_ax.tick_params(labelsize=10)
+        # cbar_ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True, nbins=4))
+        # cbar_ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True, nbins=4))
+
+        # # Layout anpassen
+        # fig.tight_layout(rect=[0, 0, 0.88, 1])
+
+        if save:
+            fname = "bmu_radargram.png"
+            plt.savefig(fname, dpi=dpi, bbox_inches="tight")
+            print(f"Plot gespeichert unter: {fname}")
+
+        plt.show()
 
     def activation_response(self, data):
         """
