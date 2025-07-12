@@ -203,17 +203,20 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
+apx = "02"
+
 som = MiniSom(
     x=50,
     y=50,
     input_len=num_features,
-    sigma=70,
+    sigma=50,
     learning_rate=0.5,
     topology="hexagonal",
     sigma_decay_function="inverse_decay_to_one",
     random_seed=42,
 )
-apx = "01"
+
+num_epochs = 30
 
 # Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
 for i in range(data.shape[1]):
@@ -225,7 +228,6 @@ som.normalize_random_weights_init(data)
 # SOM trainieren
 print("Starte Training...")
 # Setze eine realistische Anzahl von Epochen (z.B. 1 oder 2, nicht 10.000)
-num_epochs = 30
 som.train(
     data, num_iteration=num_epochs, random_order=True, use_epochs=True, verbose=True
 )
