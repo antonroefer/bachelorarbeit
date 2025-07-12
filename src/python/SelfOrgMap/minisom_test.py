@@ -34,7 +34,6 @@ def min_max_scale(arr, new_min=0, new_max=1):
     return scaled_arr
 
 
-save = True  # Save figure
 raw = False  # Use raw data or processed data
 i_rg = 6  # Radargram number
 
@@ -228,8 +227,14 @@ som.train(
 )
 print("Training beendet.")
 
+# Speichere das trainierte Modell
+model_name = "trained_som.pkl"
+model_path = os.path.join(script_dir, model_name)
+som.save_model(model_path)
+print(f"Modell gespeichert unter: {model_path}")
+
 # Den Plot erstellen
-save_plots = True  # Setze auf True, um die Plots zu speichern
+save_plots = False  # Setze auf True, um die Plots zu speichern
 cmap = ColorMap2DZiegler
 
 som.plot_u_matrix(save=save_plots)  # U-Matrix Plot

@@ -1394,7 +1394,7 @@ class MiniSom(object):
 
         # Sicherstellen, dass die Daten die erwartete Anzahl von Samples haben
         expected_samples = radargram_height * radargram_width
-        if data.shape[0] * data.shape[1] != expected_samples:
+        if data.shape[0] != expected_samples:
             raise ValueError(
                 f"`data` muss {expected_samples} Samples enthalten, aber es wurden {data.shape[0]} gefunden. "
                 f"Stellen Sie sicher, dass `data` eine abgeflachte Ansicht des Radargramms ist (Höhe * Breite, Features)."
@@ -1478,6 +1478,111 @@ class MiniSom(object):
             print(f"Plot gespeichert unter: {fname}")
 
         # plt.show()
+
+    def save_model(self, filepath):
+        """
+        Saves the current SOM model to a file with all necessary parameters
+        for reconstruction.
+
+        Parameters
+        ----------
+        filepath : str
+            Path where the model should be saved (including filename and extension)
+        """
+        # Ensure directory exists
+        directory = os.path.dirname(filepath)
+        if directory and not os.path.exists(directory):
+            os.makedirs(directory)
+
+        # --- NEU: Reverse lookup, um die korrekten Funktionsnamen zu speichern ---
+
+        # Erstelle die Dictionaries für die umgekehrte Suche
+        distance_functions = {
+            "euclidean": self._euclidean_distance,
+            "cosine": self._cosine_distance,
+            "manhattan": self._manhattan_distance,
+            "chebyshev": self._chebyshev_distance,
+        }
+        neig_functions = {
+            "gaussian": self._gaussian,
+            "mexican_hat": self._mexican_hat,
+            "bubble": self._bubble,
+            "triangle": self._triangle,
+        }
+
+        # Finde den öffentlichen Schlüssel für die activation_distance
+        saved_activation_distance = "euclidean"  # Fallback
+        for key, func in distance_functions.items():
+            if func == self._activation_distance:
+                saved_activation_distance = key
+                break
+
+        # Finde den öffentlichen Schlüssel für die neighborhood_function
+        saved_neighborhood_function = "gaussian"  # Fallback
+        for key, func in neig_functions.items():
+            if func == self.neighborhood:
+                saved_neighborhood_function = key
+                break
+
+        model_data = {
+            "weights": self._weights,
+            "x_dim": self._weights.shape[0],
+            "y_dim": self._weights.shape[1],
+            "input_len": self._input_len,
+            "sigma": self._sigma,
+            "learning_rate": self._learning_rate,
+            "topology": self.topology,
+            "neighborhood_function": saved_neighborhood_function,
+            "activation_distance": saved_activation_distance,
+            "random_seed": None,  # Cannot reliably store random state
+        }
+
+        filepath_abs = os.path.abspath(filepath)
+        with open(filepath_abs, "wb") as f:
+            pickle.dump(model_data, f)
+
+        print(f"Model saved to {filepath_abs}")
+
+    @staticmethod
+    def load_model(filepath):
+        """
+        Loads a SOM model from a file and returns a fully initialized SOM instance.
+
+        Parameters
+        ----------
+        filepath : str
+            Path to the saved model file
+
+        Returns
+        -------
+        MiniSom
+            A fully initialized SOM instance with loaded weights
+        """
+        filepath_abs = os.path.abspath(filepath)
+        if not os.path.exists(filepath_abs):
+            raise FileNotFoundError(f"Model file not found: {filepath_abs}")
+
+        with open(filepath_abs, "rb") as f:
+            model_data = pickle.load(f)
+
+        # Create new SOM instance with saved parameters
+        som = MiniSom(
+            x=model_data["x_dim"],
+            y=model_data["y_dim"],
+            input_len=model_data["input_len"],
+            sigma=model_data["sigma"],
+            learning_rate=model_data["learning_rate"],
+            topology=model_data["topology"],
+            neighborhood_function=model_data["neighborhood_function"],
+            activation_distance=model_data["activation_distance"],
+            random_seed=model_data["random_seed"],
+        )
+
+        # Load the trained weights
+        som._weights = model_data["weights"]
+
+        print(f"Model loaded from {filepath_abs}")
+        return som
 
     def activation_response(self, data):
         """
@@ -1881,8 +1986,8 @@ class TestMinisom(unittest.TestCase):
         # and that its values range from 0 to num_epochs-1
         decay_factors = []
         for t, iteration in enumerate(iterations):
-            decay_factor = int(t / len_data)
-            decay_factors.append(decay_factor)
+            decay_rate = int(t / len_data)
+            decay_factors.append(decay_rate)
         for i in range(num_epochs):
             decay_factors_i_epoch = decay_factors[i * len_data : (i + 1) * len_data]
             assert decay_factors_i_epoch == [i] * len_data
