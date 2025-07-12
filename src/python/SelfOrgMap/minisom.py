@@ -700,7 +700,7 @@ class MiniSom(object):
 
         return um / um.max()
 
-    def plot_u_matrix(self, figsize=(10, 8), cmap="hot", save=False):
+    def plot_u_matrix(self, figsize=(10, 8), cmap="hot", save=True):
         """
         Visualisiert die Unified Distance Matrix (U-Matrix) des SOM.
         Die U-Matrix zeigt die durchschnittlichen Abstände zwischen einem Neuron
@@ -781,7 +781,7 @@ class MiniSom(object):
             plt.savefig(os.path.join(script_dir, "som_u_matrix.png"), dpi=300)
         # plt.show()
 
-    def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=False):
+    def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=True):
         """
         Visualisiert die einzelnen Feature-Ebenen (Component Planes) des SOM.
         Für jedes Feature wird ein separates Subplot erstellt, das die Gewichte
@@ -892,7 +892,7 @@ class MiniSom(object):
         edge_color="white",
         text_color="white",
         min_radius_ratio=0.4,
-        save=False,
+        save=True,
         colormap=ColorMap2DZiegler,
     ):
         """
@@ -1071,7 +1071,7 @@ class MiniSom(object):
             plt.savefig(os.path.join(script_dir, "som_hits.png"), dpi=300)
         # plt.show()
 
-    def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8), save=False):
+    def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8), save=True):
         if self.topology != "hexagonal":
             raise NotImplementedError(
                 "This visualization currently supports hexagonal topology only."
@@ -1361,7 +1361,7 @@ class MiniSom(object):
         t,
         title=None,
         cmap_2d_class=ColorMap2DZiegler,
-        save=False,
+        save=True,
         dpi=300,
     ):
         """
@@ -1472,11 +1472,12 @@ class MiniSom(object):
         # fig.tight_layout(rect=[0, 0, 0.88, 1])
 
         if save:
-            fname = "bmu_radargram.png"
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            fname = os.path.join(script_dir, "bmu_radargram.png")
             plt.savefig(fname, dpi=dpi, bbox_inches="tight")
             print(f"Plot gespeichert unter: {fname}")
 
-        plt.show()
+        # plt.show()
 
     def activation_response(self, data):
         """
