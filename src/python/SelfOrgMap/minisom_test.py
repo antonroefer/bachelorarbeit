@@ -187,9 +187,6 @@ with np.load(data_path) as npzfile:
         print(
             "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
         )
-# # Iris-Datensatz laden
-iris = load_iris()
-data = iris.data
 
 # --- NEU: Daten umformen und normalisieren ---
 # Forme das 3D-Array (höhe, breite, merkmale) in ein 2D-Array (punkte, merkmale) um
@@ -203,13 +200,13 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
-apx = "02"
+apx = "01"
 
 som = MiniSom(
     x=50,
     y=50,
     input_len=num_features,
-    sigma=50,
+    sigma=70,
     learning_rate=0.5,
     topology="hexagonal",
     sigma_decay_function="inverse_decay_to_one",
