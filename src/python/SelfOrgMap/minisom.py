@@ -700,7 +700,7 @@ class MiniSom(object):
 
         return um / um.max()
 
-    def plot_u_matrix(self, figsize=(10, 8), cmap="hot", save=True):
+    def plot_u_matrix(self, figsize=(10, 8), cmap="hot", save=True, appendix=None):
         """
         Visualisiert die Unified Distance Matrix (U-Matrix) des SOM.
         Die U-Matrix zeigt die durchschnittlichen Abstände zwischen einem Neuron
@@ -778,10 +778,12 @@ class MiniSom(object):
         plt.tight_layout()
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            plt.savefig(os.path.join(script_dir, "som_u_matrix.png"), dpi=300)
+            plt.savefig(
+                os.path.join(script_dir, f"som_u_matrix_{appendix}.png"), dpi=300
+            )
         # plt.show()
 
-    def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=True):
+    def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=True, appendix=None):
         """
         Visualisiert die einzelnen Feature-Ebenen (Component Planes) des SOM.
         Für jedes Feature wird ein separates Subplot erstellt, das die Gewichte
@@ -881,7 +883,7 @@ class MiniSom(object):
         plt.tight_layout()
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            plt.savefig(os.path.join(script_dir, "som_planes.png"), dpi=300)
+            plt.savefig(os.path.join(script_dir, f"som_planes_{appendix}.png"), dpi=300)
         # plt.show()
 
     def plot_som_hits(
@@ -894,6 +896,7 @@ class MiniSom(object):
         min_radius_ratio=0.4,
         save=True,
         colormap=ColorMap2DZiegler,
+        appendix=None,
     ):
         """
         Visualisiert die Anzahl der Treffer (BMU-Zuweisungen) pro Neuron im hexagonalen SOM-Gitter.
@@ -1068,10 +1071,12 @@ class MiniSom(object):
         plt.tight_layout()
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            plt.savefig(os.path.join(script_dir, "som_hits.png"), dpi=300)
+            plt.savefig(os.path.join(script_dir, f"som_hits_{appendix}.png"), dpi=300)
         # plt.show()
 
-    def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8), save=True):
+    def plot_som_neighbor_distances(
+        self, cmap="hot", figsize=(10, 8), save=True, appendix=None
+    ):
         if self.topology != "hexagonal":
             raise NotImplementedError(
                 "This visualization currently supports hexagonal topology only."
@@ -1351,7 +1356,7 @@ class MiniSom(object):
         plt.tight_layout()
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            plt.savefig(os.path.join(script_dir, "som_nd.png"), dpi=300)
+            plt.savefig(os.path.join(script_dir, f"som_nd_{appendix}.png"), dpi=300)
         # plt.show()
 
     def plot_bmu_radargram(
@@ -1363,6 +1368,7 @@ class MiniSom(object):
         cmap_2d_class=ColorMap2DZiegler,
         save=True,
         dpi=300,
+        appendix=None,
     ):
         """
         Stellt ein Radargramm dar, bei dem die Pixel nach den Koordinaten ihrer
@@ -1472,8 +1478,11 @@ class MiniSom(object):
         # fig.tight_layout(rect=[0, 0, 0.88, 1])
 
         if save:
+            import os
+
+            appendix = "3"
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            fname = os.path.join(script_dir, "bmu_radargram.png")
+            fname = os.path.join(script_dir, f"bmu_radargram_{appendix}.png")
             plt.savefig(fname, dpi=dpi, bbox_inches="tight")
             print(f"Plot gespeichert unter: {fname}")
 

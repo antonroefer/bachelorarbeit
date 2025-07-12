@@ -187,7 +187,9 @@ with np.load(data_path) as npzfile:
         print(
             "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
         )
-
+# # Iris-Datensatz laden
+iris = load_iris()
+data = iris.data
 
 # --- NEU: Daten umformen und normalisieren ---
 # Forme das 3D-Array (höhe, breite, merkmale) in ein 2D-Array (punkte, merkmale) um
@@ -204,12 +206,14 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 som = MiniSom(
     x=50,
     y=50,
-    input_len=num_features,  # Verwende die tatsächliche Anzahl der Merkmale
-    sigma=0.4,
-    learning_rate=0.6,
+    input_len=num_features,
+    sigma=70,
+    learning_rate=0.5,
     topology="hexagonal",
+    sigma_decay_function="inverse_decay_to_one",
     random_seed=42,
 )
+apx = "01"
 
 # Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
 for i in range(data.shape[1]):
@@ -228,19 +232,20 @@ som.train(
 print("Training beendet.")
 
 # Speichere das trainierte Modell
-model_name = "trained_som.pkl"
+model_name = f"trained_som_{apx}.pkl"
 model_path = os.path.join(script_dir, model_name)
 som.save_model(model_path)
-print(f"Modell gespeichert unter: {model_path}")
 
 # Den Plot erstellen
-save_plots = False  # Setze auf True, um die Plots zu speichern
+save_plots = True  # Setze auf True, um die Plots zu speichern
 cmap = ColorMap2DZiegler
 
-som.plot_u_matrix(save=save_plots)  # U-Matrix Plot
+som.plot_u_matrix(save=save_plots, appendix=apx)  # U-Matrix Plot
 som.plot_som_neighbor_distances(
-    cmap="hot", figsize=(10, 8), save=save_plots
+    cmap="hot", figsize=(10, 8), save=save_plots, appendix=apx
 )  # cmap='hot' ist gut für Distanzen
-som.plot_som_hits(data, save=save_plots, colormap=cmap)  # SOM Hits Plot
-som.plot_som_planes(save=save_plots)
-som.plot_bmu_radargram(data=data, x=x, t=t, save=save_plots, cmap_2d_class=cmap)
+som.plot_som_hits(data, save=save_plots, appendix=apx, colormap=cmap)  # SOM Hits Plot
+som.plot_som_planes(save=save_plots, appendix=apx)
+som.plot_bmu_radargram(
+    data=data, x=x, t=t, save=save_plots, appendix=apx, cmap_2d_class=cmap
+)
