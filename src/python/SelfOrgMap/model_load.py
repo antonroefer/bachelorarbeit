@@ -1,0 +1,179 @@
+from pycolormap_2d import ColorMap2DZiegler, ColorMap2DTeuling2, ColorMap2DBremm
+import os
+import h5py
+import numpy as np
+from minisom import MiniSom
+
+raw = False  # Use raw data or processed data
+i_rg = 6  # Radargram number
+
+# Load MAT file in v7.3 format using h5py
+script_dir = os.path.dirname(os.path.abspath(__file__))
+base_data_dir = os.path.join(script_dir, "..", "..", "..", "data")
+data_type = "raw" if raw else "processed"
+
+file_path = os.path.join(base_data_dir, data_type, "radargrams.mat")
+x_path = os.path.join(base_data_dir, "raw" if raw else "processed", "x.mat")
+t_path = os.path.join(base_data_dir, "raw" if raw else "processed", "t.mat")
+
+# First, explore the structure of the file
+with h5py.File(file_path, "r") as f:
+    print("Top-level keys:", list(f.keys()))
+
+    # Explore first level of structure
+    for key in f.keys():
+        if isinstance(f[key], h5py.Group):
+            print(f"{key} (Group): {list(f[key].keys())}")
+        else:
+            print(f"{key} (Dataset): shape={f[key].shape}, dtype={f[key].dtype}")
+
+    # Load data from the first available key
+    first_key = list(f.keys())[0]  # second key
+
+    if isinstance(f[first_key], h5py.Group):
+        # If it's a group, look for a dataset inside
+        nested_keys = list(f[first_key].keys())
+        if nested_keys:
+            data_path = f"{first_key}/{nested_keys[i_rg]}"
+            print(f"Loading data from: {data_path}")
+            data = np.array(
+                f[data_path][:]
+            ).T  # Transpose to match MATLAB's orientation
+    else:
+        # If it's directly a dataset
+        data = np.array(f[first_key][:]).T
+        print(f"Loading data from: {first_key}")
+
+    # Print data shape
+    print(f"Data shape: {data.shape}")
+    original_data = data.copy()  # Save original data for later use
+
+# First, explore the structure of the file
+with h5py.File(x_path, "r") as f:
+    print("Top-level keys:", list(f.keys()))
+
+    # Explore first level of structure
+    for key in f.keys():
+        if isinstance(f[key], h5py.Group):
+            print(f"{key} (Group): {list(f[key].keys())}")
+        else:
+            print(f"{key} (Dataset): shape={f[key].shape}, dtype={f[key].dtype}")
+
+    # Load x from the first available key
+    first_key = list(f.keys())[0]  # second key
+
+    if isinstance(f[first_key], h5py.Group):
+        # If it's a group, look for a dataset inside
+        nested_keys = list(f[first_key].keys())
+        if nested_keys:
+            x_path = f"{first_key}/{nested_keys[i_rg]}"
+            print(f"Loading data from: {x_path}")
+            x = np.array(f[x_path][:]).T  # Transpose to match MATLAB's orientation
+    else:
+        # If it's directly a dataset
+        x = np.array(f[first_key][:]).T
+        print(f"Loading x from: {first_key}")
+
+    # Print data shape
+    x = x.squeeze()  # Ensure x is a 1D array
+    print(f"X shape: {x.shape}")
+
+# First, explore the structure of the file
+with h5py.File(t_path, "r") as f:
+    print("Top-level keys:", list(f.keys()))
+
+    # Explore first level of structure
+    for key in f.keys():
+        if isinstance(f[key], h5py.Group):
+            print(f"{key} (Group): {list(f[key].keys())}")
+        else:
+            print(f"{key} (Dataset): shape={f[key].shape}, dtype={f[key].dtype}")
+
+    # Load x from the first available key
+    first_key = list(f.keys())[0]  # second key
+
+    if isinstance(f[first_key], h5py.Group):
+        # If it's a group, look for a dataset inside
+        nested_keys = list(f[first_key].keys())
+        if nested_keys:
+            t_path = f"{first_key}/{nested_keys[i_rg]}"
+            print(f"Loading data from: {t_path}")
+            t = np.array(f[t_path][:]).T  # Transpose to match MATLAB's orientation
+    else:
+        # If it's directly a dataset
+        t = np.array(f[first_key][:]).T
+        print(f"Loading t from: {first_key}")
+
+    # Print data shape
+    t = t.squeeze()  # Ensure t is a 1D array
+    print(f"T shape: {t.shape}")
+
+ratio = x.max() / t.max() * (9 / 16)
+
+
+# Eigene Daten laden
+script_dir = os.path.dirname(os.path.abspath(__file__))
+data_file = "feature_vectors.npz"
+data_path = os.path.join(script_dir, data_file)
+with np.load(data_path) as npzfile:
+    # Gib die Namen der Arrays in der .npz-Datei aus
+    print("Arrays in der Datei:", npzfile.files)
+    # Lade die Daten mit dem korrekten Schlüssel 'feature_stack'
+    data = npzfile["feature_stack"]
+
+    # --- NEU: Feature-Auswahl ---
+    # Liste der gewünschten Features
+    desired_features = ["inst_amp", "inst_freq_raw", "semblance", "kurtosis", "dip"]
+
+    # Annahme: Die Namen der Features sind in der .npz-Datei unter dem Schlüssel 'feature_names' gespeichert
+    if "feature_names" in npzfile.files:
+        all_feature_names = list(npzfile["feature_names"])
+        print("Verfügbare Features:", all_feature_names)
+
+        # Finde die Indizes der gewünschten Features
+        try:
+            indices_to_keep = [
+                all_feature_names.index(name) for name in desired_features
+            ]
+            print(f"Indizes der ausgewählten Features: {indices_to_keep}")
+
+            # Wähle nur die gewünschten Features aus den Daten aus
+            # Die Features sind die letzte Dimension im 3D-Array
+            if data.ndim == 3:
+                data = data[:, :, indices_to_keep]
+                print(f"Form der Daten nach Feature-Auswahl: {data.shape}")
+            else:
+                print(
+                    "Warnung: Daten sind nicht 3D, Feature-Auswahl wird übersprungen."
+                )
+
+        except ValueError as e:
+            print(
+                f"Fehler bei der Feature-Auswahl: {e}. Stelle sicher, dass alle gewünschten Features in 'feature_names' vorhanden sind."
+            )
+            # Beende das Skript oder fahre mit allen Features fort
+            exit()
+    else:
+        print(
+            "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
+        )
+
+apx = "01"
+
+# Definiere den Pfad zum gespeicherten Modell
+model_path = os.path.join(script_dir, f"trained_som_{apx}.pkl")
+som = MiniSom(x=50, y=50, input_len=5).load_model(filepath=model_path)
+
+# Den Plot erstellen
+save_plots = True  # Setze auf True, um die Plots zu speichern
+cmap = ColorMap2DZiegler
+
+som.plot_u_matrix(save=save_plots, appendix=apx)  # U-Matrix Plot
+som.plot_som_neighbor_distances(
+    cmap="hot", figsize=(10, 8), save=save_plots, appendix=apx
+)  # cmap='hot' ist gut für Distanzen
+som.plot_som_hits(data, save=save_plots, appendix=apx, colormap=cmap)  # SOM Hits Plot
+som.plot_som_planes(save=save_plots, appendix=apx)
+som.plot_bmu_radargram(
+    data=data, x=x, t=t, save=save_plots, appendix=apx, cmap_2d_class=cmap
+)

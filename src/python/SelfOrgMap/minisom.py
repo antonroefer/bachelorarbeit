@@ -54,6 +54,7 @@ from numpy.testing import assert_almost_equal, assert_array_almost_equal
 from numpy.testing import assert_array_equal
 import unittest
 
+import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 from matplotlib.patches import RegularPolygon, Polygon
 from matplotlib.collections import PatchCollection
@@ -893,7 +894,7 @@ class MiniSom(object):
         hit_color="#666699",
         edge_color="white",
         text_color="white",
-        min_radius_ratio=0.4,
+        min_radius_ratio=0.1,
         save=True,
         colormap=ColorMap2DZiegler,
         appendix=None,
@@ -1045,6 +1046,9 @@ class MiniSom(object):
                     else:
                         hit_text = str(int(hits))
 
+                    exponent = len(str(int(hits))) - 1
+                    hit_text = f"e{exponent}"
+
                     ax.text(
                         cx,
                         cy,
@@ -1054,6 +1058,12 @@ class MiniSom(object):
                         ha="center",
                         va="center",
                         zorder=2,
+                        path_effects=[
+                            pe.Stroke(
+                                linewidth=1, foreground="black"
+                            ),  # Schwarze Umrandung
+                            pe.Normal(),
+                        ],
                     )  # Über den Hexagonen
 
         # Achsenlimits dynamisch anpassen
@@ -1407,7 +1417,7 @@ class MiniSom(object):
             )
 
         bmu_map_flat = zeros((expected_samples, 2), dtype=int)
-        for i, sample in enumerate(data):
+        for i, sample in tqdm(enumerate(data), desc="BMU Mapping"):
             bmu_map_flat[i] = self.winner(sample)
 
         bmu_map = bmu_map_flat.reshape(radargram_height, radargram_width, 2)
