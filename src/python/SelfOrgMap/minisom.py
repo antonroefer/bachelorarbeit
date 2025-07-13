@@ -1488,9 +1488,6 @@ class MiniSom(object):
         # fig.tight_layout(rect=[0, 0, 0.88, 1])
 
         if save:
-            import os
-
-            appendix = "3"
             script_dir = os.path.dirname(os.path.abspath(__file__))
             fname = os.path.join(script_dir, f"bmu_radargram_{appendix}.png")
             plt.savefig(fname, dpi=dpi, bbox_inches="tight")
