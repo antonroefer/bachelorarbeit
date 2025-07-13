@@ -188,6 +188,18 @@ with np.load(data_path) as npzfile:
             "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
         )
 
+# Finde den Index, bei dem x zum ersten Mal größer als 60 ist
+first_index_above_60 = np.argmax(x > 60)
+# Erstelle die geschnittenen Arrays
+cut_x = x[:first_index_above_60]
+cut_data = data[:, :first_index_above_60]
+# Überschreibe die Originaldaten mit den geschnittenen Daten
+x = cut_x
+data = cut_data
+# Gib die neuen Formen aus
+print(f"Neue X shape: {x.shape}")
+print(f"Neue Data shape: {data.shape}")
+
 # --- NEU: Daten umformen und normalisieren ---
 # Forme das 3D-Array (höhe, breite, merkmale) in ein 2D-Array (punkte, merkmale) um
 if data.ndim == 3:
@@ -200,20 +212,20 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
-apx = "03"
+apx = "04"
 
 som = MiniSom(
-    x=50,
-    y=50,
+    x=30,
+    y=30,
     input_len=num_features,
-    sigma=30,
+    sigma=5,
     learning_rate=0.5,
     topology="hexagonal",
     sigma_decay_function="inverse_decay_to_one",
     random_seed=42,
 )
 
-num_epochs = 30
+num_epochs = 10
 
 # Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
 for i in range(data.shape[1]):
