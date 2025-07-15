@@ -153,7 +153,15 @@ with np.load(data_path) as npzfile:
 
     # --- NEU: Feature-Auswahl ---
     # Liste der gewünschten Features
-    desired_features = ["inst_amp", "inst_freq_raw", "semblance", "kurtosis", "dip"]
+    desired_features = [
+        "inst_amp",
+        "inst_freq",
+        "semblance",
+        "kurtosis",
+        "inst_phase_real",
+        "inst_phase_imag",
+        "inst_q",
+    ]
 
     # Annahme: Die Namen der Features sind in der .npz-Datei unter dem Schlüssel 'feature_names' gespeichert
     if "feature_names" in npzfile.files:
@@ -212,7 +220,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
-apx = "08"
+apx = "10"
 
 som = MiniSom(
     x=30,
@@ -225,7 +233,7 @@ som = MiniSom(
     random_seed=42,
 )
 
-num_epochs = 50
+num_epochs = 10
 
 # Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
 for i in range(data.shape[1]):
