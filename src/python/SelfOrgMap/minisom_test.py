@@ -143,7 +143,7 @@ ratio = x.max() / t.max() * (9 / 16)
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors.npz"
+data_file = "feature_vectors_khigh.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
@@ -155,11 +155,9 @@ with np.load(data_path) as npzfile:
     # Liste der gewünschten Features
     desired_features = [
         "inst_amp",
-        "inst_freq",
+        "inst_freq_raw",
         "semblance",
         "kurtosis",
-        "inst_phase_real",
-        "inst_phase_imag",
         "inst_q",
     ]
 
@@ -196,11 +194,9 @@ with np.load(data_path) as npzfile:
             "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
         )
 
-# Finde den Index, bei dem x zum ersten Mal größer als 60 ist
-first_index_above_60 = np.argmax(x > 60)
-# Erstelle die geschnittenen Arrays
-cut_x = x[:first_index_above_60]
-cut_data = data[:, :first_index_above_60]
+# Wähle jede fünfte Spalte aus
+cut_x = x[::5]
+cut_data = data[:, ::5]
 # Überschreibe die Originaldaten mit den geschnittenen Daten
 x = cut_x
 data = cut_data
@@ -220,7 +216,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
-apx = "12"
+apx = "20"
 
 som = MiniSom(
     x=30,
@@ -233,7 +229,7 @@ som = MiniSom(
     random_seed=42,
 )
 
-num_epochs = 30
+num_epochs = 10
 
 # Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
 for i in range(data.shape[1]):
