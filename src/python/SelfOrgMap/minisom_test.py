@@ -216,7 +216,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
-apx = "21"
+apx = "22"
 
 som = MiniSom(
     x=30,
@@ -229,7 +229,7 @@ som = MiniSom(
     random_seed=42,
 )
 
-num_epochs = 30
+num_epochs = 50
 
 # Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
 for i in range(data.shape[1]):
