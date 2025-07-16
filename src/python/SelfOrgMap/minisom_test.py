@@ -229,7 +229,7 @@ som = MiniSom(
     random_seed=42,
 )
 
-num_epochs = 10
+num_epochs = 30
 
 # Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
 for i in range(data.shape[1]):
