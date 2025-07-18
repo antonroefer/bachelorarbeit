@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage[backend=biber]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{lipsum} % For dummy text
+\usepackage{times}
+
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+
+\title{Automatisierte Segmentierung von Radargrammen mittels Self-Organizing Maps}
+\author{Anton Röfer}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\clearpage
+
+\tableofcontents
+\clearpage
+
+\input{sections/intro.tex}
+\clearpage
+
+\input{sections/methods.tex}
+\clearpage
+
+\input{sections/results.tex}
+\clearpage
+
+\input{sections/discussion.tex}
+\clearpage
+
+\printbibliography
+
+\end{document}
