@@ -100,6 +100,9 @@ feature_plots.ipynb
 *.jpeg
 *.html
 *.npz
+*.png
+*.eps
+*.pgw
 
 # exclude data from source control by default
 # /data/

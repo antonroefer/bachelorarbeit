@@ -4,8 +4,37 @@ import h5py
 import numpy as np
 from minisom import MiniSom
 
+
+def min_max_scale(arr, new_min=0, new_max=1):
+    """
+    Skaliert ein NumPy-Array auf einen neuen Wertebereich (new_min, new_max).
+
+    Args:
+        arr (ndarray): Das Eingangs-Array.
+        new_min (float): Der gewünschte minimale Wert des neuen Bereichs.
+        new_max (float): Der gewünschte maximale Wert des neuen Bereichs.
+
+    Returns:
+        ndarray: Das skalierte Array.
+    """
+    # Finde den originalen Minimal- und Maximalwert des Arrays
+    original_min = arr.min()
+    original_max = arr.max()
+
+    # Vermeide Division durch Null, falls alle Werte im Array gleich sind
+    if original_max == original_min:
+        # Wenn alle Werte gleich sind, sind sie im neuen Bereich einfach der Mittelwert
+        return np.full_like(arr, (new_min + new_max) / 2)
+
+    # Führe die Min-Max-Skalierung durch
+    scaled_arr = ((arr - original_min) / (original_max - original_min)) * (
+        new_max - new_min
+    ) + new_min
+    return scaled_arr
+
+
 raw = False  # Use raw data or processed data
-i_rg = 6  # Radargram number
+i_rg = 30  # Radargram number
 
 # Load MAT file in v7.3 format using h5py
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -158,11 +187,41 @@ with np.load(data_path) as npzfile:
             "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
         )
 
-apx = "01"
+cut = False
+
+# Finde den Index, bei dem x zum ersten Mal größer als 60 ist
+first_index_above_60 = np.argmax(x > 60)
+# Erstelle die geschnittenen Arrays
+cut_x = x[:first_index_above_60]
+cut_data = data[:, :first_index_above_60]
+# Überschreibe die Originaldaten mit den geschnittenen Daten
+x = cut_x if cut else x
+data = cut_data if cut else data
+# Gib die neuen Formen aus
+print(f"Neue X shape: {x.shape}")
+print(f"Neue Data shape: {data.shape}")
+
+# --- NEU: Daten umformen und normalisieren ---
+# Forme das 3D-Array (höhe, breite, merkmale) in ein 2D-Array (punkte, merkmale) um
+if data.ndim == 3:
+    print(f"Originale Datenform: {data.shape}")
+    data = data.reshape(-1, data.shape[2])
+    print(f"Neue Datenform für SOM: {data.shape}")
+
+num_features = data.shape[1]
+print(f"Anzahl der erkannten Merkmale: {num_features}")
+
+# Normalisiere jede Spalte mit einer For-Schleife und dem MiniSom min_max_scaler
+for i in range(data.shape[1]):
+    data[:, i] = min_max_scale(data[:, i])
+
+apx = "04"
 
 # Definiere den Pfad zum gespeicherten Modell
-model_path = os.path.join(script_dir, f"trained_som_{apx}.pkl")
-som = MiniSom(x=50, y=50, input_len=5).load_model(filepath=model_path)
+model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
+som = MiniSom(x=30, y=30, input_len=5).load_model(filepath=model_path)
+
+apx = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
 
 # Den Plot erstellen
 save_plots = True  # Setze auf True, um die Plots zu speichern

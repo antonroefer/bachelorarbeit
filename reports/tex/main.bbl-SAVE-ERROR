@@ -1,0 +1,765 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global/global}
+    \entry{annan_ground_2003}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0824c3e28d5d69e15195221cd3475332}{%
+           family={Annan},
+           familyi={A\bibinitperiod},
+           given={A.\bibnamedelimi P.},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Sensors Software Inc.}%
+      }
+      \strng{namehash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{fullhash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{fullhashraw}{0824c3e28d5d69e15195221cd3475332}
+      \strng{bibnamehash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{authorbibnamehash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{authornamehash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{authorfullhash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{authorfullhashraw}{0824c3e28d5d69e15195221cd3475332}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{pagetotal}{286}
+      \field{title}{Ground Penetrating Radar Principles, Procedures \& Applications}
+      \field{urlday}{18}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2003}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://geolportal.sdsu.edu/jiracek/sage/documents/Sensors%20and%20Software%20GPR%20Manual.pdf
+      \endverb
+      \verb{url}
+      \verb https://geolportal.sdsu.edu/jiracek/sage/documents/Sensors%20and%20Software%20GPR%20Manual.pdf
+      \endverb
+    \endentry
+    \entry{barnes_too_2006}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1964d1c57b73579ed6c2891e48bac886}{%
+           family={Barnes},
+           familyi={B\bibinitperiod},
+           given={Arthur},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{fullhash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{fullhashraw}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{bibnamehash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{authorbibnamehash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{authornamehash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{authorfullhash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{authorfullhashraw}{1964d1c57b73579ed6c2891e48bac886}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{CSEG} Recorder}
+      \field{number}{3}
+      \field{title}{Too many seismic attributes}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{31}
+      \field{year}{2006}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{6}
+      \range{pages}{1}
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\FFKSR4F7\\Barnes - Too many seismic attributes.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://csegrecorder.com/articles/view/too-many-seismic-attributes
+      \endverb
+      \verb{url}
+      \verb https://csegrecorder.com/articles/view/too-many-seismic-attributes
+      \endverb
+    \endentry
+    \entry{carcione_acoustic-electromagnetic_1995}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b7f41609b3e8df951042d49eac5735b1}{%
+           family={Carcione},
+           familyi={C\bibinitperiod},
+           given={José\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5bd0b137151dd81243c591743aaec6a1}{%
+           family={Cavallini},
+           familyi={C\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{fullhash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{fullhashraw}{3dccccf7838877d378da1f6756eb93db}
+      \strng{bibnamehash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{authorbibnamehash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{authornamehash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{authorfullhash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{authorfullhashraw}{3dccccf7838877d378da1f6756eb93db}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0165-2125}
+      \field{journaltitle}{Wave Motion}
+      \field{langid}{english}
+      \field{number}{2}
+      \field{title}{On the acoustic-electromagnetic analogy}
+      \field{urlday}{19}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{21}
+      \field{year}{1995}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{149\bibrangedash 162}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1016/0165-2125(94)00047-9
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/0165212594000479
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/0165212594000479
+      \endverb
+    \endentry
+    \entry{dowla_seismic_1990}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c408f1c0973a5113a022e5223cdd140e}{%
+           family={Dowla},
+           familyi={D\bibinitperiod},
+           given={Farid\bibnamedelima U.},
+           giveni={F\bibinitperiod\bibinitdelim U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c63b1d94a067ccc2d6a41783f482ffc4}{%
+           family={Taylor},
+           familyi={T\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=74ba6fff3424721e16f078eee975da70}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={Russel},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8287659e675edfdce44ee8c529cfbe93}
+      \strng{fullhash}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{fullhashraw}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{bibnamehash}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{authorbibnamehash}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{authornamehash}{8287659e675edfdce44ee8c529cfbe93}
+      \strng{authorfullhash}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{authorfullhashraw}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Bulletin of The Seismological Society of America - {BULL} {SEISMOL} {SOC} {AMER}}
+      \field{number}{80}
+      \field{title}{Seismic discrimination with artificial neural networks: Preliminary results with regional spectral data}
+      \field{year}{1990}
+      \field{dateera}{ce}
+      \field{pages}{1346\bibrangedash 1373}
+      \range{pages}{28}
+    \endentry
+    \entry{forte_review_2017}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=86ee195925e03bf7bff5911655575696}{%
+           family={Forte},
+           familyi={F\bibinitperiod},
+           given={Emanuele},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9e745ed2d3e39e526b8279f7c8e5cb0a}{%
+           family={Pipan},
+           familyi={P\bibinitperiod},
+           given={Michele},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{fullhash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{fullhashraw}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{bibnamehash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{authorbibnamehash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{authornamehash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{authorfullhash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{authorfullhashraw}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{0165-1684}
+      \field{journaltitle}{Signal Processing}
+      \field{langid}{english}
+      \field{shorttitle}{Review of multi-offset {GPR} applications}
+      \field{title}{Review of multi-offset {GPR} applications: Data acquisition, processing and analysis}
+      \field{urlday}{19}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{132}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{210\bibrangedash 220}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.sigpro.2016.04.011
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0165168416300494
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0165168416300494
+      \endverb
+    \endentry
+    \entry{maurer_seismic_1992}{inbook}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=1c560bd45cb97cf2dd6c62c1952f65a7}{%
+           family={Maurer},
+           familyi={M\bibinitperiod},
+           given={William\bibnamedelima J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c408f1c0973a5113a022e5223cdd140e}{%
+           family={Dowla},
+           familyi={D\bibinitperiod},
+           given={Farid\bibnamedelima U.},
+           giveni={F\bibinitperiod\bibinitdelim U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7e1b9dbda4753e18612dc50f8781bc5}{%
+           family={Jarpe},
+           familyi={J\bibinitperiod},
+           given={Stephen\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=2357b2cd3bd90d616c6ddbec5ac0e889}{%
+           family={Rogers},
+           familyi={R\bibinitperiod},
+           given={Steven\bibnamedelima K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Orlando, {FL}}%
+      }
+      \list{publisher}{1}{%
+        {SPIE}%
+      }
+      \strng{namehash}{21ddeb2a475961ee99c09ef4d558c383}
+      \strng{fullhash}{55514564cb3eec4ebc720347639f05d5}
+      \strng{fullhashraw}{55514564cb3eec4ebc720347639f05d5}
+      \strng{bibnamehash}{55514564cb3eec4ebc720347639f05d5}
+      \strng{authorbibnamehash}{55514564cb3eec4ebc720347639f05d5}
+      \strng{authornamehash}{21ddeb2a475961ee99c09ef4d558c383}
+      \strng{authorfullhash}{55514564cb3eec4ebc720347639f05d5}
+      \strng{authorfullhashraw}{55514564cb3eec4ebc720347639f05d5}
+      \strng{editorbibnamehash}{2357b2cd3bd90d616c6ddbec5ac0e889}
+      \strng{editornamehash}{2357b2cd3bd90d616c6ddbec5ac0e889}
+      \strng{editorfullhash}{2357b2cd3bd90d616c6ddbec5ac0e889}
+      \strng{editorfullhashraw}{2357b2cd3bd90d616c6ddbec5ac0e889}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{SPIE} Proceedings}
+      \field{eventtitle}{Aerospace Sensing}
+      \field{title}{Seismic event interpretation using self-organizing neural networks}
+      \field{urlday}{18}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{1709}
+      \field{year}{1992}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{950}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1117/12.139971
+      \endverb
+      \verb{urlraw}
+      \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?doi=10.1117/12.139971
+      \endverb
+      \verb{url}
+      \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?doi=10.1117/12.139971
+      \endverb
+    \endentry
+    \entry{zhao_characterizing_2016}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=1831c1cfce9068289736002a0260b396}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=948f26b38fba102b6f820808e554bc53}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=262f7221d4a14db1394b53347325b166}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Fangyu},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d3dfea7a61bdaa49e6a6661a855a7b2}{%
+           family={Marfurt},
+           familyi={M\bibinitperiod},
+           given={Kurt\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6198db5ba965a13c8c5bcaf02bc4451d}
+      \strng{fullhash}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{fullhashraw}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{bibnamehash}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{authorbibnamehash}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{authornamehash}{6198db5ba965a13c8c5bcaf02bc4451d}
+      \strng{authorfullhash}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{authorfullhashraw}{df9dc7c6fe80517ae20f31946e2ac298}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Recent developments in seismic attributes and seismic facies classification techniques have greatly enhanced the capability of interpreters to delineate and characterize features that are not prominent in conventional 3D seismic amplitude volumes. The use of appropriate seismic attributes that quantify the characteristics of different geologic facies can accelerate and partially automate the interpretation process. Self-organizing maps ({SOMs}) are a popular seismic facies classification tool that extract similar patterns embedded with multiple seismic attribute volumes. By preserving the distance in the input data space into the {SOM} latent space, the internal relation among data vectors on an {SOM} facies map is better presented, resulting in a more reliable classification. We have determined the effectiveness of the modified algorithm by applying it to a turbidite system in Canterbury Basin, offshore New Zealand. By incorporating seismic attributes and distance-preserving {SOM} classification, we were able to observe architectural elements that are overlooked when using a conventional seismic amplitude volume for interpretation.}
+      \field{journaltitle}{Interpretation}
+      \field{number}{1}
+      \field{title}{Characterizing a turbidite system in Canterbury Basin, New Zealand, using seismic attributes and distance-preserving self-organizing maps}
+      \field{volume}{4}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1190/int-2015-0094.1
+      \endverb
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global/global}
+    \entry{annan_ground_2003}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=0824c3e28d5d69e15195221cd3475332}{%
+           family={Annan},
+           familyi={A\bibinitperiod},
+           given={A.\bibnamedelimi P.},
+           giveni={A\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Sensors Software Inc.}%
+      }
+      \strng{namehash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{fullhash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{fullhashraw}{0824c3e28d5d69e15195221cd3475332}
+      \strng{bibnamehash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{authorbibnamehash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{authornamehash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{authorfullhash}{0824c3e28d5d69e15195221cd3475332}
+      \strng{authorfullhashraw}{0824c3e28d5d69e15195221cd3475332}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{pagetotal}{286}
+      \field{title}{Ground Penetrating Radar Principles, Procedures \& Applications}
+      \field{urlday}{18}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2003}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://geolportal.sdsu.edu/jiracek/sage/documents/Sensors%20and%20Software%20GPR%20Manual.pdf
+      \endverb
+      \verb{url}
+      \verb https://geolportal.sdsu.edu/jiracek/sage/documents/Sensors%20and%20Software%20GPR%20Manual.pdf
+      \endverb
+    \endentry
+    \entry{barnes_too_2006}{article}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=1964d1c57b73579ed6c2891e48bac886}{%
+           family={Barnes},
+           familyi={B\bibinitperiod},
+           given={Arthur},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{fullhash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{fullhashraw}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{bibnamehash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{authorbibnamehash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{authornamehash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{authorfullhash}{1964d1c57b73579ed6c2891e48bac886}
+      \strng{authorfullhashraw}{1964d1c57b73579ed6c2891e48bac886}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{CSEG} Recorder}
+      \field{number}{3}
+      \field{title}{Too many seismic attributes}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{31}
+      \field{year}{2006}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{6}
+      \range{pages}{1}
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\FFKSR4F7\\Barnes - Too many seismic attributes.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://csegrecorder.com/articles/view/too-many-seismic-attributes
+      \endverb
+      \verb{url}
+      \verb https://csegrecorder.com/articles/view/too-many-seismic-attributes
+      \endverb
+    \endentry
+    \entry{carcione_acoustic-electromagnetic_1995}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b7f41609b3e8df951042d49eac5735b1}{%
+           family={Carcione},
+           familyi={C\bibinitperiod},
+           given={José\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5bd0b137151dd81243c591743aaec6a1}{%
+           family={Cavallini},
+           familyi={C\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{fullhash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{fullhashraw}{3dccccf7838877d378da1f6756eb93db}
+      \strng{bibnamehash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{authorbibnamehash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{authornamehash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{authorfullhash}{3dccccf7838877d378da1f6756eb93db}
+      \strng{authorfullhashraw}{3dccccf7838877d378da1f6756eb93db}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0165-2125}
+      \field{journaltitle}{Wave Motion}
+      \field{langid}{english}
+      \field{number}{2}
+      \field{title}{On the acoustic-electromagnetic analogy}
+      \field{urlday}{19}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{21}
+      \field{year}{1995}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{149\bibrangedash 162}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1016/0165-2125(94)00047-9
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/0165212594000479
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/0165212594000479
+      \endverb
+    \endentry
+    \entry{dowla_seismic_1990}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c408f1c0973a5113a022e5223cdd140e}{%
+           family={Dowla},
+           familyi={D\bibinitperiod},
+           given={Farid\bibnamedelima U.},
+           giveni={F\bibinitperiod\bibinitdelim U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c63b1d94a067ccc2d6a41783f482ffc4}{%
+           family={Taylor},
+           familyi={T\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=74ba6fff3424721e16f078eee975da70}{%
+           family={Anderson},
+           familyi={A\bibinitperiod},
+           given={Russel},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8287659e675edfdce44ee8c529cfbe93}
+      \strng{fullhash}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{fullhashraw}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{bibnamehash}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{authorbibnamehash}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{authornamehash}{8287659e675edfdce44ee8c529cfbe93}
+      \strng{authorfullhash}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \strng{authorfullhashraw}{8fec3a0b33a2c5c98609bb8370892c8d}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Bulletin of The Seismological Society of America - {BULL} {SEISMOL} {SOC} {AMER}}
+      \field{number}{80}
+      \field{title}{Seismic discrimination with artificial neural networks: Preliminary results with regional spectral data}
+      \field{year}{1990}
+      \field{dateera}{ce}
+      \field{pages}{1346\bibrangedash 1373}
+      \range{pages}{28}
+    \endentry
+    \entry{forte_review_2017}{article}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=86ee195925e03bf7bff5911655575696}{%
+           family={Forte},
+           familyi={F\bibinitperiod},
+           given={Emanuele},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9e745ed2d3e39e526b8279f7c8e5cb0a}{%
+           family={Pipan},
+           familyi={P\bibinitperiod},
+           given={Michele},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{fullhash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{fullhashraw}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{bibnamehash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{authorbibnamehash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{authornamehash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{authorfullhash}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \strng{authorfullhashraw}{c7236efac01e78dd0fa04d7a1cb223aa}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{issn}{0165-1684}
+      \field{journaltitle}{Signal Processing}
+      \field{langid}{english}
+      \field{shorttitle}{Review of multi-offset {GPR} applications}
+      \field{title}{Review of multi-offset {GPR} applications: Data acquisition, processing and analysis}
+      \field{urlday}{19}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{132}
+      \field{year}{2017}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{210\bibrangedash 220}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1016/j.sigpro.2016.04.011
+      \endverb
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0165168416300494
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/S0165168416300494
+      \endverb
+    \endentry
+    \entry{maurer_seismic_1992}{inbook}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=1c560bd45cb97cf2dd6c62c1952f65a7}{%
+           family={Maurer},
+           familyi={M\bibinitperiod},
+           given={William\bibnamedelima J.},
+           giveni={W\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c408f1c0973a5113a022e5223cdd140e}{%
+           family={Dowla},
+           familyi={D\bibinitperiod},
+           given={Farid\bibnamedelima U.},
+           giveni={F\bibinitperiod\bibinitdelim U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7e1b9dbda4753e18612dc50f8781bc5}{%
+           family={Jarpe},
+           familyi={J\bibinitperiod},
+           given={Stephen\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=2357b2cd3bd90d616c6ddbec5ac0e889}{%
+           family={Rogers},
+           familyi={R\bibinitperiod},
+           given={Steven\bibnamedelima K.},
+           giveni={S\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Orlando, {FL}}%
+      }
+      \list{publisher}{1}{%
+        {SPIE}%
+      }
+      \strng{namehash}{21ddeb2a475961ee99c09ef4d558c383}
+      \strng{fullhash}{55514564cb3eec4ebc720347639f05d5}
+      \strng{fullhashraw}{55514564cb3eec4ebc720347639f05d5}
+      \strng{bibnamehash}{55514564cb3eec4ebc720347639f05d5}
+      \strng{authorbibnamehash}{55514564cb3eec4ebc720347639f05d5}
+      \strng{authornamehash}{21ddeb2a475961ee99c09ef4d558c383}
+      \strng{authorfullhash}{55514564cb3eec4ebc720347639f05d5}
+      \strng{authorfullhashraw}{55514564cb3eec4ebc720347639f05d5}
+      \strng{editorbibnamehash}{2357b2cd3bd90d616c6ddbec5ac0e889}
+      \strng{editornamehash}{2357b2cd3bd90d616c6ddbec5ac0e889}
+      \strng{editorfullhash}{2357b2cd3bd90d616c6ddbec5ac0e889}
+      \strng{editorfullhashraw}{2357b2cd3bd90d616c6ddbec5ac0e889}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{SPIE} Proceedings}
+      \field{eventtitle}{Aerospace Sensing}
+      \field{title}{Seismic event interpretation using self-organizing neural networks}
+      \field{urlday}{18}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{1709}
+      \field{year}{1992}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{950}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1117/12.139971
+      \endverb
+      \verb{urlraw}
+      \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?doi=10.1117/12.139971
+      \endverb
+      \verb{url}
+      \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?doi=10.1117/12.139971
+      \endverb
+    \endentry
+    \entry{zhao_characterizing_2016}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=1831c1cfce9068289736002a0260b396}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=948f26b38fba102b6f820808e554bc53}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Jing},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=262f7221d4a14db1394b53347325b166}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Fangyu},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d3dfea7a61bdaa49e6a6661a855a7b2}{%
+           family={Marfurt},
+           familyi={M\bibinitperiod},
+           given={Kurt\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6198db5ba965a13c8c5bcaf02bc4451d}
+      \strng{fullhash}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{fullhashraw}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{bibnamehash}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{authorbibnamehash}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{authornamehash}{6198db5ba965a13c8c5bcaf02bc4451d}
+      \strng{authorfullhash}{df9dc7c6fe80517ae20f31946e2ac298}
+      \strng{authorfullhashraw}{df9dc7c6fe80517ae20f31946e2ac298}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Recent developments in seismic attributes and seismic facies classification techniques have greatly enhanced the capability of interpreters to delineate and characterize features that are not prominent in conventional 3D seismic amplitude volumes. The use of appropriate seismic attributes that quantify the characteristics of different geologic facies can accelerate and partially automate the interpretation process. Self-organizing maps ({SOMs}) are a popular seismic facies classification tool that extract similar patterns embedded with multiple seismic attribute volumes. By preserving the distance in the input data space into the {SOM} latent space, the internal relation among data vectors on an {SOM} facies map is better presented, resulting in a more reliable classification. We have determined the effectiveness of the modified algorithm by applying it to a turbidite system in Canterbury Basin, offshore New Zealand. By incorporating seismic attributes and distance-preserving {SOM} classification, we were able to observe architectural elements that are overlooked when using a conventional seismic amplitude volume for interpretation.}
+      \field{journaltitle}{Interpretation}
+      \field{number}{1}
+      \field{title}{Characterizing a turbidite system in Canterbury Basin, New Zealand, using seismic attributes and distance-preserving self-organizing maps}
+      \field{volume}{4}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1190/int-2015-0094.1
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
