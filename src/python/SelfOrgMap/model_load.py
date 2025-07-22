@@ -34,7 +34,7 @@ def min_max_scale(arr, new_min=0, new_max=1):
 
 
 raw = False  # Use raw data or processed data
-i_rg = 30  # Radargram number
+i_rg = 6  # Radargram number
 
 # Load MAT file in v7.3 format using h5py
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -142,7 +142,7 @@ ratio = x.max() / t.max() * (9 / 16)
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors.npz"
+data_file = "feature_vectors_khigh.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
@@ -152,7 +152,13 @@ with np.load(data_path) as npzfile:
 
     # --- NEU: Feature-Auswahl ---
     # Liste der gewünschten Features
-    desired_features = ["inst_amp", "inst_freq_raw", "semblance", "kurtosis", "dip"]
+    desired_features = [
+        "inst_amp",
+        "inst_freq_raw",
+        "semblance",
+        "kurtosis",
+        "inst_q",
+    ]
 
     # Annahme: Die Namen der Features sind in der .npz-Datei unter dem Schlüssel 'feature_names' gespeichert
     if "feature_names" in npzfile.files:
@@ -187,7 +193,7 @@ with np.load(data_path) as npzfile:
             "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
         )
 
-cut = False
+cut = True
 
 # Finde den Index, bei dem x zum ersten Mal größer als 60 ist
 first_index_above_60 = np.argmax(x > 60)
@@ -215,7 +221,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 for i in range(data.shape[1]):
     data[:, i] = min_max_scale(data[:, i])
 
-apx = "04"
+apx = "25"
 
 # Definiere den Pfad zum gespeicherten Modell
 model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
