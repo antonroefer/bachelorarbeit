@@ -62,6 +62,26 @@
       \verb https://geolportal.sdsu.edu/jiracek/sage/documents/Sensors%20and%20Software%20GPR%20Manual.pdf
       \endverb
     \endentry
+    \entry{noauthor_average_2021}{online}{}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{title}{Average energy}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wiki.seg.org/wiki/Average_energy
+      \endverb
+      \verb{url}
+      \verb https://wiki.seg.org/wiki/Average_energy
+      \endverb
+    \endentry
     \entry{barnes_too_2006}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=1964d1c57b73579ed6c2891e48bac886}{%
@@ -162,6 +182,210 @@
       \verb https://linkinghub.elsevier.com/retrieve/pii/0165212594000479
       \endverb
     \endentry
+    \entry{chopra_seismic_2007}{book}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b3765dd7fdf2f524dd3f7844a99ebf1b}{%
+           family={Chopra},
+           familyi={C\bibinitperiod},
+           given={Satinder},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d3dfea7a61bdaa49e6a6661a855a7b2}{%
+           family={Marfurt},
+           familyi={M\bibinitperiod},
+           given={Kurt\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{3}{%
+        {Society of Exploration Geophysicists}%
+        {European Association of Geoscientists}%
+        {Engineers}%
+      }
+      \strng{namehash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{fullhash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{fullhashraw}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{bibnamehash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{authorbibnamehash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{authornamehash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{authorfullhash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{authorfullhashraw}{596f8b6424e7d1fdd2962966d1e97869}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-56080-141-2 978-1-56080-190-0}
+      \field{langid}{english}
+      \field{title}{Seismic Attributes for Prospect Identification and Reservoir Characterization}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2007}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\8B2ACX8M\\Chopra und Marfurt - 2007 - Seismic Attributes for Prospect Identification and Reservoir Characterization.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/book/10.1190/1.9781560801900
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/book/10.1190/1.9781560801900
+      \endverb
+    \endentry
+    \entry{corradini_day_2023}{article}{}{}
+      \name{author}{9}{}{%
+        {{un=0,uniquepart=base,hash=70b7b7101a98d687a849ec8ad79bb39e}{%
+           family={Corradini},
+           familyi={C\bibinitperiod},
+           given={Erica},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=11cd339dae6005737214950228fcf644}{%
+           family={Dreibrodt},
+           familyi={D\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=82395b04e6b4f39cf9ed78fbf56b9f81}{%
+           family={Lübke},
+           familyi={L\bibinitperiod},
+           given={Harald},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9ad3605d0f175c6294f8700823e2e715}{%
+           family={Schmölcke},
+           familyi={S\bibinitperiod},
+           given={Ulrich},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc061d74642b3cac4b8cf2127ec1f3c3}{%
+           family={Wieckowska-Lüth},
+           familyi={W\bibinithyphendelim L\bibinitperiod},
+           given={Magdalena},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95688b6b8c9848c95b653fa7d0091436}{%
+           family={Wunderlich},
+           familyi={W\bibinitperiod},
+           given={Tina},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=627ed01a8b8fb910f312c286aa275c5e}{%
+           family={Wilken},
+           familyi={W\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9449c650901f5d2e480f52ac1fc385ae}{%
+           family={Brozio},
+           familyi={B\bibinitperiod},
+           given={Jan\bibnamedelima Piet},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b6f3084f5014a47b67fb4a2abdf3725b}{%
+           family={Rabbel},
+           familyi={R\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9894226fef9e4a085d4731265f72dd3d}
+      \strng{fullhash}{d34b370df11b457e064bf0965b30a186}
+      \strng{fullhashraw}{d34b370df11b457e064bf0965b30a186}
+      \strng{bibnamehash}{d34b370df11b457e064bf0965b30a186}
+      \strng{authorbibnamehash}{d34b370df11b457e064bf0965b30a186}
+      \strng{authornamehash}{9894226fef9e4a085d4731265f72dd3d}
+      \strng{authorfullhash}{d34b370df11b457e064bf0965b30a186}
+      \strng{authorfullhashraw}{d34b370df11b457e064bf0965b30a186}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Understanding the landscape evolution and human-environmental interaction within it is one of the key tasks of early Holocene research. As mobile hunter–gatherers leave few traces of structural organization, understanding their habitats is relevant for comprehending these people. Rarely does the spatial distribution of artifacts correspond to the real pattern of past human activity, but rather shows the pattern of identified artifacts. Geophysical investigations try to fill this gap and have been applied increasingly in archaeological prospection delivering landscape reconstruction, which are verified and fine-tuned using corings and excavations. Despite promising 3D models, a tool to predict the location of undiscovered former human presence and the conditions which influenced people to move across the landscape is not well developed. The primary goal of this paper is to present a methodology for connecting spatial patterns of past human activity based on archaeological and geophysical data. We discuss different {GPR} (ground-penetrating radar) facies classified at the shoreline of the former Lake Duvensee and geomorphological variables, which leads to the possibility of understanding where and why people chose preferred areas to settle on former islands. We also demonstrate that Mesolithic hunter–gatherer groups preferred dry areas with access to open water for short-term campsites and flatter and more protected areas for specialized and repeatedly occupied campsites. The cardinal orientation of a campsite seems to be secondary to the local peat over-growing process and access to water.}
+      \field{issn}{2072-4292}
+      \field{journaltitle}{Remote Sensing}
+      \field{langid}{english}
+      \field{number}{14}
+      \field{shorttitle}{A Day at the Bog}
+      \field{title}{A Day at the Bog: Preliminary Interpretation of Prehistoric Human Occupation at Ancient Lake Duvensee (Germany) by {GPR} Structures}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{15}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{3647}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/rs15143647
+      \endverb
+      \verb{file}
+      \verb Volltext:C\:\\Users\\anton\\Zotero\\storage\\EYCGNWUL\\Corradini et al. - 2023 - A Day at the Bog Preliminary Interpretation of Prehistoric Human Occupation at Ancient Lake Duvense.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2072-4292/15/14/3647
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2072-4292/15/14/3647
+      \endverb
+    \endentry
+    \entry{dahlmann_monitoring_1977}{book}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=6abaf5132934052c0a8658246ae324d3}{%
+           family={Dahlmann},
+           familyi={D\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d8609cd487d0151fe2d7c9f3ae7c9f35}{%
+           family={Israelson},
+           familyi={I\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{fullhash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{fullhashraw}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{bibnamehash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{authorbibnamehash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{authornamehash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{authorfullhash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{authorfullhashraw}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-444-41604-9}
+      \field{langid}{english}
+      \field{title}{Monitoring Underground Nuclear Explosions}
+      \field{urlday}{19}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{1977}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/C20130044453
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/C20130044453
+      \endverb
+    \endentry
     \entry{dowla_seismic_1990}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=c408f1c0973a5113a022e5223cdd140e}{%
@@ -260,6 +484,26 @@
       \verb https://linkinghub.elsevier.com/retrieve/pii/S0165168416300494
       \endverb
     \endentry
+    \entry{noauthor_instantaneous_2024}{online}{}{}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{title}{Instantaneous q factor}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wiki.seg.org/wiki/Dictionary:Instantaneous_q_factor/en
+      \endverb
+      \verb{url}
+      \verb https://wiki.seg.org/wiki/Dictionary:Instantaneous_q_factor/en
+      \endverb
+    \endentry
     \entry{maurer_seismic_1992}{inbook}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=1c560bd45cb97cf2dd6c62c1952f65a7}{%
@@ -335,6 +579,276 @@
       \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?doi=10.1117/12.139971
       \endverb
     \endentry
+    \entry{qi_seismic_2020}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=dc3ada71cae6bd528fc0042cb89f90ff}{%
+           family={Qi},
+           familyi={Q\bibinitperiod},
+           given={Jie},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4ac36eed64badd6f195e86aeecd037a7}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3c5ffce88d5c4127212300c9a8c34960}{%
+           family={Lyu},
+           familyi={L\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6952ed9f36202f8e501cfef7010423e6}{%
+           family={Marfurt},
+           familyi={M\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9b4e56156871b21fd0ac6b4da25f193a}
+      \strng{fullhash}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{fullhashraw}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{bibnamehash}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{authorbibnamehash}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{authornamehash}{9b4e56156871b21fd0ac6b4da25f193a}
+      \strng{authorfullhash}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{authorfullhashraw}{4abfbe5fa508fa3b2de48d644867a566}
+      \field{sortinit}{Q}
+      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Interpreters face two main challenges in seismic facies analysis. The first challenge is to define, or “label,” the facies of interest. The second challenge is to select a suite of attributes that can differentiate a target facies from the background reflectivity. Our key objective is to determine which seismic attributes can best differentiate one class of chaotic seismic facies from another using modern machine-learning technology. Although simple 1D histograms provide a list of candidate attributes, they do not provide insight into the optimum number or combination of attributes. To address this limitation, we have conducted an exhaustive search whereby we represent the target and background training facies by high-dimensional Gaussian mixture models ({GMMs}) for each potential attribute combination. The first step is to choose candidate attributes that may be able to differentiate chaotic mass-transport deposits and salt diapirs from the more conformal, coherent background reflectors. The second step is to draw polygons around the target and background facies to provide the labeled data to be represented by {GMMs}. Maximizing the distance between all {GMM} facies pairs provides the optimum number and combination of attributes. We use generative topographic mapping to represent the high-dimensional attribute data by a lower dimensional 2D manifold. Each labeled facies provides a probability density function on the manifold that can be compared to the probability density function of each voxel, providing the likelihood that a given voxel is a member of each of the facies. Our first example maps chaotic seismic facies associated with the development of salt diapirs and minibasins. Our second example successfully delineates karst collapse underlying a shale resource play from north Texas.}
+      \field{issn}{0016-8033, 1942-2156}
+      \field{journaltitle}{{GEOPHYSICS}}
+      \field{langid}{english}
+      \field{number}{2}
+      \field{title}{Seismic attribute selection for machine-learning-based facies analysis}
+      \field{urlday}{14}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{85}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{O17\bibrangedash O35}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1190/geo2019-0223.1
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\4N4KZJDC\\Qi et al. - 2020 - Seismic attribute selection for machine-learning-based facies analysis.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/10.1190/geo2019-0223.1
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/10.1190/geo2019-0223.1
+      \endverb
+    \endentry
+    \entry{noauthor_rms_2022}{online}{}{}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{title}{{RMS} amplitude}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wiki.seg.org/wiki/RMS_amplitude
+      \endverb
+      \verb{url}
+      \verb https://wiki.seg.org/wiki/RMS_amplitude
+      \endverb
+    \endentry
+    \entry{roden_geologic_2015}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c12fdee5dd9b18eef32d6b6b868feae7}{%
+           family={Roden},
+           familyi={R\bibinitperiod},
+           given={Rocky},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=be8287076101e244d3b27831a7b490c3}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c0f8d059a5efecaa9e9f4e99dc987d2a}{%
+           family={Sacrey},
+           familyi={S\bibinitperiod},
+           given={Deborah},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{20ff8d0e306fb1a749f33967868767ac}
+      \strng{fullhash}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{fullhashraw}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{bibnamehash}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{authorbibnamehash}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{authornamehash}{20ff8d0e306fb1a749f33967868767ac}
+      \strng{authorfullhash}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{authorfullhashraw}{54bae1a77414e9a1d99f696e09d594b8}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Interpretation of seismic reflection data routinely involves powerful multiple-central-processing-unit computers, advanced visualization techniques, and generation of numerous seismic data types and attributes. Even with these technologies at the disposal of interpreters, there are additional techniques to derive even more useful information from our data. Over the last few years, there have been efforts to distill numerous seismic attributes into volumes that are easily evaluated for their geologic significance and improved seismic interpretation. Seismic attributes are any measurable property of seismic data. Commonly used categories of seismic attributes include instantaneous, geometric, amplitude accentuating, amplitude-variation with offset, spectral decomposition, and inversion. Principal component analysis ({PCA}), a linear quantitative technique, has proven to be an excellent approach for use in understanding which seismic attributes or combination of seismic attributes has interpretive significance. The {PCA} reduces a large set of seismic attributes to indicate variations in the data, which often relate to geologic features of interest. {PCA}, as a tool used in an interpretation workflow, can help to determine meaningful seismic attributes. In turn, these attributes are input to self-organizing-map ({SOM}) training. The {SOM}, a form of unsupervised neural networks, has proven to take many of these seismic attributes and produce meaningful and easily interpretable results. {SOM} analysis reveals the natural clustering and patterns in data and has been beneficial in defining stratigraphy, seismic facies, direct hydrocarbon indicator features, and aspects of shale plays, such as fault/fracture trends and sweet spots. With modern visualization capabilities and the application of 2D color maps, {SOM} routinely identifies meaningful geologic patterns. Recent work using {SOM} and {PCA} has revealed geologic features that were not previously identified or easily interpreted from the seismic data. The ultimate goal in this multiattribute analysis is to enable the geoscientist to produce a more accurate interpretation and reduce exploration and development risk.}
+      \field{issn}{2324-8858, 2324-8866}
+      \field{journaltitle}{Interpretation}
+      \field{langid}{english}
+      \field{number}{4}
+      \field{shorttitle}{Geologic pattern recognition from seismic attributes}
+      \field{title}{Geologic pattern recognition from seismic attributes: Principal component analysis and self-organizing maps}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{3}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{SAE59\bibrangedash SAE83}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1190/INT-2015-0037.1
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\BHQL878K\\Roden et al. - 2015 - Geologic pattern recognition from seismic attributes Principal component analysis and self-organizi.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/10.1190/INT-2015-0037.1
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/10.1190/INT-2015-0037.1
+      \endverb
+    \endentry
+    \entry{sheriff_encyclopedic_2002}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5aba58c57f512088798f28a5bf800a12}{%
+           family={Sheriff},
+           familyi={S\bibinitperiod},
+           given={Robert\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Society of Exploration Geophysicists}%
+      }
+      \strng{namehash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{fullhash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{fullhashraw}{5aba58c57f512088798f28a5bf800a12}
+      \strng{bibnamehash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{authorbibnamehash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{authornamehash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{authorfullhash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{authorfullhashraw}{5aba58c57f512088798f28a5bf800a12}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Fourth}
+      \field{isbn}{978-1-56080-118-4 978-1-56080-296-9}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{title}{Encyclopedic Dictionary of Applied Geophysics}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2002}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1190/1.9781560802969
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\FU6N8USP\\Sheriff - 2002 - Encyclopedic Dictionary of Applied Geophysics.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/book/10.1190/1.9781560802969
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/book/10.1190/1.9781560802969
+      \endverb
+    \endentry
+    \entry{taner_complex_1979}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=339dee5f09825aabc5486a580fec3a0f}{%
+           family={Taner},
+           familyi={T\bibinitperiod},
+           given={M.\bibnamedelimi T.},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6da9560c838efa7c92e17072c7b8e08f}{%
+           family={Koehler},
+           familyi={K\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a0eee3306c196b5ce3240590e836d1c1}{%
+           family={Sheriff},
+           familyi={S\bibinitperiod},
+           given={R.\bibnamedelimi E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9b1f541b503a8cad12078028d763b242}
+      \strng{fullhash}{9a02709df491aabcd227c02e772394b2}
+      \strng{fullhashraw}{9a02709df491aabcd227c02e772394b2}
+      \strng{bibnamehash}{9a02709df491aabcd227c02e772394b2}
+      \strng{authorbibnamehash}{9a02709df491aabcd227c02e772394b2}
+      \strng{authornamehash}{9b1f541b503a8cad12078028d763b242}
+      \strng{authorfullhash}{9a02709df491aabcd227c02e772394b2}
+      \strng{authorfullhashraw}{9a02709df491aabcd227c02e772394b2}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The conventional seismic trace can be viewed as the real component of a complex trace which can be uniquely calculated under usual conditions. The complex trace permits the unique separation of envelope amplitude and phase information and the calculation of instantaneous frequency. These and other quantities can be displayed in a color‐encoded manner which helps an interpreter see their interrelationship and spatial changes. The significance of color patterns and their geological interpretation is illustrated by examples of seismic data from three areas.}
+      \field{issn}{0016-8033, 1942-2156}
+      \field{journaltitle}{{GEOPHYSICS}}
+      \field{langid}{english}
+      \field{number}{6}
+      \field{title}{Complex seismic trace analysis}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{44}
+      \field{year}{1979}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1041\bibrangedash 1063}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1190/1.1440994
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\XPQF6GQ9\\Taner et al. - 1979 - Complex seismic trace analysis.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/10.1190/1.1440994
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/10.1190/1.1440994
+      \endverb
+    \endentry
     \entry{zhao_characterizing_2016}{article}{}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=1831c1cfce9068289736002a0260b396}{%
@@ -370,6 +884,7 @@
       \strng{authornamehash}{6198db5ba965a13c8c5bcaf02bc4451d}
       \strng{authorfullhash}{df9dc7c6fe80517ae20f31946e2ac298}
       \strng{authorfullhashraw}{df9dc7c6fe80517ae20f31946e2ac298}
+      \field{extraname}{1}
       \field{sortinit}{Z}
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
       \field{extradatescope}{labelyear}
@@ -386,6 +901,60 @@
       \field{dateera}{ce}
       \verb{doi}
       \verb 10.1190/int-2015-0094.1
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\ZB6ADNCN\\Zhao et al. - 2016 - Characterizing a turbidite system in Canterbury Basin, New Zealand, using seismic attributes and dis.pdf:application/pdf
+      \endverb
+    \endentry
+    \entry{zhao_seismic_2018}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=1831c1cfce9068289736002a0260b396}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=262f7221d4a14db1394b53347325b166}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Fangyu},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d3dfea7a61bdaa49e6a6661a855a7b2}{%
+           family={Marfurt},
+           familyi={M\bibinitperiod},
+           given={Kurt\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6198db5ba965a13c8c5bcaf02bc4451d}
+      \strng{fullhash}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{fullhashraw}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{bibnamehash}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{authorbibnamehash}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{authornamehash}{6198db5ba965a13c8c5bcaf02bc4451d}
+      \strng{authorfullhash}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{authorfullhashraw}{6daa2d78d6f343431c3139dc96ad171e}
+      \field{extraname}{2}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{With the rapid development in seismic attribute and interpretation techniques, interpreters can be overwhelmed by the number of attributes at their disposal. Pattern recognition driven seismic facies analysis provides a means to identify subtle variations across multiple attributes that may only be partially defined on a single attribute. Typically, interpreters intuitively choose input attributes for multiattribute facies analysis based on their experience and geologic target of interest. However, such an approach may overlook unsuspected features hidden in the data. We therefore augment this qualitative attribute selection process with quantitative measures of which candidate attributes best differentiate features of interest. Instead of selecting a group of attributes and assuming all the selected attributes contribute equally to the facies map, we weight the interpreter-selected input attributes based on both their response from the unsupervised learning algorithm and interpreter’s knowledge. In other...}
+      \field{journaltitle}{Geophysics}
+      \field{number}{2}
+      \field{title}{Seismic attribute selection for unsupervised seismic facies analysis using user guided data-adaptive weights}
+      \field{volume}{83}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1190/geo2017-0192.1
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\82QQ9C4J\\Zhao et al. - 2018 - Seismic attribute selection for unsupervised seismic facies analysis using user guided data-adaptive.pdf:application/pdf
       \endverb
     \endentry
   \enddatalist
@@ -433,6 +1002,26 @@
       \verb https://geolportal.sdsu.edu/jiracek/sage/documents/Sensors%20and%20Software%20GPR%20Manual.pdf
       \endverb
     \endentry
+    \entry{noauthor_average_2021}{online}{}{}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{title}{Average energy}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wiki.seg.org/wiki/Average_energy
+      \endverb
+      \verb{url}
+      \verb https://wiki.seg.org/wiki/Average_energy
+      \endverb
+    \endentry
     \entry{barnes_too_2006}{article}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=1964d1c57b73579ed6c2891e48bac886}{%
@@ -533,6 +1122,210 @@
       \verb https://linkinghub.elsevier.com/retrieve/pii/0165212594000479
       \endverb
     \endentry
+    \entry{chopra_seismic_2007}{book}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b3765dd7fdf2f524dd3f7844a99ebf1b}{%
+           family={Chopra},
+           familyi={C\bibinitperiod},
+           given={Satinder},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d3dfea7a61bdaa49e6a6661a855a7b2}{%
+           family={Marfurt},
+           familyi={M\bibinitperiod},
+           given={Kurt\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{3}{%
+        {Society of Exploration Geophysicists}%
+        {European Association of Geoscientists}%
+        {Engineers}%
+      }
+      \strng{namehash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{fullhash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{fullhashraw}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{bibnamehash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{authorbibnamehash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{authornamehash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{authorfullhash}{596f8b6424e7d1fdd2962966d1e97869}
+      \strng{authorfullhashraw}{596f8b6424e7d1fdd2962966d1e97869}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1-56080-141-2 978-1-56080-190-0}
+      \field{langid}{english}
+      \field{title}{Seismic Attributes for Prospect Identification and Reservoir Characterization}
+      \field{urlday}{12}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{year}{2007}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\8B2ACX8M\\Chopra und Marfurt - 2007 - Seismic Attributes for Prospect Identification and Reservoir Characterization.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/book/10.1190/1.9781560801900
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/book/10.1190/1.9781560801900
+      \endverb
+    \endentry
+    \entry{corradini_day_2023}{article}{}{}
+      \name{author}{9}{}{%
+        {{un=0,uniquepart=base,hash=70b7b7101a98d687a849ec8ad79bb39e}{%
+           family={Corradini},
+           familyi={C\bibinitperiod},
+           given={Erica},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=11cd339dae6005737214950228fcf644}{%
+           family={Dreibrodt},
+           familyi={D\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=82395b04e6b4f39cf9ed78fbf56b9f81}{%
+           family={Lübke},
+           familyi={L\bibinitperiod},
+           given={Harald},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9ad3605d0f175c6294f8700823e2e715}{%
+           family={Schmölcke},
+           familyi={S\bibinitperiod},
+           given={Ulrich},
+           giveni={U\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=dc061d74642b3cac4b8cf2127ec1f3c3}{%
+           family={Wieckowska-Lüth},
+           familyi={W\bibinithyphendelim L\bibinitperiod},
+           given={Magdalena},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95688b6b8c9848c95b653fa7d0091436}{%
+           family={Wunderlich},
+           familyi={W\bibinitperiod},
+           given={Tina},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=627ed01a8b8fb910f312c286aa275c5e}{%
+           family={Wilken},
+           familyi={W\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9449c650901f5d2e480f52ac1fc385ae}{%
+           family={Brozio},
+           familyi={B\bibinitperiod},
+           given={Jan\bibnamedelima Piet},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b6f3084f5014a47b67fb4a2abdf3725b}{%
+           family={Rabbel},
+           familyi={R\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9894226fef9e4a085d4731265f72dd3d}
+      \strng{fullhash}{d34b370df11b457e064bf0965b30a186}
+      \strng{fullhashraw}{d34b370df11b457e064bf0965b30a186}
+      \strng{bibnamehash}{d34b370df11b457e064bf0965b30a186}
+      \strng{authorbibnamehash}{d34b370df11b457e064bf0965b30a186}
+      \strng{authornamehash}{9894226fef9e4a085d4731265f72dd3d}
+      \strng{authorfullhash}{d34b370df11b457e064bf0965b30a186}
+      \strng{authorfullhashraw}{d34b370df11b457e064bf0965b30a186}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Understanding the landscape evolution and human-environmental interaction within it is one of the key tasks of early Holocene research. As mobile hunter–gatherers leave few traces of structural organization, understanding their habitats is relevant for comprehending these people. Rarely does the spatial distribution of artifacts correspond to the real pattern of past human activity, but rather shows the pattern of identified artifacts. Geophysical investigations try to fill this gap and have been applied increasingly in archaeological prospection delivering landscape reconstruction, which are verified and fine-tuned using corings and excavations. Despite promising 3D models, a tool to predict the location of undiscovered former human presence and the conditions which influenced people to move across the landscape is not well developed. The primary goal of this paper is to present a methodology for connecting spatial patterns of past human activity based on archaeological and geophysical data. We discuss different {GPR} (ground-penetrating radar) facies classified at the shoreline of the former Lake Duvensee and geomorphological variables, which leads to the possibility of understanding where and why people chose preferred areas to settle on former islands. We also demonstrate that Mesolithic hunter–gatherer groups preferred dry areas with access to open water for short-term campsites and flatter and more protected areas for specialized and repeatedly occupied campsites. The cardinal orientation of a campsite seems to be secondary to the local peat over-growing process and access to water.}
+      \field{issn}{2072-4292}
+      \field{journaltitle}{Remote Sensing}
+      \field{langid}{english}
+      \field{number}{14}
+      \field{shorttitle}{A Day at the Bog}
+      \field{title}{A Day at the Bog: Preliminary Interpretation of Prehistoric Human Occupation at Ancient Lake Duvensee (Germany) by {GPR} Structures}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{15}
+      \field{year}{2023}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{3647}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/rs15143647
+      \endverb
+      \verb{file}
+      \verb Volltext:C\:\\Users\\anton\\Zotero\\storage\\EYCGNWUL\\Corradini et al. - 2023 - A Day at the Bog Preliminary Interpretation of Prehistoric Human Occupation at Ancient Lake Duvense.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2072-4292/15/14/3647
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2072-4292/15/14/3647
+      \endverb
+    \endentry
+    \entry{dahlmann_monitoring_1977}{book}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=6abaf5132934052c0a8658246ae324d3}{%
+           family={Dahlmann},
+           familyi={D\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d8609cd487d0151fe2d7c9f3ae7c9f35}{%
+           family={Israelson},
+           familyi={I\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{fullhash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{fullhashraw}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{bibnamehash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{authorbibnamehash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{authornamehash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{authorfullhash}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \strng{authorfullhashraw}{a2f737d46f4c8115e3a85c6d8917de4b}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-444-41604-9}
+      \field{langid}{english}
+      \field{title}{Monitoring Underground Nuclear Explosions}
+      \field{urlday}{19}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{1977}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/C20130044453
+      \endverb
+      \verb{url}
+      \verb https://linkinghub.elsevier.com/retrieve/pii/C20130044453
+      \endverb
+    \endentry
     \entry{dowla_seismic_1990}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=c408f1c0973a5113a022e5223cdd140e}{%
@@ -631,6 +1424,26 @@
       \verb https://linkinghub.elsevier.com/retrieve/pii/S0165168416300494
       \endverb
     \endentry
+    \entry{noauthor_instantaneous_2024}{online}{}{}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{title}{Instantaneous q factor}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wiki.seg.org/wiki/Dictionary:Instantaneous_q_factor/en
+      \endverb
+      \verb{url}
+      \verb https://wiki.seg.org/wiki/Dictionary:Instantaneous_q_factor/en
+      \endverb
+    \endentry
     \entry{maurer_seismic_1992}{inbook}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=1c560bd45cb97cf2dd6c62c1952f65a7}{%
@@ -706,6 +1519,327 @@
       \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?doi=10.1117/12.139971
       \endverb
     \endentry
+    \entry{qi_seismic_2020}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=dc3ada71cae6bd528fc0042cb89f90ff}{%
+           family={Qi},
+           familyi={Q\bibinitperiod},
+           given={Jie},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4ac36eed64badd6f195e86aeecd037a7}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Bo},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3c5ffce88d5c4127212300c9a8c34960}{%
+           family={Lyu},
+           familyi={L\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6952ed9f36202f8e501cfef7010423e6}{%
+           family={Marfurt},
+           familyi={M\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9b4e56156871b21fd0ac6b4da25f193a}
+      \strng{fullhash}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{fullhashraw}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{bibnamehash}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{authorbibnamehash}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{authornamehash}{9b4e56156871b21fd0ac6b4da25f193a}
+      \strng{authorfullhash}{4abfbe5fa508fa3b2de48d644867a566}
+      \strng{authorfullhashraw}{4abfbe5fa508fa3b2de48d644867a566}
+      \field{sortinit}{Q}
+      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Interpreters face two main challenges in seismic facies analysis. The first challenge is to define, or “label,” the facies of interest. The second challenge is to select a suite of attributes that can differentiate a target facies from the background reflectivity. Our key objective is to determine which seismic attributes can best differentiate one class of chaotic seismic facies from another using modern machine-learning technology. Although simple 1D histograms provide a list of candidate attributes, they do not provide insight into the optimum number or combination of attributes. To address this limitation, we have conducted an exhaustive search whereby we represent the target and background training facies by high-dimensional Gaussian mixture models ({GMMs}) for each potential attribute combination. The first step is to choose candidate attributes that may be able to differentiate chaotic mass-transport deposits and salt diapirs from the more conformal, coherent background reflectors. The second step is to draw polygons around the target and background facies to provide the labeled data to be represented by {GMMs}. Maximizing the distance between all {GMM} facies pairs provides the optimum number and combination of attributes. We use generative topographic mapping to represent the high-dimensional attribute data by a lower dimensional 2D manifold. Each labeled facies provides a probability density function on the manifold that can be compared to the probability density function of each voxel, providing the likelihood that a given voxel is a member of each of the facies. Our first example maps chaotic seismic facies associated with the development of salt diapirs and minibasins. Our second example successfully delineates karst collapse underlying a shale resource play from north Texas.}
+      \field{issn}{0016-8033, 1942-2156}
+      \field{journaltitle}{{GEOPHYSICS}}
+      \field{langid}{english}
+      \field{number}{2}
+      \field{title}{Seismic attribute selection for machine-learning-based facies analysis}
+      \field{urlday}{14}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{85}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{O17\bibrangedash O35}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1190/geo2019-0223.1
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\4N4KZJDC\\Qi et al. - 2020 - Seismic attribute selection for machine-learning-based facies analysis.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/10.1190/geo2019-0223.1
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/10.1190/geo2019-0223.1
+      \endverb
+    \endentry
+    \entry{noauthor_rms_2022}{online}{}{}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labeltitlesource}{title}
+      \field{title}{{RMS} amplitude}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://wiki.seg.org/wiki/RMS_amplitude
+      \endverb
+      \verb{url}
+      \verb https://wiki.seg.org/wiki/RMS_amplitude
+      \endverb
+    \endentry
+    \entry{roden_geologic_2015}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c12fdee5dd9b18eef32d6b6b868feae7}{%
+           family={Roden},
+           familyi={R\bibinitperiod},
+           given={Rocky},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=be8287076101e244d3b27831a7b490c3}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c0f8d059a5efecaa9e9f4e99dc987d2a}{%
+           family={Sacrey},
+           familyi={S\bibinitperiod},
+           given={Deborah},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{20ff8d0e306fb1a749f33967868767ac}
+      \strng{fullhash}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{fullhashraw}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{bibnamehash}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{authorbibnamehash}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{authornamehash}{20ff8d0e306fb1a749f33967868767ac}
+      \strng{authorfullhash}{54bae1a77414e9a1d99f696e09d594b8}
+      \strng{authorfullhashraw}{54bae1a77414e9a1d99f696e09d594b8}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{Interpretation of seismic reflection data routinely involves powerful multiple-central-processing-unit computers, advanced visualization techniques, and generation of numerous seismic data types and attributes. Even with these technologies at the disposal of interpreters, there are additional techniques to derive even more useful information from our data. Over the last few years, there have been efforts to distill numerous seismic attributes into volumes that are easily evaluated for their geologic significance and improved seismic interpretation. Seismic attributes are any measurable property of seismic data. Commonly used categories of seismic attributes include instantaneous, geometric, amplitude accentuating, amplitude-variation with offset, spectral decomposition, and inversion. Principal component analysis ({PCA}), a linear quantitative technique, has proven to be an excellent approach for use in understanding which seismic attributes or combination of seismic attributes has interpretive significance. The {PCA} reduces a large set of seismic attributes to indicate variations in the data, which often relate to geologic features of interest. {PCA}, as a tool used in an interpretation workflow, can help to determine meaningful seismic attributes. In turn, these attributes are input to self-organizing-map ({SOM}) training. The {SOM}, a form of unsupervised neural networks, has proven to take many of these seismic attributes and produce meaningful and easily interpretable results. {SOM} analysis reveals the natural clustering and patterns in data and has been beneficial in defining stratigraphy, seismic facies, direct hydrocarbon indicator features, and aspects of shale plays, such as fault/fracture trends and sweet spots. With modern visualization capabilities and the application of 2D color maps, {SOM} routinely identifies meaningful geologic patterns. Recent work using {SOM} and {PCA} has revealed geologic features that were not previously identified or easily interpreted from the seismic data. The ultimate goal in this multiattribute analysis is to enable the geoscientist to produce a more accurate interpretation and reduce exploration and development risk.}
+      \field{issn}{2324-8858, 2324-8866}
+      \field{journaltitle}{Interpretation}
+      \field{langid}{english}
+      \field{number}{4}
+      \field{shorttitle}{Geologic pattern recognition from seismic attributes}
+      \field{title}{Geologic pattern recognition from seismic attributes: Principal component analysis and self-organizing maps}
+      \field{urlday}{7}
+      \field{urlmonth}{5}
+      \field{urlyear}{2025}
+      \field{volume}{3}
+      \field{year}{2015}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{SAE59\bibrangedash SAE83}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1190/INT-2015-0037.1
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\BHQL878K\\Roden et al. - 2015 - Geologic pattern recognition from seismic attributes Principal component analysis and self-organizi.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/10.1190/INT-2015-0037.1
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/10.1190/INT-2015-0037.1
+      \endverb
+    \endentry
+    \entry{sheriff_encyclopedic_2002}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=5aba58c57f512088798f28a5bf800a12}{%
+           family={Sheriff},
+           familyi={S\bibinitperiod},
+           given={Robert\bibnamedelima E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Society of Exploration Geophysicists}%
+      }
+      \strng{namehash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{fullhash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{fullhashraw}{5aba58c57f512088798f28a5bf800a12}
+      \strng{bibnamehash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{authorbibnamehash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{authornamehash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{authorfullhash}{5aba58c57f512088798f28a5bf800a12}
+      \strng{authorfullhashraw}{5aba58c57f512088798f28a5bf800a12}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Fourth}
+      \field{isbn}{978-1-56080-118-4 978-1-56080-296-9}
+      \field{langid}{english}
+      \field{month}{1}
+      \field{title}{Encyclopedic Dictionary of Applied Geophysics}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2002}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1190/1.9781560802969
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\FU6N8USP\\Sheriff - 2002 - Encyclopedic Dictionary of Applied Geophysics.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/book/10.1190/1.9781560802969
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/book/10.1190/1.9781560802969
+      \endverb
+    \endentry
+    \entry{taner_complex_1979}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=339dee5f09825aabc5486a580fec3a0f}{%
+           family={Taner},
+           familyi={T\bibinitperiod},
+           given={M.\bibnamedelimi T.},
+           giveni={M\bibinitperiod\bibinitdelim T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6da9560c838efa7c92e17072c7b8e08f}{%
+           family={Koehler},
+           familyi={K\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a0eee3306c196b5ce3240590e836d1c1}{%
+           family={Sheriff},
+           familyi={S\bibinitperiod},
+           given={R.\bibnamedelimi E.},
+           giveni={R\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9b1f541b503a8cad12078028d763b242}
+      \strng{fullhash}{9a02709df491aabcd227c02e772394b2}
+      \strng{fullhashraw}{9a02709df491aabcd227c02e772394b2}
+      \strng{bibnamehash}{9a02709df491aabcd227c02e772394b2}
+      \strng{authorbibnamehash}{9a02709df491aabcd227c02e772394b2}
+      \strng{authornamehash}{9b1f541b503a8cad12078028d763b242}
+      \strng{authorfullhash}{9a02709df491aabcd227c02e772394b2}
+      \strng{authorfullhashraw}{9a02709df491aabcd227c02e772394b2}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The conventional seismic trace can be viewed as the real component of a complex trace which can be uniquely calculated under usual conditions. The complex trace permits the unique separation of envelope amplitude and phase information and the calculation of instantaneous frequency. These and other quantities can be displayed in a color‐encoded manner which helps an interpreter see their interrelationship and spatial changes. The significance of color patterns and their geological interpretation is illustrated by examples of seismic data from three areas.}
+      \field{issn}{0016-8033, 1942-2156}
+      \field{journaltitle}{{GEOPHYSICS}}
+      \field{langid}{english}
+      \field{number}{6}
+      \field{title}{Complex seismic trace analysis}
+      \field{urlday}{23}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{44}
+      \field{year}{1979}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{1041\bibrangedash 1063}
+      \range{pages}{23}
+      \verb{doi}
+      \verb 10.1190/1.1440994
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\XPQF6GQ9\\Taner et al. - 1979 - Complex seismic trace analysis.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://library.seg.org/doi/10.1190/1.1440994
+      \endverb
+      \verb{url}
+      \verb https://library.seg.org/doi/10.1190/1.1440994
+      \endverb
+    \endentry
+    \entry{zhao_seismic_2018}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=1831c1cfce9068289736002a0260b396}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Tao},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=262f7221d4a14db1394b53347325b166}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Fangyu},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8d3dfea7a61bdaa49e6a6661a855a7b2}{%
+           family={Marfurt},
+           familyi={M\bibinitperiod},
+           given={Kurt\bibnamedelima J.},
+           giveni={K\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{6198db5ba965a13c8c5bcaf02bc4451d}
+      \strng{fullhash}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{fullhashraw}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{bibnamehash}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{authorbibnamehash}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{authornamehash}{6198db5ba965a13c8c5bcaf02bc4451d}
+      \strng{authorfullhash}{6daa2d78d6f343431c3139dc96ad171e}
+      \strng{authorfullhashraw}{6daa2d78d6f343431c3139dc96ad171e}
+      \field{extraname}{1}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{With the rapid development in seismic attribute and interpretation techniques, interpreters can be overwhelmed by the number of attributes at their disposal. Pattern recognition driven seismic facies analysis provides a means to identify subtle variations across multiple attributes that may only be partially defined on a single attribute. Typically, interpreters intuitively choose input attributes for multiattribute facies analysis based on their experience and geologic target of interest. However, such an approach may overlook unsuspected features hidden in the data. We therefore augment this qualitative attribute selection process with quantitative measures of which candidate attributes best differentiate features of interest. Instead of selecting a group of attributes and assuming all the selected attributes contribute equally to the facies map, we weight the interpreter-selected input attributes based on both their response from the unsupervised learning algorithm and interpreter’s knowledge. In other...}
+      \field{journaltitle}{Geophysics}
+      \field{number}{2}
+      \field{title}{Seismic attribute selection for unsupervised seismic facies analysis using user guided data-adaptive weights}
+      \field{volume}{83}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1190/geo2017-0192.1
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\82QQ9C4J\\Zhao et al. - 2018 - Seismic attribute selection for unsupervised seismic facies analysis using user guided data-adaptive.pdf:application/pdf
+      \endverb
+    \endentry
     \entry{zhao_characterizing_2016}{article}{}{}
       \name{author}{4}{}{%
         {{un=0,uniquepart=base,hash=1831c1cfce9068289736002a0260b396}{%
@@ -741,6 +1875,7 @@
       \strng{authornamehash}{6198db5ba965a13c8c5bcaf02bc4451d}
       \strng{authorfullhash}{df9dc7c6fe80517ae20f31946e2ac298}
       \strng{authorfullhashraw}{df9dc7c6fe80517ae20f31946e2ac298}
+      \field{extraname}{2}
       \field{sortinit}{Z}
       \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
       \field{extradatescope}{labelyear}
@@ -757,6 +1892,9 @@
       \field{dateera}{ce}
       \verb{doi}
       \verb 10.1190/int-2015-0094.1
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\ZB6ADNCN\\Zhao et al. - 2016 - Characterizing a turbidite system in Canterbury Basin, New Zealand, using seismic attributes and dis.pdf:application/pdf
       \endverb
     \endentry
   \enddatalist

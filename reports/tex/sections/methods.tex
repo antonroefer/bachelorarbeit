@@ -1,10 +1,151 @@
 \section{Methoden}
 
 \subsection{Radargramm Datensatz}
-Der Datensatz, der in dieser Arbeit verwendet wird besteht aus insgesamt 30 Radargrammen
+Der Datensatz, der in dieser Arbeit verwendet wird, besteht aus insgesamt 30 Radargrammen. Diese wurden zum Zweck ... am ... in ... aufgenommen. In Abbildung \ref{fig:example} sieht man die Profile, wobei Profil 7 und Profil 30 hervorgehoben sind. Profil 7 wurde als Trainingsdatensatz und Profil 30 als Testdatensatz ausgewählt. Die restlichen Profile wurden nicht verwendet.\\
+
+\begin{center}
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=0.9\textwidth]{pictures/example.jpg}
+        \caption{Beispiel eines Radargramms}
+        \label{fig:example}
+    \end{figure}
+\end{center}
+
+Der für diese Analyse verwendete Datensatz wurde bereits vorprozessiert bereitgestellt. Die für die Vorverarbeitung verwendeten Schritte sind in Tabelle \ref{tab:preprocessing} zusammengefasst. \\
+
+\begin{table}[h!]
+    \centering
+    \caption{Vorverarbeitungsschritte des Radargramm-Datensatzes}
+    \label{tab:preprocessing}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Schritt} & \textbf{Beschreibung} & \textbf{Wert} \\
+        \hline
+        1 & & \\
+        \hline
+        
+    \end{tabular}
+\end{table}
+
+\clearpage
 
 \subsection{Merkmale}
-\lipsum[1-8]
+
+Die Auswahl geeigneter Merkmale ist entscheidend für die Qualität der Analyseergebnisse, da sie maßgeblich beeinflusst, wie gut die zugrunde liegenden physikalischen Prozesse erkannt und interpretiert werden können. Ein zentrales Problem bei der Merkmalsauswahl besteht darin, dass heutzutage eine enorme Vielfalt an seismischen Attributen existiert, die kaum noch zu überschauen ist \parencites{zhao_seismic_2018}{qi_seismic_2020}{barnes_too_2006}. Die stetige Entwicklung neuer Attribute, oft auch durch Kombination von schon bekannten Merkmalen, und das Fehlen einer allgemein anerkannten Einteilung \parencite{roden_geologic_2015} führen dazu, dass es zunehmend schwieriger wird, eine gezielte und sinnvolle Auswahl zu treffen. Während einige Autoren, wie \textcite{zhao_seismic_2018}, eine mathematische und qualitative Merkmalsauswahl vorschlagen, beschreiben \textcite{chopra_seismic_2007}, dass es in der Praxis Gang und Gebe ist, diese intuitiv durchzuführen. Dazu ist wichtig zu wissen, was eine gute Auswahl ausmacht. \textcite{barnes_too_2006} nennt drei Kriterien, die ein Merkmal erfüllen sollte: \\
+
+\begin{enumerate}
+    \item Unabhängigkeit von anderen Merkmalen sein, um Redundanz zu vermeiden
+    \item Klare physikalische Bedeutung
+    \item Stabilität gegenüber Störsignalen
+\end{enumerate}
+Um eine optimale Merkmalsauswahl zu gewährleisten, wurden in dieser Arbeit zunächst \textbf{ZAHL} verschiedene Attribute berechnet, um ein breites Spektrum potenziell relevanter Informationen zu erfassen. Die Auswahl basierte größtenteils auf den tabellarischen Zusammenfassungen von \textcite{roden_geologic_2015} und \textcite{barnes_too_2006} sowie auf den Beschreibungen von \textcite{chopra_seismic_2007}. Im Anschluss wurde geprüft, welche dieser Merkmale für die weitere Analyse sinnvoll sind und die genannten Kriterien erfüllen. So konnte eine fundierte und abgegrenzte Auswahl getroffen werden, die später für die SOM bereitgestellt werden kann.
+
+\subsubsection{Amplitude}
+
+Als Amplitudenattribute wurden die Instantaneous Amplitude (Momentanamplitude oder auch Einhüllende) \parencite{taner_complex_1979}, die Average Energy (Durchschnittliche Energie) \parencites{roden_geologic_2015}{noauthor_average_2021} und die Root Mean Squared Amplitude (Effektive Amplitude oder auch Quadratischer Mittelwert der Amplitude) \parencites{roden_geologic_2015}{noauthor_rms_2022} berechnet. Sie alle zeigen dort hohe Werte, wo es eine hohe Reflexionsstärke gibt. \\
+Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} ist definiert als der Betrag des analytischen Signals $S_A(t)$, das aus der komplexen Hilbert-Transformation des Originalsignals gewonnen wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Sie gibt die momentane Stärke der Welle zu jedem Zeitpunkt an:
+
+\begin{equation}
+    A_I(t) = |S_A(t)|
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Instantaneous Amplitude des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:inst_amplitude}
+\end{figure}
+Die Average Energy $E_A$ oder auch Mean Squared Amplitude \parencite{noauthor_average_2021}, ist definiert als der Durchschnitt der quadrierten Amplitudenwerte über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$. $X$ und $T$ sind die Fensterabstände in Raum- bzw. Zeitrichtung, mit der Anzahl der Werte:
+
+\begin{equation}
+    N = (2X+1) \cdot (2T+1)
+\end{equation}
+innerhalb dieses Fensters. Sie gibt die mittlere Energie des Signals an innerhalb dieses Fensters an und glättet gleichzeitig die Amplitudenwerte, was sinnvoll bei Ausreißern sein kann. Je größer die Fenstergröße, desto stärker die Glättung. Die Average Energy wird wie folgt berechnet:
+
+\begin{equation}
+    E_A(x,t) = \frac{1}{N} \sum_{x=x-X}^{x+X} \sum_{t=t-T}^{t+T} A^2(x,t)
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Average Energy des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:average_energy}
+\end{figure}
+
+Die Root Mean Squared Amplitude $A_{RMS}$ \parencites{roden_geologic_2015}{noauthor_rms_2022} ist definiert als die Quadratwurzel des Durchschnitts der quadrierten Amplitudenwerte über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$. Sie hat den gleichen Glättungseffekt wie die Average Energy, ist aber einfacher zu interpretieren bzw. mit den Originaldaten zu vergleichen, da sie die gleiche Einheit wie die Amplitude hat. Die RMS-Amplitude wird wie folgt berechnet:
+
+\begin{equation}
+    A_{RMS}(x,t) = \sqrt{E_A(x,t)}
+\end{equation}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Root Mean Squared Amplitude des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:rms_amplitude}
+\end{figure}
+
+\subsubsection{Phase}
+
+Als Phasenattribut wurde nur die Instantaneous Phase (Momentanphase) \parencite{taner_complex_1979} verwendet. Sie gibt die momentane Phase der Welle zu jedem Zeitpunkt an und wird ebenfalls aus dem analytischen Signal $S_A(t)$ gewonnen, das aus der komplexen Hilbert-Transformation des Originalsignals berechnet wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Die Instantaneous Phase $\phi_I$ ist definiert als die Phase bzw. der Momentanwinkel des analytischen Signals:
+
+\begin{equation}
+    \phi_I(t) =
+    \begin{cases}
+        \arctan\left(\frac{\text{Im}(S_A(t))}{\text{Re}(S_A(t))}\right), & \text{wenn } \text{Re}(S_A(t)) \neq 0 \\
+        +\frac{\pi}{2}, & \text{wenn } \text{Re}(S_A(t)) = 0 \text{ und } \text{Im}(S_A(t)) > 0 \\
+        -\frac{\pi}{2}, & \text{wenn } \text{Re}(S_A(t)) = 0 \text{ und } \text{Im}(S_A(t)) < 0
+    \end{cases}
+\end{equation}
+Die Instantaneous Phase ist besonders nützlich, um Phasenverschiebungen zwischen verschiedenen Signalen zu erkennen und zu analysieren.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Instantaneous Phase des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:inst_phase}
+\end{figure}
+
+\subsubsection{Frequenz}
+
+Als Frequenzattribut wurde die Instantaneous Frequency (Momentanfrequenz) \parencite{taner_complex_1979} verwendet. Sie gibt die momentane Frequenz der Welle zu jedem Zeitpunkt an und wird aus dem analytischen Signal $S_A(t)$ gewonnen, das aus der komplexen Hilbert-Transformation des Originalsignals berechnet wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Die Instantaneous Frequency $f_I$ ist definiert als die Ableitung der Instantaneous Phase $\phi_I$ nach der Zeit:
+
+\begin{equation}
+    f_I(t) = \frac{1}{2\pi} \frac{d\phi_I(t)}{dt}
+\end{equation}
+Die Instantaneous Frequency ist besonders nützlich, um Frequenzänderungen im Signal zu erkennen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Instantaneous Frequency des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:inst_freq}
+\end{figure}
+
+\subsubsection{Qualitätsfaktor}
+
+Der Qualitätsfaktor $Q$ \parencite{noauthor_instantaneous_2024} ist ein Maß für die Güte eines Signals und beschreibt, wie gut ein Signal in Bezug auf seine Frequenz und Dämpfung ist. Er wird aus der Instantaneous Frequency $f_I$, der Instantaneous Amplitude $A_I$ und dessen zeitlichen Ableitung $A_I'$ berechnet. Der Qualitätsfaktor ist definiert als: \\
+
+\begin{equation}
+    Q = \frac{-\pi f_I(t) A_I(t)}{A_I'(t)}
+\end{equation}
+Ein hoher Qualitätsfaktor deutet auf ein gut definiertes Signal hin, während ein niedriger Qualitätsfaktor auf ein schwaches oder verrauschtes Signal hindeutet.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Qualitätsfaktor des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:quality_factor}
+\end{figure}
+
+\subsubsection{Statistische Momente}
+
+Statistische Momente sind an sich keine seismischen Attribute, sondern werden in der Regel in der Statistik verwendet, um die Verteilung von Daten zu beschreiben. Für diese Arbeit wurden das 3. und das 4. statistische Moment, auch Schiefe und Wölbung genannt berechnet. Diese werden genau so wie die Average Energy und die Root Mean Squared Amplitude über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$ berechnet. 
+
+\subsubsection{Ähnlichkeit}
+\subsubsection{Neigung}
 
 \subsection{Self-Organizing Map Optimierung}
 \lipsum[1-5]
