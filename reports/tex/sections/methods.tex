@@ -1,32 +1,28 @@
 \section{Methoden}
 
 \subsection{Radargramm Datensatz}
-Der Datensatz, der in dieser Arbeit verwendet wird, besteht aus insgesamt 30 Radargrammen. Diese wurden zum Zweck ... am ... in ... aufgenommen. In Abbildung \ref{fig:example} sieht man die Profile, wobei Profil 7 und Profil 30 hervorgehoben sind. Profil 7 wurde als Trainingsdatensatz und Profil 30 als Testdatensatz ausgewählt. Die restlichen Profile wurden nicht verwendet.\\
 
-\begin{center}
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=0.9\textwidth]{pictures/example.jpg}
-        \caption{Beispiel eines Radargramms}
-        \label{fig:example}
-    \end{figure}
-\end{center}
+Der Datensatz, der in dieser Arbeit verwendet wird, besteht aus insgesamt 30 Radargrammen. Diese wurden im Rahmen archäologischer Untersuchungen aufgenommen, um unter anderem Siedlungsstrukturen im Umfeld der jungsteinzeitlichen Fundstelle Lüchow LA 11 (Ostholstein) zerstörungsfrei zu erfassen und zu dokumentieren. Das Untersuchungsgebiet umfasst den heute trockengelegten Duvensee \parencites{corradini_day_2023}{corradini_understanding_2020}, an dessen Ufer in der Jungsteinzeit gesiedelt wurde. Ziel der Messungen war es, mithilfe von Bodenradar (GPR) den damaligen Seeboden zu bestimmen und Hinweise auf prähistorische Siedlungsaktivitäten zu erhalten.  In Abbildung (Abb.) \ref{fig:map} sieht man die Profile, wobei Profil 7 und Profil 30 hervorgehoben sind. Profil 7 wurde als Trainingsdatensatz und Profil 30 als Testdatensatz ausgewählt. Die restlichen Profile wurden nicht verwendet.\\
 
-Der für diese Analyse verwendete Datensatz wurde bereits vorprozessiert bereitgestellt. Die für die Vorverarbeitung verwendeten Schritte sind in Tabelle \ref{tab:preprocessing} zusammengefasst. \\
 
-\begin{table}[h!]
+\begin{figure}[H]
     \centering
-    \caption{Vorverarbeitungsschritte des Radargramm-Datensatzes}
-    \label{tab:preprocessing}
-    \begin{tabular}{|c|c|c|}
-        \hline
-        \textbf{Schritt} & \textbf{Beschreibung} & \textbf{Wert} \\
-        \hline
-        1 & & \\
-        \hline
-        
-    \end{tabular}
-\end{table}
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Radargramme des Datensatzes, hervorgehoben sind Profil 7 und Profil 30}
+    \label{fig:map}
+\end{figure}
+Der für diese Analyse verwendete Datensatz wurde bereits vorprozessiert bereitgestellt, wobei es ihn in 3 Prozessierstufen gibt. Die für die Vorverarbeitung verwendeten Schritte sind in Abb. \ref{fig:preprocessing_steps} zusammengefasst. \\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Vorverarbeitungsschritte des Datensatzes}
+    \label{fig:preprocessing_steps}
+\end{figure}
+
+Prozessierstufe 1 beinhaltet zum einen ein zeitliches Beschneiden der Radargramme, wobei die t0 Zeit entfernt wird und zu starkes Rauschen bei langen Laufzeiten abgeschnitten wird. Zum anderen wird der Spurabstand Spurabstand auf konstante 2 cm gesetzt und ggf. wenn dadurch eine Lücke entsteht dazwischen linear interpoliert. Die rohen Amplitudenwerte werden dabei nicht bearbeitet. \\
+In Prozessierstufe 2 werden ein DC Offset, also ein Mittelwert über alle Daten, entfernt, sodass die Amplitudenwerte um 0 zentriert sind. Desweiteren werden die Daten mit einem Medianfilter über 5 Samples in x Richtung geglättet um Ausreißer zu entfernen. Ebenso wird ein Bandpassfilter mit einem Bandpass von 25 bis 500 MHz auf die Daten angewendet, um hochfrequentes Rauschen und langwellige Störungen zu reduzieren. Im Anschluss werden die Daten nach Augenmaß verstärkt. Dies passiert mit einer durch 5 Verstärkungspunkte definierten Gain Funktion. Die Punkte liegen bei -20, 0, 20, 25 und 30 dB und sind gleichmäßig über die Zeit verteilt. Das bedeutet, dass die zeitlich ersten Samples mit -20 dB und die zeitlich letzten Samples mit 30 dB verstärkt werden. Zuletzt wird noch ein Medianfilter über 3 Samples in x angewendet. \\
+Die letzte Prozessierstufe beinhaltet nur einen Wellenzahlhochpassfilter mit einem Wert von 0,1 $\frac{1}{\,\mathrm{cm}}$, da in den Daten ein unerwünschtes langwelliges Signal zwischen 40 und 60 ns zu sehen war, welches durch die vorherigen Prozessiersschritte noch nicht entfernt wurde. \\
 
 \clearpage
 

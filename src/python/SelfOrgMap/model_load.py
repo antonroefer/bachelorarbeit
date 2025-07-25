@@ -154,10 +154,7 @@ with np.load(data_path) as npzfile:
     # Liste der gewünschten Features
     desired_features = [
         "inst_amp",
-        "inst_freq_raw",
-        "semblance",
         "kurtosis",
-        "inst_q",
     ]
 
     # Annahme: Die Namen der Features sind in der .npz-Datei unter dem Schlüssel 'feature_names' gespeichert
@@ -221,7 +218,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 for i in range(data.shape[1]):
     data[:, i] = min_max_scale(data[:, i])
 
-apx = "25"
+apx = "32"
 
 # Definiere den Pfad zum gespeicherten Modell
 model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
