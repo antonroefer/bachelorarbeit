@@ -138,10 +138,85 @@ Ein hoher Qualitätsfaktor deutet auf ein gut definiertes Signal hin, während e
 
 \subsubsection{Statistische Momente}
 
-Statistische Momente sind an sich keine seismischen Attribute, sondern werden in der Regel in der Statistik verwendet, um die Verteilung von Daten zu beschreiben. Für diese Arbeit wurden das 3. und das 4. statistische Moment, auch Schiefe und Wölbung genannt berechnet. Diese werden genau so wie die Average Energy und die Root Mean Squared Amplitude über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$ berechnet. 
+Statistische Momente sind an sich keine seismischen Attribute, sondern werden in der Regel in der Statistik verwendet, um die Verteilung von Daten zu beschreiben. Wobei die ersten beiden statistischen Momente Mittelwert $\mu_1$ und Varianz $\mu_2 = \sigma^2$ mit $\sigma$ als Standardabweichung oft genutzt werden, sind das dritte und das vierte statistische Moment, auch Skewness $\mu_3$ (Schiefe) und Kurtosis $\mu_4$ (Wölbung) genannt \parencite{guthrie_nistsematech_2020}, of weniger bekannt. Als Attribute werden diese genau so wie die Average Energy und die Root Mean Squared Amplitude über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$ berechnet. \\
+Die Idee hinter den beiden Statistischen Momenten ist es, Rauschen von anderen Signalen zu unterscheiden. Dabei ist es wichtig, die Fenstergröße klein zu halten, in diesem Fall auf $\left[x-1, x+1\right]$ und $\left[t-1, t+1\right]$. Für einen nicht verrauschten Datenpunkt sollten die 9 Samples $A(x,t)$ in diesem Bereich relativ ähnliche Werte besitzen und somit eine sehr komprimierte, spitze Verteilung aufweisen. Bei verrauschten Datenpunkten hingegen sind diese Werte sehr unterschiedlich und die Verteilung ist breit und flach. Skewness und Kurtosis werden folgendermaßen berechnet: \\
+
+\begin{equation}
+    \mu_3(x,t) = \frac{1}{N} \sum_{x=x-X}^{x+X} \sum_{t=t-T}^{t+T} \left( \frac{A(x,t) - \mu_1}{\sigma} \right)^3
+\end{equation}
+
+\begin{equation}
+    \mu_4(x,t) = \frac{1}{N} \sum_{x=x-X}^{x+X} \sum_{t=t-T}^{t+T} \left( \frac{A(x,t) - \mu_1}{\sigma} \right)^4
+\end{equation}
+$\mu_1$ und $\sigma$ stehen hierbei für den Mittelwert und die Standardabweichung der Amplituden $A(x,t)$ innerhalb des jeweiligen Fensterbereichs. Desweiteren wird aus der Kurtosis $\mu_4$ noch die Excess Kurtosis ${\mu_4}_{E}$ berechnet, da die Kurtosis $\mu_4$ einer Normalverteilung den Wert 3 beträgt:
+
+\begin{equation}
+    {\mu_4}_{E}(x,t) = \mu_4(x,t) - 3
+\end{equation}
+Dies ist an sich nicht notwendig, da die Attribute vor dem SOM Training normalisiert werden, aber es erleichtert die Optimierung der Kurtosis und macht sie mit der Skewness vergleichbar, da diese bei einer Normalverteilung auch den Wert 0 besitzt. \\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Skewness des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:skewness}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Kurtosis des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:kurtosis}
+\end{figure}
 
 \subsubsection{Ähnlichkeit}
-\subsubsection{Neigung}
+
+Die Ähnlichkeitsattribute sind wahrscheinlich die Features, die in ihrer Benennung am meisten variieren. Während \textcite{barnes_too_2006} von \textit{discontinuity} und \textcite{roden_geologic_2015} teilweise von \textit{similarity} sprechen, unterteilen \textcite{chopra_seismic_2007} sechs verschiedene \textit{coherence} - Attribute und geben als einzige der drei Quellen auch Formeln zur Berechnung an:
+
+\begin{itemize}
+    \item Crosscorrelation-based coherence
+    \item Semblance-based coherence
+    \item Variance-based coherence
+    \item Eigenstructure-based coherence
+    \item Gradient Structure Tensor-based coherence
+    \item Least-squares-based coherence
+\end{itemize}
+Alle benannten Ähnlichkeitsattribute liefern laut Abbildung 25 in \textcite{chopra_seismic_2007} ähnliche Ergebnisse. Da \textcite{barnes_too_2006} beschreibt, dass es in so einem Fall keine Rolle spielt, welches Attribut gewählt wird, wurde das (für mich) verständlichste Attribut \textit{Semblance-based coherence} gewählt. Dieses basiert zusätzlich zu den Amplitudenwerten $A(x,t)$ auch auf einem benutzerdefinierten Neigungsattribut, dem sogenannten \textit{Dip} \parencite{chopra_seismic_2007}. Um die Berechnung und die spätere Optimierung zu vereinfachen, wurde die Formel für die Semblance $S_B$ vereinfacht und auf das Neigungsattribut verzichtet. Die Semblance ist in dieser Arbeit definiert als:
+
+\begin{equation}
+    S_B(x, t) = \frac{\left( \sum_{i=1}^{N} A_i(x, t) \right)^2}{N \sum_{i=1}^{N} A_i^2(x, t)}
+\end{equation}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{pictures/example.jpg}
+    \caption{Semblance des Radargramms 7 ohne Wellenzahlmedian-Filter}
+    \label{fig:semblance}
+\end{figure}
+% Desweiteren wurde ein eigenes auf Standardabweichung $\sigma$ und Mittelwert $\mu_1$ basierendes Ähnlichkeitsattribut entwickelt, welches in dieser Arbeit als "Ähnlichkeit" $Ä$ bezeichnet wird.
+%
+% \begin{equation}
+%     Ä(x, t) = 1 - \frac{\sigma(x, t)}{|\mu_1(x, t)|}
+% \end{equation}
+% Desto größer die Standardabweichung $\sigma$ im Vergleich zum Mittelwert $\mu_1$ ist, desto kleiner wird der Wert von $Ä$. Ein Wert von 0 bedeutet, dass die Standardabweichung gleich dem Mittelwert ist und somit eine hohe Varianz vorliegt. Ein Wert von 1 bedeutet, dass die Standardabweichung 0 ist und somit alle Amplitudenwerte gleich dem Mittelwert sind. Werte kleiner 0 sind nicht möglich, da die Standardabweichung immer größer oder gleich 0 ist. \\
+
+% \subsubsection{Neigung}
+%
+% Der Dip (Neigung) ist ebenfalls ein Attribut, welches sich auf viele Art und Weisen berechnen lässt. In dieser Arbeit wird der Dip als sehr einfach über die Gradienten in x- und t-Richtung berechnet:
+%
+% \begin{equation}
+%     D(x, t) = arctan\left(\frac{\partial A(x, t)}{\partial x}, \frac{\partial A(x, t)}{\partial t}\right)
+% \end{equation}
 
 \subsection{Self-Organizing Map Optimierung}
-\lipsum[1-5]
+
+\subsubsection{Definition und Funktionsweise der SOM}
+
+Die Self-Organizing Map (SOM) ist ein Algorithmus des unüberwachten maschinellen Lernens, der in seiner heutigen Form 1982 von Teuvo Kohonen entwickelt wurde \parencite{kohonen_self-organizing_2001}.
+Es ist nach Definition des Entwicklers ein Neuronales Netz, da es aus einem regulären Gitter aus Neuronen besteht, die miteinander als Netz in Verbindung stehen \parencite{kohonen_self-organizing_2001}. Nach heutiger Definition von \textcite{ibm_data_and_ai_team_what_nodate} ist eine Neuronal Netz allerdings ein Algorithmus, der zwar Entscheidungen auf ähnliche Weise wie das menschliche Gehirn trifft, aber auch verschiedenen Ebenen, also einer Eingabeschicht, mehreren verborgenen Ebenen und einer Ausgabeschicht besteht. Nach dieser Definition ist die SOM kein Neuronales Netz, aber dennoch ist sie als wichtiger Bestandteil des machinellen Lernens in Büchern über Neuronale Netze zu finden \parencites{brause_neuronale_1995}{rojas_theorie_1993}{kinnebrock_neuronale_2018}.\\
+Bei der Initialisierung einer SOM wird zunächst ein festes Gitter aus Neuronen erstellt, indem die Neuronen feste Distanzen zueinander besitzen. Danach werden die Gewichtsvektoren der Neuronen initialisiert, indem sie meist zufällige Werte zugewiesen bekommen. Die Dimenson der Gewichtsvektoren wird durch die Dimension des Feature-Raums, also die Anzahl der eingegebenen Feature bestimmt. Die Neuronen repräsentieren damit einzelne Punkte im Feature-Raum der Eingabedaten \parencite{kohonen_self-organizing_2001}. \\
+Für das Training werden die Eingabedaten meist in einer zufälligen Reihenfolge durchiteriert. Bei jeder Iteration werden die Abstände von jedem Neuron zu dem aktuellen Eingabedatenpunkt berechnet. Jenes Neuron, welches den kleinsten Abstand zum Eingabepunkt besitzt, wird als \textit{Best Matching Unit (BMU)} bezeichnet. Im Anschluss verändern alle Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der Lernrate und der Distanz zum BMU im Neuronengitter, d.h. bildlich gesprochen verschiebt sich die BMU am stärksten in Richtung des Eingabepunktes und zieht ihre Nachbarn mit. Je weiter entfernt ein Neuron im Neuronengitter ist, desto weniger wird es verschoben. Durch diese Eigenschaft entsteht eine Sortierung, bei der benachbarte Neuronen im Neuronengitter, ähnliche Eingabedaten repräsentieren. Wurden alle Eingabedaten einmal durchlaufen, wird von einer Epoche gesprochen. Je nach Implementierung nimmt die Lernrate entweder mit steigender Iterationenzahl oder mit steigender Epochenzahl ab, sodass die SOM konvergiert. \parencite{kohonen_self-organizing_2001}.\\
+
+\subsubsection{Hyperparameter Tuning}
+
+\subsubsection{Feature-Auswahl}
