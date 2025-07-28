@@ -138,17 +138,17 @@ Ein hoher Qualitätsfaktor deutet auf ein gut definiertes Signal hin, während e
 
 \subsubsection{Statistische Momente}
 
-Statistische Momente sind an sich keine seismischen Attribute, sondern werden in der Regel in der Statistik verwendet, um die Verteilung von Daten zu beschreiben. Wobei die ersten beiden statistischen Momente Mittelwert $\mu_1$ und Varianz $\mu_2 = \sigma^2$ mit $\sigma$ als Standardabweichung oft genutzt werden, sind das dritte und das vierte statistische Moment, auch Skewness $\mu_3$ (Schiefe) und Kurtosis $\mu_4$ (Wölbung) genannt \parencite{guthrie_nistsematech_2020}, of weniger bekannt. Als Attribute werden diese genau so wie die Average Energy und die Root Mean Squared Amplitude über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$ berechnet. \\
+Statistische Momente sind an sich keine seismischen Attribute, sondern werden in der Regel in der Statistik verwendet, um die Verteilung von Daten zu beschreiben. Wobei die ersten beiden statistischen Momente Mittelwert $\mu_1$ und Varianz $\mu_2 = \epsilon^2$ mit $\epsilon$ als Standardabweichung oft genutzt werden, sind das dritte und das vierte statistische Moment, auch Skewness $\mu_3$ (Schiefe) und Kurtosis $\mu_4$ (Wölbung) genannt \parencite{guthrie_nistsematech_2020}, of weniger bekannt. Als Attribute werden diese genau so wie die Average Energy und die Root Mean Squared Amplitude über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$ berechnet. \\
 Die Idee hinter den beiden Statistischen Momenten ist es, Rauschen von anderen Signalen zu unterscheiden. Dabei ist es wichtig, die Fenstergröße klein zu halten, in diesem Fall auf $\left[x-1, x+1\right]$ und $\left[t-1, t+1\right]$. Für einen nicht verrauschten Datenpunkt sollten die 9 Samples $A(x,t)$ in diesem Bereich relativ ähnliche Werte besitzen und somit eine sehr komprimierte, spitze Verteilung aufweisen. Bei verrauschten Datenpunkten hingegen sind diese Werte sehr unterschiedlich und die Verteilung ist breit und flach. Skewness und Kurtosis werden folgendermaßen berechnet: \\
 
 \begin{equation}
-    \mu_3(x,t) = \frac{1}{N} \sum_{x=x-X}^{x+X} \sum_{t=t-T}^{t+T} \left( \frac{A(x,t) - \mu_1}{\sigma} \right)^3
+    \mu_3(x,t) = \frac{1}{N} \sum_{x=x-X}^{x+X} \sum_{t=t-T}^{t+T} \left( \frac{A(x,t) - \mu_1}{\epsilon} \right)^3
 \end{equation}
 
 \begin{equation}
-    \mu_4(x,t) = \frac{1}{N} \sum_{x=x-X}^{x+X} \sum_{t=t-T}^{t+T} \left( \frac{A(x,t) - \mu_1}{\sigma} \right)^4
+    \mu_4(x,t) = \frac{1}{N} \sum_{x=x-X}^{x+X} \sum_{t=t-T}^{t+T} \left( \frac{A(x,t) - \mu_1}{\epsilon} \right)^4
 \end{equation}
-$\mu_1$ und $\sigma$ stehen hierbei für den Mittelwert und die Standardabweichung der Amplituden $A(x,t)$ innerhalb des jeweiligen Fensterbereichs. Desweiteren wird aus der Kurtosis $\mu_4$ noch die Excess Kurtosis ${\mu_4}_{E}$ berechnet, da die Kurtosis $\mu_4$ einer Normalverteilung den Wert 3 beträgt:
+$\mu_1$ und $\epsilon$ stehen hierbei für den Mittelwert und die Standardabweichung der Amplituden $A(x,t)$ innerhalb des jeweiligen Fensterbereichs. Desweiteren wird aus der Kurtosis $\mu_4$ noch die Excess Kurtosis ${\mu_4}_{E}$ berechnet, da die Kurtosis $\mu_4$ einer Normalverteilung den Wert 3 beträgt:
 
 \begin{equation}
     {\mu_4}_{E}(x,t) = \mu_4(x,t) - 3
@@ -193,12 +193,12 @@ Alle benannten Ähnlichkeitsattribute liefern laut Abbildung 25 in \textcite{cho
     \caption{Semblance des Radargramms 7 ohne Wellenzahlmedian-Filter}
     \label{fig:semblance}
 \end{figure}
-% Desweiteren wurde ein eigenes auf Standardabweichung $\sigma$ und Mittelwert $\mu_1$ basierendes Ähnlichkeitsattribut entwickelt, welches in dieser Arbeit als "Ähnlichkeit" $Ä$ bezeichnet wird.
+% Desweiteren wurde ein eigenes auf Standardabweichung $\epsilon$ und Mittelwert $\mu_1$ basierendes Ähnlichkeitsattribut entwickelt, welches in dieser Arbeit als "Ähnlichkeit" $Ä$ bezeichnet wird.
 %
 % \begin{equation}
-%     Ä(x, t) = 1 - \frac{\sigma(x, t)}{|\mu_1(x, t)|}
+%     Ä(x, t) = 1 - \frac{\epsilon(x, t)}{|\mu_1(x, t)|}
 % \end{equation}
-% Desto größer die Standardabweichung $\sigma$ im Vergleich zum Mittelwert $\mu_1$ ist, desto kleiner wird der Wert von $Ä$. Ein Wert von 0 bedeutet, dass die Standardabweichung gleich dem Mittelwert ist und somit eine hohe Varianz vorliegt. Ein Wert von 1 bedeutet, dass die Standardabweichung 0 ist und somit alle Amplitudenwerte gleich dem Mittelwert sind. Werte kleiner 0 sind nicht möglich, da die Standardabweichung immer größer oder gleich 0 ist. \\
+% Desto größer die Standardabweichung $\epsilon$ im Vergleich zum Mittelwert $\mu_1$ ist, desto kleiner wird der Wert von $Ä$. Ein Wert von 0 bedeutet, dass die Standardabweichung gleich dem Mittelwert ist und somit eine hohe Varianz vorliegt. Ein Wert von 1 bedeutet, dass die Standardabweichung 0 ist und somit alle Amplitudenwerte gleich dem Mittelwert sind. Werte kleiner 0 sind nicht möglich, da die Standardabweichung immer größer oder gleich 0 ist. \\
 
 % \subsubsection{Neigung}
 %
@@ -208,14 +208,120 @@ Alle benannten Ähnlichkeitsattribute liefern laut Abbildung 25 in \textcite{cho
 %     D(x, t) = arctan\left(\frac{\partial A(x, t)}{\partial x}, \frac{\partial A(x, t)}{\partial t}\right)
 % \end{equation}
 
-\subsection{Self-Organizing Map Optimierung}
+\subsection{Self-Organizing Map}
 
 \subsubsection{Definition und Funktionsweise der SOM}
 
 Die Self-Organizing Map (SOM) ist ein Algorithmus des unüberwachten maschinellen Lernens, der in seiner heutigen Form 1982 von Teuvo Kohonen entwickelt wurde \parencite{kohonen_self-organizing_2001}.
 Es ist nach Definition des Entwicklers ein Neuronales Netz, da es aus einem regulären Gitter aus Neuronen besteht, die miteinander als Netz in Verbindung stehen \parencite{kohonen_self-organizing_2001}. Nach heutiger Definition von \textcite{ibm_data_and_ai_team_what_nodate} ist eine Neuronal Netz allerdings ein Algorithmus, der zwar Entscheidungen auf ähnliche Weise wie das menschliche Gehirn trifft, aber auch verschiedenen Ebenen, also einer Eingabeschicht, mehreren verborgenen Ebenen und einer Ausgabeschicht besteht. Nach dieser Definition ist die SOM kein Neuronales Netz, aber dennoch ist sie als wichtiger Bestandteil des machinellen Lernens in Büchern über Neuronale Netze zu finden \parencites{brause_neuronale_1995}{rojas_theorie_1993}{kinnebrock_neuronale_2018}.\\
-Bei der Initialisierung einer SOM wird zunächst ein festes Gitter aus Neuronen erstellt, indem die Neuronen feste Distanzen zueinander besitzen. Danach werden die Gewichtsvektoren der Neuronen initialisiert, indem sie meist zufällige Werte zugewiesen bekommen. Die Dimenson der Gewichtsvektoren wird durch die Dimension des Feature-Raums, also die Anzahl der eingegebenen Feature bestimmt. Die Neuronen repräsentieren damit einzelne Punkte im Feature-Raum der Eingabedaten \parencite{kohonen_self-organizing_2001}. \\
-Für das Training werden die Eingabedaten meist in einer zufälligen Reihenfolge durchiteriert. Bei jeder Iteration werden die Abstände von jedem Neuron zu dem aktuellen Eingabedatenpunkt berechnet. Jenes Neuron, welches den kleinsten Abstand zum Eingabepunkt besitzt, wird als \textit{Best Matching Unit (BMU)} bezeichnet. Im Anschluss verändern alle Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der Lernrate und der Distanz zum BMU im Neuronengitter, d.h. bildlich gesprochen verschiebt sich die BMU am stärksten in Richtung des Eingabepunktes und zieht ihre Nachbarn mit. Je weiter entfernt ein Neuron im Neuronengitter ist, desto weniger wird es verschoben. Durch diese Eigenschaft entsteht eine Sortierung, bei der benachbarte Neuronen im Neuronengitter, ähnliche Eingabedaten repräsentieren. Wurden alle Eingabedaten einmal durchlaufen, wird von einer Epoche gesprochen. Je nach Implementierung nimmt die Lernrate entweder mit steigender Iterationenzahl oder mit steigender Epochenzahl ab, sodass die SOM konvergiert. \parencite{kohonen_self-organizing_2001}.\\
+Bei der Initialisierung einer SOM wird zunächst ein festes $i \text{x} j$ Gitter aus Neuronen $n_{ij}$ erstellt, indem die Neuronen feste Distanzen zueinander besitzen \parencite{kohonen_self-organizing_2001}. Typischerweise ist die Anordnung entweder rechteckig oder hexagonal:\\
+
+\begin{equation}
+    (x,y)|_{n_{ij}} = 
+    \begin{cases}
+        (i, j) & \text{für rechteckige Topologie} \\
+        (i + 0.5 \cdot (j \bmod 2),\; j \cdot \frac{\sqrt{3}}{2}) & \text{für hexagonale Topologie}
+    \end{cases}
+    \label{eq:grid}
+\end{equation}
+In dieser Arbeit wurde eine hexagonale Topologie verwendet, da bei dieser alle sechs Nachbarn eines Neurons gleich weit entfernt sind und somit eine bessere Nachbarschaftsbeziehung zwischen den Neuronen besteht. Ein Vergleich zwischen rechteckiger und hexagonaler Topologie ist in Abbildung \ref{fig:hexagonal_grid} zu sehen.\\
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{pictures/topologie.png}
+    \caption{Topologie der Neuronengitter \parencite{schmidt_effects_2011}}
+    \label{fig:hexagonal_grid}
+\end{figure}
+\noindent Nach der Festlegung der Gittergröße werden die Gewichtsvektoren $\mathbf{w_{ij}}$ der Neuronen initialisiert, indem sie zufällige Werte zugewiesen bekommen. Die Dimension der Gewichtsvektoren wird durch die Dimension des Feature-Raums, also die Anzahl der eingegebenen Features $K$ bestimmt. Die Neuronen repräsentieren damit einzelne Punkte im Feature-Raum der Eingabedaten \parencite{kohonen_self-organizing_2001}: \\
+
+\begin{equation}
+    w_{ij} = \begin{bmatrix}
+        w_{ij,1} \\
+        w_{ij,2} \\
+        \vdots \\
+        w_{ij,K}
+    \end{bmatrix}
+\end{equation}
+Für das Training werden die $K$ - dimensionalen Eingabedaten $\mathbf{e}$ in einer zufälligen Reihenfolge durchiteriert. Bei jeder Iteration $n$ werden die Abstände von jedem Neuron zu dem aktuellen Eingabedatenpunkt berechnet. Generell wird die euklidische Distanz $d$ verwendet \parencite{kohonen_self-organizing_2001}, aber auch andere Distanzfunktionen, wie die Manhattan-Distanz, können zum Einsatz kommen. Die euklidische Distanz $d(\mathbf{w_{ij}},\mathbf{e})$ zwischen dem Eingabedatenpunkt $\mathbf{e}$ und dem Gewichtsvektor des Neurons $\mathbf{w_{ij}}$ wird wie folgt berechnet \parencite{natita_appropriate_2016}:
+
+\begin{equation}
+    d(\mathbf{w_{ij}},\mathbf{e}) = || \mathbf{e} - \mathbf{w_{ij}} || = \sqrt{\sum_{k=1}^{K} (e_k - w_{ij,k})^2}
+\end{equation}
+Jenes Neuron, welches den kleinsten Abstand zum Eingabepunkt besitzt, wird als Best Matching Unit $BMU$ bezeichnet \parencite{natita_appropriate_2016}:
+
+\begin{equation}
+    BMU = {\operatorname{argmin}_{\mathbf{w_{ij}}}} \; d(\mathbf{w_{ij}},\mathbf{e})
+    \label{eq:bmu}
+\end{equation}
+Nach der Bestimmung des BMU verändern die Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der aktuellen Lernrate $\alpha(n)$, der Nachbarschaftsfunktion $h$, der Abnahme des Nachbarschaftsradius $\sigma(n)$ und der euklidischen Distanz zum BMU im Neuronengitter. \\
+Die Lernrate $\alpha(n)$ bestimmt, wie stark die Gewichte der Neuronen angepasst werden. Eine Lernrate von 1 würde bedeuten, dass die Gewichte des BMU direkt auf den Eingabepunkt $\mathbf{e}$ gesetzt werden. Eine Lernrate von 0 würde bedeuten, dass die Gewichte nicht angepasst werden. Die Lernrate wird in der Regel mit steigender Iterationszahl verringert, um eine Konvergenz zu erreichen \parencite{kohonen_self-organizing_2001}. Es gibt verschiedene Ansätze, die Lernrate zu verringern. \textcite{natita_appropriate_2016} beschreiben eine Abnahme invers proportional zur Anzahl der Iterationen $n$ (\ref{eq:inverse_learning_rate}), eine linear abnehmende Lernrate (\ref{eq:linear_learning_rate}) und eine exponentiell abnehmende Lernrate (\ref{eq:exponential_learning_rate}):
+
+\begin{equation}
+    \alpha_{\text{inv}}(n) = \alpha_0 \cdot \frac{1}{n}
+    \label{eq:inverse_learning_rate}
+\end{equation}
+
+\begin{equation}
+    \alpha_{\text{lin}}(n, N) = \alpha_0 \cdot (1 - \frac{n}{N})
+    \label{eq:linear_learning_rate}
+\end{equation}
+
+\begin{equation}
+    \alpha_{\text{exp}}(n, N) = \alpha_0 \cdot e^{-\frac{n}{N}}
+    \label{eq:exponential_learning_rate}
+\end{equation}
+$\alpha_0$ ist dabei die Anfangs-Lernrate, $n$ die aktuelle Iteration und $N$ die Gesamtanzahl der Iterationen. In dieser Arbeit wurde eine invers zur Iterationenzahl (\ref{eq:inverse_learning_rate}) abnehmende Lernrate verwendet.\\
+Der Nachbarschaftsradius $\sigma(n)$ bestimmt, wie viele Neuronen im Neuronengitter signifikant angepasst werden. Er wird in der Regel mit steigender Iterationszahl verringert, um die Anpassung auf die benachbarten Neuronen zu reduzieren und die SOM zu stabilisieren \parencite{kohonen_self-organizing_2001}. Auch hier gibt es verschiedene Ansätze, die Abnahme des Nachbarschaftsradius zu berechnen. \textcite{natita_appropriate_2016} beschreiben eine exponentiell abnehmende Nachbarschaftsgröße (\ref{eq:exponential_neighborhood_size}), aber auch linear (\ref{eq:linear_neighborhood_size}) und invers proportional zur Anzahl der Iterationenzahl (\ref{eq:inverse_neighborhood_size}) abnehmende Nachbarschaftsgrößen sind verbreitet \parencite{vettigli_minisom_2021}:
+
+\begin{equation}
+    \sigma_{\text{inv}}(n, N) = \frac{\sigma_0}{1 + \frac{n}{N} \cdot (\sigma_0 - 1)}
+    \label{eq:inverse_neighborhood_size}
+\end{equation}
+
+\begin{equation}
+    \sigma_{\text{lin}}(n, N) = \sigma_0 + \frac{n}{N} \cdot (1 - \sigma_0)
+    \label{eq:linear_neighborhood_size}
+\end{equation}
+
+\begin{equation}
+    \sigma_{\text{exp}}(n, N) = \sigma_0 \cdot e^{-\frac{n}{N}}
+    \label{eq:exponential_neighborhood_size}
+\end{equation}
+Diese starten bei einem initialen Radius $\sigma_0$ und enden bei 1, sodass am Ende der SOM-Trainingsphase nur noch das BMU angepasst wird. In dieser Arbeit wurde eine invers zur Anzahl der Iterationenzahl abnehmende Nachbarschaftsgröße (\ref{eq:inverse_neighborhood_size}) verwendet.\\
+Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(d, \sigma(n))$, wie stark die Gewichte der Neuronen in der Nachbarschaft des BMU angepasst werden und sind abhängig von der euklidischen Distanz $d$ der Neuronen zur $BMU$ im Neuronengitter. Diese sind gängigerweise Gaussian (\ref{eq:gaussian}), Mexican Hat, besser bekannt als Ricker Wavelet (\ref{eq:mexican_hat}), Triangle (\ref{eq:triangle}) und Bubble (\ref{eq:bubble}) und werden wie folgt definiert \parencite{vettigli_minisom_2021}:
+
+\begin{equation}
+    h_{\text{gaussian}}(d, \sigma(n)) = \exp\left(-\frac{d^2}{2\sigma(n)^2}\right)
+    \label{eq:gaussian}
+\end{equation}
+
+\begin{equation}
+    h_{\text{mexican\_hat}}(d, \sigma(n)) = \exp\left(-\frac{d^2}{2\sigma(n)^2}\right) \cdot \left(1 - \frac{d^2}{\sigma(n)^2}\right)
+    \label{eq:mexican_hat}
+\end{equation}
+
+\begin{equation}
+    h_{\text{bubble}}(d, \sigma(n)) =
+    \begin{cases}
+        1 & \text{falls } d < \sigma(n) \\
+        0 & \text{sonst}
+    \end{cases}
+    \label{eq:bubble}
+\end{equation}
+
+\begin{equation}
+    h_{\text{triangle}}(d, \sigma(n)) =
+    \begin{cases}
+        1 - \frac{d}{\sigma(n)} & \text{falls } d < \sigma(n) \\
+        0 & \text{sonst}
+    \end{cases}
+    \label{eq:triangle}
+\end{equation}
+Während die Funktionen (\ref{eq:gaussian}) und (\ref{eq:mexican_hat}) eine kontinuierliche Anpassung der Gewichte ermöglichen, passen die Funktionen (\ref{eq:bubble}) und (\ref{eq:triangle}) die Gewichte nur für Neuronen an, die sich innerhalb des Nachbarschaftsradius befinden. In dieser Arbeit wurde die Gaussian-Funktion (\ref{eq:gaussian}) verwendet, da sie der Standard in vielen Anwendungen ist \parencite{kohonen_self-organizing_2001}.\\
+
+
+
+Durch diese Eigenschaft entsteht eine Sortierung, bei der benachbarte Neuronen im Neuronengitter, ähnliche Eingabedaten im Feature-Raum repräsentieren. Wurden alle Eingabedaten $\mathbf{e}$ einmal durchlaufen, wird von einer Epoche gesprochen \parencite{kohonen_self-organizing_2001}.\\
 
 \subsubsection{Hyperparameter Tuning}
 
