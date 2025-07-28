@@ -192,7 +192,7 @@ with np.load(data_path) as npzfile:
             "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
         )
 
-cut = True
+cut = False
 
 # Finde den Index, bei dem x zum ersten Mal größer als 60 ist
 first_index_above_60 = np.argmax(x > 60)
@@ -230,7 +230,7 @@ apx = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
 
 # Den Plot erstellen
 save_plots = True  # Setze auf True, um die Plots zu speichern
-cmap = ColorMap2DZiegler
+cmap = ColorMap2DTeuling2
 
 som.plot_u_matrix(save=save_plots, appendix=apx)  # U-Matrix Plot
 som.plot_som_neighbor_distances(

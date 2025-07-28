@@ -208,16 +208,18 @@ Alle benannten Ähnlichkeitsattribute liefern laut Abbildung 25 in \textcite{cho
 %     D(x, t) = arctan\left(\frac{\partial A(x, t)}{\partial x}, \frac{\partial A(x, t)}{\partial t}\right)
 % \end{equation}
 
+\clearpage
+
 \subsection{Self-Organizing Map}
 
 \subsubsection{Definition und Funktionsweise der SOM}
 
 Die Self-Organizing Map (SOM) ist ein Algorithmus des unüberwachten maschinellen Lernens, der in seiner heutigen Form 1982 von Teuvo Kohonen entwickelt wurde \parencite{kohonen_self-organizing_2001}.
 Es ist nach Definition des Entwicklers ein Neuronales Netz, da es aus einem regulären Gitter aus Neuronen besteht, die miteinander als Netz in Verbindung stehen \parencite{kohonen_self-organizing_2001}. Nach heutiger Definition von \textcite{ibm_data_and_ai_team_what_nodate} ist eine Neuronal Netz allerdings ein Algorithmus, der zwar Entscheidungen auf ähnliche Weise wie das menschliche Gehirn trifft, aber auch verschiedenen Ebenen, also einer Eingabeschicht, mehreren verborgenen Ebenen und einer Ausgabeschicht besteht. Nach dieser Definition ist die SOM kein Neuronales Netz, aber dennoch ist sie als wichtiger Bestandteil des machinellen Lernens in Büchern über Neuronale Netze zu finden \parencites{brause_neuronale_1995}{rojas_theorie_1993}{kinnebrock_neuronale_2018}.\\
-Bei der Initialisierung einer SOM wird zunächst ein festes $i \text{x} j$ Gitter aus Neuronen $n_{ij}$ erstellt, indem die Neuronen feste Distanzen zueinander besitzen \parencite{kohonen_self-organizing_2001}. Typischerweise ist die Anordnung entweder rechteckig oder hexagonal:\\
+Bei der Initialisierung einer SOM wird zunächst ein festes $i \text{x} j$ Gitter aus Neuronen $\chi_{ij}$ erstellt, indem die Neuronen feste Distanzen zueinander besitzen \parencite{kohonen_self-organizing_2001}. Typischerweise ist die Anordnung entweder rechteckig oder hexagonal:\\
 
 \begin{equation}
-    (x,y)|_{n_{ij}} = 
+    (x,y)|_{\chi_{ij}} = 
     \begin{cases}
         (i, j) & \text{für rechteckige Topologie} \\
         (i + 0.5 \cdot (j \bmod 2),\; j \cdot \frac{\sqrt{3}}{2}) & \text{für hexagonale Topologie}
@@ -242,19 +244,19 @@ In dieser Arbeit wurde eine hexagonale Topologie verwendet, da bei dieser alle s
         w_{ij,K}
     \end{bmatrix}
 \end{equation}
-Für das Training werden die $K$ - dimensionalen Eingabedaten $\mathbf{e}$ in einer zufälligen Reihenfolge durchiteriert. Bei jeder Iteration $n$ werden die Abstände von jedem Neuron zu dem aktuellen Eingabedatenpunkt berechnet. Generell wird die euklidische Distanz $d$ verwendet \parencite{kohonen_self-organizing_2001}, aber auch andere Distanzfunktionen, wie die Manhattan-Distanz, können zum Einsatz kommen. Die euklidische Distanz $d(\mathbf{w_{ij}},\mathbf{e})$ zwischen dem Eingabedatenpunkt $\mathbf{e}$ und dem Gewichtsvektor des Neurons $\mathbf{w_{ij}}$ wird wie folgt berechnet \parencite{natita_appropriate_2016}:
+Für das Training werden die $K$ - dimensionalen Eingabedaten $\mathbf{e}$ in einer zufälligen Reihenfolge durchiteriert. Bei jeder Iteration $n$ werden die Abstände von jedem Neuron zu dem aktuellen Eingabedatenpunkt berechnet. Generell wird die euklidische Distanz $d$ verwendet \parencite{kohonen_self-organizing_2001}, aber auch andere Distanzfunktionen, wie die Manhattan-Distanz, können zum Einsatz kommen. Die euklidische Distanz $d(\mathbf{w_{ij}},\mathbf{e}_m)$ zwischen einem Eingabedatenpunkt $\mathbf{e}_m$, wobei $m$ einen bestimmten Index aller Eingabedatenpunkte mit der Anzahl $M$ ist, und dem Gewichtsvektor des Neurons $\mathbf{w_{ij}}$ wird wie folgt berechnet \parencite{natita_appropriate_2016}:
 
 \begin{equation}
     d(\mathbf{w_{ij}},\mathbf{e}) = || \mathbf{e} - \mathbf{w_{ij}} || = \sqrt{\sum_{k=1}^{K} (e_k - w_{ij,k})^2}
 \end{equation}
-Jenes Neuron, welches den kleinsten Abstand zum Eingabepunkt besitzt, wird als Best Matching Unit $BMU$ bezeichnet \parencite{natita_appropriate_2016}:
+$e_k$ steht dabei für die k-te Koordinatenkomponente des Eingabepunktes $\mathbf{e}_m$. Jenes Neuron, welches den kleinsten Abstand zum Eingabepunkt besitzt, wird als Best Matching Unit $BMU$ bezeichnet \parencite{natita_appropriate_2016}:
 
 \begin{equation}
     BMU = {\operatorname{argmin}_{\mathbf{w_{ij}}}} \; d(\mathbf{w_{ij}},\mathbf{e})
     \label{eq:bmu}
 \end{equation}
-Nach der Bestimmung des BMU verändern die Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der aktuellen Lernrate $\alpha(n)$, der Nachbarschaftsfunktion $h$, der Abnahme des Nachbarschaftsradius $\sigma(n)$ und der euklidischen Distanz zum BMU im Neuronengitter. \\
-Die Lernrate $\alpha(n)$ bestimmt, wie stark die Gewichte der Neuronen angepasst werden. Eine Lernrate von 1 würde bedeuten, dass die Gewichte des BMU direkt auf den Eingabepunkt $\mathbf{e}$ gesetzt werden. Eine Lernrate von 0 würde bedeuten, dass die Gewichte nicht angepasst werden. Die Lernrate wird in der Regel mit steigender Iterationszahl verringert, um eine Konvergenz zu erreichen \parencite{kohonen_self-organizing_2001}. Es gibt verschiedene Ansätze, die Lernrate zu verringern. \textcite{natita_appropriate_2016} beschreiben eine Abnahme invers proportional zur Anzahl der Iterationen $n$ (\ref{eq:inverse_learning_rate}), eine linear abnehmende Lernrate (\ref{eq:linear_learning_rate}) und eine exponentiell abnehmende Lernrate (\ref{eq:exponential_learning_rate}):
+Nach der Bestimmung des BMU verändern die Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der aktuellen Lernrate $\alpha$, der Nachbarschaftsfunktion $h$, der Abnahme des Nachbarschaftsradius $\sigma$ und der euklidischen Distanz zum BMU $d$ im Neuronengitter. \\\\
+Die Lernrate $\alpha$ bestimmt, wie stark die Gewichte der Neuronen angepasst werden. Eine Lernrate von 1 würde bedeuten, dass die Gewichte des BMU direkt auf den Eingabepunkt $\mathbf{e}$ gesetzt werden. Eine Lernrate von 0 würde bedeuten, dass die Gewichte nicht angepasst werden. Die Lernrate wird in der Regel mit steigender Iterationszahl verringert, um eine Konvergenz zu erreichen \parencite{kohonen_self-organizing_2001}. Es gibt verschiedene Ansätze, die Lernrate zu verringern. \textcite{natita_appropriate_2016} beschreiben eine Abnahme invers proportional zur Anzahl der Iterationen $n$ (\ref{eq:inverse_learning_rate}), eine linear abnehmende Lernrate (\ref{eq:linear_learning_rate}) und eine exponentiell abnehmende Lernrate (\ref{eq:exponential_learning_rate}):
 
 \begin{equation}
     \alpha_{\text{inv}}(n) = \alpha_0 \cdot \frac{1}{n}
@@ -270,7 +272,7 @@ Die Lernrate $\alpha(n)$ bestimmt, wie stark die Gewichte der Neuronen angepasst
     \alpha_{\text{exp}}(n, N) = \alpha_0 \cdot e^{-\frac{n}{N}}
     \label{eq:exponential_learning_rate}
 \end{equation}
-$\alpha_0$ ist dabei die Anfangs-Lernrate, $n$ die aktuelle Iteration und $N$ die Gesamtanzahl der Iterationen. In dieser Arbeit wurde eine invers zur Iterationenzahl (\ref{eq:inverse_learning_rate}) abnehmende Lernrate verwendet.\\
+$\alpha_0$ ist dabei die Anfangs-Lernrate, $n$ die aktuelle Iteration und $N$ die Gesamtanzahl der Iterationen. In dieser Arbeit wurde eine invers zur Iterationenzahl (\ref{eq:inverse_learning_rate}) abnehmende Lernrate verwendet.\\\\
 Der Nachbarschaftsradius $\sigma(n)$ bestimmt, wie viele Neuronen im Neuronengitter signifikant angepasst werden. Er wird in der Regel mit steigender Iterationszahl verringert, um die Anpassung auf die benachbarten Neuronen zu reduzieren und die SOM zu stabilisieren \parencite{kohonen_self-organizing_2001}. Auch hier gibt es verschiedene Ansätze, die Abnahme des Nachbarschaftsradius zu berechnen. \textcite{natita_appropriate_2016} beschreiben eine exponentiell abnehmende Nachbarschaftsgröße (\ref{eq:exponential_neighborhood_size}), aber auch linear (\ref{eq:linear_neighborhood_size}) und invers proportional zur Anzahl der Iterationenzahl (\ref{eq:inverse_neighborhood_size}) abnehmende Nachbarschaftsgrößen sind verbreitet \parencite{vettigli_minisom_2021}:
 
 \begin{equation}
@@ -287,8 +289,8 @@ Der Nachbarschaftsradius $\sigma(n)$ bestimmt, wie viele Neuronen im Neuronengit
     \sigma_{\text{exp}}(n, N) = \sigma_0 \cdot e^{-\frac{n}{N}}
     \label{eq:exponential_neighborhood_size}
 \end{equation}
-Diese starten bei einem initialen Radius $\sigma_0$ und enden bei 1, sodass am Ende der SOM-Trainingsphase nur noch das BMU angepasst wird. In dieser Arbeit wurde eine invers zur Anzahl der Iterationenzahl abnehmende Nachbarschaftsgröße (\ref{eq:inverse_neighborhood_size}) verwendet.\\
-Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(d, \sigma(n))$, wie stark die Gewichte der Neuronen in der Nachbarschaft des BMU angepasst werden und sind abhängig von der euklidischen Distanz $d$ der Neuronen zur $BMU$ im Neuronengitter. Diese sind gängigerweise Gaussian (\ref{eq:gaussian}), Mexican Hat, besser bekannt als Ricker Wavelet (\ref{eq:mexican_hat}), Triangle (\ref{eq:triangle}) und Bubble (\ref{eq:bubble}) und werden wie folgt definiert \parencite{vettigli_minisom_2021}:
+Diese starten bei einem initialen Radius $\sigma_0$ und enden bei 1, sodass am Ende der SOM-Trainingsphase nur noch das BMU angepasst wird. In dieser Arbeit wurde eine invers zur Anzahl der Iterationenzahl abnehmende Nachbarschaftsgröße (\ref{eq:inverse_neighborhood_size}) verwendet.\\\\
+Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(d, \sigma(n))$, wie stark die Gewichte der Neuronen in der Nachbarschaft des BMU angepasst werden und sind abhängig von der euklidischen Distanz $d$ der Neuronen zur $BMU$ im Neuronengitter. Diese sind gängigerweise Gaussian (\ref{eq:gaussian}), Mexican Hat (\ref{eq:mexican_hat}), besser bekannt als Ricker Wavelet, Triangle (\ref{eq:triangle}) und Bubble (\ref{eq:bubble}) und werden wie folgt definiert \parencite{vettigli_minisom_2021}:
 
 \begin{equation}
     h_{\text{gaussian}}(d, \sigma(n)) = \exp\left(-\frac{d^2}{2\sigma(n)^2}\right)
@@ -296,7 +298,7 @@ Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(d, \sigma(n))$, wie s
 \end{equation}
 
 \begin{equation}
-    h_{\text{mexican\_hat}}(d, \sigma(n)) = \exp\left(-\frac{d^2}{2\sigma(n)^2}\right) \cdot \left(1 - \frac{d^2}{\sigma(n)^2}\right)
+    h_{\text{mexican hat}}(d, \sigma(n)) = \exp\left(-\frac{d^2}{2\sigma(n)^2}\right) \cdot \left(1 - \frac{d^2}{\sigma(n)^2}\right)
     \label{eq:mexican_hat}
 \end{equation}
 
@@ -317,11 +319,18 @@ Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(d, \sigma(n))$, wie s
     \end{cases}
     \label{eq:triangle}
 \end{equation}
-Während die Funktionen (\ref{eq:gaussian}) und (\ref{eq:mexican_hat}) eine kontinuierliche Anpassung der Gewichte ermöglichen, passen die Funktionen (\ref{eq:bubble}) und (\ref{eq:triangle}) die Gewichte nur für Neuronen an, die sich innerhalb des Nachbarschaftsradius befinden. In dieser Arbeit wurde die Gaussian-Funktion (\ref{eq:gaussian}) verwendet, da sie der Standard in vielen Anwendungen ist \parencite{kohonen_self-organizing_2001}.\\
+Während die Funktionen (\ref{eq:gaussian}) und (\ref{eq:mexican_hat}) eine kontinuierliche Anpassung der Gewichte ermöglichen, passen die Funktionen (\ref{eq:bubble}) und (\ref{eq:triangle}) die Gewichte nur für Neuronen an, die sich innerhalb des Nachbarschaftsradius befinden. In dieser Arbeit wurde die Gaussian-Funktion (\ref{eq:gaussian}) verwendet, da sie der Standard in vielen Anwendungen ist \parencite{kohonen_self-organizing_2001}.\\\\
+Am Ende einer Iteration $n$ werden alle Gewichte $\mathbf{w}_{ij}$ der Neuronen $\chi_{ij}$ mit dieser Formel angepasst \parencite{vettigli_minisom_2021}:
 
+\begin{equation}
+    \mathbf{w}_{ij} \leftarrow \mathbf{w}_{ij} + \alpha(n) \cdot h(d(\mathbf{w}_{ij}, \mathbf{e}_m), \sigma(n))
+\end{equation}
+Da alle wichtigen Hyperparameter mit der Zeit, also mit der Iterationenzahl $n$ abnehmen, wird die Stärke der Anpassung der Neuronengewichte immer geringer. Damit wird sichergestellt, dass die SOM am Anfang des Trainings schnell die grobe Struktur der Eingabedaten abbildet und sich gegen Ende des Trainings immer genauer an sie annähert. Wie gut das SOM Modell am Ende die Daten abbilden kann, wird mit Quantization Error $QE$ gemessen. Dieser wird berechnet, indem die durchschnittliche euklidische Distanz $d$ zwischen den Eingabedaten $\mathbf{e}_m$ und den zugehörigen BMUs $\mathbf{w}_m^c$ gemessen wird \parencites{natita_appropriate_2016}{vettigli_minisom_2021}:
 
-
-Durch diese Eigenschaft entsteht eine Sortierung, bei der benachbarte Neuronen im Neuronengitter, ähnliche Eingabedaten im Feature-Raum repräsentieren. Wurden alle Eingabedaten $\mathbf{e}$ einmal durchlaufen, wird von einer Epoche gesprochen \parencite{kohonen_self-organizing_2001}.\\
+\begin{equation}
+    QE = \frac{1}{M} \sum_{m=1}^{M} d(\mathbf{w_{m}^c}, \mathbf{e_m})
+\end{equation}
+%Wurden alle Eingabedaten $\mathbf{e}$ einmal durchlaufen, wird von einer Epoche gesprochen \parencite{kohonen_self-organizing_2001}.\\
 
 \subsubsection{Hyperparameter Tuning}
 
