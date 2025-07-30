@@ -1,26 +1,26 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [0] Config.pm:311> INFO - Logfile is 'main.blg'
-[136] biber-MSWIN64:340> INFO - === 
-[184] Biber.pm:420> INFO - Reading 'main.bcf'
-[342] Biber.pm:994> INFO - Found 29 citekeys in bib section 0
-[365] Biber.pm:4463> INFO - Processing section 0
-[382] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
-[452] bibtex.pm:1713> INFO - LaTeX decoding ...
-[550] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[777] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[777] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[777] Biber.pm:4283> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'de-DE'
-[777] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
-[834] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[834] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[834] Biber.pm:4283> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'de-DE'
-[834] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
-[867] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[915] bbl.pm:779> INFO - Output to main.bbl
-[915] Biber.pm:131> WARN - ISBN '978-1-56080-141-2 978-1-56080-190-0' in entry 'chopra_seismic_2007' is invalid - run biber with '--validate_datamodel' for details.
-[916] Biber.pm:131> WARN - ISBN '978-1-56080-118-4 978-1-56080-296-9' in entry 'sheriff_encyclopedic_2002' is invalid - run biber with '--validate_datamodel' for details.
-[916] Biber.pm:131> WARN - ISBN '978-3-540-67921-9 978-3-642-56927-2' in entry 'kohonen_self-organizing_2001' is invalid - run biber with '--validate_datamodel' for details.
-[916] Biber.pm:131> WARN - ISBN '978-3-519-12247-0 978-3-322-93994-4' in entry 'brause_neuronale_1995' is invalid - run biber with '--validate_datamodel' for details.
-[916] Biber.pm:131> WARN - ISBN '978-3-540-56353-2 978-3-642-61231-2' in entry 'rojas_theorie_1993' is invalid - run biber with '--validate_datamodel' for details.
-[916] Biber.pm:131> WARN - ISBN '978-3-486-22947-9 978-3-486-78636-1' in entry 'kinnebrock_neuronale_2018' is invalid - run biber with '--validate_datamodel' for details.
-[916] Biber.pm:133> INFO - WARNINGS: 6
+[105] biber-MSWIN64:340> INFO - === 
+[150] Biber.pm:420> INFO - Reading 'main.bcf'
+[289] Biber.pm:994> INFO - Found 29 citekeys in bib section 0
+[309] Biber.pm:4463> INFO - Processing section 0
+[327] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
+[382] bibtex.pm:1713> INFO - LaTeX decoding ...
+[482] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[697] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[697] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[697] Biber.pm:4283> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'de-DE'
+[697] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
+[757] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[757] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[757] Biber.pm:4283> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'de-DE'
+[757] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
+[793] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[849] bbl.pm:779> INFO - Output to main.bbl
+[849] Biber.pm:131> WARN - ISBN '978-1-56080-141-2 978-1-56080-190-0' in entry 'chopra_seismic_2007' is invalid - run biber with '--validate_datamodel' for details.
+[849] Biber.pm:131> WARN - ISBN '978-1-56080-118-4 978-1-56080-296-9' in entry 'sheriff_encyclopedic_2002' is invalid - run biber with '--validate_datamodel' for details.
+[849] Biber.pm:131> WARN - ISBN '978-3-540-67921-9 978-3-642-56927-2' in entry 'kohonen_self-organizing_2001' is invalid - run biber with '--validate_datamodel' for details.
+[849] Biber.pm:131> WARN - ISBN '978-3-519-12247-0 978-3-322-93994-4' in entry 'brause_neuronale_1995' is invalid - run biber with '--validate_datamodel' for details.
+[850] Biber.pm:131> WARN - ISBN '978-3-540-56353-2 978-3-642-61231-2' in entry 'rojas_theorie_1993' is invalid - run biber with '--validate_datamodel' for details.
+[850] Biber.pm:131> WARN - ISBN '978-3-486-22947-9 978-3-486-78636-1' in entry 'kinnebrock_neuronale_2018' is invalid - run biber with '--validate_datamodel' for details.
+[850] Biber.pm:133> INFO - WARNINGS: 6
