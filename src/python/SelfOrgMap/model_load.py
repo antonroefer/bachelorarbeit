@@ -191,6 +191,27 @@ with np.load(data_path) as npzfile:
             "Warnung: 'feature_names' nicht in .npz-Datei gefunden. Feature-Auswahl nicht möglich."
         )
 
+fdict = {
+    "original_data": "Originaldaten",
+    "inst_amp": "Instantaneous Amplitude",
+    "inst_phase": "Instantaneous Phase",
+    "inst_phase_real": "Instantaneous Phase Realteil",
+    "inst_phase_imag": "Instantaneous Phase Imaginärteil",
+    "inst_freq": "Instantaneous Frequency",
+    "inst_freq_raw": "Instantaneous Frequency (roh)",
+    "sweetness": "Sweetness",
+    "quadrature": "Quadrature",
+    "inst_q": "Instantaneous Q",
+    "abs_grad": "Absoluter Gradient",
+    "avg_energy": "Average Energy",
+    "rms_amp": "RMS-Amplitude",
+    "coherence": "Coherence",
+    "semblance": "Semblance",
+    "skewness": "Skewness",
+    "kurtosis": "Kurtosis",
+    "dip": "Dip",
+}
+
 cut = False
 
 # Finde den Index, bei dem x zum ersten Mal größer als 60 ist
@@ -236,7 +257,11 @@ som.plot_som_neighbor_distances(
     cmap="hot", figsize=(10, 8), save=save_plots, appendix=apx
 )  # cmap='hot' ist gut für Distanzen
 som.plot_som_hits(data, save=save_plots, appendix=apx, colormap=cmap)  # SOM Hits Plot
-som.plot_som_planes(save=save_plots, appendix=apx)
+som.plot_som_planes(
+    save=save_plots,
+    fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
+    appendix=apx,
+)
 som.plot_bmu_radargram(
     data=data, x=x, t=t, save=save_plots, appendix=apx, cmap_2d_class=cmap
 )

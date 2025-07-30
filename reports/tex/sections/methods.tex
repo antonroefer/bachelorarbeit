@@ -28,7 +28,7 @@ Die letzte Prozessierstufe beinhaltet nur einen Wellenzahlhochpassfilter mit ein
 
 \subsection{Merkmale}
 
-Die Auswahl geeigneter Merkmale ist entscheidend für die Qualität der Analyseergebnisse, da sie maßgeblich beeinflusst, wie gut die zugrunde liegenden physikalischen Prozesse erkannt und interpretiert werden können. Ein zentrales Problem bei der Merkmalsauswahl besteht darin, dass heutzutage eine enorme Vielfalt an seismischen Attributen existiert, die kaum noch zu überschauen ist \parencites{zhao_seismic_2018}{qi_seismic_2020}{barnes_too_2006}. Die stetige Entwicklung neuer Attribute, oft auch durch Kombination von schon bekannten Merkmalen, und das Fehlen einer allgemein anerkannten Einteilung \parencite{roden_geologic_2015} führen dazu, dass es zunehmend schwieriger wird, eine gezielte und sinnvolle Auswahl zu treffen. Während einige Autoren, wie \textcite{zhao_seismic_2018}, eine mathematische und qualitative Merkmalsauswahl vorschlagen, beschreiben \textcite{chopra_seismic_2007}, dass es in der Praxis Gang und Gebe ist, diese intuitiv durchzuführen. Dazu ist wichtig zu wissen, was eine gute Auswahl ausmacht. \textcite{barnes_too_2006} nennt drei Kriterien, die ein Merkmal erfüllen sollte: \\
+Die Auswahl geeigneter Merkmale ist entscheidend für die Qualität der Analyseergebnisse, da sie maßgeblich beeinflusst, wie gut die zugrunde liegenden physikalischen Prozesse erkannt und interpretiert werden können. Ein zentrales Problem bei der Merkmalsauswahl besteht darin, dass heutzutage eine enorme Vielfalt an seismischen Attributen existiert, die kaum noch zu überschauen ist \parencites{zhao_seismic_2018}{qi_seismic_2020}{barnes_too_2006}. Die stetige Entwicklung neuer Attribute, oft auch durch Kombination von schon bekannten Merkmalen, und das Fehlen einer allgemein anerkannten Einteilung \parencite{roden_geologic_2015} führen dazu, dass es zunehmend schwieriger wird, eine gezielte und sinnvolle Auswahl zu treffen. Während einige Autoren, wie \textcite{zhao_seismic_2018}, eine mathematische und qualitative Merkmalsauswahl vorschlagen, beschreiben \textcite{chopra_seismic_2007}, dass es in der Praxis Gang und Gebe ist, diese intuitiv durchzuführen. Dazu ist wichtig zu wissen, was eine gute Auswahl ausmacht. \textcite{barnes_too_2006} nennt drei Kriterien, die ein Merkmal erfüllen sollte. \\
 
 \begin{enumerate}
     \item Unabhängigkeit von anderen Merkmalen sein, um Redundanz zu vermeiden
@@ -40,7 +40,7 @@ Um eine optimale Merkmalsauswahl zu gewährleisten, wurden in dieser Arbeit zun�
 \subsubsection{Amplitude}
 
 Als Amplitudenattribute wurden die Instantaneous Amplitude (Momentanamplitude oder auch Einhüllende) \parencite{taner_complex_1979}, die Average Energy (Durchschnittliche Energie) \parencites{roden_geologic_2015}{noauthor_average_2021} und die Root Mean Squared Amplitude (Effektive Amplitude oder auch Quadratischer Mittelwert der Amplitude) \parencites{roden_geologic_2015}{noauthor_rms_2022} berechnet. Sie alle zeigen dort hohe Werte, wo es eine hohe Reflexionsstärke gibt. \\
-Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} ist definiert als der Betrag des analytischen Signals $S_A(t)$, das aus der komplexen Hilbert-Transformation des Originalsignals gewonnen wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Sie gibt die momentane Stärke der Welle zu jedem Zeitpunkt an:
+Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} ist definiert als der Betrag des analytischen Signals $S_A(t)$, das aus der komplexen Hilbert-Transformation des Originalsignals gewonnen wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Sie gibt die momentane Stärke der Welle zu jedem Zeitpunkt an.
 
 \begin{equation}
     A_I(t) = |S_A(t)|
@@ -52,7 +52,7 @@ Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} 
     \caption{Instantaneous Amplitude des Radargramms 7 ohne Wellenzahlmedian-Filter}
     \label{fig:inst_amplitude}
 \end{figure}
-Die Average Energy $E_A$ oder auch Mean Squared Amplitude \parencite{noauthor_average_2021}, ist definiert als der Durchschnitt der quadrierten Amplitudenwerte über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$. $X$ und $T$ sind die Fensterabstände in Raum- bzw. Zeitrichtung, mit der Anzahl der Werte:
+Die Average Energy $E_A$ oder auch Mean Squared Amplitude \parencite{noauthor_average_2021}, ist definiert als der Durchschnitt der quadrierten Amplitudenwerte über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$. $X$ und $T$ sind die Fensterabstände in Raum- bzw. Zeitrichtung, mit der Anzahl der Werte.
 
 \begin{equation}
     N = (2X+1) \cdot (2T+1)
@@ -85,7 +85,7 @@ Die Root Mean Squared Amplitude $A_{RMS}$ \parencites{roden_geologic_2015}{noaut
 
 \subsubsection{Phase}
 
-Als Phasenattribut wurde nur die Instantaneous Phase (Momentanphase) \parencite{taner_complex_1979} verwendet. Sie gibt die momentane Phase der Welle zu jedem Zeitpunkt an und wird ebenfalls aus dem analytischen Signal $S_A(t)$ gewonnen, das aus der komplexen Hilbert-Transformation des Originalsignals berechnet wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Die Instantaneous Phase $\phi_I$ ist definiert als die Phase bzw. der Momentanwinkel des analytischen Signals:
+Als Phasenattribut wurde nur die Instantaneous Phase (Momentanphase) \parencite{taner_complex_1979} verwendet. Sie gibt die momentane Phase der Welle zu jedem Zeitpunkt an und wird ebenfalls aus dem analytischen Signal $S_A(t)$ gewonnen, das aus der komplexen Hilbert-Transformation des Originalsignals berechnet wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Die Instantaneous Phase $\phi_I$ ist definiert als die Phase bzw. der Momentanwinkel des analytischen Signals.
 
 \begin{equation}
     \phi_I(t) =
@@ -106,7 +106,7 @@ Die Instantaneous Phase ist besonders nützlich, um Phasenverschiebungen zwische
 
 \subsubsection{Frequenz}
 
-Als Frequenzattribut wurde die Instantaneous Frequency (Momentanfrequenz) \parencite{taner_complex_1979} verwendet. Sie gibt die momentane Frequenz der Welle zu jedem Zeitpunkt an und wird aus dem analytischen Signal $S_A(t)$ gewonnen, das aus der komplexen Hilbert-Transformation des Originalsignals berechnet wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Die Instantaneous Frequency $f_I$ ist definiert als die Ableitung der Instantaneous Phase $\phi_I$ nach der Zeit:
+Als Frequenzattribut wurde die Instantaneous Frequency (Momentanfrequenz) \parencite{taner_complex_1979} verwendet. Sie gibt die momentane Frequenz der Welle zu jedem Zeitpunkt an und wird aus dem analytischen Signal $S_A(t)$ gewonnen, das aus der komplexen Hilbert-Transformation des Originalsignals berechnet wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Die Instantaneous Frequency $f_I$ ist definiert als die Ableitung der Instantaneous Phase $\phi_I$ nach der Zeit.
 
 \begin{equation}
     f_I(t) = \frac{1}{2\pi} \frac{d\phi_I(t)}{dt}
@@ -122,7 +122,7 @@ Die Instantaneous Frequency ist besonders nützlich, um Frequenzänderungen im S
 
 \subsubsection{Qualitätsfaktor}
 
-Der Qualitätsfaktor $Q$ \parencite{noauthor_instantaneous_2024} ist ein Maß für die Güte eines Signals und beschreibt, wie gut ein Signal in Bezug auf seine Frequenz und Dämpfung ist. Er wird aus der Instantaneous Frequency $f_I$, der Instantaneous Amplitude $A_I$ und dessen zeitlichen Ableitung $A_I'$ berechnet. Der Qualitätsfaktor ist definiert als: \\
+Der Qualitätsfaktor $Q$ \parencite{noauthor_instantaneous_2024} ist ein Maß für die Güte eines Signals und beschreibt, wie gut ein Signal in Bezug auf seine Frequenz und Dämpfung ist. Er wird aus der Instantaneous Frequency $f_I$, der Instantaneous Amplitude $A_I$ und dessen zeitlichen Ableitung $A_I'$ berechnet. Der Qualitätsfaktor ist definiert als. \\
 
 \begin{equation}
     Q = \frac{-\pi f_I(t) A_I(t)}{A_I'(t)}
@@ -216,7 +216,7 @@ Alle benannten Ähnlichkeitsattribute liefern laut Abbildung 25 in \textcite{cho
 
 Die Self-Organizing Map (SOM) ist ein Algorithmus des unüberwachten maschinellen Lernens, der in seiner heutigen Form 1982 von Teuvo Kohonen entwickelt wurde \parencite{kohonen_self-organizing_2001}.
 Es ist nach Definition des Entwicklers ein Neuronales Netz, da es aus einem regulären Gitter aus Neuronen besteht, die miteinander als Netz in Verbindung stehen \parencite{kohonen_self-organizing_2001}. Nach heutiger Definition von \textcite{ibm_data_and_ai_team_what_nodate} ist eine Neuronal Netz allerdings ein Algorithmus, der zwar Entscheidungen auf ähnliche Weise wie das menschliche Gehirn trifft, aber auch verschiedenen Ebenen, also einer Eingabeschicht, mehreren verborgenen Ebenen und einer Ausgabeschicht besteht. Nach dieser Definition ist die SOM kein Neuronales Netz, aber dennoch ist sie als wichtiger Bestandteil des machinellen Lernens in Büchern über Neuronale Netze zu finden \parencites{brause_neuronale_1995}{rojas_theorie_1993}{kinnebrock_neuronale_2018}.\\
-Bei der Initialisierung einer SOM wird zunächst ein festes $i \text{x} j$ Gitter aus Neuronen $\chi_{ij}$ erstellt, indem die Neuronen feste Distanzen zueinander besitzen \parencite{kohonen_self-organizing_2001}. Typischerweise ist die Anordnung entweder rechteckig oder hexagonal:\\
+Bei der Initialisierung einer SOM wird zunächst ein festes $I \text{x} J$ Neuronengitter ($I, J \in \mathbb{N}$) mit den Gitterkoordinaten $i \in \{0, ..., I\}$ und $j \in \{0, ..., J\}$ erstellt, indem die Neuronen $\chi_{ij}$ feste Distanzen zueinander besitzen \parencite{kohonen_self-organizing_2001}. Typischerweise ist die Anordnung entweder rechteckig oder hexagonal:\\
 
 \begin{equation}
     (x,y)|_{\chi_{ij}} = 
@@ -231,32 +231,32 @@ In dieser Arbeit wurde eine hexagonale Topologie verwendet, da bei dieser alle s
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{pictures/topologie.png}
-    \caption{Topologie der Neuronengitter \parencite{schmidt_effects_2011}}
+    \caption{Topologie der Neuronengitter: rechteckig (links) und hexagonal (rechts) \parencite{schmidt_effects_2011}}
     \label{fig:hexagonal_grid}
 \end{figure}
-\noindent Nach der Festlegung der Gittergröße werden die Gewichtsvektoren $\mathbf{w_{ij}}$ der Neuronen initialisiert, indem sie zufällige Werte zugewiesen bekommen. Die Dimension der Gewichtsvektoren wird durch die Dimension des Feature-Raums, also die Anzahl der eingegebenen Features $K$ bestimmt. Die Neuronen repräsentieren damit einzelne Punkte im Feature-Raum der Eingabedaten \parencite{kohonen_self-organizing_2001}: \\
+\noindent Jedes Neuron im SOM-Gitter besitzt einen Gewichtsvektor, der die Position dieses Neurons im Feature-Raum beschreibt. Die Gewichtsvektoren und der Feature-Raum sind $K$-dimensional, wobei $K \in \mathbb{N}$ der Anzahl der verwendeten Merkmale entspricht \parencite{kohonen_self-organizing_2001}. Nach der Festlegung der Gittergröße werden die Gewichtsvektoren $\mathbf{w}_{ij}$ der Neuronen initialisiert, indem sie zufällige Werte zugewiesen bekommen. \\
 
 \begin{equation}
-    w_{ij} = \begin{bmatrix}
+    \mathbf{w}_{ij} = \begin{bmatrix}
         w_{ij,1} \\
         w_{ij,2} \\
         \vdots \\
         w_{ij,K}
     \end{bmatrix}
 \end{equation}
-Für das Training werden die $K$ - dimensionalen Eingabedaten $\mathbf{e}$ in einer zufälligen Reihenfolge durchiteriert. Bei jeder Iteration $n$ werden die Abstände von jedem Neuron zu dem aktuellen Eingabedatenpunkt berechnet. Generell wird die euklidische Distanz $d$ verwendet \parencite{kohonen_self-organizing_2001}, aber auch andere Distanzfunktionen, wie die Manhattan-Distanz, können zum Einsatz kommen. Die euklidische Distanz $d(\mathbf{w_{ij}},\mathbf{e}_m)$ zwischen einem Eingabedatenpunkt $\mathbf{e}_m$, wobei $m$ einen bestimmten Index aller Eingabedatenpunkte mit der Anzahl $M$ ist, und dem Gewichtsvektor des Neurons $\mathbf{w_{ij}}$ wird wie folgt berechnet \parencite{natita_appropriate_2016}:
+Für das Training werden die $K$ - dimensionalen Eingabedaten $\mathbf{e}_m$ in einer zufälligen Reihenfolge durchiteriert. Bei jeder Iteration $n$ werden die Abstände von jedem Gewichtsvektor zu dem aktuellen Eingabedatenpunkt berechnet. Generell wird die euklidische Distanz $d$ verwendet \parencite{kohonen_self-organizing_2001}, aber auch andere Distanzfunktionen, wie die Manhattan-Distanz, können zum Einsatz kommen \parencite{vettigli_minisom_2021}. Die euklidische Distanz $d(\mathbf{w}_{ij},\mathbf{e}_m)$ zwischen einem Eingabedatenpunkt $\mathbf{e}_m$, wobei $m$ einen bestimmten Index aller Eingabedatenpunkte mit der Anzahl $M$ ist, und dem Gewichtsvektor des Neurons $\mathbf{w}_{ij}$ wird wie folgt berechnet \parencite{natita_appropriate_2016}:
 
 \begin{equation}
-    d(\mathbf{w_{ij}},\mathbf{e}) = || \mathbf{e} - \mathbf{w_{ij}} || = \sqrt{\sum_{k=1}^{K} (e_k - w_{ij,k})^2}
+    d(\mathbf{w}_{ij},\mathbf{e}_m) = || \mathbf{e}_m - \mathbf{w}_{ij} || = \sqrt{\sum_{k=1}^{K} (e_k - w_{ij,k})^2}
 \end{equation}
-$e_k$ steht dabei für die k-te Koordinatenkomponente des Eingabepunktes $\mathbf{e}_m$. Jenes Neuron, welches den kleinsten Abstand zum Eingabepunkt besitzt, wird als Best Matching Unit $BMU$ bezeichnet \parencite{natita_appropriate_2016}:
+$e_k$ steht dabei für die k-te Koordinatenkomponente des Eingabepunktes $\mathbf{e}_m$. Jenes Neuron, welches den kleinsten Abstand zum Eingabepunkt besitzt, wird als Best Matching Unit $\chi_m^c$ mit dem Gewicht $\mathbf{w}_{m}^c$ bezeichnet \parencite{natita_appropriate_2016}.
 
 \begin{equation}
-    BMU = {\operatorname{argmin}_{\mathbf{w_{ij}}}} \; d(\mathbf{w_{ij}},\mathbf{e})
+    \mathbf{w}_{m}^c = {\operatorname{argmin}_{\mathbf{w}_{ij}}} \; d(\mathbf{w}_{ij},\mathbf{e}_m)
     \label{eq:bmu}
 \end{equation}
-Nach der Bestimmung des BMU verändern die Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der aktuellen Lernrate $\alpha$, der Nachbarschaftsfunktion $h$, der Abnahme des Nachbarschaftsradius $\sigma$ und der euklidischen Distanz zum BMU $d$ im Neuronengitter. \\\\
-Die Lernrate $\alpha$ bestimmt, wie stark die Gewichte der Neuronen angepasst werden. Eine Lernrate von 1 würde bedeuten, dass die Gewichte des BMU direkt auf den Eingabepunkt $\mathbf{e}$ gesetzt werden. Eine Lernrate von 0 würde bedeuten, dass die Gewichte nicht angepasst werden. Die Lernrate wird in der Regel mit steigender Iterationszahl verringert, um eine Konvergenz zu erreichen \parencite{kohonen_self-organizing_2001}. Es gibt verschiedene Ansätze, die Lernrate zu verringern. \textcite{natita_appropriate_2016} beschreiben eine Abnahme invers proportional zur Anzahl der Iterationen $n$ (\ref{eq:inverse_learning_rate}), eine linear abnehmende Lernrate (\ref{eq:linear_learning_rate}) und eine exponentiell abnehmende Lernrate (\ref{eq:exponential_learning_rate}):
+Nach der Bestimmung des BMU verändern die Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der aktuellen Lernrate $\alpha$, dem aktuellen Nachbarschaftsradius $\sigma$, der Nachbarschaftsfunktion $h$, der euklidischen Distanz zum Eingabedatenpunkt $d$ und der euklidischen Distanz zur BMU $D$ im Neuronengitter. \\\\
+Die Lernrate $\alpha$ bestimmt, wie stark die Gewichte der Neuronen angepasst werden. Eine Lernrate von 1 würde bedeuten, dass die Gewichte des BMU direkt auf den Eingabepunkt $\mathbf{e}_m$ gesetzt werden. Eine Lernrate von 0 würde bedeuten, dass die Gewichte nicht angepasst werden. Die Lernrate wird in der Regel mit steigender Iterationszahl verringert, um eine Konvergenz zu erreichen \parencite{kohonen_self-organizing_2001}. Es gibt verschiedene Ansätze, die Lernrate zu verringern. \textcite{natita_appropriate_2016} beschreiben eine Abnahme invers proportional zur Anzahl der Iterationen $n$ (\ref{eq:inverse_learning_rate}), eine linear abnehmende Lernrate (\ref{eq:linear_learning_rate}) und eine exponentiell abnehmende Lernrate (\ref{eq:exponential_learning_rate}).
 
 \begin{equation}
     \alpha_{\text{inv}}(n) = \alpha_0 \cdot \frac{1}{n}
@@ -273,7 +273,7 @@ Die Lernrate $\alpha$ bestimmt, wie stark die Gewichte der Neuronen angepasst we
     \label{eq:exponential_learning_rate}
 \end{equation}
 $\alpha_0$ ist dabei die Anfangs-Lernrate, $n$ die aktuelle Iteration und $N$ die Gesamtanzahl der Iterationen. In dieser Arbeit wurde eine invers zur Iterationenzahl (\ref{eq:inverse_learning_rate}) abnehmende Lernrate verwendet.\\\\
-Der Nachbarschaftsradius $\sigma(n)$ bestimmt, wie viele Neuronen im Neuronengitter signifikant angepasst werden. Er wird in der Regel mit steigender Iterationszahl verringert, um die Anpassung auf die benachbarten Neuronen zu reduzieren und die SOM zu stabilisieren \parencite{kohonen_self-organizing_2001}. Auch hier gibt es verschiedene Ansätze, die Abnahme des Nachbarschaftsradius zu berechnen. \textcite{natita_appropriate_2016} beschreiben eine exponentiell abnehmende Nachbarschaftsgröße (\ref{eq:exponential_neighborhood_size}), aber auch linear (\ref{eq:linear_neighborhood_size}) und invers proportional zur Anzahl der Iterationenzahl (\ref{eq:inverse_neighborhood_size}) abnehmende Nachbarschaftsgrößen sind verbreitet \parencite{vettigli_minisom_2021}:
+Der Nachbarschaftsradius $\sigma(n)$ bestimmt, wie viele Neuronen im Neuronengitter signifikant angepasst werden. Er wird in der Regel mit steigender Iterationszahl verringert, um die Anpassung auf die benachbarten Neuronen zu reduzieren und die SOM zu stabilisieren \parencite{kohonen_self-organizing_2001}. Auch hier gibt es verschiedene Ansätze, die Abnahme des Nachbarschaftsradius zu berechnen. \textcite{natita_appropriate_2016} beschreiben eine exponentiell abnehmende Nachbarschaftsgröße (\ref{eq:exponential_neighborhood_size}), aber auch linear (\ref{eq:linear_neighborhood_size}) und invers proportional zur Anzahl der Iterationenzahl (\ref{eq:inverse_neighborhood_size}) abnehmende Nachbarschaftsgrößen sind verbreitet \parencite{vettigli_minisom_2021}.
 
 \begin{equation}
     \sigma_{\text{inv}}(n, N) = \frac{\sigma_0}{1 + \frac{n}{N} \cdot (\sigma_0 - 1)}
@@ -290,31 +290,31 @@ Der Nachbarschaftsradius $\sigma(n)$ bestimmt, wie viele Neuronen im Neuronengit
     \label{eq:exponential_neighborhood_size}
 \end{equation}
 Diese starten bei einem initialen Radius $\sigma_0$ und enden bei 1, sodass am Ende der SOM-Trainingsphase nur noch das BMU angepasst wird. In dieser Arbeit wurde eine invers zur Anzahl der Iterationenzahl abnehmende Nachbarschaftsgröße (\ref{eq:inverse_neighborhood_size}) verwendet.\\\\
-Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(d, \sigma(n))$, wie stark die Gewichte der Neuronen in der Nachbarschaft des BMU angepasst werden und sind abhängig von der euklidischen Distanz $d$ der Neuronen zur $BMU$ im Neuronengitter. Diese sind gängigerweise Gaussian (\ref{eq:gaussian}), Mexican Hat (\ref{eq:mexican_hat}), besser bekannt als Ricker Wavelet, Triangle (\ref{eq:triangle}) und Bubble (\ref{eq:bubble}) und werden wie folgt definiert \parencite{vettigli_minisom_2021}:
+Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(D(\chi_{ij}, \chi_{m}^c), \sigma(n))$, wie stark die Gewichte der Neuronen in der Nachbarschaft des BMU angepasst werden und sind abhängig von der euklidischen Distanz $D(\chi_{ij}, \chi_{m}^c)$ der Neuronen zur BMU $\chi_{m}^c$ im Neuronengitter. Diese sind gängigerweise Gaussian (\ref{eq:gaussian}), Mexican Hat (\ref{eq:mexican_hat}), besser bekannt als Ricker Wavelet, Bubble (\ref{eq:bubble}) und Triangle (\ref{eq:triangle}) und werden wie folgt definiert \parencite{vettigli_minisom_2021}:
 
 \begin{equation}
-    h_{\text{gaussian}}(d, \sigma(n)) = \exp\left(-\frac{d^2}{2\sigma(n)^2}\right)
+    h_{\text{gaussian}}(D, \sigma(n)) = \exp\left(-\frac{D^2}{2\sigma(n)^2}\right)
     \label{eq:gaussian}
 \end{equation}
 
 \begin{equation}
-    h_{\text{mexican hat}}(d, \sigma(n)) = \exp\left(-\frac{d^2}{2\sigma(n)^2}\right) \cdot \left(1 - \frac{d^2}{\sigma(n)^2}\right)
+    h_{\text{mexican hat}}(D, \sigma(n)) = \exp\left(-\frac{D^2}{2\sigma(n)^2}\right) \cdot \left(1 - \frac{D^2}{\sigma(n)^2}\right)
     \label{eq:mexican_hat}
 \end{equation}
 
 \begin{equation}
-    h_{\text{bubble}}(d, \sigma(n)) =
+    h_{\text{bubble}}(D, \sigma(n)) =
     \begin{cases}
-        1 & \text{falls } d < \sigma(n) \\
+        1 & \text{falls } D < \sigma(n) \\
         0 & \text{sonst}
     \end{cases}
     \label{eq:bubble}
 \end{equation}
 
 \begin{equation}
-    h_{\text{triangle}}(d, \sigma(n)) =
+    h_{\text{triangle}}(D, \sigma(n)) =
     \begin{cases}
-        1 - \frac{d}{\sigma(n)} & \text{falls } d < \sigma(n) \\
+        1 - \frac{D}{\sigma(n)} & \text{falls } D < \sigma(n) \\
         0 & \text{sonst}
     \end{cases}
     \label{eq:triangle}
@@ -323,15 +323,42 @@ Während die Funktionen (\ref{eq:gaussian}) und (\ref{eq:mexican_hat}) eine kont
 Am Ende einer Iteration $n$ werden alle Gewichte $\mathbf{w}_{ij}$ der Neuronen $\chi_{ij}$ mit dieser Formel angepasst \parencite{vettigli_minisom_2021}:
 
 \begin{equation}
-    \mathbf{w}_{ij} \leftarrow \mathbf{w}_{ij} + \alpha(n) \cdot h(d(\mathbf{w}_{ij}, \mathbf{e}_m), \sigma(n))
+    \mathbf{w}_{ij} \leftarrow \mathbf{w}_{ij} + \alpha(n) \cdot h(D(\chi_{ij}, \chi_{m}^c), \sigma(n)) \cdot d(\mathbf{w}_{ij}, \mathbf{e}_m)
 \end{equation}
-Da alle wichtigen Hyperparameter mit der Zeit, also mit der Iterationenzahl $n$ abnehmen, wird die Stärke der Anpassung der Neuronengewichte immer geringer. Damit wird sichergestellt, dass die SOM am Anfang des Trainings schnell die grobe Struktur der Eingabedaten abbildet und sich gegen Ende des Trainings immer genauer an sie annähert. Wie gut das SOM Modell am Ende die Daten abbilden kann, wird mit Quantization Error $QE$ gemessen. Dieser wird berechnet, indem die durchschnittliche euklidische Distanz $d$ zwischen den Eingabedaten $\mathbf{e}_m$ und den zugehörigen BMUs $\mathbf{w}_m^c$ gemessen wird \parencites{natita_appropriate_2016}{vettigli_minisom_2021}:
+Da alle wichtigen Hyperparameter mit der Zeit, also mit der Iterationenzahl $n$ abnehmen, wird die Stärke der Anpassung der Neuronengewichte immer geringer. Damit wird sichergestellt, dass die SOM am Anfang des Trainings schnell die grobe Struktur der Eingabedaten abbildet und sich gegen Ende des Trainings immer genauer an sie annähert. Wie gut das SOM Modell am Ende die Daten abbilden kann, wird mit Quantization Error $QE$ gemessen. Dieser wird berechnet, indem die durchschnittliche euklidische Distanz $d$ zwischen den Eingabedaten $\mathbf{e}_m$ und den zugehörigen BMUs $\mathbf{w}_m^c$ gemessen wird \parencites{natita_appropriate_2016}{vettigli_minisom_2021}.
 
 \begin{equation}
-    QE = \frac{1}{M} \sum_{m=1}^{M} d(\mathbf{w_{m}^c}, \mathbf{e_m})
+    QE = \frac{1}{M} \sum_{m=1}^{M} d(\mathbf{w}_{m}^c, \mathbf{e_m})
 \end{equation}
-%Wurden alle Eingabedaten $\mathbf{e}$ einmal durchlaufen, wird von einer Epoche gesprochen \parencite{kohonen_self-organizing_2001}.\\
+%Wurden alle Eingabedaten $\mathbf{e}_m$ einmal durchlaufen, wird von einer Epoche gesprochen \parencite{kohonen_self-organizing_2001}.\\
 
-\subsubsection{Hyperparameter Tuning}
+\subsubsection{Hyperparameter}
+
+Die Festlegung der Hyperparameter ist entscheidend dafür, ob die SOM ein gutes Ergebnis liefert. Dabei gibt es keine fundierte grundlegende Theorie, wie man seine Modellparameter initial wählen sollte. Dies liegt vor allem daran, dass die Wahl meiner Parameter hochgradig abhängig von der Art der Eingabedaten, der Trainingsdauer und der eigenen Erwartung an die Genauigkeit sind, was mein Modell nun genau liefern soll. Glücklicherweise wird in dieser Arbeit mit der Python-Bibliothek \texttt{MiniSom} gearbeitet, in der \textcite{vettigli_minisom_2021} nützliche Empfehlungen für sinnvolle Startwerte für die Wahl der Hyperparameter innerhalb des Codes bereitstellt. \\
+Für die Wahl der Kartengröße gibt \textcite{vettigli_minisom_2021} an, dass es in typischen Aufgaben der Dimensionsreduktion eine Faustregel für die Anzahl der Neuronen $L = I \cdot J$ gibt:
+
+\begin{equation}
+    L = 5 \cdot \sqrt{M}
+\end{equation}
+Als Erinnerung, $M$ steht für die Anzahl der Eingabedatenpunkte, welche in unserem Fall bei $\text{6.638.100}$ liegt. Für diesen Fall müsste unsere Neuronenzahl also in etwa:
+
+\begin{equation}
+    L = 5 \cdot \sqrt{6.638.100} \approx 5 \cdot 2577 \approx 12885
+\end{equation}
+betragen, was ungefähr ein $113 \text{x} 114$ Neuronengitter entspricht. Diese Zahl ist allerdings viel zu hoch, um sie in der Praxis zu verwenden, da die SOM dann sehr lange zum Trainieren braucht und die Ergebnisse nicht unbedingt besser werden. Daher wurde in dieser Arbeit intuitiv ein $30 \text{x} 30$ Neuronengitter mit 900 Neuronen verwendet, was eine gute Balance zwischen Trainingszeit und Ergebnisqualität darstellt. Wichtig zu erwähnen ist, dass der QE indirekt von der Anzahl der Neuronen abhängt. Würde man für einen gleichen Datensatz, die Neuronenanzahl stumpf erhöhen, so würde der Fehler geringer werden, da die Abstände zur BMU bei mehr möglichen BMUs im Schnitt kleiner werden, und umgekehrt \parencite{polzlbauer_survey_2004}. Um eine Vergleichbarkeit von allen Modellen untereinander zu gewährleisten, wurde die Kartengröße konstant gelassen. \\
+Für die initial Lernrate $\alpha_0$ wurde von \textcite{vettigli_minisom_2021} ein Startwert von $0,5$ vorgeschlagen, welcher auch in vielen Trainingsläufen dieser Arbeit verwendet wurde. Für den Start - Nachbarschaftsradius $\sigma_0$ gibt der \texttt{MiniSom} - Entwickler eine maximale Größe von:
+
+\begin{equation}
+    {\sigma_0}_{\text{max}} = \sqrt{I^2 + J^2}
+\end{equation}
+an, was in meinem Fall bei einem $30 \text{x} 30$ Neuronengitter eine maximale Nachbarschaftsgröße von ${\sigma_0}_{\text{max}} = \sqrt{30^2 + 30^2} = \sqrt{1800} \approx 42$ bedeutet. Für größere Radien gibt der Algorithmus eine Warnmeldung aus und somit eine quantifizierbare Obergrenze. \\
+Große Radien bedeuten eine stärkere Segmentierung von vor allem punktdichten Clustern innerhalb der Eingabedaten, während bei kleinerern Radien auch weniger dichte Cluster besser aufgelöst werden können. Da Lernrate und Nachbarschaftsradius gemeinsam bestimmen, wie stark die Neuronen angepasst werden, ist es für vergleichbare Änderungsraten sinnvoll, beide invers zueinander zu verändern. Daher wurden in dieser Arbeit zwei unterschiedliche Kombinationen aus Lernrate und Nachbarschaftsradius verwendet:
+
+\begin{enumerate}
+    \item $\alpha_0 = 0,5$ und $\sigma_0 = 5$
+    \item $\alpha_0 = 0,3$ und $\sigma_0 = 7$
+\end{enumerate}
+Für die inversen Abnahmefunktionen von Lernrate und Nachbarschaftsradius (\ref{eq:inverse_learning_rate}) und (\ref{eq:inverse_neighborhood_size}) nutzt \textcite{vettigli_minisom_2021} ein Wahrheitsargument \texttt{use\_epochs}, wenn man mehr als eine Epoche trainieren möchte. Dieses Argument wird in dieser Arbeit auf \texttt{True} gesetzt, sodass $n$ innerhalb der Funktionen (\ref{eq:inverse_learning_rate}) und (\ref{eq:inverse_neighborhood_size}) für die aktuelle Epoche und $N$ für die Gesamtanzahl der Epochen steht. \\
+Die Anzahl der Epochen $N$ wurde in dieser Arbeit intuitiv auf $N = 50$ gesetzt, was bei bei den ersten Läufen zu sehr guten Ergebnissen geführt hat. Desweiteren wurde sich angeschaut, wie die Sortierung nach $10$ und $30$ Epochen aussieht, um zu überprüfen, ob so eine hohe Epochenzahl überhaupt notwendig ist. \\
 
 \subsubsection{Feature-Auswahl}

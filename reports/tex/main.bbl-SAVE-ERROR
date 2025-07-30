@@ -128,6 +128,61 @@
       \verb https://csegrecorder.com/articles/view/too-many-seismic-attributes
       \endverb
     \endentry
+    \entry{brause_neuronale_1995}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a6ff8f7c15697337e627984f701b780c}{%
+           family={Brause},
+           familyi={B\bibinitperiod},
+           given={Rüdiger\bibnamedelima W.},
+           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Wiesbaden}%
+      }
+      \list{publisher}{1}{%
+        {Vieweg+Teubner Verlag}%
+      }
+      \strng{namehash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{fullhash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{fullhashraw}{a6ff8f7c15697337e627984f701b780c}
+      \strng{bibnamehash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{authorbibnamehash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{authornamehash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{authorfullhash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{authorfullhashraw}{a6ff8f7c15697337e627984f701b780c}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{isbn}{978-3-519-12247-0 978-3-322-93994-4}
+      \field{langid}{german}
+      \field{note}{{ISSN}: 1615-5432}
+      \field{series}{Leitfäden der Informatik}
+      \field{shorttitle}{Neuronale Netze}
+      \field{title}{Neuronale Netze: Eine Einführung in die Neuroinformatik}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{1995}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-322-93994-4
+      \endverb
+      \verb{file}
+      \verb Eingereichte Version:C\:\\Users\\anton\\Zotero\\storage\\8VLCXYCU\\Brause - 1995 - Neuronale Netze Eine Einführung in die Neuroinformatik.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-3-322-93994-4
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-3-322-93994-4
+      \endverb
+    \endentry
     \entry{carcione_acoustic-electromagnetic_1995}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=b7f41609b3e8df951042d49eac5735b1}{%
@@ -236,6 +291,139 @@
       \verb https://library.seg.org/doi/book/10.1190/1.9781560801900
       \endverb
     \endentry
+    \entry{corradini_understanding_2020}{article}{}{}
+      \name{author}{14}{}{%
+        {{un=0,uniquepart=base,hash=70b7b7101a98d687a849ec8ad79bb39e}{%
+           family={Corradini},
+           familyi={C\bibinitperiod},
+           given={Erica},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=11cd339dae6005737214950228fcf644}{%
+           family={Dreibrodt},
+           familyi={D\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=de6f1828e15ab24628ea9cd181d77f76}{%
+           family={Erkul},
+           familyi={E\bibinitperiod},
+           given={Ercan},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5370943a4baeb87905501610de33589c}{%
+           family={Groß},
+           familyi={G\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=82395b04e6b4f39cf9ed78fbf56b9f81}{%
+           family={Lübke},
+           familyi={L\bibinitperiod},
+           given={Harald},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=341655516b6497aeca960eb456593be9}{%
+           family={Panning},
+           familyi={P\bibinitperiod},
+           given={Diana},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=56691d908a904e2ce7b6045ac51b7b2f}{%
+           family={Pickartz},
+           familyi={P\bibinitperiod},
+           given={Natalie},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=133aaf190951a0f5d118858c565aa7bb}{%
+           family={Thorwart},
+           familyi={T\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=484c4e9fdcbb03b163b9c830a38a77f2}{%
+           family={Vött},
+           familyi={V\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08a32ab0fa135cf51892acdfde25a408}{%
+           family={Willershäuser},
+           familyi={W\bibinitperiod},
+           given={Timo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=627ed01a8b8fb910f312c286aa275c5e}{%
+           family={Wilken},
+           familyi={W\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95688b6b8c9848c95b653fa7d0091436}{%
+           family={Wunderlich},
+           familyi={W\bibinitperiod},
+           given={Tina},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f45cfe348869426b575eb274291796f4}{%
+           family={Zanon},
+           familyi={Z\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b6f3084f5014a47b67fb4a2abdf3725b}{%
+           family={Rabbel},
+           familyi={R\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9894226fef9e4a085d4731265f72dd3d}
+      \strng{fullhash}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{fullhashraw}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{bibnamehash}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{authorbibnamehash}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{authornamehash}{9894226fef9e4a085d4731265f72dd3d}
+      \strng{authorfullhash}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{authorfullhashraw}{b7166f40875c40646ff6869d0d4c01cd}
+      \field{extraname}{1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We present a case study of a bog showing how an integrated approach of multi-method geophysical sounding and local soil sampling can be used to identify, differentiate, and map organic sediments. Our study is based on ground-penetrating radar ({GPR}), electrical resistivity tomography ({ERT}) and shear-wave seismic ({SH} seismic) profiling applied to sediments of the former Lake Duvensee (northern Germany), nowadays a bog. This is a well-known locality for remains from the Mesolithic hunter-gatherers’ occupation that has been attracting archaeological and geoarchaeological research for100 years. The bog is embedded in low conductive glacial sand and is characterized by layers of different gyttja sediments (detritus and calcareous). The present study was conducted in order to identify the bog morphology and the thickness of the peat body and lake sediments, in order to understand the basin evolution. To validate the geophysical results, derived from surface measurements, drilling, soil analyses as well as borehole guided wave analysis of electromagnetic waves and Direct-Push ({DP}-{EC}) have been carried out and used for comparison. It turned out that each method can distinguish between sediments that differ in grain size, particularly between peat, lake sediments (gyttjas and mud) and basal glacial sand deposits. {GPR} is even able to separate between strongly and weakly decomposed peat layers, which is also clear considering resistivity variations in the {ERT} computation. From the association between geophysical properties and sediment analysis (e.g., water content and organic matter) different gyttjas were distinguished (coarse and fine) and seismic velocity was correlated to bulk density. Moreover, {GPR} and {SH}-wave seismics present different resolutions, confirming that the latter allows measurements, which are more focused on determining the extension of basal sand deposits, the depth of which is difficult to reach with {GPR}. Representative values of electrical resistivity, dielectric permittivity, and shear wave velocity have been determined for each sediment type and are therefore available to complete the investigation of wetland environments. Fine grained lake sediments were difficult to differentiate by the applied methods. This could be a result of high ionic concentration within the permanent groundwater body, partly masking the sediment properties.}
+      \field{issn}{2076-3263}
+      \field{journaltitle}{Geosciences}
+      \field{langid}{english}
+      \field{note}{Publisher: {MDPI} {AG}}
+      \field{number}{8}
+      \field{shorttitle}{Understanding Wetlands Stratigraphy}
+      \field{title}{Understanding Wetlands Stratigraphy: Geophysics and Soil Parameters for Investigating Ancient Basin Development at Lake Duvensee}
+      \field{urlday}{24}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{10}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{314}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/geosciences10080314
+      \endverb
+      \verb{file}
+      \verb Volltext:C\:\\Users\\anton\\Zotero\\storage\\UV7BCAR2\\Corradini et al. - 2020 - Understanding Wetlands Stratigraphy Geophysics and Soil Parameters for Investigating Ancient Basin.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2076-3263/10/8/314
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2076-3263/10/8/314
+      \endverb
+    \endentry
     \entry{corradini_day_2023}{article}{}{}
       \name{author}{9}{}{%
         {{un=0,uniquepart=base,hash=70b7b7101a98d687a849ec8ad79bb39e}{%
@@ -301,6 +489,7 @@
       \strng{authornamehash}{9894226fef9e4a085d4731265f72dd3d}
       \strng{authorfullhash}{d34b370df11b457e064bf0965b30a186}
       \strng{authorfullhashraw}{d34b370df11b457e064bf0965b30a186}
+      \field{extraname}{2}
       \field{sortinit}{C}
       \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{extradatescope}{labelyear}
@@ -484,6 +673,83 @@
       \verb https://linkinghub.elsevier.com/retrieve/pii/S0165168416300494
       \endverb
     \endentry
+    \entry{guthrie_nistsematech_2020}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c645720f72cbcbed7e7f4cf32fe4e651}{%
+           family={Guthrie},
+           familyi={G\bibinitperiod},
+           given={William\bibnamedelima F.},
+           giveni={W\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{2}{%
+        {National Institute of Standards}%
+        {Technology}%
+      }
+      \strng{namehash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{fullhash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{fullhashraw}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{bibnamehash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{authorbibnamehash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{authornamehash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{authorfullhash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{authorfullhashraw}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The {NIST}/{SEMATECH} e-Handbook of Statistical Methods is a Web-based book written to help scientists and engineers incorporate statistical methods into their work as efficiently as possible. Ideally, it will serve as a reference which will help scientists and engineers design their own experiments and carry out the appropriate analyses when a statistician is not available to help. It is also hoped that it will serve as a useful educational tool that will help users of statistical methods and consumers of statistical information better understand statistical procedures and their underlying assumptions, and more clearly interpret scientific and engineering results stated in statistical terms.}
+      \field{langid}{english}
+      \field{title}{{NIST}/{SEMATECH} e-Handbook of Statistical Methods ({NIST} Handbook 151)}
+      \field{urlday}{25}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.18434/M32189
+      \endverb
+      \verb{urlraw}
+      \verb https://www.itl.nist.gov/div898/handbook/
+      \endverb
+      \verb{url}
+      \verb https://www.itl.nist.gov/div898/handbook/
+      \endverb
+      \keyw{analysis of variance,experimental design,exploratory data analysis,{FOS}: Mathematics,graphics,model validation,process characterization,quality control,regression,reliability,statistical modeling,Statistics,time series,uncertaintyanalysis}
+    \endentry
+    \entry{ibm_data_and_ai_team_what_nodate}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=60e6421edc1e3d9a6dc9d3a676483485}{%
+           family={{IBM Data and AI Team}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{fullhash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{fullhashraw}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{bibnamehash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{authorbibnamehash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{authornamehash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{authorfullhash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{authorfullhashraw}{60e6421edc1e3d9a6dc9d3a676483485}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labeldatesource}{nodate}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{What is a neural network?}
+      \verb{urlraw}
+      \verb https://www.ibm.com/think/topics/ai-vs-machine-learning-vs-deep-learning-vs-neural-networks
+      \endverb
+      \verb{url}
+      \verb https://www.ibm.com/think/topics/ai-vs-machine-learning-vs-deep-learning-vs-neural-networks
+      \endverb
+    \endentry
     \entry{noauthor_instantaneous_2024}{online}{}{}
       \field{sortinit}{I}
       \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
@@ -502,6 +768,100 @@
       \endverb
       \verb{url}
       \verb https://wiki.seg.org/wiki/Dictionary:Instantaneous_q_factor/en
+      \endverb
+    \endentry
+    \entry{kinnebrock_neuronale_2018}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bef6a32c758e99cb2ca5a408c94bd79d}{%
+           family={Kinnebrock},
+           familyi={K\bibinitperiod},
+           given={Werner},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berlin Boston}%
+      }
+      \list{publisher}{1}{%
+        {Oldenbourg Wissenschaftsverlag}%
+      }
+      \strng{namehash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{fullhash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{fullhashraw}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{bibnamehash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{authorbibnamehash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{authornamehash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{authorfullhash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{authorfullhashraw}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{edition}{2., verbesserte Auflage. Reprint 2018}
+      \field{isbn}{978-3-486-22947-9 978-3-486-78636-1}
+      \field{pagetotal}{1}
+      \field{shorttitle}{Neuronale Netze}
+      \field{title}{Neuronale Netze: Grundlagen, Anwendungen, Beispiele}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1515/9783486786361
+      \endverb
+    \endentry
+    \entry{kohonen_self-organizing_2001}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a239233dfb1d78ba7f02fe9e49b13503}{%
+           family={Kohonen},
+           familyi={K\bibinitperiod},
+           given={Teuvo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{fullhash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{fullhashraw}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{bibnamehash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{authorbibnamehash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{authornamehash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{authorfullhash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{authorfullhashraw}{a239233dfb1d78ba7f02fe9e49b13503}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-540-67921-9 978-3-642-56927-2}
+      \field{note}{{ISSN}: 0720-678X}
+      \field{series}{Springer Series in Information Sciences}
+      \field{title}{Self-Organizing Maps}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2001}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-642-56927-2
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\MV33ECND\\Kohonen - 2001 - Self-Organizing Maps.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-3-642-56927-2
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-3-642-56927-2
       \endverb
     \endentry
     \entry{maurer_seismic_1992}{inbook}{}{}
@@ -577,6 +937,65 @@
       \endverb
       \verb{url}
       \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?doi=10.1117/12.139971
+      \endverb
+    \endentry
+    \entry{natita_appropriate_2016}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7b946337e6cfedb3de159d958aa79616}{%
+           family={Natita},
+           familyi={N\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=31d5ff460068ea652b1783f94ab09583}{%
+           family={Wiboonsak},
+           familyi={W\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c7af9caa7291072ab43d68c792e1d9cd}{%
+           family={Dusadee},
+           familyi={D\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8177128b48c7183f52996df7b90fe773}
+      \strng{fullhash}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{fullhashraw}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{bibnamehash}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{authorbibnamehash}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{authornamehash}{8177128b48c7183f52996df7b90fe773}
+      \strng{authorfullhash}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{authorfullhashraw}{769d652df4d0cb8dc04e6c6555da42d9}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{20103697}
+      \field{journaltitle}{{IJMO}}
+      \field{number}{1}
+      \field{title}{Appropriate Learning Rate and Neighborhood Function of Self-organizing Map ({SOM}) for Specific Humidity Pattern Classification over Southern Thailand}
+      \field{urlday}{27}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{6}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{61\bibrangedash 65}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.7763/IJMO.2016.V6.504
+      \endverb
+      \verb{urlraw}
+      \verb http://www.ijmo.org/index.php?m=content&c=index&a=show&catid=61&id=606
+      \endverb
+      \verb{url}
+      \verb http://www.ijmo.org/index.php?m=content&c=index&a=show&catid=61&id=606
       \endverb
     \endentry
     \entry{qi_seismic_2020}{article}{}{}
@@ -734,6 +1153,118 @@
       \verb https://library.seg.org/doi/10.1190/INT-2015-0037.1
       \endverb
     \endentry
+    \entry{rojas_theorie_1993}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2ef4f5b5345dfc0425cd20c6e9e81b44}{%
+           family={Rojas},
+           familyi={R\bibinitperiod},
+           given={Raúl},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{fullhash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{fullhashraw}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{bibnamehash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{authorbibnamehash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{authornamehash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{authorfullhash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{authorfullhashraw}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-540-56353-2 978-3-642-61231-2}
+      \field{note}{{ISSN}: 0937-7433}
+      \field{series}{Springer-Lehrbuch}
+      \field{title}{Theorie der neuronalen Netze}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{1993}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-642-61231-2
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-3-642-61231-2
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-3-642-61231-2
+      \endverb
+    \endentry
+    \entry{schmidt_effects_2011}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c3eaab905cc7ff79b6535296659e95d5}{%
+           family={Schmidt},
+           familyi={S\bibinitperiod},
+           given={Charles\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f26a971eabe118a217b69692df26bfe3}{%
+           family={Rey},
+           familyi={R\bibinitperiod},
+           given={Sergio\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=12940f86d3242f5b3da8c2a766ce6119}{%
+           family={Skupin},
+           familyi={S\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{69489b3fa8b69d0366cbdbe4cfcb2430}
+      \strng{fullhash}{3ffddabbba2f812307741aa064a182bc}
+      \strng{fullhashraw}{3ffddabbba2f812307741aa064a182bc}
+      \strng{bibnamehash}{3ffddabbba2f812307741aa064a182bc}
+      \strng{authorbibnamehash}{3ffddabbba2f812307741aa064a182bc}
+      \strng{authornamehash}{69489b3fa8b69d0366cbdbe4cfcb2430}
+      \strng{authorfullhash}{3ffddabbba2f812307741aa064a182bc}
+      \strng{authorfullhashraw}{3ffddabbba2f812307741aa064a182bc}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The authors explore the effect of different topologies on properties of self-organizing maps ({SOM}). They suggest several diagnostics for measuring topology-induced errors in {SOM} and use these in a comparison of four different topologies. The results show that {SOM} is less sensitive to localized irregularities in the network structure than the literature may otherwise suggest. Further, the results support the use of spherical topologies as a solution to the boundary problem in traditional {SOM}.}
+      \field{issn}{0160-0176, 1552-6925}
+      \field{journaltitle}{International Regional Science Review}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{2}
+      \field{title}{Effects of Irregular Topology in Spherical Self-Organizing Maps}
+      \field{urlday}{28}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{34}
+      \field{year}{2011}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{215\bibrangedash 229}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1177/0160017610387297
+      \endverb
+      \verb{urlraw}
+      \verb https://journals.sagepub.com/doi/10.1177/0160017610387297
+      \endverb
+      \verb{url}
+      \verb https://journals.sagepub.com/doi/10.1177/0160017610387297
+      \endverb
+    \endentry
     \entry{sheriff_encyclopedic_2002}{book}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=5aba58c57f512088798f28a5bf800a12}{%
@@ -847,6 +1378,41 @@
       \endverb
       \verb{url}
       \verb https://library.seg.org/doi/10.1190/1.1440994
+      \endverb
+    \endentry
+    \entry{vettigli_minisom_2021}{software}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=428c548455c41e30fd4e0e0a7b741249}{%
+           family={Vettigli},
+           familyi={V\bibinitperiod},
+           given={Giuseppe},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{fullhash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{fullhashraw}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{bibnamehash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{authorbibnamehash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{authornamehash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{authorfullhash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{authorfullhashraw}{428c548455c41e30fd4e0e0a7b741249}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{MiniSom}}
+      \field{version}{2.3.0}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/JustGlowing/minisom
+      \endverb
+      \verb{url}
+      \verb https://github.com/JustGlowing/minisom
       \endverb
     \endentry
     \entry{zhao_characterizing_2016}{article}{}{}
@@ -1068,6 +1634,61 @@
       \verb https://csegrecorder.com/articles/view/too-many-seismic-attributes
       \endverb
     \endentry
+    \entry{brause_neuronale_1995}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a6ff8f7c15697337e627984f701b780c}{%
+           family={Brause},
+           familyi={B\bibinitperiod},
+           given={Rüdiger\bibnamedelima W.},
+           giveni={R\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Wiesbaden}%
+      }
+      \list{publisher}{1}{%
+        {Vieweg+Teubner Verlag}%
+      }
+      \strng{namehash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{fullhash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{fullhashraw}{a6ff8f7c15697337e627984f701b780c}
+      \strng{bibnamehash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{authorbibnamehash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{authornamehash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{authorfullhash}{a6ff8f7c15697337e627984f701b780c}
+      \strng{authorfullhashraw}{a6ff8f7c15697337e627984f701b780c}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{isbn}{978-3-519-12247-0 978-3-322-93994-4}
+      \field{langid}{german}
+      \field{note}{{ISSN}: 1615-5432}
+      \field{series}{Leitfäden der Informatik}
+      \field{shorttitle}{Neuronale Netze}
+      \field{title}{Neuronale Netze: Eine Einführung in die Neuroinformatik}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{1995}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-322-93994-4
+      \endverb
+      \verb{file}
+      \verb Eingereichte Version:C\:\\Users\\anton\\Zotero\\storage\\8VLCXYCU\\Brause - 1995 - Neuronale Netze Eine Einführung in die Neuroinformatik.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-3-322-93994-4
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-3-322-93994-4
+      \endverb
+    \endentry
     \entry{carcione_acoustic-electromagnetic_1995}{article}{}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=b7f41609b3e8df951042d49eac5735b1}{%
@@ -1176,6 +1797,139 @@
       \verb https://library.seg.org/doi/book/10.1190/1.9781560801900
       \endverb
     \endentry
+    \entry{corradini_understanding_2020}{article}{}{}
+      \name{author}{14}{}{%
+        {{un=0,uniquepart=base,hash=70b7b7101a98d687a849ec8ad79bb39e}{%
+           family={Corradini},
+           familyi={C\bibinitperiod},
+           given={Erica},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=11cd339dae6005737214950228fcf644}{%
+           family={Dreibrodt},
+           familyi={D\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=de6f1828e15ab24628ea9cd181d77f76}{%
+           family={Erkul},
+           familyi={E\bibinitperiod},
+           given={Ercan},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5370943a4baeb87905501610de33589c}{%
+           family={Groß},
+           familyi={G\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=82395b04e6b4f39cf9ed78fbf56b9f81}{%
+           family={Lübke},
+           familyi={L\bibinitperiod},
+           given={Harald},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=341655516b6497aeca960eb456593be9}{%
+           family={Panning},
+           familyi={P\bibinitperiod},
+           given={Diana},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=56691d908a904e2ce7b6045ac51b7b2f}{%
+           family={Pickartz},
+           familyi={P\bibinitperiod},
+           given={Natalie},
+           giveni={N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=133aaf190951a0f5d118858c565aa7bb}{%
+           family={Thorwart},
+           familyi={T\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=484c4e9fdcbb03b163b9c830a38a77f2}{%
+           family={Vött},
+           familyi={V\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08a32ab0fa135cf51892acdfde25a408}{%
+           family={Willershäuser},
+           familyi={W\bibinitperiod},
+           given={Timo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=627ed01a8b8fb910f312c286aa275c5e}{%
+           family={Wilken},
+           familyi={W\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=95688b6b8c9848c95b653fa7d0091436}{%
+           family={Wunderlich},
+           familyi={W\bibinitperiod},
+           given={Tina},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f45cfe348869426b575eb274291796f4}{%
+           family={Zanon},
+           familyi={Z\bibinitperiod},
+           given={Marco},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b6f3084f5014a47b67fb4a2abdf3725b}{%
+           family={Rabbel},
+           familyi={R\bibinitperiod},
+           given={Wolfgang},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9894226fef9e4a085d4731265f72dd3d}
+      \strng{fullhash}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{fullhashraw}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{bibnamehash}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{authorbibnamehash}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{authornamehash}{9894226fef9e4a085d4731265f72dd3d}
+      \strng{authorfullhash}{b7166f40875c40646ff6869d0d4c01cd}
+      \strng{authorfullhashraw}{b7166f40875c40646ff6869d0d4c01cd}
+      \field{extraname}{1}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{abstract}{We present a case study of a bog showing how an integrated approach of multi-method geophysical sounding and local soil sampling can be used to identify, differentiate, and map organic sediments. Our study is based on ground-penetrating radar ({GPR}), electrical resistivity tomography ({ERT}) and shear-wave seismic ({SH} seismic) profiling applied to sediments of the former Lake Duvensee (northern Germany), nowadays a bog. This is a well-known locality for remains from the Mesolithic hunter-gatherers’ occupation that has been attracting archaeological and geoarchaeological research for100 years. The bog is embedded in low conductive glacial sand and is characterized by layers of different gyttja sediments (detritus and calcareous). The present study was conducted in order to identify the bog morphology and the thickness of the peat body and lake sediments, in order to understand the basin evolution. To validate the geophysical results, derived from surface measurements, drilling, soil analyses as well as borehole guided wave analysis of electromagnetic waves and Direct-Push ({DP}-{EC}) have been carried out and used for comparison. It turned out that each method can distinguish between sediments that differ in grain size, particularly between peat, lake sediments (gyttjas and mud) and basal glacial sand deposits. {GPR} is even able to separate between strongly and weakly decomposed peat layers, which is also clear considering resistivity variations in the {ERT} computation. From the association between geophysical properties and sediment analysis (e.g., water content and organic matter) different gyttjas were distinguished (coarse and fine) and seismic velocity was correlated to bulk density. Moreover, {GPR} and {SH}-wave seismics present different resolutions, confirming that the latter allows measurements, which are more focused on determining the extension of basal sand deposits, the depth of which is difficult to reach with {GPR}. Representative values of electrical resistivity, dielectric permittivity, and shear wave velocity have been determined for each sediment type and are therefore available to complete the investigation of wetland environments. Fine grained lake sediments were difficult to differentiate by the applied methods. This could be a result of high ionic concentration within the permanent groundwater body, partly masking the sediment properties.}
+      \field{issn}{2076-3263}
+      \field{journaltitle}{Geosciences}
+      \field{langid}{english}
+      \field{note}{Publisher: {MDPI} {AG}}
+      \field{number}{8}
+      \field{shorttitle}{Understanding Wetlands Stratigraphy}
+      \field{title}{Understanding Wetlands Stratigraphy: Geophysics and Soil Parameters for Investigating Ancient Basin Development at Lake Duvensee}
+      \field{urlday}{24}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{10}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{314}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/geosciences10080314
+      \endverb
+      \verb{file}
+      \verb Volltext:C\:\\Users\\anton\\Zotero\\storage\\UV7BCAR2\\Corradini et al. - 2020 - Understanding Wetlands Stratigraphy Geophysics and Soil Parameters for Investigating Ancient Basin.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2076-3263/10/8/314
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2076-3263/10/8/314
+      \endverb
+    \endentry
     \entry{corradini_day_2023}{article}{}{}
       \name{author}{9}{}{%
         {{un=0,uniquepart=base,hash=70b7b7101a98d687a849ec8ad79bb39e}{%
@@ -1241,6 +1995,7 @@
       \strng{authornamehash}{9894226fef9e4a085d4731265f72dd3d}
       \strng{authorfullhash}{d34b370df11b457e064bf0965b30a186}
       \strng{authorfullhashraw}{d34b370df11b457e064bf0965b30a186}
+      \field{extraname}{2}
       \field{sortinit}{C}
       \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{extradatescope}{labelyear}
@@ -1424,6 +2179,83 @@
       \verb https://linkinghub.elsevier.com/retrieve/pii/S0165168416300494
       \endverb
     \endentry
+    \entry{guthrie_nistsematech_2020}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=c645720f72cbcbed7e7f4cf32fe4e651}{%
+           family={Guthrie},
+           familyi={G\bibinitperiod},
+           given={William\bibnamedelima F.},
+           giveni={W\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{2}{%
+        {National Institute of Standards}%
+        {Technology}%
+      }
+      \strng{namehash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{fullhash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{fullhashraw}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{bibnamehash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{authorbibnamehash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{authornamehash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{authorfullhash}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \strng{authorfullhashraw}{c645720f72cbcbed7e7f4cf32fe4e651}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The {NIST}/{SEMATECH} e-Handbook of Statistical Methods is a Web-based book written to help scientists and engineers incorporate statistical methods into their work as efficiently as possible. Ideally, it will serve as a reference which will help scientists and engineers design their own experiments and carry out the appropriate analyses when a statistician is not available to help. It is also hoped that it will serve as a useful educational tool that will help users of statistical methods and consumers of statistical information better understand statistical procedures and their underlying assumptions, and more clearly interpret scientific and engineering results stated in statistical terms.}
+      \field{langid}{english}
+      \field{title}{{NIST}/{SEMATECH} e-Handbook of Statistical Methods ({NIST} Handbook 151)}
+      \field{urlday}{25}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.18434/M32189
+      \endverb
+      \verb{urlraw}
+      \verb https://www.itl.nist.gov/div898/handbook/
+      \endverb
+      \verb{url}
+      \verb https://www.itl.nist.gov/div898/handbook/
+      \endverb
+      \keyw{analysis of variance,experimental design,exploratory data analysis,{FOS}: Mathematics,graphics,model validation,process characterization,quality control,regression,reliability,statistical modeling,Statistics,time series,uncertaintyanalysis}
+    \endentry
+    \entry{ibm_data_and_ai_team_what_nodate}{online}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=60e6421edc1e3d9a6dc9d3a676483485}{%
+           family={{IBM Data and AI Team}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{fullhash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{fullhashraw}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{bibnamehash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{authorbibnamehash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{authornamehash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{authorfullhash}{60e6421edc1e3d9a6dc9d3a676483485}
+      \strng{authorfullhashraw}{60e6421edc1e3d9a6dc9d3a676483485}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labeldatesource}{nodate}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{langid}{english}
+      \field{title}{What is a neural network?}
+      \verb{urlraw}
+      \verb https://www.ibm.com/think/topics/ai-vs-machine-learning-vs-deep-learning-vs-neural-networks
+      \endverb
+      \verb{url}
+      \verb https://www.ibm.com/think/topics/ai-vs-machine-learning-vs-deep-learning-vs-neural-networks
+      \endverb
+    \endentry
     \entry{noauthor_instantaneous_2024}{online}{}{}
       \field{sortinit}{I}
       \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
@@ -1442,6 +2274,100 @@
       \endverb
       \verb{url}
       \verb https://wiki.seg.org/wiki/Dictionary:Instantaneous_q_factor/en
+      \endverb
+    \endentry
+    \entry{kinnebrock_neuronale_2018}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bef6a32c758e99cb2ca5a408c94bd79d}{%
+           family={Kinnebrock},
+           familyi={K\bibinitperiod},
+           given={Werner},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berlin Boston}%
+      }
+      \list{publisher}{1}{%
+        {Oldenbourg Wissenschaftsverlag}%
+      }
+      \strng{namehash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{fullhash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{fullhashraw}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{bibnamehash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{authorbibnamehash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{authornamehash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{authorfullhash}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \strng{authorfullhashraw}{bef6a32c758e99cb2ca5a408c94bd79d}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{edition}{2., verbesserte Auflage. Reprint 2018}
+      \field{isbn}{978-3-486-22947-9 978-3-486-78636-1}
+      \field{pagetotal}{1}
+      \field{shorttitle}{Neuronale Netze}
+      \field{title}{Neuronale Netze: Grundlagen, Anwendungen, Beispiele}
+      \field{year}{2018}
+      \field{dateera}{ce}
+      \verb{doi}
+      \verb 10.1515/9783486786361
+      \endverb
+    \endentry
+    \entry{kohonen_self-organizing_2001}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a239233dfb1d78ba7f02fe9e49b13503}{%
+           family={Kohonen},
+           familyi={K\bibinitperiod},
+           given={Teuvo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{fullhash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{fullhashraw}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{bibnamehash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{authorbibnamehash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{authornamehash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{authorfullhash}{a239233dfb1d78ba7f02fe9e49b13503}
+      \strng{authorfullhashraw}{a239233dfb1d78ba7f02fe9e49b13503}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-540-67921-9 978-3-642-56927-2}
+      \field{note}{{ISSN}: 0720-678X}
+      \field{series}{Springer Series in Information Sciences}
+      \field{title}{Self-Organizing Maps}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{2001}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-642-56927-2
+      \endverb
+      \verb{file}
+      \verb PDF:C\:\\Users\\anton\\Zotero\\storage\\MV33ECND\\Kohonen - 2001 - Self-Organizing Maps.pdf:application/pdf
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-3-642-56927-2
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-3-642-56927-2
       \endverb
     \endentry
     \entry{maurer_seismic_1992}{inbook}{}{}
@@ -1517,6 +2443,65 @@
       \endverb
       \verb{url}
       \verb http://proceedings.spiedigitallibrary.org/proceeding.aspx?doi=10.1117/12.139971
+      \endverb
+    \endentry
+    \entry{natita_appropriate_2016}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=7b946337e6cfedb3de159d958aa79616}{%
+           family={Natita},
+           familyi={N\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=31d5ff460068ea652b1783f94ab09583}{%
+           family={Wiboonsak},
+           familyi={W\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c7af9caa7291072ab43d68c792e1d9cd}{%
+           family={Dusadee},
+           familyi={D\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{8177128b48c7183f52996df7b90fe773}
+      \strng{fullhash}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{fullhashraw}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{bibnamehash}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{authorbibnamehash}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{authornamehash}{8177128b48c7183f52996df7b90fe773}
+      \strng{authorfullhash}{769d652df4d0cb8dc04e6c6555da42d9}
+      \strng{authorfullhashraw}{769d652df4d0cb8dc04e6c6555da42d9}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{20103697}
+      \field{journaltitle}{{IJMO}}
+      \field{number}{1}
+      \field{title}{Appropriate Learning Rate and Neighborhood Function of Self-organizing Map ({SOM}) for Specific Humidity Pattern Classification over Southern Thailand}
+      \field{urlday}{27}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{6}
+      \field{year}{2016}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{61\bibrangedash 65}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.7763/IJMO.2016.V6.504
+      \endverb
+      \verb{urlraw}
+      \verb http://www.ijmo.org/index.php?m=content&c=index&a=show&catid=61&id=606
+      \endverb
+      \verb{url}
+      \verb http://www.ijmo.org/index.php?m=content&c=index&a=show&catid=61&id=606
       \endverb
     \endentry
     \entry{qi_seismic_2020}{article}{}{}
@@ -1674,6 +2659,118 @@
       \verb https://library.seg.org/doi/10.1190/INT-2015-0037.1
       \endverb
     \endentry
+    \entry{rojas_theorie_1993}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=2ef4f5b5345dfc0425cd20c6e9e81b44}{%
+           family={Rojas},
+           familyi={R\bibinitperiod},
+           given={Raúl},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Berlin, Heidelberg}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{fullhash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{fullhashraw}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{bibnamehash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{authorbibnamehash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{authornamehash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{authorfullhash}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \strng{authorfullhashraw}{2ef4f5b5345dfc0425cd20c6e9e81b44}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-3-540-56353-2 978-3-642-61231-2}
+      \field{note}{{ISSN}: 0937-7433}
+      \field{series}{Springer-Lehrbuch}
+      \field{title}{Theorie der neuronalen Netze}
+      \field{urlday}{26}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{year}{1993}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.1007/978-3-642-61231-2
+      \endverb
+      \verb{urlraw}
+      \verb http://link.springer.com/10.1007/978-3-642-61231-2
+      \endverb
+      \verb{url}
+      \verb http://link.springer.com/10.1007/978-3-642-61231-2
+      \endverb
+    \endentry
+    \entry{schmidt_effects_2011}{article}{}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=c3eaab905cc7ff79b6535296659e95d5}{%
+           family={Schmidt},
+           familyi={S\bibinitperiod},
+           given={Charles\bibnamedelima R.},
+           giveni={C\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=f26a971eabe118a217b69692df26bfe3}{%
+           family={Rey},
+           familyi={R\bibinitperiod},
+           given={Sergio\bibnamedelima J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=12940f86d3242f5b3da8c2a766ce6119}{%
+           family={Skupin},
+           familyi={S\bibinitperiod},
+           given={André},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{69489b3fa8b69d0366cbdbe4cfcb2430}
+      \strng{fullhash}{3ffddabbba2f812307741aa064a182bc}
+      \strng{fullhashraw}{3ffddabbba2f812307741aa064a182bc}
+      \strng{bibnamehash}{3ffddabbba2f812307741aa064a182bc}
+      \strng{authorbibnamehash}{3ffddabbba2f812307741aa064a182bc}
+      \strng{authornamehash}{69489b3fa8b69d0366cbdbe4cfcb2430}
+      \strng{authorfullhash}{3ffddabbba2f812307741aa064a182bc}
+      \strng{authorfullhashraw}{3ffddabbba2f812307741aa064a182bc}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{The authors explore the effect of different topologies on properties of self-organizing maps ({SOM}). They suggest several diagnostics for measuring topology-induced errors in {SOM} and use these in a comparison of four different topologies. The results show that {SOM} is less sensitive to localized irregularities in the network structure than the literature may otherwise suggest. Further, the results support the use of spherical topologies as a solution to the boundary problem in traditional {SOM}.}
+      \field{issn}{0160-0176, 1552-6925}
+      \field{journaltitle}{International Regional Science Review}
+      \field{langid}{english}
+      \field{month}{4}
+      \field{number}{2}
+      \field{title}{Effects of Irregular Topology in Spherical Self-Organizing Maps}
+      \field{urlday}{28}
+      \field{urlmonth}{7}
+      \field{urlyear}{2025}
+      \field{volume}{34}
+      \field{year}{2011}
+      \field{dateera}{ce}
+      \field{urldateera}{ce}
+      \field{pages}{215\bibrangedash 229}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1177/0160017610387297
+      \endverb
+      \verb{urlraw}
+      \verb https://journals.sagepub.com/doi/10.1177/0160017610387297
+      \endverb
+      \verb{url}
+      \verb https://journals.sagepub.com/doi/10.1177/0160017610387297
+      \endverb
+    \endentry
     \entry{sheriff_encyclopedic_2002}{book}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=5aba58c57f512088798f28a5bf800a12}{%
@@ -1787,6 +2884,41 @@
       \endverb
       \verb{url}
       \verb https://library.seg.org/doi/10.1190/1.1440994
+      \endverb
+    \endentry
+    \entry{vettigli_minisom_2021}{software}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=428c548455c41e30fd4e0e0a7b741249}{%
+           family={Vettigli},
+           familyi={V\bibinitperiod},
+           given={Giuseppe},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{fullhash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{fullhashraw}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{bibnamehash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{authorbibnamehash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{authornamehash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{authorfullhash}{428c548455c41e30fd4e0e0a7b741249}
+      \strng{authorfullhashraw}{428c548455c41e30fd4e0e0a7b741249}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{MiniSom}}
+      \field{version}{2.3.0}
+      \field{year}{2021}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://github.com/JustGlowing/minisom
+      \endverb
+      \verb{url}
+      \verb https://github.com/JustGlowing/minisom
       \endverb
     \endentry
     \entry{zhao_seismic_2018}{article}{}{}

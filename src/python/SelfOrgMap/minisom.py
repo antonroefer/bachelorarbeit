@@ -784,7 +784,9 @@ class MiniSom(object):
             )
         # plt.show()
 
-    def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=True, appendix=None):
+    def plot_som_planes(
+        self, figsize=(12, 12), cmap="hot", fnames=None, save=True, appendix=None
+    ):
         """
         Visualisiert die einzelnen Feature-Ebenen (Component Planes) des SOM.
         Für jedes Feature wird ein separates Subplot erstellt, das die Gewichte
@@ -869,7 +871,9 @@ class MiniSom(object):
 
             ax.set_xticks([])
             ax.set_yticks([])
-            ax.set_title(f"Feature {feature_idx + 1}")
+            ax.set_title(
+                fnames[feature_idx] if fnames else f"Feature {feature_idx + 1}"
+            )
 
             # Colorbar für jedes Subplot hinzufügen
             cbar = fig.colorbar(
