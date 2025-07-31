@@ -1,0 +1,47 @@
+\section*{Anhang}
+
+Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu erkennen. Eine entsprechende Übersetzung ist in Tabelle \ref{tab:feature_names} zu finden.
+
+\begin{table}[H]
+	\centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Python-Variable} & \textbf{Feature-Name} \\
+        \hline
+        inst\_amp & Instantaneous Amplitude \\
+        avg\_energy & Average Energy \\
+        rms\_amp & RMS Amplitude \\
+        quadrature & Quadrature\\
+        inst\_q & Instantaneous Quality Factor \\
+        inst\_phase\_real & Instantaneous Phase (Real Part) \\
+        inst\_phase\_imag & Instantaneous Phase (Imaginary Part) \\
+        inst\_freq & Instantaneous Frequency \\
+        semblance & Semblance \\
+        skewness & Skewness \\
+        kurtosis & Kurtosis \\
+        \hline
+    \end{tabular}
+    \caption{Übersicht der Python-Variablen und den zugehörigen Feature-Namen}
+    \label{tab:feature_names}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_raw/pairplot_overview.jpg}
+    \caption{Pairplot der Rohdaten-Features, Prozessierstufe 1}
+    \label{fig:pairplot_overview_raw}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots/pairplot_overview.jpg}
+    \caption{Pairplot der Features, Prozessierstufe 2}
+    \label{fig:pairplot_overview}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/pairplot_overview.jpg}
+    \caption{Pairplot der Features, Prozessierstufe 3}
+    \label{fig:pairplot_overview_khigh}
+\end{figure}
