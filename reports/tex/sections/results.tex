@@ -6,7 +6,133 @@ In diesem Kapitel werden die Ergebnisse der Feature-Extraktion vorgestellt. Da e
 
 \subsubsection{Amplitude}
 
-Die Amplituden werden hier in der Prozessierstufe 2 verglichen.
+Die Amplituden werden hier in der Prozessierstufe 3 verglichen. Alle Merkmale besitzen hohe Werte in Bereich \textbf{(A)}, welches die Luft- und Bodenwelle zeigt. Desweiteren zeigen sie eine hohe Reflektivität im Bereich \textbf{(B)}, in dem Untergrundstrukturen zum Vorschein kommen und auch Strukturen im Bereich \textbf{(C)} sind überall zu erkennen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_amplitude.jpg}
+    \caption{Instantaneous Amplitude des Radargramms 7, Prozessierstufe 3}
+    \label{fig:inst_amp_result}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/rms_amplitude.jpg}
+    \caption{RMS-Amplitude des Radargramms 7, Prozessierstufe 3}
+    \label{fig:rms_result}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/average_energy.jpg}
+    \caption{Average Energy des Radargramms 7, Prozessierstufe 3}
+    \label{fig:avg_energy_result}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/quadrature.jpg}
+    \caption{Quadrature des Radargramms 7, Prozessierstufe 3}
+    \label{fig:quadrature_result}
+\end{figure}
+
+Desweiteren wurden alle Merkmale gegeneinander geplottet in einem sogenannten Pairplot. In Abb. \ref{fig:pairplot_amps_result} sieht man die Gegenüberstellungen mit ihren python Variablen Namen. Falls ein Variablenname nicht eindeutig sein sollte, gibt es in der Tabelle \ref{tab:feature_names} eine Übersicht aller Variablen und deren Bedeutung. Die Pairplots zeigen, dass alle Amplitudenmerkmale stark miteinander korrelieren. Besonders auffällig ist die hohe lineare Korrelation zwischen der Average Energy und der Instantaneous Amplitude. RMS Amplitude und Average Energy besitzen fast schon einen quadratischen Zusammenhang, was bei der Berechnung der beiden Feature nicht verwunderlich ist. Rein visuell scheint die Quadrature noch das unabhängigste und gleichverteilteste Merkmal im Vergleich zu den anderen zu sein.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/pairplot_amps.jpg}
+    \caption{Pairplot der Amplitudenmerkmale des Radargramms 7, Prozessierstufe 3}
+    \label{fig:pairplot_amps_result}
+\end{figure}
+
+\subsubsection{Phase}
+
+Die Phase wird in der Prozessierstufe 3 gezeigt. Während die Phasenverlaufe meist sehr gut sichtbar sind, zeigt Bereich \textbf{(A)} Phasenverläufe, die horizontal große Unterschiede aufweisen. Bereich \textbf{(B)} ist dabei eine Außnahme, in dem man die Phasenverläufe bis zur maximalen Laufzeit sehr gut verfolgen kann.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_phase.jpg}
+    \caption{InstantaneousPhase des Radargramms 7, Prozessierstufe 3}
+    \label{fig:inst_phase_result}
+\end{figure}
+
+\subsubsection{Frequenz}
+
+Die Frequenz wird hier zweimal in der Prozessierstufe 1 gezeigt, einmal mit moderater und einmal mit hoher Glättung.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_frequency_raw.jpg}
+    \caption{Instantaneous Frequency des Radargramms 7, Prozessierstufe 1, moderate Glättung}
+    \label{fig:inst_freq_result_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_frequency_high.jpg}
+    \caption{Instantaneous Frequency des Radargramms 7, Prozessierstufe 1, hohe Glättung}
+    \label{fig:inst_freq_result_2}
+\end{figure}
+
+\subsubsection{Qualitätsfaktor}
+
+Der Qualitätsfaktor wird in der Prozessierstufe 3 gezeigt. Der Qualitätsfaktor zeigt besonders in Bereich \textbf{(A)} hohe Werte. In Bereich \textbf{(B)} dagegen sind vermehrt Samples mit niedriger Qualität zu erkennen und auch Bereich \textbf{(C)} hebt sich gut vom Hintergrund ab.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_q.png}
+    \caption{Qualitätsfaktor des Radargramms 7, Prozessierstufe 3}
+    \label{fig:inst_q_result}
+\end{figure}
+
+\subsubsection{Statistische Momente}
+
+Die statistischen Momente werden in der Prozessierstufe 3 gezeigt. Die Momente zeigen allgemein zu kleinen Laufzeiten niedrige Werte und zu großen Laufzeiten hohe Werte. In Bereich \textbf{(A)} sind Werte regional etwas kleiner und in Bereich \textbf{(B)} sind die Werte sind die Werte selbst bei langen Laufzeiten noch relativ klein.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/skewness.jpg}
+    \caption{Skewness des Radargramms 7, Prozessierstufe 3}
+    \label{fig:skewness_result}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/kurtosis.jpg}
+    \caption{Kurtosis des Radargramms 7, Prozessierstufe 3}
+    \label{fig:kurtosis_result}
+\end{figure}
+
+Nicht nur auf den Feature-Plots selbst sondern auch in ihren Pairplots und in ihrer Werteverteilung sind sich die statistischen Momente sehr ähnlich.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/pairplot_stats.jpg}
+    \caption{Pairplot der statistischen Momente des Radargramms 7, Prozessierstufe 3}
+    \label{fig:pairplot_statistical_moments_result}
+\end{figure}
+
+\subsubsection{Ähnlichkeit}
+
+Die Ähnlichkeit als Semblance wird in Prozessierstufe 2 dargestellt. Die Semblance zeigt in den Bereichen \textbf{(A1 - A3)} eine sehr hohe Ähnlichkeit und in den Bereichen \textbf{(B1 - B3)} eine geringe Ähnlichkeit. Auffällig sind die Bereiche \textbf{(C1 - C3)}, in denen die Semblance horizontale Strukturen von geringer Ähnlichkeit zeigt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots/semblance.jpg}
+    \caption{Semblance des Radargramms 7, Prozessierstufe 2}
+    \label{fig:semblance_result}
+\end{figure}
+
+\subsubsection{Neigung}
+
+Der Dip wird ebenfalls in der Prozessierstufe 2 gezeigt. Der Dip zeigt allgemein ein sehr heterogenes Bild. In den Bereichen \textbf{(A1 - A3)} zeigt er eine betragsmäßig hohe Neigung, während die Bereiche \textbf{(B1 - B2)} eine betragsmäßig geringe Neigung aufweisen. In Bereich \textbf{(C)} sind die sonst eher verwaschenen und glatten Übergänge eher scharf.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots/dip.jpg}
+    \caption{Dip des Radargramms 7, Prozessierstufe 2}
+    \label{fig:dip_result}
+\end{figure}
 
 \subsection{Modellvergleich}
 

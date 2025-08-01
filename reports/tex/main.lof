@@ -18,6 +18,20 @@
 \contentsline {figure}{\numberline {17}{\ignorespaces Die \texttt {plotsomplanes} zeigt die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums an. Eine klare Sortierung der Features sollte sichtbar sein, wenn die SOM ordnungsgemäß funktioniert.}}{23}{}%
 \contentsline {figure}{\numberline {18}{\ignorespaces Die \texttt {plotsomhits} zeigt die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon. Die Farbe der kleineren Hexagone zeigt an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot haben, für die dieses Neuron die BMU ist.}}{24}{}%
 \contentsline {figure}{\numberline {19}{\ignorespaces Das Radargramm zeigt die BMUs der Eingabedatenpunkte an.}}{25}{}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Pairplot der Rohdaten-Features, Prozessierstufe 1}}{36}{}%
-\contentsline {figure}{\numberline {21}{\ignorespaces Pairplot der Features, Prozessierstufe 2}}{37}{}%
-\contentsline {figure}{\numberline {22}{\ignorespaces Pairplot der Features, Prozessierstufe 3}}{38}{}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Instantaneous Amplitude des Radargramms 7, Prozessierstufe 3}}{26}{}%
+\contentsline {figure}{\numberline {21}{\ignorespaces RMS-Amplitude des Radargramms 7, Prozessierstufe 3}}{27}{}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Average Energy des Radargramms 7, Prozessierstufe 3}}{27}{}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Quadrature des Radargramms 7, Prozessierstufe 3}}{27}{}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Pairplot der Amplitudenmerkmale des Radargramms 7, Prozessierstufe 3}}{28}{}%
+\contentsline {figure}{\numberline {25}{\ignorespaces InstantaneousPhase des Radargramms 7, Prozessierstufe 3}}{29}{}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Instantaneous Frequency des Radargramms 7, Prozessierstufe 1, moderate Glättung}}{29}{}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Instantaneous Frequency des Radargramms 7, Prozessierstufe 1, hohe Glättung}}{30}{}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Qualitätsfaktor des Radargramms 7, Prozessierstufe 3}}{30}{}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Skewness des Radargramms 7, Prozessierstufe 3}}{31}{}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Kurtosis des Radargramms 7, Prozessierstufe 3}}{31}{}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Pairplot der statistischen Momente des Radargramms 7, Prozessierstufe 3}}{32}{}%
+\contentsline {figure}{\numberline {32}{\ignorespaces Semblance des Radargramms 7, Prozessierstufe 2}}{33}{}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Dip des Radargramms 7, Prozessierstufe 2}}{33}{}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Pairplot der Rohdaten-Features, Prozessierstufe 1}}{44}{}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Pairplot der Features, Prozessierstufe 2}}{45}{}%
+\contentsline {figure}{\numberline {36}{\ignorespaces Pairplot der Features, Prozessierstufe 3}}{46}{}%
