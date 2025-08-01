@@ -19,10 +19,86 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
         semblance & Semblance \\
         skewness & Skewness \\
         kurtosis & Kurtosis \\
+        dip & Dip \\
         \hline
     \end{tabular}
     \caption{Übersicht der Python-Variablen und den zugehörigen Feature-Namen}
     \label{tab:feature_names}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
+        \hline
+        inst\_amp     & 0     & 100   & 15        & 15        & -        & -        \\
+        inst\_phase   & -     & -     & -         & -         & -        & -        \\
+        inst\_freq    & -3e8  & 3e8   & 10 (100)  & 10 (100)  & -        & -        \\
+        quadrature    & 0     & 50    & 40        & 10        & -        & -        \\
+        inst\_q       & 0     & 10    & 10        & 10        & -        & -        \\
+        avg\_energy   & 0     & 4e3   & 15        & 15        & 1        & 1        \\
+        rms\_amp      & 0     & 300   & 15        & 15        & 1        & 1        \\
+        semblance     & -     & -     & -         & -         & 40       & 20       \\
+        skewness      & 0     & 10    & 60        & 40        & 1        & 1        \\
+        kurtosis      & 0     & 5     & 60        & 40        & 1        & 1        \\
+        dip           & -     & -     & 40        & 40        & -        & -        \\
+        \hline
+    \end{tabular}
+    \caption{Parameterübersicht der Merkmale, Prozessierstufe 1\\
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt wurde, stehen $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ für die Fensterbstände zum Sample (Bsp.: $\mathbf{x_{mean}} = \mathbf{t_{mean}} = 3 \rightarrow$ 7 x 7 Fenster). Wird ein Merkmal auf einem Fenster berechnet, stehen $\mathbf{x_{window}}$ und $\mathbf{t_{window}}$ für die Fensterabstände zum Sample in x- und t-Richtung (analog wie $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$). Die Werte in Klammern bei $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ beziehen sich auf verschiedene Modellläufe, bei denen weniger starkes und stärkeres Glätten genutzt wurde.}
+    \label{tab:feature_params_1}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
+        \hline
+        inst\_amp     & 0     & 300   & 15        & 15        & -        & -        \\
+        inst\_phase   & -     & -     & -         & -         & -        & -        \\
+        inst\_freq    & -3e8  & 3e8   & 10        & 10        & -        & -        \\
+        quadrature    & -     & -     & -         & -         & -        & -        \\
+        inst\_q       & 0     & 10    & 15        & 15        & -        & -        \\
+        abs\_grad     & -     & -     & 15        & 15        & -        & -        \\
+        avg\_energy   & 0     & 4e4   & 15        & 15        & 1        & 1        \\
+        rms\_amp      & 0     & 300   & 15        & 15        & 1        & 1        \\
+        semblance     & -     & -     & -         & -         & 40       & 20       \\
+        kurtosis      & 0     & 5     & 60        & 40        & 1        & 1        \\
+        dip           & -     & -     & 40        & 40        & -        & -        \\
+        \hline
+    \end{tabular}
+    \caption{Parameterübersicht der Merkmale, Prozessierstufe 2\\
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt wurde, stehen $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ für die Fensterabstände zum Sample (Bsp.: $\mathbf{x_{mean}} = \mathbf{t_{mean}} = 3 \rightarrow$ 7 x 7 Fenster). Wird ein Merkmal auf einem Fenster berechnet, stehen $\mathbf{x_{window}}$ und $\mathbf{t_{window}}$ für die Fensterabstände zum Sample in x- und t-Richtung (analog wie $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$).}
+    \label{tab:feature_params_2}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
+        \hline
+        inst\_amp     & 0     & 300   & 15        & 15        & -        & -        \\
+        inst\_phase   & -     & -     & -         & -         & -        & -        \\
+        inst\_freq    & -3e8  & 3e8   & 10        & 10        & -        & -        \\
+        sweetness     & 0     & 2e-6  & 10        & 10        & -        & -        \\
+        quadrature    & 0     & 50    & 40        & 10        & -        & -        \\
+        inst\_q       & 0     & 10    & 15        & 15        & -        & -        \\
+        abs\_grad     & -     & -     & 15        & 15        & -        & -        \\
+        avg\_energy   & 0     & 4e3   & 15        & 15        & 1        & 1        \\
+        rms\_amp      & 0     & 300   & 15        & 15        & 1        & 1        \\
+        coherence     & -100  & 10    & 100       & 100       & 100      & 100      \\
+        semblance     & -     & -     & -         & -         & 40       & 20       \\
+        skewness      & 0     & 10    & 60        & 40        & 1        & 1        \\
+        kurtosis      & 0     & 5     & 60        & 40        & 1        & 1        \\
+        dip           & -     & -     & 40        & 40        & -        & -        \\
+        \hline
+    \end{tabular}
+    \caption{Parameterübersicht der Merkmale, Prozessierstufe 3\\
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt wurde, stehen $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ für die Fensterabstände zum Sample (Bsp.: $\mathbf{x_{mean}} = \mathbf{t_{mean}} = 3 \rightarrow$ 7 x 7 Fenster). Wird ein Merkmal auf einem Fenster berechnet, stehen $\mathbf{x_{window}}$ und $\mathbf{t_{window}}$ für die Fensterabstände zum Sample in x- und t-Richtung (analog wie $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$).}
+    \label{tab:feature_params_3}
 \end{table}
 
 \begin{figure}[H]

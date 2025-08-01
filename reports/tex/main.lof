@@ -6,17 +6,18 @@
 \contentsline {figure}{\numberline {5}{\ignorespaces Average Energy des Radargramms 7, Prozessierstufe 1}}{10}{}%
 \contentsline {figure}{\numberline {6}{\ignorespaces Root Mean Squared Amplitude des Radargramms 7, Prozessierstufe 2}}{10}{}%
 \contentsline {figure}{\numberline {7}{\ignorespaces Quadrature des Radargramms 7, Prozessierstufe 3}}{11}{}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Instantaneous Phase des Radargramms 7, Prozessierstufe 3}}{12}{}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Instantaneous Phase des Radargramms 7, Prozessierstufe 2}}{12}{}%
 \contentsline {figure}{\numberline {9}{\ignorespaces Instantaneous Frequency des Radargramms 7, Prozessierstufe 1}}{12}{}%
 \contentsline {figure}{\numberline {10}{\ignorespaces Qualitätsfaktor des Radargramms 7, Prozessierstufe 1}}{13}{}%
 \contentsline {figure}{\numberline {11}{\ignorespaces Skewness des Radargramms 7, Prozessierstufe 3}}{14}{}%
 \contentsline {figure}{\numberline {12}{\ignorespaces Kurtosis des Radargramms 7, Prozessierstufe 3}}{15}{}%
 \contentsline {figure}{\numberline {13}{\ignorespaces Semblance des Radargramms 7, Prozessierstufe 2}}{16}{}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Topologie der Neuronengitter: rechteckig (links) und hexagonal (rechts) \blx@tocontentsinit {0}\parencite {schmidt_effects_2011}}}{17}{}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Die \texttt {plotsomnd} zeigt die euklidische Distanz zwischen den Neuronen im Feature-Raum an. Je heller die Farbe, desto größer der Abstand. Dunkle Bereiche zeigen Cluster an.}}{22}{}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Die \texttt {plotsomplanes} zeigt die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums an. Eine klare Sortierung der Features sollte sichtbar sein, wenn die SOM ordnungsgemäß funktioniert.}}{23}{}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Die \texttt {plotsomhits} zeigt die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon. Die Farbe der kleineren Hexagone zeigt an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot haben, für die dieses Neuron die BMU ist.}}{24}{}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Das Radargramm zeigt die BMUs der Eingabedatenpunkte an.}}{25}{}%
-\contentsline {figure}{\numberline {19}{\ignorespaces Pairplot der Rohdaten-Features, Prozessierstufe 1}}{34}{}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Pairplot der Features, Prozessierstufe 2}}{35}{}%
-\contentsline {figure}{\numberline {21}{\ignorespaces Pairplot der Features, Prozessierstufe 3}}{36}{}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Dip des Radargramms 7, Prozessierstufe 2: Die Neigung ist in Grad angegeben.}}{16}{}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Topologie der Neuronengitter: rechteckig (links) und hexagonal (rechts) \blx@tocontentsinit {0}\parencite {schmidt_effects_2011}}}{17}{}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Die \texttt {plotsomnd} zeigt die euklidische Distanz zwischen den Neuronen im Feature-Raum an. Je heller die Farbe, desto größer der Abstand. Dunkle Bereiche zeigen Cluster an.}}{22}{}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Die \texttt {plotsomplanes} zeigt die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums an. Eine klare Sortierung der Features sollte sichtbar sein, wenn die SOM ordnungsgemäß funktioniert.}}{23}{}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Die \texttt {plotsomhits} zeigt die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon. Die Farbe der kleineren Hexagone zeigt an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot haben, für die dieses Neuron die BMU ist.}}{24}{}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Das Radargramm zeigt die BMUs der Eingabedatenpunkte an.}}{25}{}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Pairplot der Rohdaten-Features, Prozessierstufe 1}}{36}{}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Pairplot der Features, Prozessierstufe 2}}{37}{}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Pairplot der Features, Prozessierstufe 3}}{38}{}%

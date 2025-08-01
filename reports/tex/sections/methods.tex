@@ -52,6 +52,8 @@ Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} 
     A_I(t) = |S_A(t)|
 \end{equation}
 
+Jedes Merkmal wurde im Anschluss nochmal visuell überprüft und ggf. nachbearbeitet. Die Nachbearbeitung umfasste das Beschneiden des Wertebereichs der Merkmale, wenn es Ausreißer gab, die z.B. durch Datenfehler entstehen können sowie ein Glätten der Werte mittels Mittelwertfilter über einen bestimmten Fensterbereich. Die Nachbearbeitungsparameter sind für jede Prozessierstufe und für jedes Merkmal in der Tabelle \ref{tab:feature_parameters} im Anhang zusammengefasst. \\
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/instantaneous_amplitude.jpg}
@@ -118,8 +120,8 @@ Die Instantaneous Phase ist besonders nützlich, um Phasenverschiebungen zwische
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_phase.jpg}
-    \caption{Instantaneous Phase des Radargramms 7, Prozessierstufe 3}
+    \includegraphics[width=\textwidth]{feature_plots/instantaneous_phase.jpg}
+    \caption{Instantaneous Phase des Radargramms 7, Prozessierstufe 2}
     \label{fig:inst_phase}
 \end{figure}
 
@@ -219,13 +221,20 @@ Alle benannten Ähnlichkeitsattribute liefern laut Abbildung 25 in \textcite{cho
 % \end{equation}
 % Desto größer die Standardabweichung $\epsilon$ im Vergleich zum Mittelwert $\mu_1$ ist, desto kleiner wird der Wert von $Ä$. Ein Wert von 0 bedeutet, dass die Standardabweichung gleich dem Mittelwert ist und somit eine hohe Varianz vorliegt. Ein Wert von 1 bedeutet, dass die Standardabweichung 0 ist und somit alle Amplitudenwerte gleich dem Mittelwert sind. Werte kleiner 0 sind nicht möglich, da die Standardabweichung immer größer oder gleich 0 ist. \\
 
-% \subsubsection{Neigung}
-%
-% Der Dip (Neigung) wurde in dieser Arbeit basierend auf der Instantaneous Phase $\phi_I$ berechnet, da 
-%
-% \begin{equation}
-%     D(x, t) = arctan\left(\frac{\partial f_I(x, t)}{\partial x}, \frac{\partial f_I(x, t)}{\partial t}\right)
-% \end{equation}
+\subsubsection{Neigung}
+
+Der Dip (Neigung) $D(x, t)$ wurde in dieser Arbeit basierend auf der Instantaneous Phase $\phi_I$ berechnet, da man die Strukturverläufe sehr gut innerhalb der Phasenplots \ref{fig:inst_phase} erkennen kann. Aus vertikalen und horizontalen Phasenunterschieden lässt sich der Dip wie folgt berechnen:
+
+\begin{equation}
+    D(x, t) = \arctan\left( \frac{\frac{\partial \phi_I(x, t)}{\partial x}}{\frac{\partial \phi_I(x, t)}{\partial t}} \right) \cdot \frac{180}{\pi}
+\end{equation}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots/dip.jpg}
+    \caption{Dip des Radargramms 7, Prozessierstufe 2: Die Neigung ist in Grad angegeben.}
+    \label{fig:dip}
+\end{figure}
 
 \subsection{Self-Organizing Map}
 
