@@ -1,26 +1,19 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [0] Config.pm:311> INFO - Logfile is 'main.blg'
-[215] biber-MSWIN64:340> INFO - === 
-[312] Biber.pm:420> INFO - Reading 'main.bcf'
-[450] Biber.pm:994> INFO - Found 31 citekeys in bib section 0
-[471] Biber.pm:4463> INFO - Processing section 0
-[510] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
-[561] bibtex.pm:1713> INFO - LaTeX decoding ...
-[679] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[977] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[977] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[978] Biber.pm:4283> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'de-DE'
-[978] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
-[1034] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1035] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1035] Biber.pm:4283> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'de-DE'
-[1035] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
-[1102] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
-[1171] bbl.pm:779> INFO - Output to main.bbl
-[1172] Biber.pm:131> WARN - ISBN '978-1-56080-141-2 978-1-56080-190-0' in entry 'chopra_seismic_2007' is invalid - run biber with '--validate_datamodel' for details.
-[1172] Biber.pm:131> WARN - ISBN '978-1-56080-118-4 978-1-56080-296-9' in entry 'sheriff_encyclopedic_2002' is invalid - run biber with '--validate_datamodel' for details.
-[1172] Biber.pm:131> WARN - ISBN '978-3-540-67921-9 978-3-642-56927-2' in entry 'kohonen_self-organizing_2001' is invalid - run biber with '--validate_datamodel' for details.
-[1172] Biber.pm:131> WARN - ISBN '978-3-519-12247-0 978-3-322-93994-4' in entry 'brause_neuronale_1995' is invalid - run biber with '--validate_datamodel' for details.
-[1172] Biber.pm:131> WARN - ISBN '978-3-540-56353-2 978-3-642-61231-2' in entry 'rojas_theorie_1993' is invalid - run biber with '--validate_datamodel' for details.
-[1172] Biber.pm:131> WARN - ISBN '978-3-486-22947-9 978-3-486-78636-1' in entry 'kinnebrock_neuronale_2018' is invalid - run biber with '--validate_datamodel' for details.
-[1172] Biber.pm:133> INFO - WARNINGS: 6
+[130] biber-MSWIN64:340> INFO - === 
+[172] Biber.pm:420> INFO - Reading 'main.bcf'
+[298] Biber.pm:994> INFO - Found 40 citekeys in bib section 0
+[317] Biber.pm:4463> INFO - Processing section 0
+[330] Biber.pm:4654> INFO - Looking for bibtex file 'references.bib' for section 0
+[392] bibtex.pm:1713> INFO - LaTeX decoding ...
+[496] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[751] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[751] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[751] Biber.pm:4283> INFO - Sorting list 'apa/apasortcite//global/global/global' of type 'entry' with template 'apa' and locale 'de-DE'
+[751] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
+[823] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[823] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[823] Biber.pm:4283> INFO - Sorting list 'apa/global//global/global/global' of type 'entry' with template 'apa' and locale 'de-DE'
+[823] Biber.pm:4289> INFO - No sort tailoring available for locale 'de-DE'
+[865] bbl.pm:676> INFO - Writing 'main.bbl' with encoding 'UTF-8'
+[932] bbl.pm:779> INFO - Output to main.bbl
