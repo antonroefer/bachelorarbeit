@@ -145,7 +145,7 @@ ratio = x.max() / t.max() * (9 / 16)
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors_khigh.npz"
+data_file = "feature_vectors.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
@@ -156,10 +156,13 @@ with np.load(data_path) as npzfile:
     # --- NEU: Feature-Auswahl ---
     # Liste der gewünschten Features
     desired_features = [
-        "quadrature",
-        "inst_freq_raw",
+        "inst_amp",
+        "inst_freq",
+        "semblance",
         "kurtosis",
-        # "coherence",
+        "inst_phase_real",
+        "inst_phase_imag",
+        "inst_q",
     ]
 
     # Annahme: Die Namen der Features sind in der .npz-Datei unter dem Schlüssel 'feature_names' gespeichert
@@ -244,7 +247,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 for i in range(data.shape[1]):
     data[:, i] = min_max_scale(data[:, i])
 
-apx = "41"
+apx = "13"
 
 # Definiere den Pfad zum gespeicherten Modell
 model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
@@ -260,15 +263,15 @@ som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
 # som.plot_som_neighbor_distances(
 #    figsize=(10, 8), save=save_plots, appendix=apx, name=name
 # )
-som.plot_som_hits(
-    data, save=save_plots, appendix=apx, colormap=cmap, name=name
-)  # SOM Hits Plot
 som.plot_som_planes(
     save=save_plots,
     fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
     appendix=apx,
     name=name,
 )
+som.plot_som_hits(
+    data, save=save_plots, appendix=apx, colormap=cmap, name=name
+)  # SOM Hits Plot
 som.plot_bmu_radargram(
     data=data, x=x, t=t, save=save_plots, appendix=apx, cmap_2d_class=cmap, name=name
 )

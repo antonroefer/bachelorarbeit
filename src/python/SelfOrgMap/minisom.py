@@ -721,8 +721,8 @@ class MiniSom(object):
                 "This visualization currently supports hexagonal topology only."
             )
 
-        u_matrix = (
-            self.distance_map()
+        u_matrix = self.distance_map(
+            scaling="mean"
         )  # MiniSom's distance_map gibt bereits ein (x_dim, y_dim) Array zurück
         x_dim, y_dim = u_matrix.shape
 
@@ -916,7 +916,7 @@ class MiniSom(object):
                 pad=0.04,
             )
             # cbar.set_label("Fea", fontsize=16)
-            cbar.ax.tick_params(labelsize=14)
+            cbar.ax.tick_params(labelsize=12)
 
         # Leere Subplots ausblenden, falls n_features keine perfekte Quadratzahl ist
         for k in range(n_features, len(axes)):
