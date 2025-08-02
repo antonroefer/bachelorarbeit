@@ -246,22 +246,46 @@ apx = "41"
 model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
 som = MiniSom(x=30, y=30, input_len=5).load_model(filepath=model_path)
 
-apx = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
+name = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
 
 # Den Plot erstellen
 save_plots = True  # Setze auf True, um die Plots zu speichern
 cmap = ColorMap2DTeuling2
 
-som.plot_u_matrix(save=save_plots, appendix=apx)  # U-Matrix Plot
-som.plot_som_neighbor_distances(
-    cmap="hot", figsize=(10, 8), save=save_plots, appendix=apx
-)  # cmap='hot' ist gut für Distanzen
-som.plot_som_hits(data, save=save_plots, appendix=apx, colormap=cmap)  # SOM Hits Plot
+som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
+# som.plot_som_neighbor_distances(
+#    figsize=(10, 8), save=save_plots, appendix=apx, name=name
+# )
+som.plot_som_hits(
+    data, save=save_plots, appendix=apx, colormap=cmap, name=name
+)  # SOM Hits Plot
 som.plot_som_planes(
     save=save_plots,
     fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
     appendix=apx,
+    name=name,
 )
 som.plot_bmu_radargram(
-    data=data, x=x, t=t, save=save_plots, appendix=apx, cmap_2d_class=cmap
+    data=data, x=x, t=t, save=save_plots, appendix=apx, cmap_2d_class=cmap, name=name
 )
+
+# Berechne die Fehlermaße für das geladene SOM-Modell
+quantization_error = som.quantization_error(data)
+topographic_error = som.topographic_error(data)
+distortion_measure = som.distortion_measure(data)
+
+# Erstelle den Textinhalt
+metrics_text = (
+    f"Quantization Error: {quantization_error:.6f}\n"
+    f"Topographic Error: {topographic_error:.6f}\n"
+    f"Distortion Measure: {distortion_measure:.6f}\n"
+)
+
+# Definiere den Pfad zur Textdatei
+metrics_path = os.path.join(script_dir, "Runs", f"R{apx}", f"R{apx}.txt")
+
+# Schreibe die Metriken in die Datei
+with open(metrics_path, "w") as f:
+    f.write(metrics_text)
+
+print(f"Fehlermaße gespeichert in: {metrics_path}")

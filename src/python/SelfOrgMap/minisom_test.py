@@ -215,14 +215,14 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
-apx = "41"
+apx = "45"
 
 som = MiniSom(
     x=30,
     y=30,
     input_len=num_features,
-    sigma=5,
-    learning_rate=0.5,
+    sigma=21,
+    learning_rate=0.3,
     topology="hexagonal",
     sigma_decay_function="inverse_decay_to_one",
     random_seed=42,

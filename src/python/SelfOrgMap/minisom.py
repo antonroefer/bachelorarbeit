@@ -701,7 +701,9 @@ class MiniSom(object):
 
         return um / um.max()
 
-    def plot_u_matrix(self, figsize=(10, 8), cmap="hot", save=True, appendix=None):
+    def plot_u_matrix(
+        self, figsize=(10, 8), cmap="hot_r", save=True, appendix=None, name=None
+    ):
         """
         Visualisiert die Unified Distance Matrix (U-Matrix) des SOM.
         Die U-Matrix zeigt die durchschnittlichen Abstände zwischen einem Neuron
@@ -768,24 +770,46 @@ class MiniSom(object):
 
         ax.set_xticks([])
         ax.set_yticks([])
-        ax.set_title("SOM U-Matrix")
+        # ax.set_title("SOM U-Matrix")
 
         # Colorbar hinzufügen
-        cbar = fig.colorbar(
-            mapper, ax=ax, orientation="vertical", fraction=0.046, pad=0.04
+        cax = fig.add_axes(
+            [
+                ax.get_position().x1 + 0.02,
+                ax.get_position().y0,
+                0.04,
+                ax.get_position().height,
+            ]
         )
-        cbar.set_label("Distance in Feature Space")
+        cbar = fig.colorbar(
+            mapper,
+            cax=cax,
+            orientation="vertical",
+            fraction=0.046,
+            pad=0.04,
+        )
+        cbar.set_label("Distance in Feature Space", fontsize=16)
+        cbar.ax.tick_params(labelsize=14)
 
-        plt.tight_layout()
+        # plt.tight_layout()
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
             plt.savefig(
-                os.path.join(script_dir, f"som_u_matrix_{appendix}.png"), dpi=300
+                os.path.join(
+                    script_dir, "Runs", f"R{appendix}", f"som_u_matrix_{name}.png"
+                ),
+                dpi=300,
             )
         # plt.show()
 
     def plot_som_planes(
-        self, figsize=(12, 12), cmap="hot", fnames=None, save=True, appendix=None
+        self,
+        figsize=(12, 12),
+        cmap="jet",
+        fnames=None,
+        save=True,
+        appendix=None,
+        name=None,
     ):
         """
         Visualisiert die einzelnen Feature-Ebenen (Component Planes) des SOM.
@@ -872,23 +896,41 @@ class MiniSom(object):
             ax.set_xticks([])
             ax.set_yticks([])
             ax.set_title(
-                fnames[feature_idx] if fnames else f"Feature {feature_idx + 1}"
+                fnames[feature_idx],
+                fontsize=16 if fnames else f"Feature {feature_idx + 1}",
             )
 
-            # Colorbar für jedes Subplot hinzufügen
-            cbar = fig.colorbar(
-                mapper, ax=ax, orientation="vertical", fraction=0.046, pad=0.04
+            cax = fig.add_axes(
+                [
+                    ax.get_position().x1 + 0.01,
+                    ax.get_position().y0,
+                    0.02,
+                    ax.get_position().height,
+                ]
             )
-            cbar.set_label(f"Feature {feature_idx + 1} Value")
+            cbar = fig.colorbar(
+                mapper,
+                cax=cax,
+                orientation="vertical",
+                fraction=0.046,
+                pad=0.04,
+            )
+            # cbar.set_label("Fea", fontsize=16)
+            cbar.ax.tick_params(labelsize=14)
 
         # Leere Subplots ausblenden, falls n_features keine perfekte Quadratzahl ist
         for k in range(n_features, len(axes)):
             axes[k].set_visible(False)
 
-        plt.tight_layout()
+        # plt.tight_layout()
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            plt.savefig(os.path.join(script_dir, f"som_planes_{appendix}.png"), dpi=300)
+            plt.savefig(
+                os.path.join(
+                    script_dir, "Runs", f"R{appendix}", f"som_planes_{name}.png"
+                ),
+                dpi=300,
+            )
         # plt.show()
 
     def plot_som_hits(
@@ -902,6 +944,7 @@ class MiniSom(object):
         save=True,
         colormap=ColorMap2DZiegler,
         appendix=None,
+        name=None,
     ):
         """
         Visualisiert die Anzahl der Treffer (BMU-Zuweisungen) pro Neuron im hexagonalen SOM-Gitter.
@@ -1081,15 +1124,20 @@ class MiniSom(object):
 
         ax.set_xticks([])
         ax.set_yticks([])
-        ax.set_title("SOM Neuron Hits (Python)")
+        # ax.set_title("SOM Neuron Hits (Python)")
         plt.tight_layout()
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            plt.savefig(os.path.join(script_dir, f"som_hits_{appendix}.png"), dpi=300)
+            plt.savefig(
+                os.path.join(
+                    script_dir, "Runs", f"R{appendix}", f"som_hits_{name}.png"
+                ),
+                dpi=300,
+            )
         # plt.show()
 
     def plot_som_neighbor_distances(
-        self, cmap="hot", figsize=(10, 8), save=True, appendix=None
+        self, cmap="hot_r", figsize=(10, 8), save=True, appendix=None, name=None
     ):
         if self.topology != "hexagonal":
             raise NotImplementedError(
@@ -1367,10 +1415,13 @@ class MiniSom(object):
         ax.set_xticks([])
         ax.set_yticks([])
         ax.set_title("SOM Neighbor Weight Distances (Python)")
-        plt.tight_layout()
+        # plt.tight_layout()
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            plt.savefig(os.path.join(script_dir, f"som_nd_{appendix}.png"), dpi=300)
+            plt.savefig(
+                os.path.join(script_dir, "Runs", f"R{appendix}", f"som_nd_{name}.png"),
+                dpi=300,
+            )
         # plt.show()
 
     def plot_bmu_radargram(
@@ -1383,6 +1434,7 @@ class MiniSom(object):
         save=True,
         dpi=300,
         appendix=None,
+        name=None,
     ):
         """
         Stellt ein Radargramm dar, bei dem die Pixel nach den Koordinaten ihrer
@@ -1454,7 +1506,7 @@ class MiniSom(object):
             extent=[x.min(), x.max(), t.max(), t.min()],
         )
 
-        ax.set_title(title, fontsize=22)
+        # ax.set_title(title, fontsize=22)
         ax.set_xlabel("Distance (m)", fontsize=18)
         ax.set_ylabel("Time (ns)", fontsize=18)
         ax.tick_params(labelsize=14)
@@ -1493,7 +1545,9 @@ class MiniSom(object):
 
         if save:
             script_dir = os.path.dirname(os.path.abspath(__file__))
-            fname = os.path.join(script_dir, f"bmu_radargram_{appendix}.png")
+            fname = os.path.join(
+                script_dir, "Runs", f"R{appendix}", f"bmu_radargram_{name}.png"
+            )
             plt.savefig(fname, dpi=dpi, bbox_inches="tight")
             print(f"Plot gespeichert unter: {fname}")
 
