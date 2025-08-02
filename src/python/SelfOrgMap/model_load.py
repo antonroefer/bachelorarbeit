@@ -257,7 +257,7 @@ name = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
 
 # Den Plot erstellen
 save_plots = True  # Setze auf True, um die Plots zu speichern
-cmap = ColorMap2DTeuling2
+cmap = ColorMap2DZiegler
 
 som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
 # som.plot_som_neighbor_distances(
