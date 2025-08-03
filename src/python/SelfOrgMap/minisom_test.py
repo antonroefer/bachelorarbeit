@@ -155,7 +155,7 @@ with np.load(data_path) as npzfile:
     # Liste der gewünschten Features
     desired_features = [
         "quadrature",
-        "inst_freq_raw",
+        # "inst_freq_raw",
         "kurtosis",
         # "coherence",
     ]
@@ -215,7 +215,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
-apx = "50"
+apx = "51"
 
 som = MiniSom(
     x=30,
