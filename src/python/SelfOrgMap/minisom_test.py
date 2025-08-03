@@ -143,7 +143,7 @@ ratio = x.max() / t.max() * (9 / 16)
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors_khigh.npz"
+data_file = "feature_vectors_khigh_AE.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
@@ -155,7 +155,7 @@ with np.load(data_path) as npzfile:
     # Liste der gewünschten Features
     desired_features = [
         "quadrature",
-        # "inst_freq_raw",
+        "inst_freq_raw",
         "kurtosis",
         # "coherence",
     ]
@@ -215,7 +215,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 
 # SOM initialisieren
 # Für ein 8x10 Gitter wie im MATLAB-Beispiel
-apx = "51"
+apx = "52"
 
 som = MiniSom(
     x=30,
