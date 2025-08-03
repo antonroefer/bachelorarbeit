@@ -145,7 +145,7 @@ ratio = x.max() / t.max() * (9 / 16)
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors.npz"
+data_file = "feature_vectors_khigh.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
@@ -156,11 +156,9 @@ with np.load(data_path) as npzfile:
     # --- NEU: Feature-Auswahl ---
     # Liste der gewünschten Features
     desired_features = [
-        "inst_amp",
-        "inst_freq",
-        "semblance",
+        "quadrature",
+        "inst_freq_raw",
         "kurtosis",
-        "dip",
     ]
 
     # Annahme: Die Namen der Features sind in der .npz-Datei unter dem Schlüssel 'feature_names' gespeichert
@@ -200,8 +198,8 @@ fdict = {
     "original_data": "Originaldaten",
     "inst_amp": "Instantaneous Amplitude",
     "inst_phase": "Instantaneous Phase",
-    "inst_phase_real": "Instantaneous Phase Realteil",
-    "inst_phase_imag": "Instantaneous Phase Imaginärteil",
+    "inst_phase_real": "Instantaneous Phase Real",
+    "inst_phase_imag": "Instantaneous Phase Imaginär",
     "inst_freq": "Instantaneous Frequency",
     "inst_freq_raw": "Instantaneous Frequency (roh)",
     "sweetness": "Sweetness",
@@ -245,7 +243,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 for i in range(data.shape[1]):
     data[:, i] = min_max_scale(data[:, i])
 
-apx = "05"
+apx = "41"
 
 # Definiere den Pfad zum gespeicherten Modell
 model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
@@ -257,16 +255,16 @@ name = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
 save_plots = True  # Setze auf True, um die Plots zu speichern
 cmap = ColorMap2DZiegler
 
-som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
+#som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
 # som.plot_som_neighbor_distances(
 #    figsize=(10, 8), save=save_plots, appendix=apx, name=name
 # )
-som.plot_som_planes(
-    save=save_plots,
-    fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
-    appendix=apx,
-    name=name,
-)
+# som.plot_som_planes(
+#    save=save_plots,
+#    fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
+#    appendix=apx,
+#    name=name,
+#)
 som.plot_som_hits(
     data, save=save_plots, appendix=apx, colormap=cmap, name=name
 )  # SOM Hits Plot

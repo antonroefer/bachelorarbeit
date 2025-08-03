@@ -16,21 +16,22 @@ Radargramme liefern detaillierte Informationen über die innere Struktur des Bod
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{pictures/übersicht.jpg}
-    \caption{Radargrammprofile des Datensatzes, hervorgehoben sind das Trainingsprofil 7 und das Testprofil 30}
+    \includegraphics[width=\textwidth]{pictures/übersicht_vers2.jpg}
+    \caption{Übersichtskarte von Schleswig Holstein (links oben). Ausschnitt aus dem Kreis Herzogtum Lauenburg (links unten) einschließlich einer Detailansicht des Untersuchungsgebiets (rechts) mit den Radargrammprofilen des Datensatzes, hervorgehoben sind das Trainingsprofil 7 und das Testprofil 30. \\
+    Hintergrundkarte: © \textcite{google_google_2021}.\\
+    Flächen der Bundesländer und Kreise: © \textcite{bundesamt_fur_kartographie_und_geodasie_katasterflachen_2024}.}
     \label{fig:map}
 \end{figure}
-Der für diese Analyse verwendete Datensatz wurde bereits vorprozessiert bereitgestellt, wobei es ihn in 3 Prozessierstufen gibt. Die für die Vorverarbeitung verwendeten Schritte sind in Abb. \ref{fig:preprocessing_steps} zusammengefasst. \\
-
-\begin{figure}
+\noindent Der für diese Analyse verwendete Datensatz wurde bereits vorprozessiert bereitgestellt, wobei es ihn in 3 Prozessierstufen gibt. Die für die Vorverarbeitung verwendeten Schritte sind in Abb. \ref{fig:preprocessing_steps} zusammengefasst. \\
+\noindent Prozessierstufe 1 beinhaltet zum einen ein zeitliches Beschneiden der Radargramme, wobei die Totzeit entfernt wird und zu starkes Rauschen bei langen Laufzeiten abgeschnitten wird. Zum anderen wird der Spurabstand Spurabstand auf konstante 2 cm gesetzt und ggf. wenn dadurch eine Lücke entsteht dazwischen linear interpoliert. Die rohen Amplitudenwerte werden dabei nicht bearbeitet. \\
+In Prozessierstufe 2 werden ein DC Offset, also ein Mittelwert über alle Daten, entfernt, sodass die Amplitudenwerte um 0 zentriert sind. Desweiteren werden die Daten mit einem Medianfilter über 5 Samples in x Richtung geglättet um Ausreißer zu entfernen. Ebenso wird ein Bandpassfilter mit einem Bandpass von 25 bis 500 MHz auf die Daten angewendet, um hochfrequentes Rauschen und langwellige Störungen zu reduzieren. Im Anschluss werden die Daten nach Augenmaß verstärkt. Dies passiert mit einer durch 5 Verstärkungspunkte definierten Gain Funktion. Die Punkte liegen bei -20, 0, 20, 25 und 30 dB und sind gleichmäßig über die Zeit verteilt. Das bedeutet, dass die zeitlich ersten Samples mit -20 dB und die zeitlich letzten Samples mit 30 dB verstärkt werden. Zuletzt wird noch ein Medianfilter über 3 Samples in t angewendet. \\
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{pictures/flow_chart.png}
     \caption{Vorverarbeitungsschritte des Datensatzes}
     \label{fig:preprocessing_steps}
 \end{figure}
-\noindent Prozessierstufe 1 beinhaltet zum einen ein zeitliches Beschneiden der Radargramme, wobei die Totzeit entfernt wird und zu starkes Rauschen bei langen Laufzeiten abgeschnitten wird. Zum anderen wird der Spurabstand Spurabstand auf konstante 2 cm gesetzt und ggf. wenn dadurch eine Lücke entsteht dazwischen linear interpoliert. Die rohen Amplitudenwerte werden dabei nicht bearbeitet. \\
-In Prozessierstufe 2 werden ein DC Offset, also ein Mittelwert über alle Daten, entfernt, sodass die Amplitudenwerte um 0 zentriert sind. Desweiteren werden die Daten mit einem Medianfilter über 5 Samples in x Richtung geglättet um Ausreißer zu entfernen. Ebenso wird ein Bandpassfilter mit einem Bandpass von 25 bis 500 MHz auf die Daten angewendet, um hochfrequentes Rauschen und langwellige Störungen zu reduzieren. Im Anschluss werden die Daten nach Augenmaß verstärkt. Dies passiert mit einer durch 5 Verstärkungspunkte definierten Gain Funktion. Die Punkte liegen bei -20, 0, 20, 25 und 30 dB und sind gleichmäßig über die Zeit verteilt. Das bedeutet, dass die zeitlich ersten Samples mit -20 dB und die zeitlich letzten Samples mit 30 dB verstärkt werden. Zuletzt wird noch ein Medianfilter über 3 Samples in t angewendet. \\
-Die letzte Prozessierstufe beinhaltet nur einen Wellenzahlhochpassfilter mit einem Wert von 0,1 $\frac{1}{\,\mathrm{cm}}$, da in den Daten ein unerwünschtes langwelliges Signal zwischen 40 und 60 ns zu sehen war, welches durch die vorherigen Prozessiersschritte noch nicht entfernt wurde. \\
+\noindent Die letzte Prozessierstufe beinhaltet nur einen Wellenzahlhochpassfilter mit einem Wert von 0,1 $\frac{1}{\,\mathrm{cm}}$, da in den Daten ein unerwünschtes langwelliges Signal zwischen 40 und 60 ns zu sehen war, welches durch die vorherigen Prozessiersschritte noch nicht entfernt wurde. \\
 
 \subsection{Merkmale}
 
@@ -52,14 +53,14 @@ Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} 
     A_I(t) = |S_A(t)|
 \end{equation}
 
-Jedes Merkmal wurde im Anschluss nochmal visuell überprüft und ggf. nachbearbeitet. Die Nachbearbeitung umfasste das Beschneiden des Wertebereichs der Merkmale, wenn es Ausreißer gab, die z.B. durch Datenfehler entstehen können sowie ein Glätten der Werte mittels Mittelwertfilter über einen bestimmten Fensterbereich. Die Nachbearbeitungsparameter sind für jede Prozessierstufe und für jedes Merkmal in der Tabelle \ref{tab:feature_parameters} im Anhang zusammengefasst. \\
+\noindent Jedes Merkmal wurde im Anschluss nochmal visuell überprüft und ggf. nachbearbeitet. Die Nachbearbeitung umfasste das Beschneiden des Wertebereichs der Merkmale, wenn es Ausreißer gab, die z.B. durch Datenfehler entstehen können sowie ein Glätten der Werte mittels Mittelwertfilter über einen bestimmten Fensterbereich. Die Nachbearbeitungsparameter sind für jede Prozessierstufe und für jedes Merkmal in der Tabelle \ref{tab:feature_parameters} im Anhang zusammengefasst. \\
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots/instantaneous_amplitude.jpg}
-    \caption{Instantaneous Amplitude des Radargramms 7, Prozessierstufe 2}
-    \label{fig:inst_amplitude}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots/instantaneous_amplitude.jpg}
+%    \caption{Instantaneous Amplitude des Radargramms 7, Prozessierstufe 2}
+%    \label{fig:inst_amplitude}
+%\end{figure}
 \noindent Die Average Energy $E_A$ oder auch Mean Squared Amplitude \parencite{noauthor_average_2021}, ist definiert als der Durchschnitt der quadrierten Amplitudenwerte über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$ um einen Punkt $(x,t)$. $X$ und $T$ sind die Fensterabstände in Raum- bzw. Zeitrichtung, mit der Anzahl der Werte
 
 \begin{equation}
@@ -71,12 +72,12 @@ Jedes Merkmal wurde im Anschluss nochmal visuell überprüft und ggf. nachbearbe
     E_A(x,t) = \frac{1}{N} \sum_{x=x-X}^{x+X} \sum_{t=t-T}^{t+T} A^2(x,t)
 \end{equation}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots_raw/average_energy.jpg}
-    \caption{Average Energy des Radargramms 7, Prozessierstufe 1}
-    \label{fig:average_energy}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots_raw/average_energy.jpg}
+%    \caption{Average Energy des Radargramms 7, Prozessierstufe 1}
+%    \label{fig:average_energy}
+%\end{figure}
 
 \noindent Die Root Mean Squared Amplitude $A_{RMS}$ \parencites{roden_geologic_2015}{noauthor_rms_2022} ist definiert als die Quadratwurzel des Durchschnitts der quadrierten Amplitudenwerte über ein bestimmtes Zeit- und Wegfenster $\left[x-X, x+X\right]$ und $\left[t-T, t+T\right]$. Sie hat den gleichen Glättungseffekt wie die Average Energy, ist aber einfacher zu interpretieren bzw. mit den Originaldaten zu vergleichen, da sie die gleiche Einheit wie die Amplitude hat. Die RMS-Amplitude wird wie folgt berechnet:
 
@@ -84,25 +85,25 @@ Jedes Merkmal wurde im Anschluss nochmal visuell überprüft und ggf. nachbearbe
     A_{RMS}(x,t) = \sqrt{E_A(x,t)}
 \end{equation}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots/rms_amplitude.jpg}
-    \caption{Root Mean Squared Amplitude des Radargramms 7, Prozessierstufe 2}
-    \label{fig:rms_amplitude}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots/rms_amplitude.jpg}
+%    \caption{Root Mean Squared Amplitude des Radargramms 7, Prozessierstufe 2}
+%    \label{fig:rms_amplitude}
+%\end{figure}
 
-Die Quadrature $Q$ \parencite{taner_complex_1979} ist definiert als der Imaginärteil des analytischen Signals $S_A(t)$, das aus der komplexen Hilbert-Transformation des Originalsignals gewonnen wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Damit ist sie kein echtes Amplitudenattribut, zeigt aber trotzdem dort betragsmäßig hohe Werte, wo es eine hohe Reflexionsstärke gibt.
+\noindent Die Quadrature $Q$ \parencite{taner_complex_1979} ist definiert als der Imaginärteil des analytischen Signals $S_A(t)$, das aus der komplexen Hilbert-Transformation des Originalsignals gewonnen wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Damit ist sie kein echtes Amplitudenattribut, zeigt aber trotzdem dort betragsmäßig hohe Werte, wo es eine hohe Reflexionsstärke gibt.
 
 \begin{equation}
     Q(x,t) = \text{Im}(S_A(x,t))
 \end{equation}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots_khigh/quadrature.jpg}
-    \caption{Quadrature des Radargramms 7, Prozessierstufe 3}
-    \label{fig:quadrature}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots_khigh/quadrature.jpg}
+%    \caption{Quadrature des Radargramms 7, Prozessierstufe 3}
+%    \label{fig:quadrature}
+%\end{figure}
 
 \subsubsection{Phase}
 
@@ -118,12 +119,12 @@ Als Phasenattribut wurde nur die Instantaneous Phase (Momentanphase) \parencite{
 \end{equation}
 Die Instantaneous Phase ist besonders nützlich, um Phasenverschiebungen zwischen verschiedenen Signalen zu erkennen und zu analysieren.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots/instantaneous_phase.jpg}
-    \caption{Instantaneous Phase des Radargramms 7, Prozessierstufe 2}
-    \label{fig:inst_phase}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots/instantaneous_phase.jpg}
+%    \caption{Instantaneous Phase des Radargramms 7, Prozessierstufe 2}
+%    \label{fig:inst_phase}
+%\end{figure}
 
 \subsubsection{Frequenz}
 
@@ -134,12 +135,12 @@ Als Frequenzattribut wurde die Instantaneous Frequency (Momentanfrequenz) \paren
 \end{equation}
 Die Instantaneous Frequency ist besonders nützlich, um Frequenzänderungen im Signal zu erkennen.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_frequency_high.jpg}
-    \caption{Instantaneous Frequency des Radargramms 7, Prozessierstufe 1}
-    \label{fig:inst_freq}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_frequency_high.jpg}
+%    \caption{Instantaneous Frequency des Radargramms 7, Prozessierstufe 1}
+%    \label{fig:inst_freq}
+%\end{figure}
 
 \subsubsection{Qualitätsfaktor}
 
@@ -150,12 +151,12 @@ Der Qualitätsfaktor $Q$ \parencite{noauthor_instantaneous_2024} ist ein Maß f�
 \end{equation}
 Ein hoher Qualitätsfaktor deutet auf ein gut definiertes Signal hin, während ein niedriger Qualitätsfaktor auf ein schwaches oder verrauschtes Signal hindeutet.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots/instantaneous_q.jpg}
-    \caption{Qualitätsfaktor des Radargramms 7, Prozessierstufe 1}
-    \label{fig:quality_factor}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots/instantaneous_q.jpg}
+%    \caption{Qualitätsfaktor des Radargramms 7, Prozessierstufe 1}
+%    \label{fig:quality_factor}
+%\end{figure}
 
 \subsubsection{Statistische Momente}
 
@@ -176,19 +177,19 @@ $\mu_1$ und $\epsilon$ stehen hierbei für den Mittelwert und die Standardabweic
 \end{equation}
 Dies ist an sich nicht notwendig, da die Attribute vor dem SOM Training normalisiert werden, aber es erleichtert die Optimierung der Kurtosis und macht sie mit der Skewness vergleichbar, da diese bei einer Normalverteilung auch den Wert 0 besitzt. \\
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots_khigh/skewness.jpg}
-    \caption{Skewness des Radargramms 7, Prozessierstufe 3}
-    \label{fig:skewness}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots_khigh/kurtosis.jpg}
-    \caption{Kurtosis des Radargramms 7, Prozessierstufe 3}
-    \label{fig:kurtosis}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots_khigh/skewness.jpg}
+%    \caption{Skewness des Radargramms 7, Prozessierstufe 3}
+%    \label{fig:skewness}
+%\end{figure}
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots_khigh/kurtosis.jpg}
+%    \caption{Kurtosis des Radargramms 7, Prozessierstufe 3}
+%    \label{fig:kurtosis}
+%\end{figure}
 
 \subsubsection{Ähnlichkeit}
 
@@ -208,12 +209,12 @@ Alle benannten Ähnlichkeitsattribute liefern laut Abbildung 25 in \textcite{cho
     S_B(x, t) = \frac{\left( \sum_{i=1}^{N} A_i(x, t) \right)^2}{N \sum_{i=1}^{N} A_i^2(x, t)}
 \end{equation}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots/semblance.jpg}
-    \caption{Semblance des Radargramms 7, Prozessierstufe 2}
-    \label{fig:semblance}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots/semblance.jpg}
+%    \caption{Semblance des Radargramms 7, Prozessierstufe 2}
+%    \label{fig:semblance}
+%\end{figure}
 % Desweiteren wurde ein eigenes auf Standardabweichung $\epsilon$ und Mittelwert $\mu_1$ basierendes Ähnlichkeitsattribut entwickelt, welches in dieser Arbeit als "Ähnlichkeit" $Ä$ bezeichnet wird.
 %
 % \begin{equation}
@@ -229,12 +230,12 @@ Der Dip (Neigung) $D(x, t)$ wurde in dieser Arbeit basierend auf der Instantaneo
     D(x, t) = \arctan\left( \frac{\frac{\partial \phi_I(x, t)}{\partial x}}{\frac{\partial \phi_I(x, t)}{\partial t}} \right) \cdot \frac{180}{\pi}
 \end{equation}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots/dip.jpg}
-    \caption{Dip des Radargramms 7, Prozessierstufe 2: Die Neigung ist in Grad angegeben.}
-    \label{fig:dip}
-\end{figure}
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=\textwidth]{feature_plots/dip.jpg}
+%    \caption{Dip des Radargramms 7, Prozessierstufe 2: Die Neigung ist in Grad angegeben.}
+%    \label{fig:dip}
+%\end{figure}
 
 \subsection{Self-Organizing Map}
 
@@ -351,13 +352,14 @@ Am Ende einer Iteration $n$ werden alle Gewichte $\mathbf{w}_{ij}$ der Neuronen 
 \begin{equation}
     \mathbf{w}_{ij} \leftarrow \mathbf{w}_{ij} + \alpha(n) \cdot h(D(\chi_{ij}, \chi_{m}^c), \sigma(n)) \cdot d(\mathbf{w}_{ij}, \mathbf{e}_m)
 \end{equation}
-Da alle wichtigen Hyperparameter mit der Zeit, also mit der Iterationenzahl $n$ abnehmen, wird die Stärke der Anpassung der Neuronengewichte immer geringer. Damit wird sichergestellt, dass die SOM am Anfang des Trainings schnell die grobe Struktur der Eingabedaten abbildet und sich gegen Ende des Trainings immer genauer an sie annähert. Wie gut das SOM Modell am Ende die Daten abbilden kann, wird mit Quantization Error $QE$ gemessen. Dieser wird berechnet, indem die durchschnittliche euklidische Distanz $d$ zwischen den Eingabedaten $\mathbf{e}_m$ und den zugehörigen BMUs $\mathbf{w}_m^c$ gemessen wird \parencites{natita_appropriate_2016}{vettigli_minisom_2021}.
+
+\noindent Da alle wichtigen Hyperparameter mit der Zeit, also mit der Iterationenzahl $n$ abnehmen, wird die Stärke der Anpassung der Neuronengewichte immer geringer. Damit wird sichergestellt, dass die SOM am Anfang des Trainings schnell die grobe Struktur der Eingabedaten abbildet und sich gegen Ende des Trainings immer genauer an sie annähert. Wie gut das SOM Modell am Ende die Daten abbilden kann, wird mit Quantization Error $QE$ gemessen. Dieser wird berechnet, indem die durchschnittliche euklidische Distanz $d$ zwischen den Eingabedaten $\mathbf{e}_m$ und den zugehörigen BMUs $\mathbf{w}_m^c$ gemessen wird \parencites{natita_appropriate_2016}{vettigli_minisom_2021}.
 
 \begin{equation}
     QE = \frac{1}{M} \sum_{m=1}^{M} d(\mathbf{w}_{m}^c, \mathbf{e_m})
 \end{equation}
 
-Wie gut die SOM ihre Topologie erhält, wird mit dem Topographic Error $TE$ gemessen. Topologieerhaltung bedeutet dabei, dass im besten Fall Neuronen, die im Neuronengitter nah beieinander liegen, auch im Feature-Raum ähnliche Gewichte besitzen. Der $TE$ wird dabei so berechnet, dass für jeden Eingabedatenpunkt $\mathbf{e}_m$ nicht nur die BMU sondern auch die SBMU (second best matching unit) berechnet wird. Sind diese nicht benachbart, wird dies als Fehler gewertet. Der $TE$ ist dann der Quotient aus Fehleranzahl $Q \in \mathbb{N}$ und Gesamtzahl der Samples $M$ \parencite{vettigli_minisom_2021}.
+\noindent Wie gut die SOM ihre Topologie erhält, wird mit dem Topographic Error $TE$ gemessen. Topologieerhaltung bedeutet dabei, dass im besten Fall Neuronen, die im Neuronengitter nah beieinander liegen, auch im Feature-Raum ähnliche Gewichte besitzen. Der $TE$ wird dabei so berechnet, dass für jeden Eingabedatenpunkt $\mathbf{e}_m$ nicht nur die BMU sondern auch die SBMU (second best matching unit) berechnet wird. Sind diese nicht benachbart, wird dies als Fehler gewertet. Der $TE$ ist dann der Quotient aus Fehleranzahl $Q \in \mathbb{N}$ und Gesamtzahl der Samples $M$ \parencite{vettigli_minisom_2021}.
 
 \begin{equation}
     TE = \frac{Q}{M}
@@ -393,38 +395,38 @@ Große Radien bedeuten eine stärkere Segmentierung von vor allem punktdichten C
 Für die inversen Abnahmefunktionen von Lernrate und Nachbarschaftsradius (\ref{eq:inverse_learning_rate}) und (\ref{eq:inverse_neighborhood_size}) nutzt \textcite{vettigli_minisom_2021} ein Wahrheitsargument \texttt{use\_epochs}, wenn man mehr als eine Epoche trainieren möchte. Dieses Argument wird in dieser Arbeit auf \texttt{True} gesetzt, sodass $n$ innerhalb der Funktionen (\ref{eq:inverse_learning_rate}) und (\ref{eq:inverse_neighborhood_size}) für die aktuelle Epoche und $N$ für die Gesamtanzahl der Epochen steht. \\
 Die Anzahl der Epochen $N$ wurde in dieser Arbeit intuitiv auf $N = 50$ gesetzt, was bei bei den ersten Läufen zu sehr guten Ergebnissen geführt hat. Desweiteren wurde sich angeschaut, wie die Sortierung nach $10$ und $30$ Epochen aussieht, um zu überprüfen, ob so eine hohe Epochenzahl überhaupt notwendig ist. \\
 
-\subsubsection{Visualisierung der SOM}
-
-Für die Visualisierung der SOM gibt es verschiedene Funktionen, die alle verschiedene Aspekte der SOM hervorheben. Da die \texttt{MiniSom} - Bibliothek keine eigenen hexagonalen Visualisierungen anbietet, wurden nach dem Vorbild von \textcite{mathworks_inc_selbstorganisierende_2024} die Funktionen \texttt{plotsomplanes} und \texttt{plotsomhits} aus der \texttt{Matlab}-Bibliothek \texttt{Neural Network Toolbox} nachgebaut und die Funktion \texttt{plot\_u\_matrix} als Unified Distanz Matrix auf Basis der \texttt{MiniSom} - U - Matrix \texttt{distance\_map} selbst geschrieben. \\
-Die Unified Distance Matrix, zu deutsch die vereinheitlichte Distanzmatrix, visualisiert die durchschnittliche euklidische Distanz im Feature-Raum von einem Neuron zu seinen Nachbarn im Neuronengitter mithilfe der \texttt{matplotlib} - Colormap \texttt{hot\_r}. \\
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_u_matrix_07_full_on_rg_6.jpg}
-    \caption{Die \texttt{plot\_u\_matrix} zeigt die durchschnittliche euklidische Distanz $d$ eines Neurons zu seinen Nachbarn an. Je dunkler die Farbe, desto größer der Abstand. Helle Bereiche zeigen Cluster an.}
-    \label{fig:plot_u_matrix}
-\end{figure}
-\noindent Die Funktion \texttt{plotsomplanes} visualisiert die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums, also für jedes Feature. An diesem Plot ist zu sehen, ob die SOM ordnungsgemäß funktioniert, da hier für jedes Feature eine klare Sortierung sichtbar sein sollte. \\
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_planes_07_full_on_rg_6.jpg}
-    \caption{Die \texttt{plotsomplanes} zeigt die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums an. Eine klare Sortierung der Features sollte sichtbar sein, wenn die SOM ordnungsgemäß funktioniert.}
-    \label{fig:plotsomplanes}
-\end{figure}
-\noindent Die Funktion \texttt{plotsomhits} visualisiert die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon und die Größenordnung ist ebenfalls mit angegeben. Desweiteren zeigt die Farbe der kleineren hexagone an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot, für die dieses Neuron die BMU ist.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_hits_07_full_on_rg_6.png}
-    \caption{Die \texttt{plotsomhits} zeigt die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon. Die Farbe der kleineren Hexagone zeigt an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot haben, für die dieses Neuron die BMU ist.}
-    \label{fig:plotsomhits}
-\end{figure}
-\noindent Diese drei Plots zusammen geben einen guten Überblick über die SOM und ihre Funktionsweise. Ob die SOM am Ende sinnvolle Cluster erzeugt und ob die Merkmale sinnvoll ausgewählt wurden, wird in einem eingefärbten Radargrammplot sichtbar, welches die BMUs der Eingabedatenpunkte anzeigt. Dabei wird jeder BMU mit der Farbe des Neurons eingefärbt, auf das der Eingabedatenpunkt fällt. \\
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/bmu_radargram_07_full_on_rg_6.png}
-    \caption{Das Radargramm zeigt die Eingabedatenpunkte eingefärbt nach der zugehörigen BMU an.}
-    \label{fig:bmu_radargram}
-\end{figure}
+%\subsubsection{Visualisierung der SOM}
+%
+%Für die Visualisierung der SOM gibt es verschiedene Funktionen, die alle verschiedene Aspekte der SOM hervorheben. Da die \texttt{MiniSom} - Bibliothek keine eigenen hexagonalen Visualisierungen anbietet, wurden nach dem Vorbild von \textcite{mathworks_inc_selbstorganisierende_2024} die Funktionen \texttt{plotsomplanes} und \texttt{plotsomhits} aus der \texttt{Matlab}-Bibliothek \texttt{Neural Network Toolbox} nachgebaut und die Funktion \texttt{plot\_u\_matrix} als Unified Distanz Matrix auf Basis der \texttt{MiniSom} - U - Matrix \texttt{distance\_map} selbst geschrieben. \\
+%Die Unified Distance Matrix, zu deutsch die vereinheitlichte Distanzmatrix, visualisiert die durchschnittliche euklidische Distanz im Feature-Raum von einem Neuron zu seinen Nachbarn im Neuronengitter mithilfe der \texttt{matplotlib} - Colormap \texttt{hot\_r}. \\
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_u_matrix_07_full_on_rg_6.jpg}
+%    \caption{Die \texttt{plot\_u\_matrix} zeigt die durchschnittliche euklidische Distanz $d$ eines Neurons zu seinen Nachbarn an. Je dunkler die Farbe, desto größer der Abstand. Helle Bereiche zeigen Cluster an.}
+%    \label{fig:plot_u_matrix}
+%\end{figure}
+%\noindent Die Funktion \texttt{plotsomplanes} visualisiert die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums, also für jedes Feature. An diesem Plot ist zu sehen, ob die SOM ordnungsgemäß funktioniert, da hier für jedes Feature eine klare Sortierung sichtbar sein sollte. \\
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_planes_07_full_on_rg_6.jpg}
+%    \caption{Die \texttt{plotsomplanes} zeigt die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums an. Eine klare Sortierung der Features sollte sichtbar sein, wenn die SOM ordnungsgemäß funktioniert.}
+%    \label{fig:plotsomplanes}
+%\end{figure}
+%\noindent Die Funktion \texttt{plotsomhits} visualisiert die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon und die Größenordnung ist ebenfalls mit angegeben. Desweiteren zeigt die Farbe der kleineren hexagone an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot, für die dieses Neuron die BMU ist.
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_hits_07_full_on_rg_6.png}
+%    \caption{Die \texttt{plotsomhits} zeigt die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon. Die Farbe der kleineren Hexagone zeigt an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot haben, für die dieses Neuron die BMU ist.}
+%    \label{fig:plotsomhits}
+%\end{figure}
+%\noindent Diese drei Plots zusammen geben einen guten Überblick über die SOM und ihre Funktionsweise. Ob die SOM am Ende sinnvolle Cluster erzeugt und ob die Merkmale sinnvoll ausgewählt wurden, wird in einem eingefärbten Radargrammplot sichtbar, welches die BMUs der Eingabedatenpunkte anzeigt. Dabei wird jeder BMU mit der Farbe des Neurons eingefärbt, auf das der Eingabedatenpunkt fällt. \\
+%
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/bmu_radargram_07_full_on_rg_6.png}
+%    \caption{Das Radargramm zeigt die Eingabedatenpunkte eingefärbt nach der zugehörigen BMU an.}
+%    \label{fig:bmu_radargram}
+%\end{figure}
