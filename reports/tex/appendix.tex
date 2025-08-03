@@ -1,5 +1,7 @@
 \section*{Anhang}
 
+\subsection*{Anhang Features}
+
 Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu erkennen. Eine entsprechende Übersetzung ist in Tabelle \ref{tab:feature_names} zu finden.
 
 \begin{table}[H]
@@ -121,3 +123,90 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
     \caption{Pairplot der Features, Prozessierstufe 3}
     \label{fig:pairplot_overview_khigh}
 \end{figure}
+
+\subsection*{Anhang Modelle}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Modell} & \textbf{Epochenanzahl} & \textbf{$QE$} & \textbf{$TE$} \\
+        \hline
+        1 & 10 & 0.085339 & 0.049232 \\
+        1 & 30 & 0.085020 & 0.059034 \\
+        1 & 50 & 0.084581 & 0.057029 \\
+        2 & 50 & 0.084349 & 0.064219 \\
+        3 & 50 & 0.145045 & 0.047086 \\
+        4 & 50 & 0.023467 & 0.104278 \\
+        5 & 50 & 0.023393 & 0.087919 \\
+        \hline
+    \end{tabular}
+    \caption{Übersicht der Modelle mit den zugehörigen Epochenanzahlen, dem Quantisierungsfehler $QE$ und dem Topologiefehler $TE$}
+    \label{tab:model_error_overview}
+\end{table}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R05/som_planes_05_full_on_rg_6.jpg}
+    \caption{Model 1 Feature Planes, $N=10$}
+    \label{fig:model_1_planes_10}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R05/som_u_matrix_05_full_on_rg_6.jpg}
+    \caption{Model 1 U-Matrix, $N=10$}
+    \label{fig:model_1_u_matrix_10}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R07/som_planes_07_full_on_rg_6.jpg}
+    \caption{Model 1 Feature Planes, $N=30$}
+    \label{fig:model_1_planes_30}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R07/som_u_matrix_07_full_on_rg_6.jpg}
+    \caption{Model 1 U-Matrix, $N=30$}
+    \label{fig:model_1_u_matrix_30}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R05/som_hits_05_full_on_rg_6.jpg}
+    \caption{Model 1 Hit Map, $N=10$}
+    \label{fig:model_1_hits_10}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R05/bmu_radargram_05_full_on_rg_6.jpg}
+    \caption{Model 1 BMU Radargram, $N=10$}
+    \label{fig:model_1_bmu_radargram_10}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R07/som_hits_07_full_on_rg_6.jpg}
+    \caption{Model 1 Hit Map, $N=30$}
+    \label{fig:model_1_hits_30}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R07/bmu_radargram_07_full_on_rg_6.jpg}
+    \caption{Model 1 BMU Radargram, $N=30$}
+    \label{fig:model_1_bmu_radargram_30}
+\end{figure}
+
+\clearpage

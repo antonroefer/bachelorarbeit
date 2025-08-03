@@ -136,6 +136,111 @@ Der Dip wird ebenfalls in der Prozessierstufe 2 gezeigt. Der Dip zeigt allgemein
 
 \subsection{Modellvergleich}
 
+\subsubsection{Startmodell}
+
+Nun werden der Ergebnisse der verschiedenen Testläufe mit verschiedenen Merkmalen und verschiedenen Hyperparametern vorgestellt. Eine trainierte Self-Organizing Map wird als Modell bezeichnet, welches feste Gewichte besitzt. Die ersten Testläufe wurden mit den Merkmalen in Tabelle \ref{tab:model_1_features} durchgeführt. Diese wurden visuell ausgewählt und sollen stark unabhängig voneinander sein.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Merkmal} & \textbf{Prozessierstufe} \\
+        \hline
+        Instantaneous Amplitude & 2 \\
+        Instantaneous Frequency & 1 \\
+        Semblance & 2 \\
+        Kurtosis & 2 \\
+        Dip & 2 \\
+        \hline
+    \end{tabular}
+    \caption{Merkmale des Modells 1 mit den Hyperparametern $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$}
+    \label{tab:model_1_features}
+\end{table}
+
+\noindent In Abb. \ref{fig:model_1_planes} ist zu sehen, dass fast alle Merkmale eine gute Sortierung aufweisen. Lediglich die Neigung (Dip) ist nicht gut sortiert, da mehrere kleine Cluster zu sehen sind, aber kein großes zusammenhängendes, wie bei den anderen Merkmalen. Desweiteren fällt auf, dass die vier sortierten Merkmale alle in größtenteils verschiedene Ecken sortiert wurden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R09/som_planes_09_full_on_rg_6.jpg}
+    \caption{Model 1: Die jewiligen Werteverteilungen der Neuronen für jedes Merkmal}
+    \label{fig:model_1_planes}
+\end{figure}
+
+\noindent In der U-Matrix (Abb. \ref{fig:model_1_u_matrix}) sind die durchschnittlichen euklidischen Abstände der Neuronengewichte zu ihren Nachbarn zu sehen. Helle Bereiche zeigen kleine Abstände, also Cluster im Feature-Raum, während dunkle Bereiche große Abstände zeigen, also als Grenzen zwischen Clustern zu verstehen sind. Dabei fällt auf, dass es eine generelle Trennung zwischen weiter oben und weiter unten liegenden Neuronen gibt. Wirft man einen Blick zurück auf Abb. \ref{fig:model_1_planes}, so ist zu erkennen, dass die Neuronen mit hohen Momentanamplituden und hohen Momentanfrequenzen ein größeres Cluster bilden und auch Neuronen mit hohen Semblance- und Kurtosiswerten nah beieinander liegen. Der größte dunkle Bereich, ist auch der Bereich mit hohen Neigungswerten.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R09/som_u_matrix_09_full_on_rg_6.jpg}
+    \caption{Model 1: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Feature-Raum zu ihren Nachbarn}
+    \label{fig:model_1_u_matrix}
+\end{figure}
+
+\noindent In der Trefferverteilung (Abb. \ref{fig:model_1_hits}) sind die Trefferanzahl pro Neuron als BMU zu sehen. Dabei ist zu erkennen, dass es größere Cluster in rot, orange, grün, gelb-grün, blau und lila gibt. In Abb. \ref{fig:model_1_bmu} sind die Radargrammpunkte in der Farbe der BMU zu sehen. Dort fallen direkt die blauen Strukturen in der Mitte des Bildes auf, grüne Bereiche im oberen Teil des Bildes und rote Bereiche im unteren Teil des Bildes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R09/som_hits_09_full_on_rg_6.jpg}
+    \caption{Model 1: Die Trefferverteilung der Neuronen für jedes Merkmal}
+    \label{fig:model_1_hits}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R09/bmu_radargram_09_full_on_rg_6.jpg}
+    \caption{Model 1: Die BMU-Verteilung der Neuronen für jedes Merkmal}
+    \label{fig:model_1_bmu}
+\end{figure}
+
+\subsubsection{Epochenvergleich}
+
+Der Lauf aus dem Startmodell wurden sich auch nach nur 10 und 30 Epochen angeschaut.
+
+\subsubsection{Vergleich verschiedener Lernraten und Nachbarschaftsradien}
+
+Für Modell 2 wurden die gleichen Merkmale verwendet, jedoch mit den Hyperparametern $\alpha_0 = 0.5, \sigma_0 = 5$.
+
+\subsubsection{Vergleich mit anderen Merkmalen}
+
+Nachdem die Neigung wenig sortiert war und dementsprechend wenig zum Endergebnis beigetragen hat, wurde sie in Modell 3 gegen die Merkmale in Tabelle \ref{tab:model_3_features} ersetzt. Die Hyperparameter wurden auf $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$ belassen, um eine gute Vergleichbarkeit mit Modell 1 zu gewährleisten.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Merkmal} & \textbf{Prozessierstufe} \\
+        \hline
+        Instantaneous Amplitude & 2 \\
+        Instantaneous Frequency & 1 \\
+        Semblance & 2 \\
+        Kurtosis & 2 \\
+        Instantaneous Phase (Real) & 2 \\
+        Instantaneous Phase (Imaginary) & 2 \\
+        instantaneous Quality Factor & 2 \\
+        \hline
+    \end{tabular}
+    \caption{Merkmale des Modells 3 mit den Hyperparametern $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$}
+    \label{tab:model_3_features}
+\end{table}
+
+Im Anschluss wurden Features aus der Prozessierstufe 3 verwendet, um Modell 4 zu trainieren. Die benutzen Hyperparameter wurden auf $\alpha_0 = 0.5, \sigma_0 = 5, N = 50$ gesetzt.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Merkmal} & \textbf{Prozessierstufe} \\
+        \hline
+        Quadrature & 3 \\
+        Instantaneous Frequency & 1 \\
+        Kurtosis & 3 \\
+        \hline
+    \end{tabular}
+    \caption{Merkmale des Modells 4 mit den Hyperparametern $\alpha_0 = 0.5, \sigma_0 = 5, N = 50$}
+    \label{tab:model_4_features}
+\end{table}
+
+\subsubsection{}
+
 \subsection{Weitere Erkenntnisse}
 
 \subsection{Test auf anderem Radargramm}

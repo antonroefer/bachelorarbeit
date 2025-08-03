@@ -902,9 +902,9 @@ class MiniSom(object):
 
             cax = fig.add_axes(
                 [
-                    ax.get_position().x1 + 0.01,
+                    ax.get_position().x1 + 0.005,
                     ax.get_position().y0,
-                    0.02,
+                    0.01,
                     ax.get_position().height,
                 ]
             )

@@ -16,8 +16,8 @@ Radargramme liefern detaillierte Informationen über die innere Struktur des Bod
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{pictures/example.jpg}
-    \caption{Radargramme des Datensatzes, hervorgehoben sind Profil 7 und Profil 30}
+    \includegraphics[width=\textwidth]{pictures/übersicht.jpg}
+    \caption{Radargrammprofile des Datensatzes, hervorgehoben sind das Trainingsprofil 7 und das Testprofil 30}
     \label{fig:map}
 \end{figure}
 Der für diese Analyse verwendete Datensatz wurde bereits vorprozessiert bereitgestellt, wobei es ihn in 3 Prozessierstufen gibt. Die für die Vorverarbeitung verwendeten Schritte sind in Abb. \ref{fig:preprocessing_steps} zusammengefasst. \\
@@ -356,6 +356,12 @@ Da alle wichtigen Hyperparameter mit der Zeit, also mit der Iterationenzahl $n$ 
 \begin{equation}
     QE = \frac{1}{M} \sum_{m=1}^{M} d(\mathbf{w}_{m}^c, \mathbf{e_m})
 \end{equation}
+
+Wie gut die SOM ihre Topologie erhält, wird mit dem Topographic Error $TE$ gemessen. Topologieerhaltung bedeutet dabei, dass im besten Fall Neuronen, die im Neuronengitter nah beieinander liegen, auch im Feature-Raum ähnliche Gewichte besitzen. Der $TE$ wird dabei so berechnet, dass für jeden Eingabedatenpunkt $\mathbf{e}_m$ nicht nur die BMU sondern auch die SBMU (second best matching unit) berechnet wird. Sind diese nicht benachbart, wird dies als Fehler gewertet. Der $TE$ ist dann der Quotient aus Fehleranzahl $Q \in \mathbb{N}$ und Gesamtzahl der Samples $M$ \parencite{vettigli_minisom_2021}.
+
+\begin{equation}
+    TE = \frac{Q}{M}
+\end{equation}
 %Wurden alle Eingabedaten $\mathbf{e}_m$ einmal durchlaufen, wird von einer Epoche gesprochen \parencite{kohonen_self-organizing_2001}.\\
 
 \subsubsection{Hyperparameter}
@@ -378,7 +384,7 @@ Für die initial Lernrate $\alpha_0$ wurde von \textcite{vettigli_minisom_2021} 
     {\sigma_0}_{\text{max}} = \sqrt{I^2 + J^2}
 \end{equation}
 an, was in meinem Fall bei einem $30 \text{x} 30$ Neuronengitter eine maximale Nachbarschaftsgröße von ${\sigma_0}_{\text{max}} = \sqrt{30^2 + 30^2} = \sqrt{1800} \approx 42$ bedeutet. Für größere Radien gibt der Algorithmus eine Warnmeldung aus und somit eine quantifizierbare Obergrenze. \\
-Große Radien bedeuten eine stärkere Segmentierung von vor allem punktdichten Clustern innerhalb der Eingabedaten, während bei kleinerern Radien auch weniger dichte Cluster besser aufgelöst werden können. Da Lernrate und Nachbarschaftsradius gemeinsam bestimmen, wie stark die Neuronen angepasst werden, ist es für vergleichbare Änderungsraten sinnvoll, beide invers zueinander zu verändern. Daher wurden in dieser Arbeit zwei unterschiedliche Kombinationen aus Lernrate und Nachbarschaftsradius verwendet:
+Große Radien bedeuten eine stärkere Segmentierung von vor allem punktdichten Clustern innerhalb der Eingabedaten, während bei kleinerern Radien auch weniger dichte Cluster besser aufgelöst werden können. Da Lernrate und Nachbarschaftsradius gemeinsam bestimmen, wie stark die Neuronen angepasst werden, ist es für vergleichbare Änderungsraten sinnvoll, beide invers zueinander zu verändern. Daher wurden in dieser Arbeit zwei unterschiedliche Kombinationen aus Lernrate und Nachbarschaftsradius verglichen:
 
 \begin{enumerate}
     \item $\alpha_0 = 0,5$ und $\sigma_0 = 5$
@@ -389,38 +395,36 @@ Die Anzahl der Epochen $N$ wurde in dieser Arbeit intuitiv auf $N = 50$ gesetzt,
 
 \subsubsection{Visualisierung der SOM}
 
-Für die Visualisierung der SOM gibt es verschiedene Funktionen, die alle verschiedene Aspekte der SOM hervorheben. Da die \texttt{MiniSom} - Bibliothek keine eigenen hexagonalen Visualisierungen anbietet, wurden nach dem Vorbild von \textcite{mathworks_inc_selbstorganisierende_2024} die Funktionen \texttt{plotsomnd}, \texttt{plotsomplanes} und \texttt{plotsomhits} aus der \texttt{Matlab}-Bibliothek \texttt{Neural Network Toolbox} nachgebaut. \\
-Die Funktion \texttt{plotsomnd} visualisiert die euklidische Distanz im Feature-Raum mithilfe der \texttt{matplotlib} - Colormap \texttt{hot} zwischen den Neuronen in grau. \\
+Für die Visualisierung der SOM gibt es verschiedene Funktionen, die alle verschiedene Aspekte der SOM hervorheben. Da die \texttt{MiniSom} - Bibliothek keine eigenen hexagonalen Visualisierungen anbietet, wurden nach dem Vorbild von \textcite{mathworks_inc_selbstorganisierende_2024} die Funktionen \texttt{plotsomplanes} und \texttt{plotsomhits} aus der \texttt{Matlab}-Bibliothek \texttt{Neural Network Toolbox} nachgebaut und die Funktion \texttt{plot\_u\_matrix} als Unified Distanz Matrix auf Basis der \texttt{MiniSom} - U - Matrix \texttt{distance\_map} selbst geschrieben. \\
+Die Unified Distance Matrix, zu deutsch die vereinheitlichte Distanzmatrix, visualisiert die durchschnittliche euklidische Distanz im Feature-Raum von einem Neuron zu seinen Nachbarn im Neuronengitter mithilfe der \texttt{matplotlib} - Colormap \texttt{hot\_r}. \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{pictures/som_nd_32.jpg}
-    \caption{Die \texttt{plotsomnd} zeigt die euklidische Distanz zwischen den Neuronen im Feature-Raum an. Je heller die Farbe, desto größer der Abstand. Dunkle Bereiche zeigen Cluster an.}
-    \label{fig:plotsomnd}
+    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_u_matrix_07_full_on_rg_6.jpg}
+    \caption{Die \texttt{plot\_u\_matrix} zeigt die durchschnittliche euklidische Distanz $d$ eines Neurons zu seinen Nachbarn an. Je dunkler die Farbe, desto größer der Abstand. Helle Bereiche zeigen Cluster an.}
+    \label{fig:plot_u_matrix}
 \end{figure}
 \noindent Die Funktion \texttt{plotsomplanes} visualisiert die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums, also für jedes Feature. An diesem Plot ist zu sehen, ob die SOM ordnungsgemäß funktioniert, da hier für jedes Feature eine klare Sortierung sichtbar sein sollte. \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{pictures/som_planes_32.jpg}
+    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_planes_07_full_on_rg_6.jpg}
     \caption{Die \texttt{plotsomplanes} zeigt die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums an. Eine klare Sortierung der Features sollte sichtbar sein, wenn die SOM ordnungsgemäß funktioniert.}
     \label{fig:plotsomplanes}
 \end{figure}
-
 \noindent Die Funktion \texttt{plotsomhits} visualisiert die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon und die Größenordnung ist ebenfalls mit angegeben. Desweiteren zeigt die Farbe der kleineren hexagone an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot, für die dieses Neuron die BMU ist.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{pictures/som_hits_32.jpg}
+    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/som_hits_07_full_on_rg_6.png}
     \caption{Die \texttt{plotsomhits} zeigt die Anzahl der Eingabedatenpunkte, die auf jedes Neuron fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon. Die Farbe der kleineren Hexagone zeigt an, welche Farbe alle Eingabepunkte im späteren Radargramm Ergebnisplot haben, für die dieses Neuron die BMU ist.}
     \label{fig:plotsomhits}
 \end{figure}
-
 \noindent Diese drei Plots zusammen geben einen guten Überblick über die SOM und ihre Funktionsweise. Ob die SOM am Ende sinnvolle Cluster erzeugt und ob die Merkmale sinnvoll ausgewählt wurden, wird in einem eingefärbten Radargrammplot sichtbar, welches die BMUs der Eingabedatenpunkte anzeigt. Dabei wird jeder BMU mit der Farbe des Neurons eingefärbt, auf das der Eingabedatenpunkt fällt. \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{pictures/bmu_radargram_32.jpg}
-    \caption{Das Radargramm zeigt die BMUs der Eingabedatenpunkte an.}
+    \includegraphics[width=0.8\textwidth]{som_runs_pics/R07/bmu_radargram_07_full_on_rg_6.png}
+    \caption{Das Radargramm zeigt die Eingabedatenpunkte eingefärbt nach der zugehörigen BMU an.}
     \label{fig:bmu_radargram}
 \end{figure}
