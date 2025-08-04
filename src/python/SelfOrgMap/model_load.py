@@ -243,7 +243,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 for i in range(data.shape[1]):
     data[:, i] = min_max_scale(data[:, i])
 
-apx = "41"
+apx = "50"
 
 # Definiere den Pfad zum gespeicherten Modell
 model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
@@ -255,16 +255,16 @@ name = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
 save_plots = True  # Setze auf True, um die Plots zu speichern
 cmap = ColorMap2DZiegler
 
-#som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
-# som.plot_som_neighbor_distances(
-#    figsize=(10, 8), save=save_plots, appendix=apx, name=name
-# )
-# som.plot_som_planes(
-#    save=save_plots,
-#    fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
-#    appendix=apx,
-#    name=name,
-#)
+som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
+ som.plot_som_neighbor_distances(
+    figsize=(10, 8), save=save_plots, appendix=apx, name=name
+ )
+ som.plot_som_planes(
+    save=save_plots,
+    fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
+    appendix=apx,
+    name=name,
+)
 som.plot_som_hits(
     data, save=save_plots, appendix=apx, colormap=cmap, name=name
 )  # SOM Hits Plot
