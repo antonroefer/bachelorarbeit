@@ -256,10 +256,8 @@ save_plots = True  # Setze auf True, um die Plots zu speichern
 cmap = ColorMap2DZiegler
 
 som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
- som.plot_som_neighbor_distances(
-    figsize=(10, 8), save=save_plots, appendix=apx, name=name
- )
- som.plot_som_planes(
+som.plot_som_neighbor_distances(figsize=(10, 8), save=save_plots, appendix=apx, name=name)
+som.plot_som_planes(
     save=save_plots,
     fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
     appendix=apx,
