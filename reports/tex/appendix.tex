@@ -1,14 +1,30 @@
 \section*{Anhang}
 
-\subsection*{Anhang Features}
+\subsection*{A1 Radargramme}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{radargram_plots/Radargram_1.jpg}
+    \caption{Vollständiges Radargramm 1, Prozessierstufe 2.}
+    \label{fig:radargramm_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{radargram_plots/Radargram_30.jpg}
+    \caption{Vollständiges Radargramm 30, Prozessierstufe 2.}
+    \label{fig:radargramm_30}
+\end{figure}
+
+\subsection*{A2 Merkmale}
 
 Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu erkennen. Eine entsprechende Übersetzung ist in Tabelle \ref{tab:feature_names} zu finden.
 
 \begin{table}[H]
 	\centering
-    \begin{tabular}{|c|c|}
+    \begin{tabular}{|l|l|}
         \hline
-        \textbf{Python-Variable} & \textbf{Feature-Name} \\
+        \textbf{Python-Variable} & \textbf{Merkmalsname} \\
         \hline
         inst\_amp & Instantaneous Amplitude \\
         avg\_energy & Average Energy \\
@@ -24,19 +40,19 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
         dip & Dip \\
         \hline
     \end{tabular}
-    \caption{Übersicht der Python-Variablen und den zugehörigen Feature-Namen}
+    \caption{Übersicht der Python-Variablen und den zugehörigen Merkmalsnamen.}
     \label{tab:feature_names}
 \end{table}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \begin{tabular}{|l|r|r|r|r|r|r|}
         \hline
         \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
         \hline
         inst\_amp     & 0     & 100   & 15        & 15        & -        & -        \\
         inst\_phase   & -     & -     & -         & -         & -        & -        \\
-        inst\_freq    & -3e8  & 3e8   & 10 (100)  & 10 (100)  & -        & -        \\
+        inst\_freq    & -3e8  & 3e8   & 10        & 10        & -        & -        \\
         quadrature    & 0     & 50    & 40        & 10        & -        & -        \\
         inst\_q       & 0     & 10    & 10        & 10        & -        & -        \\
         avg\_energy   & 0     & 4e3   & 15        & 15        & 1        & 1        \\
@@ -48,13 +64,13 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
         \hline
     \end{tabular}
     \caption{Parameterübersicht der Merkmale, Prozessierstufe 1\\
-    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt wurde, stehen $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ für die Fensterbstände zum Sample (Bsp.: $\mathbf{x_{mean}} = \mathbf{t_{mean}} = 3 \rightarrow$ 7 x 7 Fenster). Wird ein Merkmal auf einem Fenster berechnet, stehen $\mathbf{x_{window}}$ und $\mathbf{t_{window}}$ für die Fensterabstände zum Sample in x- und t-Richtung (analog wie $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$). Die Werte in Klammern bei $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ beziehen sich auf verschiedene Modellläufe, bei denen weniger starkes und stärkeres Glätten genutzt wurde.}
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt wurde, stehen $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ für die Fensterbstände zum Sample (Bsp.: $\mathbf{x_{mean}} = \mathbf{t_{mean}} = 3 \rightarrow$ 7 x 7 Fenster). Wird ein Merkmal auf einem Fenster berechnet, stehen $\mathbf{x_{window}}$ und $\mathbf{t_{window}}$ für die Fensterabstände zum Sample in x- und t-Richtung (analog wie $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$).}
     \label{tab:feature_params_1}
 \end{table}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \begin{tabular}{|l|r|r|r|r|r|r|}
         \hline
         \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
         \hline
@@ -78,7 +94,7 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|c|c|c|}
+    \begin{tabular}{|l|r|r|r|r|r|r|}
         \hline
         \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
         \hline
@@ -106,42 +122,41 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots_raw/pairplot_overview.jpg}
-    \caption{Pairplot der Rohdaten-Features, Prozessierstufe 1}
+    \caption{Pairplot der Rohdaten-Merkmale, Prozessierstufe 1.}
     \label{fig:pairplot_overview_raw}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/pairplot_overview.jpg}
-    \caption{Pairplot der Features, Prozessierstufe 2}
+    \caption{Pairplot der Merkmale, Prozessierstufe 2.}
     \label{fig:pairplot_overview}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots_khigh/pairplot_overview.jpg}
-    \caption{Pairplot der Features, Prozessierstufe 3}
+    \caption{Pairplot der Merkmale, Prozessierstufe 3.}
     \label{fig:pairplot_overview_khigh}
 \end{figure}
 
-\subsection*{Anhang Modelle}
+\subsection*{A3 Modelle}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|c|c|c|c|}
+    \begin{tabular}{|r|r|r|r|r|}
         \hline
-        \textbf{Modell} & \textbf{Epochenanzahl} & \textbf{$QE$} & \textbf{$TE$} \\
+        \textbf{Modell } & \textbf{Epochenanzahl} & \textbf{$QE$} & \textbf{$TE$} & \textbf{Anzahl der Merkmale} $\mathbf{K}$ \\
         \hline
-        1 & 10 & 0.085339 & 0.049232 \\
-        1 & 30 & 0.085020 & 0.059034 \\
-        1 & 50 & 0.084581 & 0.057029 \\
-        2 & 50 & 0.084349 & 0.064219 \\
-        3 & 50 & 0.145045 & 0.047086 \\
-        4 & 50 & 0.023467 & 0.104278 \\
-        5 & 50 & 0.023393 & 0.087919 \\
+        1 & 10 & 0.085339 & 0.049232 & 5 \\
+        1 & 30 & 0.085020 & 0.059034 & 5 \\
+        1 & 50 & 0.084581 & 0.057029 & 5 \\
+        2 & 50 & 0.084349 & 0.064219 & 5 \\
+        3 & 50 & 0.145045 & 0.047086 & 7 \\
+        4 & 50 & 0.023081 & 0.094487 & 3 \\
         \hline
     \end{tabular}
-    \caption{Übersicht der Modelle mit den zugehörigen Epochenanzahlen, dem Quantisierungsfehler $QE$ und dem Topologiefehler $TE$}
+    \caption{Übersicht der Modell e mit den zugehörigen Epochenanzahlen, dem Quantisierungsfehler $QE$, dem Topologiefehler $TE$ und der Anzahl der verwendeten Merkmale $K$.}
     \label{tab:model_error_overview}
 \end{table}
 
@@ -150,14 +165,14 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R07/som_planes_07_full_on_rg_6.jpg}
-    \caption{Model 1 Feature Planes, $N=30$}
+    \caption{Modell 1 Merkmal - Ebenen, $N=30$.}
     \label{fig:model_1_planes_30}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R07/som_u_matrix_07_full_on_rg_6.jpg}
-    \caption{Model 1 U-Matrix, $N=30$}
+    \caption{Modell 1 U-Matrix, $N=30$.}
     \label{fig:model_1_u_matrix_30}
 \end{figure}
 
@@ -166,14 +181,14 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R05/som_hits_05_full_on_rg_6.jpg}
-    \caption{Model 1 Hit Map, $N=10$}
+    \caption{Modell 1 Hit Map, $N=10$.}
     \label{fig:model_1_hits_10}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R05/bmu_radargram_05_full_on_rg_6.jpg}
-    \caption{Model 1 BMU Radargram, $N=10$}
+    \caption{Modell 1 BMU Radargram, $N=10$.}
     \label{fig:model_1_bmu_radargram_10}
 \end{figure}
 
@@ -182,14 +197,14 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R07/som_hits_07_full_on_rg_6.jpg}
-    \caption{Model 1 Hit Map, $N=30$}
+    \caption{Modell 1 Hit Map, $N=30$.}
     \label{fig:model_1_hits_30}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R07/bmu_radargram_07_full_on_rg_6.jpg}
-    \caption{Model 1 BMU Radargram, $N=30$}
+    \caption{Modell 1 BMU Radargram, $N=30$.}
     \label{fig:model_1_bmu_radargram_30}
 \end{figure}
 
@@ -198,14 +213,14 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R08/som_hits_08_full_on_rg_6.jpg}
-    \caption{Model 2: Die Trefferverteilung der Neuronen für jedes Merkmal}
+    \caption{Modell 2: Die Trefferverteilung der Neuronen.}
     \label{fig:model_2_hits}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R08/bmu_radargram_08_full_on_rg_6.jpg}
-    \caption{Model 2: Die BMU-Verteilung der Neuronen für jedes Merkmal}
+    \caption{Modell 2: Die BMU-Verteilung der Neuronen für jedes Sample.}
     \label{fig:model_2_bmu}
 \end{figure}
 
@@ -214,6 +229,13 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R13/som_hits_13_full_on_rg_6.jpg}
-    \caption{Model 3: Die Trefferverteilung der Neuronen für jedes Merkmal}
+    \caption{Modell 3: Die Trefferverteilung der Neuronen.}
     \label{fig:model_3_hits}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R50/som_hits_50_full_on_rg_6_ziegler.jpg}
+    \caption{Modell 4: Die Trefferverteilung der Neuronen.}
+    \label{fig:model_4_hits}
 \end{figure}

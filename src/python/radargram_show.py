@@ -73,13 +73,12 @@ with h5py.File(t_path, "r") as f:
     t = t.squeeze()  # Ensure t is a 1D array
 
 fig_path = os.path.join(
-    cwd_path, "..", "..", "..", "GPR_Daten_mat", "Figures", "georef"
+    cwd_path, "..", "..", "..", "GPR_Daten_mat", "mat_khighpass", "Figures", "georef"
 )
-fig_file = f"Radargram_{int(i_rg + 1)}.png"
+fig_file = f"Radargram_{int(i_rg - 5) if int(i_rg - 5) > 0 else int(i_rg + 30 - 4)}.png"
 image = img.imread(os.path.join(fig_path, fig_file))
 
-cut = True
-
+cut = False
 # Finde den Index, bei dem x zum ersten Mal größer als 60 ist
 first_index_above_60 = np.argmax(x > 60)
 # Erstelle die geschnittenen Arrays
@@ -106,7 +105,7 @@ cbar.ax.tick_params(labelsize=14)
 os.makedirs(folder, exist_ok=True)
 plt.savefig(
     os.path.join(
-        cwd_path, folder, f"Radargram_{int(i_rg + 1)}{'_cut' if cut else ''}.png"
+        cwd_path, folder, f"Radargram_{int(i_rg - 4) if int(i_rg - 4) > 0 else int(i_rg + 30 - 4)}{'_cut' if cut else ''}_khigh.png"
     ),
     dpi=300,
 )

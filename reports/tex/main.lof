@@ -1,42 +1,47 @@
 \babel@toc {ngerman}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Radargramm (Ausschnitt der 60 m von Profil 7) mit Luft- und Bodenwelle (A), Rauschen (B) und Störsignalen (C)}}{5}{}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Übersichtskarte von Schleswig Holstein (links oben). Ausschnitt aus dem Kreis Herzogtum Lauenburg (links unten) einschließlich einer Detailansicht des Untersuchungsgebiets (rechts) mit den Radargrammprofilen des Datensatzes, hervorgehoben sind das Trainingsprofil 7 und das Testprofil 30. \\ Hintergrundkarte: © \blx@tocontentsinit {0}\textcite {google_google_2021}.\\ Flächen der Bundesländer und Kreise: © \blx@tocontentsinit {0}\textcite {bundesamt_fur_kartographie_und_geodasie_katasterflachen_2024}.}}{6}{}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Vorverarbeitungsschritte des Datensatzes}}{7}{}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Radargramm (Ausschnitt der ersten 60 m von Profil 1) mit Luft- und Bodenwelle (A), Rauschen (B) und Störsignalen (C)}}{5}{}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Übersichtskarte von Schleswig Holstein (links oben). Ausschnitt aus dem Kreis Herzogtum Lauenburg (links unten) einschließlich einer Detailansicht des Untersuchungsgebiets (rechts) mit den Radargrammprofilen des Datensatzes, hervorgehoben sind das Trainingsprofil 1 und das Testprofil 30. Hintergrundkarte: © \blx@tocontentsinit {0}\textcite {google_google_2021}. Flächen der Bundesländer und Kreise: © \blx@tocontentsinit {0}\textcite {bundesamt_fur_kartographie_und_geodasie_katasterflachen_2024}.}}{6}{}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Vorverarbeitungsschritte des Datensatzes mit den einzelnen Prozessierungsschritten (links) und den Prozessierstufen (rechts).}}{7}{}%
 \contentsline {figure}{\numberline {4}{\ignorespaces Topologie der Neuronengitter: rechteckig (links) und hexagonal (rechts) \blx@tocontentsinit {0}\parencite {schmidt_effects_2011}}}{13}{}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Instantaneous Amplitude des Radargramms 7, Prozessierstufe 2}}{18}{}%
-\contentsline {figure}{\numberline {6}{\ignorespaces RMS-Amplitude des Radargramms 7, Prozessierstufe 2}}{19}{}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Average Energy des Radargramms 7, Prozessierstufe 2}}{19}{}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Quadrature des Radargramms 7, Prozessierstufe 2}}{19}{}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Pairplot der Amplitudenmerkmale des Radargramms 7, Prozessierstufe 2}}{20}{}%
-\contentsline {figure}{\numberline {10}{\ignorespaces InstantaneousPhase des Radargramms 7, Prozessierstufe 3}}{21}{}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Instantaneous Frequency des Radargramms 7, Prozessierstufe 1, moderate Glättung}}{21}{}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Instantaneous Frequency des Radargramms 7, Prozessierstufe 1, hohe Glättung}}{22}{}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Qualitätsfaktor des Radargramms 7, Prozessierstufe 3}}{22}{}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Skewness des Radargramms 7, Prozessierstufe 3}}{23}{}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Kurtosis des Radargramms 7, Prozessierstufe 3}}{23}{}%
-\contentsline {figure}{\numberline {16}{\ignorespaces Pairplot der statistischen Momente des Radargramms 7, Prozessierstufe 3}}{24}{}%
-\contentsline {figure}{\numberline {17}{\ignorespaces Semblance des Radargramms 7, Prozessierstufe 2}}{25}{}%
-\contentsline {figure}{\numberline {18}{\ignorespaces Dip des Radargramms 7, Prozessierstufe 2}}{25}{}%
-\contentsline {figure}{\numberline {19}{\ignorespaces Model 1: Die jewiligen Werteverteilungen der Neuronen für jedes Merkmal}}{27}{}%
-\contentsline {figure}{\numberline {20}{\ignorespaces Model 1: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Feature-Raum zu ihren Nachbarn}}{28}{}%
-\contentsline {figure}{\numberline {21}{\ignorespaces Model 1: Die Trefferverteilung der Neuronen für jedes Merkmal}}{29}{}%
-\contentsline {figure}{\numberline {22}{\ignorespaces Model 1: Die BMU-Verteilung der Neuronen für jedes Merkmal}}{29}{}%
-\contentsline {figure}{\numberline {23}{\ignorespaces Model 1 Feature Planes, $N=10$}}{30}{}%
-\contentsline {figure}{\numberline {24}{\ignorespaces Model 1 U-Matrix, $N=10$}}{31}{}%
-\contentsline {figure}{\numberline {25}{\ignorespaces Model 2: Die jewiligen Werteverteilungen der Neuronen für jedes Merkmal}}{32}{}%
-\contentsline {figure}{\numberline {26}{\ignorespaces Model 2: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Feature-Raum zu ihren Nachbarn}}{32}{}%
-\contentsline {figure}{\numberline {27}{\ignorespaces Model 3: Die jewiligen Werteverteilungen der Neuronen für jedes Merkmal}}{34}{}%
-\contentsline {figure}{\numberline {28}{\ignorespaces Model 3: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Feature-Raum zu ihren Nachbarn}}{35}{}%
-\contentsline {figure}{\numberline {29}{\ignorespaces Model 3: Die BMU-Verteilung der Neuronen für jedes Merkmal, die Trefferverteilung für diesen Ergebnisplot ist in Abb. \ref {fig:model_3_hits} im Anhang zu sehen.}}{36}{}%
-\contentsline {figure}{\numberline {30}{\ignorespaces Pairplot der Rohdaten-Features, Prozessierstufe 1}}{44}{}%
-\contentsline {figure}{\numberline {31}{\ignorespaces Pairplot der Features, Prozessierstufe 2}}{45}{}%
-\contentsline {figure}{\numberline {32}{\ignorespaces Pairplot der Features, Prozessierstufe 3}}{46}{}%
-\contentsline {figure}{\numberline {33}{\ignorespaces Model 1 Feature Planes, $N=30$}}{48}{}%
-\contentsline {figure}{\numberline {34}{\ignorespaces Model 1 U-Matrix, $N=30$}}{48}{}%
-\contentsline {figure}{\numberline {35}{\ignorespaces Model 1 Hit Map, $N=10$}}{49}{}%
-\contentsline {figure}{\numberline {36}{\ignorespaces Model 1 BMU Radargram, $N=10$}}{49}{}%
-\contentsline {figure}{\numberline {37}{\ignorespaces Model 1 Hit Map, $N=30$}}{50}{}%
-\contentsline {figure}{\numberline {38}{\ignorespaces Model 1 BMU Radargram, $N=30$}}{50}{}%
-\contentsline {figure}{\numberline {39}{\ignorespaces Model 2: Die Trefferverteilung der Neuronen für jedes Merkmal}}{51}{}%
-\contentsline {figure}{\numberline {40}{\ignorespaces Model 2: Die BMU-Verteilung der Neuronen für jedes Merkmal}}{51}{}%
-\contentsline {figure}{\numberline {41}{\ignorespaces Model 3: Die Trefferverteilung der Neuronen für jedes Merkmal}}{52}{}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Instantaneous Amplitude des Radargramms 1, Prozessierstufe 2.}}{18}{}%
+\contentsline {figure}{\numberline {6}{\ignorespaces RMS-Amplitude des Radargramms 1, Prozessierstufe 2}}{19}{}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Average Energy des Radargramms 1, Prozessierstufe 2}}{19}{}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Quadrature des Radargramms 1, Prozessierstufe 2}}{20}{}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Pairplot der Amplitudenmerkmale des Radargramms 1, Prozessierstufe 2.}}{21}{}%
+\contentsline {figure}{\numberline {10}{\ignorespaces InstantaneousPhase des Radargramms 1, Prozessierstufe 3.}}{22}{}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Instantaneous Frequency des Radargramms 1, Prozessierstufe 1, moderate Glättung.}}{22}{}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Qualitätsfaktor des Radargramms 1, Prozessierstufe 3.}}{23}{}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Skewness des Radargramms 1, Prozessierstufe 3.}}{23}{}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Kurtosis des Radargramms 1, Prozessierstufe 3.}}{24}{}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Pairplot der statistischen Momente des Radargramms 1, Prozessierstufe 3.}}{25}{}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Semblance des Radargramms 1, Prozessierstufe 2.}}{26}{}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Dip des Radargramms 1, Prozessierstufe 2.}}{26}{}%
+\contentsline {figure}{\numberline {18}{\ignorespaces Modell 1: Die jeweiligen Werteverteilungen der Neuronen für jedes Merkmal.}}{27}{}%
+\contentsline {figure}{\numberline {19}{\ignorespaces Modell 1: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Merkmalsraum zu ihren Nachbarn.}}{28}{}%
+\contentsline {figure}{\numberline {20}{\ignorespaces Modell 1: Die Trefferverteilung der Neuronen für jedes Merkmal.}}{29}{}%
+\contentsline {figure}{\numberline {21}{\ignorespaces Modell 1: Die BMU-Verteilung der Neuronen für jedes Sample.}}{30}{}%
+\contentsline {figure}{\numberline {22}{\ignorespaces Modell 1 Merkmalebenen, $N=10$.}}{31}{}%
+\contentsline {figure}{\numberline {23}{\ignorespaces Modell 1 U-Matrix, $N=10$.}}{32}{}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Modell 2: Die jeweiligen Werteverteilungen der Neuronen für jedes Merkmal.}}{33}{}%
+\contentsline {figure}{\numberline {25}{\ignorespaces Modell 2: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Merkmalsraum zu ihren Nachbarn.}}{33}{}%
+\contentsline {figure}{\numberline {26}{\ignorespaces Modell 3: Die jeweiligen Werteverteilungen der Neuronen für jedes Merkmal.}}{35}{}%
+\contentsline {figure}{\numberline {27}{\ignorespaces Modell 3: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Merkmalsraum zu ihren Nachbarn.}}{36}{}%
+\contentsline {figure}{\numberline {28}{\ignorespaces Modell 3: Die BMU-Verteilung der Neuronen für jedes Sample, die Trefferverteilung für diesen Ergebnisplot ist in Abb. \ref {fig:model_3_hits} im Anhang zu sehen.}}{37}{}%
+\contentsline {figure}{\numberline {29}{\ignorespaces Modell 4: Die jeweiligen Werteverteilungen der Neuronen für jedes Merkmal.}}{38}{}%
+\contentsline {figure}{\numberline {30}{\ignorespaces Modell 4: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Merkmalsraum zu ihren Nachbarn.}}{39}{}%
+\contentsline {figure}{\numberline {31}{\ignorespaces Modell 4: Die BMU-Verteilung der Neuronen für jedes Sample, die Trefferverteilung für diesen Ergebnisplot ist in Abb. \ref {fig:model_4_hits} im Anhang zu sehen.}}{40}{}%
+\contentsline {figure}{\numberline {32}{\ignorespaces Vollständiges Radargramm 1, Prozessierstufe 2.}}{50}{}%
+\contentsline {figure}{\numberline {33}{\ignorespaces Vollständiges Radargramm 30, Prozessierstufe 2.}}{50}{}%
+\contentsline {figure}{\numberline {34}{\ignorespaces Pairplot der Rohdaten-Merkmale, Prozessierstufe 1.}}{54}{}%
+\contentsline {figure}{\numberline {35}{\ignorespaces Pairplot der Merkmale, Prozessierstufe 2.}}{55}{}%
+\contentsline {figure}{\numberline {36}{\ignorespaces Pairplot der Merkmale, Prozessierstufe 3.}}{56}{}%
+\contentsline {figure}{\numberline {37}{\ignorespaces Modell 1 Merkmal - Ebenen, $N=30$.}}{58}{}%
+\contentsline {figure}{\numberline {38}{\ignorespaces Modell 1 U-Matrix, $N=30$.}}{58}{}%
+\contentsline {figure}{\numberline {39}{\ignorespaces Modell 1 Hit Map, $N=10$.}}{59}{}%
+\contentsline {figure}{\numberline {40}{\ignorespaces Modell 1 BMU Radargram, $N=10$.}}{59}{}%
+\contentsline {figure}{\numberline {41}{\ignorespaces Modell 1 Hit Map, $N=30$.}}{60}{}%
+\contentsline {figure}{\numberline {42}{\ignorespaces Modell 1 BMU Radargram, $N=30$.}}{60}{}%
+\contentsline {figure}{\numberline {43}{\ignorespaces Modell 2: Die Trefferverteilung der Neuronen.}}{61}{}%
+\contentsline {figure}{\numberline {44}{\ignorespaces Modell 2: Die BMU-Verteilung der Neuronen für jedes Sample.}}{61}{}%
+\contentsline {figure}{\numberline {45}{\ignorespaces Modell 3: Die Trefferverteilung der Neuronen.}}{62}{}%
+\contentsline {figure}{\numberline {46}{\ignorespaces Modell 4: Die Trefferverteilung der Neuronen.}}{63}{}%

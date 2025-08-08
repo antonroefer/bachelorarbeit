@@ -2,113 +2,120 @@
 
 \subsection{Merkmale}
 
-In diesem Kapitel werden die Ergebnisse der Feature-Extraktion vorgestellt. Da eine vollständige Beschreibung der Feature-Plots aller elf Merkmale in jeweils 3 Pozessierstufen den Rahmen sprengen würde, wird hier nur auf jeweils eine Prozessierstufe pro Feature eingegangen. Eine vollständige Übersicht aller Merkmale aus allen Prozessierstufen befindet sich im Anhang dieser Arbeit.\\
+In diesem Kapitel werden die Ergebnisse der Merkmalextraktion vorgestellt. Da eine vollständige Beschreibung der Merkmal-Plots aller elf Merkmale in jeweils drei Pozessierstufen den Rahmen sprengen würde, wird hier nur auf jeweils eine Prozessierstufe pro Merkmal eingegangen. Eine vollständige Übersicht aller Merkmale aus allen Prozessierstufen befindet sich im Anhang dieser Arbeit.\\
 
 \subsubsection{Amplitude}
 
-Die Amplituden werden hier in der Prozessierstufe 2 verglichen. Alle Merkmale besitzen hohe Werte in Bereich \textbf{(A)}, welches die Luft- und Bodenwelle zeigt. Desweiteren zeigen sie eine hohe Reflektivität im Bereich \textbf{(B)}, in dem Untergrundstrukturen zum Vorschein kommen und auch Strukturen im Bereich \textbf{(C)} sind überall zu erkennen.
+Die Amplituden werden hier in der Prozessierstufe 2 verglichen. Alle Merkmale besitzen hohe Werte in Bereich \textbf{(A)}. Des Weiteren zeigen sie eine hohe Reflektivität im Bereich \textbf{(B)}, in dem Untergrundstrukturen zum Vorschein kommen. Diese sind auch in Bereich \textbf{(C)} sind zu erkennen.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/instantaneous_amplitude.jpg}
-    \caption{Instantaneous Amplitude des Radargramms 7, Prozessierstufe 2}
+    \caption{Instantaneous Amplitude des Radargramms 1, Prozessierstufe 2.}
     \label{fig:inst_amp_result}
 \end{figure}
+
+\noindent Die RMS-Amplitude zeigt in den gleichen Bereichen wie die Instantaneous Amplitude hohe Werte. Allgemein sieht dieses Merkmal etwas glatter aus und besitzt in Bereich \textbf{(A)} und \textbf{(B)} etwas kleinere Amplitudenwerte. Auch Bereich \textbf{(C)} ist abgeschwächt.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/rms_amplitude.jpg}
-    \caption{RMS-Amplitude des Radargramms 7, Prozessierstufe 2}
+    \caption{RMS-Amplitude des Radargramms 1, Prozessierstufe 2}
     \label{fig:rms_result}
 \end{figure}
+
+\noindent Die Average Energy zeigt ebenfalls in den gleichen Bereichen, wie RMS- und Instantaneous Amplitude hohe Werte, allerdings ist der Kontrast zwischen den roten Strukturen und dem blauen unteren Teil des Bildes deutlich höher. Besonders prägnant ist dies in den Bereichen \textbf{(D1 - D3)} sichtbar.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/average_energy.jpg}
-    \caption{Average Energy des Radargramms 7, Prozessierstufe 2}
+    \caption{Average Energy des Radargramms 1, Prozessierstufe 2}
     \label{fig:avg_energy_result}
 \end{figure}
+
+\noindent Die Quadrature zeigt ein verwaschenes und inhomogenes Bild. Die Strukturen \textbf{(A)}, \textbf{(B)} und \textbf{(C)} sind sehr stark ausgeprägt und auch der Bereich unterhalb von \textbf{(B)} besitzt deutlich höhere Werte. In den Bereichen \textbf{(D1 - D3)} sind horizontale Strukturen zu erkennen, wobei \textbf{(D3)} auch sehr hohe Werte aufweist.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/quadrature.jpg}
-    \caption{Quadrature des Radargramms 7, Prozessierstufe 2}
+    \caption{Quadrature des Radargramms 1, Prozessierstufe 2}
     \label{fig:quadrature_result}
 \end{figure}
 
-Desweiteren wurden alle Merkmale gegeneinander geplottet in einem sogenannten Pairplot. In Abb. \ref{fig:pairplot_amps_result} sieht man die Gegenüberstellungen mit ihren python Variablen Namen. Falls ein Variablenname nicht eindeutig sein sollte, gibt es in der Tabelle \ref{tab:feature_names} eine Übersicht aller Variablen und deren Bedeutung. Die Pairplots zeigen, dass alle Amplitudenmerkmale stark miteinander korrelieren. Besonders auffällig ist die hohe lineare Korrelation zwischen der RMS Amplitude und der Instantaneous Amplitude. RMS Amplitude und Instantaneous Amplitude besitzen zur Average Energy fast schon einen quadratischen Zusammenhang, was bei der Berechnung der Average Energie nicht verwunderlich ist. Rein visuell scheint die Quadrature noch das unabhängigste und gleichverteilteste Merkmal im Vergleich zu den anderen zu sein.
+\noindent Des Weiteren wurden alle Merkmale in einem sogenannten Pairplot gegeneinander geplottet, um den Vergleich zu erleichtern (siehe Abb. \ref{fig:pairplot_amps_result} mit Python-Variablennamen; Übersicht der  Variablen: Tabelle \ref{tab:feature_names}). Die Pairplots zeigen, dass alle Amplitudenmerkmale stark miteinander korrelieren. Besonders auffällig ist dies zwischen der RMS Amplitude und der Instantaneous Amplitude. RMS Amplitude und Instantaneous Amplitude besitzen zur Average Energy fast schon einen quadratischen Zusammenhang, was an der Berechnung der Average Energy liegen dürfte. Qualitativ zeigt die Quadrature die größte Unabhängigkeit von der anderen Merkmalen bei einem hohen Maß an Gleichverteilung.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/pairplot_amps.jpg}
-    \caption{Pairplot der Amplitudenmerkmale des Radargramms 7, Prozessierstufe 2}
+    \caption{Pairplot der Amplitudenmerkmale des Radargramms 1, Prozessierstufe 2.}
     \label{fig:pairplot_amps_result}
 \end{figure}
 
 \subsubsection{Phase}
 
-Die Phase wird in der Prozessierstufe 3 gezeigt. Während die Phasenverlaufe meist sehr gut sichtbar sind, zeigt Bereich \textbf{(A)} Phasenverläufe, die horizontal große Unterschiede aufweisen. Bereich \textbf{(B)} ist dabei eine Außnahme, in dem man die Phasenverläufe bis zur maximalen Laufzeit sehr gut verfolgen kann.
+Die Phase wird in der Prozessierstufe 3 gezeigt. Während die Phasenverläufe meist sehr gut sichtbar sind, zeigt Bereich \textbf{(A)}  lateral große Unterschiede. Bereich \textbf{(B)} ist dabei eine Ausnahme, da dort die Phasenverläufe bis zur maximalen Laufzeit sehr gut verfolgbar sind. Auch der Bereich \textbf{(C)} sticht wie bereits bei der Betrachtung der Amplitudenmerkmale hervor. Die Bereiche \textbf{(D1 - D3)} zeigen zu langen Laufzeiten keine deutliche Phasenstruktur mehr.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_phase.jpg}
-    \caption{InstantaneousPhase des Radargramms 7, Prozessierstufe 3}
+    \caption{InstantaneousPhase des Radargramms 1, Prozessierstufe 3.}
     \label{fig:inst_phase_result}
 \end{figure}
 
 \subsubsection{Frequenz}
 
-Die Frequenz wird hier zweimal in der Prozessierstufe 1 gezeigt, einmal mit moderater und einmal mit hoher Glättung. In Abb. \ref{fig:inst_freq_result_1} zeigen hohe Momentanfrequenzen rote Strukturen. Der gesamte untere Teil des Merkmalplots ist von einem türkis-blauen vertikalen Streifenmuster durchzogen. Desweiteren sind auch mehrere horizontale Streifen \textbf{(A1 - A3)} in diesem Bereich zu erkennen, welche bei ca. 150 m \textbf{(B1 - B2)} zu kleineren Laufzeiten wandern \textbf{(C1 - C2)}. Um diese Artefakte herauszufiltern, wurde im Anschluss eine deutlich stärkere Glättung verwendet, in denen die horizontalen Artefakte nicht mehr auftauchen und nur an Übergängen, noch vertikale Streifen \textbf{(D1 - D2)} zu erkennen sind.
+Die Frequenz wird in der Prozessierstufe 1 mit moderater Glättung gezeigt. In Abb. \ref{fig:inst_freq_result_1} zeigen hohe Momentanfrequenzen rote Strukturen \textbf{(A)}. Der gesamte untere Teil des Merkmalplots ist von einem türkis-blauen vertikalen Streifenmuster durchzogen. Des Weiteren sind mehrere horizontale Streifen \textbf{(B1 - B3)} in diesem Bereich zu erkennen, welche bei ca. 150 m \textbf{(C1 - C2)} zu kleineren Laufzeiten wandern \textbf{(D1 - D2)}.
+% Um diese Artefakte herauszufiltern, wurde im Anschluss eine deutlich stärkere Glättung verwendet, in denen die horizontalen Artefakte nicht mehr auftauchen und nur an Übergängen, noch vertikale Streifen \textbf{(D1 - D2)} zu erkennen sind.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_frequency_raw.jpg}
-    \caption{Instantaneous Frequency des Radargramms 7, Prozessierstufe 1, moderate Glättung}
+    \caption{Instantaneous Frequency des Radargramms 1, Prozessierstufe 1, moderate Glättung.}
     \label{fig:inst_freq_result_1}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_frequency_high.jpg}
-    \caption{Instantaneous Frequency des Radargramms 7, Prozessierstufe 1, hohe Glättung}
-    \label{fig:inst_freq_result_2}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_frequency_high.jpg}
+%     \caption{Instantaneous Frequency des Radargramms 1, Prozessierstufe 1, hohe Glättung}
+%     \label{fig:inst_freq_result_2}
+% \end{figure}
 
 \subsubsection{Qualitätsfaktor}
 
-Der Qualitätsfaktor wird in der Prozessierstufe 3 gezeigt. Der Qualitätsfaktor zeigt besonders in Bereich \textbf{(A)} hohe Werte. In Bereich \textbf{(B)} dagegen sind vermehrt Samples mit niedriger Qualität zu erkennen und auch Bereich \textbf{(C)} hebt sich gut vom Hintergrund ab.
+Der Qualitätsfaktor wird in der Prozessierstufe 3 gezeigt. Allgemein besitzt er ein schlecht aufgelöstes Erscheinungsbild. Der Qualitätsfaktor zeigt besonders im Bereich \textbf{(A)} hohe Werte -  auch zu größeren Laufzeiten. Im Bereich \textbf{(B)} sind vermehrt Samples mit niedriger Qualität zu erkennen und auch Bereich \textbf{(C)} zeigt hohe Kontraste in Amplitude und Phase.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_q.png}
-    \caption{Qualitätsfaktor des Radargramms 7, Prozessierstufe 3}
+    \caption{Qualitätsfaktor des Radargramms 1, Prozessierstufe 3.}
     \label{fig:inst_q_result}
 \end{figure}
 
 \subsubsection{Statistische Momente}
 
-Die statistischen Momente werden in der Prozessierstufe 3 gezeigt. Die Momente zeigen allgemein zu kleinen Laufzeiten niedrige Werte und zu großen Laufzeiten hohe Werte. In Bereich \textbf{(A)} sind Werte regional etwas kleiner und in Bereich \textbf{(B)} sind die Werte sind die Werte selbst bei langen Laufzeiten noch relativ klein.
+Die statistischen Momente werden in der Prozessierstufe 3 gezeigt. Sie zeigen allgemein zu kleinen Laufzeiten niedrige Werte und zu großen Laufzeiten hohe Werte. Im Bereich \textbf{(A)} sind vereinzelt Werte geringer, während in Bereich \textbf{(B)} Werte selbst bei langen Laufzeiten noch relativ klein erscheinen. Der Bereich \textbf{(C)} ist schwach zu erkennen, indem er lokal geringere Werte als die Umgebung aufweist.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots_khigh/skewness.jpg}
-    \caption{Skewness des Radargramms 7, Prozessierstufe 3}
+    \caption{Skewness des Radargramms 1, Prozessierstufe 3.}
     \label{fig:skewness_result}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots_khigh/kurtosis.jpg}
-    \caption{Kurtosis des Radargramms 7, Prozessierstufe 3}
+    \caption{Kurtosis des Radargramms 1, Prozessierstufe 3.}
     \label{fig:kurtosis_result}
 \end{figure}
 
-\noindent Nicht nur auf den Feature-Plots selbst sondern auch in ihren Pairplots und in ihrer Werteverteilung sind sich die statistischen Momente sehr ähnlich.
+\noindent Allgemein weisen diese zwei Merkmale eine hohe Ähnlichkeit auf und zeigen nur kleine Unterschiede im Kontrast, welcher bei der Kurtosis leicht höher erscheint. Auch der Pairplot der statistischen Momente zeigt, dass diese einen sehr starken linearen Zusammenhang besitzen (siehe Abb. \ref{fig:pairplot_statistical_moments_result}).
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots_khigh/pairplot_stats.jpg}
-    \caption{Pairplot der statistischen Momente des Radargramms 7, Prozessierstufe 3}
+    \caption{Pairplot der statistischen Momente des Radargramms 1, Prozessierstufe 3.}
     \label{fig:pairplot_statistical_moments_result}
 \end{figure}
 
@@ -119,26 +126,27 @@ Die Ähnlichkeit als Semblance wird in Prozessierstufe 2 dargestellt. Die Sembla
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/semblance.jpg}
-    \caption{Semblance des Radargramms 7, Prozessierstufe 2}
+    \caption{Semblance des Radargramms 1, Prozessierstufe 2.}
     \label{fig:semblance_result}
 \end{figure}
 
 \subsubsection{Neigung}
 
-Der Dip wird ebenfalls in der Prozessierstufe 2 gezeigt. Der Dip zeigt allgemein ein sehr heterogenes Bild. In den Bereichen \textbf{(A1 - A3)} zeigt er eine betragsmäßig hohe Neigung, während die Bereiche \textbf{(B1 - B2)} eine betragsmäßig geringe Neigung aufweisen. In Bereich \textbf{(C)} sind die sonst eher verwaschenen und glatten Übergänge eher scharf.
+Der Dip (Neigung) wird ebenfalls in der Prozessierstufe 2 gezeigt. Sie zeigt allgemein ein sehr heterogenes Bild. In den Bereichen \textbf{(A1 - A3)} zeigt sich ein betragsmäßig hoher Dip, während die Bereiche \textbf{(B1 - B2)} einen betragsmäßig geringen Dip aufweisen. Im Bereich \textbf{(C)} sind die sonst eher verwaschenen Übergänge scharf.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{feature_plots/dip.jpg}
-    \caption{Dip des Radargramms 7, Prozessierstufe 2}
+    \caption{Dip des Radargramms 1, Prozessierstufe 2.}
     \label{fig:dip_result}
 \end{figure}
 
 \subsection{Modellvergleich}
 
-\subsubsection{Startmodell}
+\subsubsection{Modell 1}
 
-Nun werden der Ergebnisse der verschiedenen Testläufe mit verschiedenen Merkmalen und verschiedenen Hyperparametern vorgestellt. Eine trainierte Self-Organizing Map wird als Modell bezeichnet, welches feste Gewichte besitzt. Die ersten Testläufe wurden mit den Merkmalen in Tabelle \ref{tab:model_1_features} durchgeführt. Diese wurden visuell ausgewählt und sollen stark unabhängig voneinander sein.
+Nun werden die Ergebnisse der Testläufe mit verschiedenen Merkmalen und unterschiedlichen Hyperparametern vorgestellt. %Eine trainierte Self-Organizing Map wird als Modell bezeichnet, welches feste Gewichte besitzt. 
+Die ersten Testläufe wurden mit den Merkmalen in Tabelle \ref{tab:model_1_features} durchgeführt. Diese wurden visuell ausgewählt und sollen stark unabhängig voneinander sein.
 
 \begin{table}[H]
     \centering
@@ -153,86 +161,86 @@ Nun werden der Ergebnisse der verschiedenen Testläufe mit verschiedenen Merkmal
         Dip & 2 \\
         \hline
     \end{tabular}
-    \caption{Merkmale des Modells 1 mit den Hyperparametern $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$}
+    \caption{Merkmale des Modells 1 mit den Hyperparametern $\alpha_0 = 0.3, \sigma_0 = 7, N = 50.$}
     \label{tab:model_1_features}
 \end{table}
 
-\noindent Für die Visualisierung der SOM gibt es verschiedene Funktionen, die alle verschiedene Aspekte der SOM hervorheben. Da die \texttt{MiniSom} - Bibliothek keine eigenen hexagonalen Visualisierungen anbietet, wurden nach dem Vorbild von \textcite{mathworks_inc_selbstorganisierende_2024} die Funktionen \texttt{plotsomplanes} und \texttt{plotsomhits} aus der \texttt{Matlab}-Bibliothek \texttt{Neural Network Toolbox} nachgebaut und die Funktion \texttt{plot\_u\_matrix} als Unified Distanz Matrix auf Basis der \texttt{MiniSom} - U-Matrix \texttt{distance\_map} selbst geschrieben. \\
-Die Funktion \texttt{plotsomplanes} visualisiert die Gewichtsverteilung der Neuronen für jede Dimension des Feature-Raums, also für jedes Feature. An diesem Plot ist zu sehen, ob die SOM ordnungsgemäß funktioniert, da hier für jedes Feature eine klare Sortierung sichtbar sein sollte. In Abb. \ref{fig:model_1_planes} ist die Ausgabe dieser Funktion zu sehen. Dabei weisen fast alle Merkmale eine gute Sortierung auf. Lediglich die Neigung (Dip) ist nicht gut sortiert, da anstatt einem großen zusammenhängenden Cluster, mehrere kleine Gruppierungen zu erkennen sind. Desweiteren fällt auf, dass die vier gut sortierten Merkmale alle in größtenteils verschiedene Ecken sortiert wurden.
+\noindent Für die Visualisierung der SOM gibt es eine Bandbreite von Funktionen, die alle verschiedene Aspekte der SOM hervorheben. Da die \texttt{MiniSom} - Bibliothek keine eigenen hexagonalen Visu\-alisierungen anbietet, wurden nach dem Vorbild von \textcite{mathworks_inc_selbstorganisierende_2024} die Funktionen \texttt{plotsomplanes} und \texttt{plotsomhits} aus der \texttt{Matlab}-Bibliothek \texttt{Neural Network Toolbox} und die Funktion \texttt{plot\_u\_matrix} als Unified Distanz Matrix auf Basis der \texttt{MiniSom} - U-Matrix \texttt{distance\_map} in Python selbst geschrieben. \\
+Die Funktion \texttt{plotsomplanes} visualisiert die Gewichtsverteilung der Neuronen für jede Dimension des Merkmalsraums, also für jedes Merkmal. An diesem Plot ist zu sehen, ob die SOM ordnungsgemäß funktioniert, da hier für jedes Merkmal eine klare Sortierung sichtbar sein sollte. In Abb. \ref{fig:model_1_planes} ist die Ausgabe dieser Funktion zu sehen. Dabei weisen fast alle Merkmale eine gute Sortierung auf. Lediglich der Dip ist nicht gut sortiert, da anstatt einem großen zusammenhängenden Cluster, mehrere kleine Gruppierungen zu erkennen sind. Des Weiteren fällt auf, dass die vier gut sortierten Merkmale alle in größtenteils verschiedene Ecken sortiert wurden.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R09/som_planes_09_full_on_rg_6.jpg}
-    \caption{Model 1: Die jewiligen Werteverteilungen der Neuronen für jedes Merkmal}
+    \caption{Modell 1: Die jeweiligen Werteverteilungen der Neuronen für jedes Merkmal.}
     \label{fig:model_1_planes}
 \end{figure}
 
-\noindent Die Unified Distance Matrix, zu deutsch die vereinheitlichte Distanzmatrix, visualisiert die durchschnittliche euklidische Distanz im Feature-Raum von einem Neuron zu seinen Nachbarn im Neuronengitter mithilfe der \texttt{matplotlib} - Colormap \texttt{hot\_r}. \\
-In der U-Matrix (Abb. \ref{fig:model_1_u_matrix}) zeigen helle Bereiche kleine Abstände, also Cluster im Feature-Raum, während dunkle Bereiche große Abstände bedeuten, also als Grenzen zwischen Clustern zu verstehen sind. Dabei fällt auf, dass es eine generelle Trennung zwischen im Bild weiter oben und weiter unten liegenden Neuronen gibt. Wirft man einen Blick zurück auf Abb. \ref{fig:model_1_planes}, so ist zu erkennen, dass die Neuronen mit hohen Momentanamplituden und hohen Momentanfrequenzen ein größeres Cluster bilden und auch Neuronen mit hohen Semblance- und Kurtosiswerten nah beieinander liegen. Der größte dunkle Bereich, ist auch der Bereich mit hohen Neigungswerten.
+\noindent Die Unified Distance Matrix (U-Matrix; deutsch: die vereinheitlichte Distanzmatrix) visualisiert die durchschnittliche euklidische Distanz im Merkmalsraum von einem Neuron zu seinen Nachbarn im Neuronengitter. % mithilfe der \texttt{matplotlib} - Colormap \texttt{hot\_r}. \\
+In der U-Matrix (Abb. \ref{fig:model_1_u_matrix}) zeigen helle Bereiche kleine Abstände, also Cluster im Merkmalsraum, während dunkle Bereiche große Abstände bedeuten, also als Grenzen zwischen Clustern zu verstehen sind. Dabei fällt auf, dass es eine generelle Trennung zwischen oben und unten liegenden Neuronen gibt. Wirft man einen Blick zurück auf Abb. \ref{fig:model_1_planes}, so ist zu erkennen, dass die Neuronen mit hohen Momentanamplituden und hohen Momentanfrequenzen ein größeres Cluster bilden und auch Neuronen mit hohen Semblance- und Kurtosiswerten nah beieinander liegen. Der größte dunkle Bereich, ist auch der Bereich mit hohen Dip-Werten.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R09/som_u_matrix_09_full_on_rg_6.jpg}
-    \caption{Model 1: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Feature-Raum zu ihren Nachbarn}
+    \caption{Modell 1: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Merkmalsraum zu ihren Nachbarn.}
     \label{fig:model_1_u_matrix}
 \end{figure}
 
-\noindent Die Funktion \texttt{plotsomhits} visualisiert die Anzahl der Eingabedatenpunkte, die auf jedes Neuron (Hexagon) fallen. Je mehr Eingabedatenpunkte auf ein Neuron fallen, desto größer ist das farbige Hexagon. Um die Größenordnung abzuschätzen, sind die Potenzen mit angegeben, d.h. dass $e3$ zum Beispiel eine Trefferzahl zwischen 1000 und 9999 bedeutet. Desweiteren sind alle Hexagone mit einer 2D Colormap eingefärbt. Im Radargramm-Ergebnisplot werden die Samples später in der Farbe ihrer BMU eingefärbt.\\
+\noindent Die Funktion \texttt{plotsomhits} visualisiert die Anzahl der Samples / Eingabedatenpunkte, die auf jedes Neuron (Hexagon) fallen. Je mehr Eingabedatenpunkte auf ein Neuron abfallen, desto größer ist das farbige Hexagon. Um die Größenordnung abzuschätzen, sind die Potenzen angegeben, d.h. dass $e3$ zum Beispiel eine Trefferzahl zwischen 1000 und 9999 bedeutet. Des Weiteren sind alle Hexagone mit einer 2D-Colormap eingefärbt. Im Radargramm-Ergebnisplot werden die Samples später in der Farbe ihrer BMU eingefärbt.\\
 In der Trefferverteilung (Abb. \ref{fig:model_1_hits}) sind größere Cluster in rot, orange, grün, gelb-grün, blau und lila zu sehen. Abb. \ref{fig:model_1_bmu} zeigt den Radargramm-Ergebnisplot. Dort fallen direkt die blauen Strukturen in der Mitte des Bildes auf, grüne Bereiche im oberen Teil des Bildes, gelb-grüne Flächen zu mittleren Laufzeiten und rot-orange Bereiche zu langen Laufzeiten im unteren Teil des Radargramm-Plots.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R09/som_hits_09_full_on_rg_6.jpg}
-    \caption{Model 1: Die Trefferverteilung der Neuronen für jedes Merkmal}
+    \caption{Modell 1: Die Trefferverteilung der Neuronen für jedes Merkmal.}
     \label{fig:model_1_hits}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R09/bmu_radargram_09_full_on_rg_6.jpg}
-    \caption{Model 1: Die BMU-Verteilung der Neuronen für jedes Merkmal}
+    \caption{Modell 1: Die BMU-Verteilung der Neuronen für jedes Sample.}
     \label{fig:model_1_bmu}
 \end{figure}
 
 \subsubsection{Epochenvergleich}
 
-Der Lauf aus dem Startmodell wurden sich auch nach nur 10 und 30 Epochen angeschaut. In diesem Kapitel werden nur die Feature Planes und die U Matrix nach 10 Epochen gezeigt, alle anderen Visualisierungen (Abb. \ref{fig:model_1_planes_30} - \ref{fig:model_1_bmu_radargram_30}) sind im Anhang zu finden. \\
+Der Lauf aus dem Startmodell wurde nach 10 und 30 Epochen angeschaut. In diesem Kapitel werden die Merkmalebenen und die U- Matrix nach 10 Epochen gezeigt, alle anderen Visualisierungen (Abb. \ref{fig:model_1_planes_30} - \ref{fig:model_1_bmu_radargram_30}) sind im Anhang zu finden. \\
 
-\noindent In den Feature - Planes (Abb. \ref{fig:model_1_planes_10}) fällt auf, dass sich die Sortierung nach 10 Epochen nur sehr wenig von der Sortierung nach 50 Epochen unterscheidet. Alle Merkmale sind ähnlich gut sortiert und auch die Verteilung auf den Neuronen ist fast identisch. Die größten Unterschiede sind im Feature-Plane der Neigung sichtbar. Dort scheint der Dip nach 10 Epochen besser sortiert zu sein, als nach 50 Epochen, es im unteren Teil des Neuronengitters weniger zerstückelte Cluster gibt. In diesem Bereich besitzen vor allem Semblance und Kurtosis hohe Werte, welche bei $N = 10$ etwas schlechter sortiert sind. Die hohen Werte der Semblance haben sich nach 50 Epochen besser in die untere linke Ecke verschoben, wo es nach 10 Epochen noch kleinere (gelbe) Werte um $0,6$ gab. Die hohen Werte der Kurtosis wiederum, haben sich noch stärker auf die Neuronen des rechten unteren Randes verschoben. \\
-Insgesamt lassen sich also Semblance und Kurtosis besser sortieren, als der Dip, welcher dadurch auseinandergezogen wurde.
+\noindent In den Merkmalebenen (Abb. \ref{fig:model_1_planes_10}) fällt auf, dass sich die Sortierungen nach 10 und 50 Epochen nur sehr wenig voneinander unterscheiden. Alle Merkmale sind ähnlich gut sortiert und auch die Verteilung auf den Neuronen ist fast identisch. Die größten Unterschiede sind im Dip sichtbar. Diese scheint nach 10 Epochen besser sortiert zu sein, als nach 50 Epochen, da es im unteren Teil des Neuronengitters weniger zerstückelte Cluster gibt. In diesem Bereich besitzen vor allem Semblance und Kurtosis hohe Werte, welche bei $N = 10$ etwas schlechter sortiert sind. Die hohen Werte der Semblance haben sich nach 50 Epochen besser in die untere linke Ecke verschoben, wo es nach 10 Epochen noch kleinere (gelbe) Werte um $0,6$ gab. Die hohen Werte der Kurtosis wiederum, haben sich noch stärker auf die Neuronen des rechten unteren Randes verschoben. \\
+Insgesamt lassen sich also Semblance und Kurtosis besser sortieren, als der Dip, welcher auseinandergezogen wurde.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{som_runs_pics/R05/som_planes_05_full_on_rg_6.jpg}
-	\caption{Model 1 Feature Planes, $N=10$}
+	\caption{Modell 1 Merkmalebenen, $N=10$.}
 	\label{fig:model_1_planes_10}
 \end{figure}
 
-\noindent Die U-Matrix in Abb. \ref{fig:model_1_u_matrix_10} zeigt auch eine ähnliche Verteilung wie nach 50 Epochen. Im Allgemeinen sind mehr dunkle Farben zu sehen und auch das große zusammenhängende Cluster im unteren Bildbereich ist noch nicht so uniform, wie in Abb. \ref{fig:model_1_u_matrix}. Dies ist auch an den $QE$-Werten in Tabelle \ref{tab:model_error_overview} zu sehen, welche sich mit steigender Epochenzahl leicht verbessern. Der Topologiefehler $TE$ hingegen zeigt keinen klaren Trend, ist aber bei 10 Epochen noch am geringsten.
+\noindent Die U-Matrix (siehe Abb. \ref{fig:model_1_u_matrix_10}) zeigt nach 10 Epochen eine ähnliche Verteilung wie nach 50. Im Allgemeinen sind mehr dunkle Farben zu sehen und auch das große zusammenhängende Cluster im unteren Bildbereich ist nicht so uniform, wie in Abb. \ref{fig:model_1_u_matrix}. Dies ist auch an den $QE$-Werten in Tabelle \ref{tab:model_error_overview} zu sehen, welche sich mit steigender Epochenzahl leicht verbessern. Der Topologiefehler $TE$ hingegen zeigt keinen klaren Trend, ist aber bei 10 Epochen noch am geringsten.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{som_runs_pics/R05/som_u_matrix_05_full_on_rg_6.jpg}
-	\caption{Model 1 U-Matrix, $N=10$}
+	\caption{Modell 1 U-Matrix, $N=10$.}
 	\label{fig:model_1_u_matrix_10}
 \end{figure}
 
 \subsubsection{Vergleich verschiedener Lernraten und Nachbarschaftsradien}
 
-Für Modell 2 wurden die gleichen Merkmale aus Modell 1 verwendet, jedoch mit den Hyperparametern $\alpha_0 = 0.5, \sigma_0 = 5$. In den Feature Planes (Abb. \ref{fig:model_2_planes}) ist zu erkennen, dass wieder alle Merkmale bis auf den Dip gut sortiert sind. Die U-Matrix (Abb. \ref{fig:model_2_u_matrix}) zeigt eine ebenfalls eine ähnliche Aufteilung wie in Modell 1, jedoch erscheinen die Cluster weniger homogen und die Trennung ist auch weniger klar, da einzelne kleinere Cluster in dem dunkleren Bereich zu sehen sind. Interessant ist, dass wieder der größte dunkle Bereich in der U-Matrix, dem Bereich mit hohen Neigungswerten entspricht, was auf eine schlechte Segmentierung der Neigung hindeutet.\\
-Der Radargramm-Ergebnisplot (Abb. \ref{fig:model_2_bmu}) zeigt generell ein änhliches Ergebnis wie Modell 1, welches sich hauptsächlich in der Verteilung der Farben unterscheidet, da Merkmale aufgrund der verschiedenen Hyperparameter auf andere Neuronen verteilt wurden, was in Abb. \ref{fig:model_2_hits} zu erkennen ist. Der $QE$ ist mit einer Abweichung von $0.0002$ fast identisch zu dem von Modell 1, allerdings ist der $TE$ mit $0.064$, um $0.007$ merklich höher (Tabelle \ref{tab:model_error_overview}).\\
+Für Modell 2 wurden die gleichen Merkmale aus Modell 1 verwendet, jedoch mit den Hyperparametern $\alpha_0 = 0.5, \sigma_0 = 5$. In den Merkmalebenen (Abb. \ref{fig:model_2_planes}) ist zu erkennen, dass wieder alle Merkmale bis auf den Dip gut sortiert sind. Die U-Matrix (Abb. \ref{fig:model_2_u_matrix}) zeigt ebenfalls eine ähnliche Aufteilung wie in Modell 1, jedoch erscheinen die Cluster weniger homogen und die Trennung ist weniger klar, da einzelne kleinere Cluster in dem dunkleren Bereich zu sehen sind. Interessant ist, dass wieder der größte dunkle Bereich in der U-Matrix, dem Bereich mit hohen Dip-Werten entspricht, was auf eine schlechte Segmentierung des Dips hindeutet.\\
+Der Radargramm-Ergebnisplot (Abb. \ref{fig:model_2_bmu}) zeigt generell ein ähnliches Ergebnis wie Modell 1, welches sich hauptsächlich in der Verteilung der Farben unterscheidet, da Merkmale aufgrund der verschiedenen Hyperparameter auf andere Neuronen verteilt wurden, was in Abb. \ref{fig:model_2_hits} zu erkennen ist. Der $QE$ ist mit einer Abweichung von $0.0002$ fast identisch zu dem von Modell 1, allerdings ist der $TE$ mit $0.064$, um $0.007$ merklich höher (Tabelle \ref{tab:model_error_overview}).\\
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{som_runs_pics/R08/som_planes_08_full_on_rg_6.jpg}
-    \caption{Model 2: Die jewiligen Werteverteilungen der Neuronen für jedes Merkmal}
+    \caption{Modell 2: Die jeweiligen Werteverteilungen der Neuronen für jedes Merkmal.}
     \label{fig:model_2_planes}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{som_runs_pics/R08/som_u_matrix_08_full_on_rg_6.jpg}
-    \caption{Model 2: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Feature-Raum zu ihren Nachbarn}
+    \caption{Modell 2: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Merkmalsraum zu ihren Nachbarn.}
     \label{fig:model_2_u_matrix}
 \end{figure}
 
@@ -241,7 +249,7 @@ Der Radargramm-Ergebnisplot (Abb. \ref{fig:model_2_bmu}) zeigt generell ein änh
 \subsubsection{Vergleich mit anderen Merkmalen}
 
 Nachdem die Neigung wenig sortiert war und dementsprechend wenig zum Endergebnis beigetragen hat, wurde sie in Modell 3 gegen die Merkmale Instantaneous Phase und Instantaneous Quality Factor (Tabelle \ref{tab:model_3_features}) ersetzt.\\
-Wie die Phase in Abb. \ref{fig:inst_phase_result} dargestellt wird, besitzt sie einen Werte Bereich von $-180$° bis $180$°. Winkel, wie z.B. $179$° und $-179\text{°} \equiv 181\text{°}$ wären damit im Feature-Raum sehr weit ($358$°) von einander entfernt, obwohl diese nur einen Abstand von $2$° besitzen. Da die Phase eine periodische Größe ist, werden ihr Real- und ihr Imaginärteil als separate Merkmale in die SOM integriert.\\
+Die Phase (siehe Abb. \ref{fig:inst_phase_result}) besitzt einen Wertebereich von $-180$° bis $180$°. Winkel, wie z.B. $179$° und $-179\text{°} \equiv 181\text{°}$ wären damit im Merkmalsraum sehr weit ($358$°) von einander entfernt, obwohl diese nur einen Abstand von $2$° besitzen. Da die Phase eine periodische Größe ist, werden ihr Real- und ihr Imaginärteil als separate Merkmale in die SOM integriert.\\
 Die Hyperparameter wurden auf $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$ belassen, um eine gute Vergleichbarkeit mit Modell 1 zu gewährleisten.
 
 \begin{table}[H]
@@ -259,38 +267,38 @@ Die Hyperparameter wurden auf $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$ belassen, u
         Instantaneous Quality Factor & 2 \\
         \hline
     \end{tabular}
-    \caption{Merkmale des Modells 3 mit den Hyperparametern $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$}
+    \caption{Merkmale des Modells 3 mit den Hyperparametern $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$.}
     \label{tab:model_3_features}
 \end{table}
 
-\noindent In den Feature Planes (Abb. \ref{fig:model_3_planes}) ist zu erkennen, dass die Instantaneous Phase, die Instantaneous Amplitude und der Instantaneous Quality Factor gut sortiert sind. Die Instantaneous Phase Merkmale zeigen eine klare Sortierung vom linken zum rechten Rand in der Mitte des Neuronengitters, während die Instantaneous Amplitude und der Instantaneous Quality Factor eine gute Sortierung in der unteren linken Ecke aufweisen. Auch Semblance und Kurtosis sind generell sortiert, aber besitzen Inhomogenitäten, wie die Cluster \textbf{(A)}, \textbf{(B)} und \textbf{(C)}. Die Instantaneous Frequency weißt keine klare Sortierung auf. \\
+\noindent In den Merkmalebenen (siehe Abb. \ref{fig:model_3_planes}) ist zu erkennen, dass die Instantaneous Phase, die Instantaneous Amplitude und der Instantaneous Quality Factor gut sortiert sind. Die Instantaneous Phase zeigt eine klare Sortierung vom linken zum rechten Rand in der Mitte des Neuronengitters, während die Instantaneous Amplitude und der Instantaneous Quality Factor eine gute Sortierung in der unteren linken Ecke aufweisen. Auch Semblance und Kurtosis sind generell sortiert, aber besitzen Inhomogenitäten, wie die Cluster \textbf{(A)}, \textbf{(B)} und \textbf{(C)}. Die Instantaneous Frequency weist keine klare Sortierung auf. \\
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R13/som_planes_13_full_on_rg_6.jpg}
-    \caption{Model 3: Die jewiligen Werteverteilungen der Neuronen für jedes Merkmal}
+    \caption{Modell 3: Die jeweiligen Werteverteilungen der Neuronen für jedes Merkmal.}
     \label{fig:model_3_planes}
 \end{figure}
 
-\noindent Die U-Matrix (Abb. \ref{fig:model_3_u_matrix}) zeigt eine deutlich unregelmäßigere Verteilung der Neuronen im Feature-Raum, als in Modell 1 und 2. Es sind mehrere Cluster zu erkennen, aber anders als in Modell 1 und 2, lassen diese sich nicht eindeutig zu einem bestimmten Merkmale zuordnen. Besonders die gutsortierten Merkmale Instantaneous Phase und Instantaneous Quality Factor sind in der U-Matrix nicht klar zu erkennen, liegen teilweise in verschiedenen Clustern oder wie die Instantaneous Amplitude in Bereichen, in denen die Nachbarneuronen hohe Distanzen aufweisen \textbf{(A)}.\\
+\noindent Die U-Matrix (Abb. \ref{fig:model_3_u_matrix}) zeigt eine deutlich unregelmäßigere Verteilung der Neuronen im Merkmalsraum, als in Modell 1 und 2. Es sind mehrere Cluster zu erkennen, aber anders als in Modell 1 und 2, lassen diese sich nicht eindeutig zu einem bestimmten Merkmal zuordnen. Besonders die gut sortierten Merkmale Instantaneous Phase und Instantaneous Quality Factor sind in der U-Matrix nicht klar zu erkennen, liegen teilweise in verschiedenen Clustern oder wie die Instantaneous Amplitude in Bereichen, in denen die Nachbarneuronen hohe Distanzen aufweisen \textbf{(A)}.\\
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R13/som_u_matrix_13_full_on_rg_6.jpg}
-    \caption{Model 3: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Feature-Raum zu ihren Nachbarn}
+    \caption{Modell 3: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Merkmalsraum zu ihren Nachbarn.}
     \label{fig:model_3_u_matrix}
 \end{figure}
 
-Der Ergebnisplot (Abb. \ref{fig:model_3_bmu}) zeigt zwar änhliche Strukturen, wie in Modell 1 und 2, jedoch sind die Farbverteilungen und Farbverläufe stark verschieden. Die blauen Strukturen aus Abb. \ref{fig:model_1_bmu} besitzen Farbverläufe von grün, über gelb in orange. Darunter gibt es Farbbereiche in blau-lila (\textbf{(A)}), rot (\textbf{(B)}), hellblau (\textbf{(C)}) und grün (\textbf{(D)}) zum Schluss. Generell sind die Farben dieses Ergebnisplots deutlich unregelmäßiger verteilt. \\
+Der Ergebnisplot (Abb. \ref{fig:model_3_bmu}) zeigt zwar ähnliche Strukturen, wie in Modell 1 und 2, jedoch sind die Farbverteilungen und Farbverläufe stark verschieden. Die blauen Strukturen aus Abb. \ref{fig:model_1_bmu} besitzen verlaufen von grün, über gelb in orange (\textbf{(A)}). Darunter gibt es Farbbereiche in blau-lila (\textbf{(B)}), rot (\textbf{(C)}), hellblau (\textbf{(D)}) und grün (\textbf{(E)}). Generell sind die Farben dieses Ergebnisplots deutlich unregelmäßiger verteilt. \\
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{som_runs_pics/R13/bmu_radargram_13_full_on_rg_6.jpg}
-    \caption{Model 3: Die BMU-Verteilung der Neuronen für jedes Merkmal, die Trefferverteilung für diesen Ergebnisplot ist in Abb. \ref{fig:model_3_hits} im Anhang zu sehen.}
+    \caption{Modell 3: Die BMU-Verteilung der Neuronen für jedes Sample, die Trefferverteilung für diesen Ergebnisplot ist in Abb. \ref{fig:model_3_hits} im Anhang zu sehen.}
     \label{fig:model_3_bmu}
 \end{figure}
 
-\noindent Im Anschluss wurden Features aus der Prozessierstufe 3 verwendet, um Modell 4 zu trainieren. Basierend auf den Ergebnissen des vorherigen Modells, wurden direkt weniger Merkmale verwendet, um die Sortierung zu verbessern. Desweiteren wurde auf die Phase verzichtet, da die Farbverläufe in den Strukturen höchst wahrscheinlich aus der Instantaneous Phase (siehe Abb. \ref{fig:inst_phase_result}) stammen. Außerdem wurde auf den Instantaneous Quality Factor verzichtet, da dieser im vorherigen Modell (Abb. \ref{fig:model_3_planes}) eine ähnliche Werteverteilung wie die Instantaneous Amplitude aufwies und auch visuell mit den Amplitudenmerkmalen korreliert. Auf die Semblance wurde ebenfalls verzichtet, da diese in der Prozessierstufe 3 keine eindeutigen Bereiche mehr gekennzeichnet hat, wie in P2. Die übrig gebliebenen Merkmale sind in Tabelle \ref{tab:model_4_features} zu sehen. Als Amplitudenmerkmal wurde die Quadrature verwendet, da diese in Prozessierstufe 3 die Strukturen im Radargramm gleichmäßiger hervorhebt, als die Instantaneous Amplitude. \\
+\noindent Im Anschluss wurden Merkmale aus der Prozessierstufe 3 verwendet, um Modell 4 zu trainieren. Basierend auf den Ergebnissen des vorherigen Modells, wurden direkt weniger Merkmale verwendet, um die Sortierung zu verbessern. Des Weiteren wurde auf die Phase verzichtet, da die Farbverläufe in den Strukturen höchst wahrscheinlich aus der Instantaneous Phase (siehe Abb. \ref{fig:inst_phase_result}) stammen. Außerdem wurde auf den Instantaneous Quality Factor verzichtet, da dieser im vorherigen Modell (Abb. \ref{fig:model_3_planes}) eine ähnliche Werteverteilung wie die Instantaneous Amplitude aufwies und auch visuell mit den Amplitudenmerkmalen korreliert. Auf die Semblance wurde ebenfalls verzichtet, da diese in der Prozessierstufe 3 keine eindeutigen Bereiche mehr gekennzeichnet hat. Die übrig gebliebenen Merkmale sind in Tabelle \ref{tab:model_4_features} zu sehen. Als Amplitudenmerkmal wurde die Quadrature verwendet, da diese in Prozessierstufe 3 die Strukturen im Radargramm gleichmäßiger hervorhebt, als die Instantaneous Amplitude. \\
 
 \begin{table}[H]
     \centering
@@ -303,35 +311,35 @@ Der Ergebnisplot (Abb. \ref{fig:model_3_bmu}) zeigt zwar änhliche Strukturen, w
         Kurtosis & 3 \\
         \hline
     \end{tabular}
-    \caption{Merkmale des Modells 4 mit den Hyperparametern $\alpha_0 = 0.5, \sigma_0 = 5, N = 50$}
+    \caption{Merkmale des Modells 4 mit den Hyperparametern $\alpha_0 = 0.3, \sigma_0 = 7, N = 50$.}
     \label{tab:model_4_features}
 \end{table}
 
-\noindent In den Feature Planes (Abb. \ref{fig:model_4_planes}) ist zu erkennen, dass alle Feature eine sehr gute Sortierung aufweisen, wobei sich die hohen Werte der Kurtosis auf die Neuronen am oberen Rand verteilt haben, während sich Instantaneous Frequency und Quadrature eher im unteren Bereich mit hohen Werten konzentrieren. \\
+\noindent In den Merkmalebenen (Abb. \ref{fig:model_4_planes}) ist zu erkennen, dass alle Merkmale eine sehr gute Sortierung aufweisen, wobei sich die hohen Werte der Kurtosis auf die Neuronen am unteren Rand verteilt haben, während sich Instantaneous Frequency und Quadrature eher im oberen Bereich mit hohen Werten konzentrieren. \\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{som_runs_pics/R41/som_planes_41_full_on_rg_6.jpg}
-    \caption{Model 4: Die jewiligen Werteverteilungen der Neuronen für jedes Merkmal}
+    \includegraphics[width=\textwidth]{som_runs_pics/R50/som_planes_50_full_on_rg_6.jpg}
+    \caption{Modell 4: Die jeweiligen Werteverteilungen der Neuronen für jedes Merkmal.}
     \label{fig:model_4_planes}
 \end{figure}
 
-\noindent Die gute Sortierung findet sich auch in der U-Matrix (Abb. \ref{fig:model_4_u_matrix}) wieder, da die zwei Cluster \textbf{(A)} und \textbf{(B)} sehr homogen sind und die Grenze zwischen den Clustern klar zu erkennen ist. Besonders auffällig ist, dass die Neuronen mit hohen Kurtosiswerten im oberen Bereich des Neuronengitters liegen und die Neuronen mit hohen Quadrature- und Instantaneous Frequency-Werten im unteren Bereich des Neuronengitters liegen.\\
+\noindent Die gute Sortierung findet sich auch in der U-Matrix (Abb. \ref{fig:model_4_u_matrix}) wieder, da die zwei Cluster \textbf{(A)} und \textbf{(B)} sehr homogen sind und eine Grenze zwischen den Clustern \textbf{(C)} klar zu erkennen ist. Allerdings sind die Cluster nicht vollständig von einander getrennt sondern laufen am linken Rand des Gitters ineinander über.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{som_runs_pics/R41/som_u_matrix_41_full_on_rg_6.jpg}
-    \caption{Model 4: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Feature-Raum zu ihren Nachbarn}
+    \includegraphics[width=\textwidth]{som_runs_pics/R50/som_u_matrix_50_full_on_rg_6.jpg}
+    \caption{Modell 4: Die U-Matrix zeigt die durchschnittliche Distanz der Neuronen im Merkmalsraum zu ihren Nachbarn.}
     \label{fig:model_4_u_matrix}
 \end{figure}
 
-\begin{figure}
+\noindent Abbildung \ref{fig:model_4_bmu} zeigt den Ergebnisplot des Modells 4. Es sind etwas verwaschene blaue Strukturen im oberen Teil des Bildes zu erkennen \textbf{(A)}, welche in Bereich \textbf{(B)} in klarer definierte lila Strukturen übergehen. Auch Struktur \textbf{(C)} ist in einem klaren lila Bereich zu erkennen, während der Rest des Bildes von einem verwaschenen grünen Bereich \textbf{(D)} zu längeren Laufzeiten in einen klareren rot-orangen Bereich \textbf{(E)} mit scharfen unnatürlich aussehen Grenzen übergeht. Eine Ausnahme bildet der Bereich \textbf{(F)}, in dem selbst bei großen Laufzeiten, keine rot-orange Färbung vorliegt.\\
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{som_runs_pics/R41/som_bmu_41_full_on_rg_6.jpg}
-    \caption{Model 4: Die BMU-Verteilung der Neuronen für jedes Merkmal, die Trefferverteilung für diesen Ergebnisplot ist in Abb. \ref{fig:model_4_hits} im Anhang zu sehen.}
+    \includegraphics[width=\textwidth]{som_runs_pics/R50/bmu_radargram_50_full_on_rg_6_ziegler.jpg}
+    \caption{Modell 4: Die BMU-Verteilung der Neuronen für jedes Sample, die Trefferverteilung für diesen Ergebnisplot ist in Abb. \ref{fig:model_4_hits} im Anhang zu sehen.}
     \label{fig:model_4_bmu}
 \end{figure}
 
-\subsubsection{}
-
-\subsection{Test auf anderem Radargramm}
+\subsection{Test auf einem anderem Radargramm?}

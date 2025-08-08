@@ -1,0 +1,3 @@
+Quantization Error: 0.023081
+Topographic Error: 0.094487
+Distortion Measure: 384869289.697846

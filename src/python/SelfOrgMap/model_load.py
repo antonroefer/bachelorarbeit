@@ -1,4 +1,9 @@
-from pycolormap_2d import ColorMap2DZiegler, ColorMap2DTeuling2, ColorMap2DBremm
+from pycolormap_2d import (
+    ColorMap2DZiegler,
+    ColorMap2DTeuling2,
+    ColorMap2DBremm,
+    ColorMap2DSchumann,
+)
 import os
 import h5py
 import numpy as np
@@ -34,7 +39,7 @@ def min_max_scale(arr, new_min=0, new_max=1):
 
 
 raw = False  # Use raw data or processed data
-i_rg = 6  # Radargram number
+i_rg = 4  # Radargram number
 
 # Load MAT file in v7.3 format using h5py
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -145,7 +150,7 @@ ratio = x.max() / t.max() * (9 / 16)
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors_khigh_AE.npz"
+data_file = "feature_vectors_khigh_30_K.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
@@ -243,7 +248,7 @@ print(f"Anzahl der erkannten Merkmale: {num_features}")
 for i in range(data.shape[1]):
     data[:, i] = min_max_scale(data[:, i])
 
-apx = "52"
+apx = "50"
 
 # Definiere den Pfad zum gespeicherten Modell
 model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
@@ -255,14 +260,14 @@ name = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
 save_plots = True  # Setze auf True, um die Plots zu speichern
 cmap = ColorMap2DZiegler
 
-som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
-som.plot_som_neighbor_distances(figsize=(10, 8), save=save_plots, appendix=apx, name=name)
-som.plot_som_planes(
-    save=save_plots,
-    fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
-    appendix=apx,
-    name=name,
-)
+# som.plot_u_matrix(save=save_plots, appendix=apx, name=name)  # U-Matrix Plot
+# som.plot_som_neighbor_distances(figsize=(10, 8), save=save_plots, appendix=apx, name=name)
+# som.plot_som_planes(
+#    save=save_plots,
+#    fnames=[fdict.get(d_f, "keinplan") for d_f in desired_features],
+#    appendix=apx,
+#    name=name,
+# )
 som.plot_som_hits(
     data, save=save_plots, appendix=apx, colormap=cmap, name=name
 )  # SOM Hits Plot
@@ -283,7 +288,7 @@ metrics_text = (
 )
 
 # Definiere den Pfad zur Textdatei
-metrics_path = os.path.join(script_dir, "Runs", f"R{apx}", f"R{apx}.txt")
+metrics_path = os.path.join(script_dir, "Runs", f"R{apx}", f"R{name}.txt")
 
 # Schreibe die Metriken in die Datei
 with open(metrics_path, "w") as f:
