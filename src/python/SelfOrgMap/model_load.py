@@ -150,7 +150,7 @@ ratio = x.max() / t.max() * (9 / 16)
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors_khigh_30_K.npz"
+data_file = "feature_vectors_khigh_30.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
@@ -254,7 +254,7 @@ apx = "50"
 model_path = os.path.join(script_dir, "Runs", f"R{apx}", f"trained_som_{apx}.pkl")
 som = MiniSom(x=30, y=30, input_len=5).load_model(filepath=model_path)
 
-name = f"{apx}_full_on_rg_{i_rg}" if not cut else apx
+name = f"{apx}_full_on_rg_{i_rg}_K" if not cut else apx
 
 # Den Plot erstellen
 save_plots = True  # Setze auf True, um die Plots zu speichern
