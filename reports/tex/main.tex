@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[onehalfspacing]{setspace}
+
+\usepackage[
+backend=biber,
+style=apa, % Oder ein anderer Stil wie authoryear, authortitle, alphabetic etc.
+natbib=true,      % Ermöglicht natbib-Befehle wie \citep, \citet
+url=true,        % Optional: URLs nicht in der Bib anzeigen
+doi=true,        % Optional: DOIs nicht in der Bib anzeigen
+isbn=false,       % Optional: ISBNs nicht in der Bib anzeigen
+eprint=false,     % Optional: Eprint-Infos nicht in der Bib anzeigens
+mincitenames=1,
+maxcitenames=1,
+minbibnames=1,
+maxbibnames=99,
+]{biblatex}
+\DefineBibliographyStrings{ngerman}{
+	andothers = {et al\adddot}, % WICHTIG: Überschreibt "u.a." für diesen String
+	retrieved = {{Abgerufen\space am}},%
+}
+\addbibresource{references.bib}
+
+\usepackage[ngerman]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{lipsum} % For dummy text
+\usepackage{times}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{subfloat}
+
+\usepackage{tabularx}
+\usepackage{array}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{hyperref}
+
+\title{Automatisierte Segmentierung von Radargrammen mittels Self-Organizing Maps}
+\author{Anton Röfer}
+\date{\today}
+
+\begin{document}
+
+\input{titlepage.tex}
+\thispagestyle{empty}
+\clearpage
+
+\quad
+\thispagestyle{empty}
+\clearpage
+
+\thispagestyle{plain}
+\setcounter{page}{1}
+\pagenumbering{Roman}
+\input{abstract.tex}
+\clearpage
+
+\input{ack.tex}
+\clearpage
+
+\tableofcontents
+\clearpage
+
+\listoffigures
+\clearpage
+
+\listoftables
+\clearpage
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\input{sections/intro.tex}
+\clearpage
+
+\input{sections/methods.tex}
+\clearpage
+
+\input{sections/results.tex}
+\clearpage
+
+\input{sections/discussion.tex}
+\clearpage
+
+\addcontentsline{toc}{section}{Literaturverzeichnis}
+\printbibliography
+\clearpage
+
+\addcontentsline{toc}{section}{Anhang}
+\input{appendix.tex}
+\clearpage
+
+\input{ki.tex}
+\clearpage
+
+\input{declaration.tex}
+\clearpage
+
+\end{document}

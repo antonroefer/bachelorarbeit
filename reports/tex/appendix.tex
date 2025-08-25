@@ -1,0 +1,416 @@
+\section*{Anhang}
+
+\subsection*{A1 Radargramme}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{radargram_plots/Radargram_1.jpg}
+    \caption{Vollständiges Radargramm 1, Prozessierstufe 2.}
+    \label{fig:radargramm_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{radargram_plots/Radargram_30.jpg}
+    \caption{Vollständiges Radargramm 30, Prozessierstufe 2.}
+    \label{fig:radargramm_30}
+\end{figure}
+
+\subsection*{A2 Merkmale}
+
+Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu erkennen. Eine entsprechende Übersetzung ist in Tabelle \ref{tab:feature_names} zu finden.
+
+\begin{table}[H]
+	\centering
+    \begin{tabular}{|l|l|}
+        \hline
+        \textbf{Python-Variable} & \textbf{Merkmalsname} \\
+        \hline
+        inst\_amp & Instantaneous Amplitude \\
+        avg\_energy & Average Energy \\
+        rms\_amp & RMS Amplitude \\
+        quadrature & Quadrature\\
+        inst\_q & Instantaneous Quality Factor \\
+        inst\_phase\_real & Instantaneous Phase (Real Part) \\
+        inst\_phase\_imag & Instantaneous Phase (Imaginary Part) \\
+        inst\_freq & Instantaneous Frequency \\
+        semblance & Semblance \\
+        skewness & Skewness \\
+        kurtosis & Kurtosis \\
+        dip & Dip \\
+        \hline
+    \end{tabular}
+    \caption{Übersicht der Python-Variablen und den zugehörigen Merkmalsnamen.}
+    \label{tab:feature_names}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|R{1cm}|R{1cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|}
+        \hline
+        \multirow{2}{*}{\textbf{Merkmal}} & \multirow{2}{*}{$\mathbf{f_{min}}$} & \multirow{2}{*}{$\mathbf{f_{max}}$} & \multicolumn{2}{c|}{\textbf{Mittelungsfenster}} & \multicolumn{2}{c|}{\textbf{Berechnungsfenster}} \\
+        \cline{4-7}
+        & & & $X$ & $T$ & $X$ & $T$ \\
+        \hline
+        inst\_amp     & 0     & 100   & 15        & 15        & -        & -        \\
+        inst\_phase   & -     & -     & -         & -         & -        & -        \\
+        inst\_freq    & -3e8  & 3e8   & 10        & 10        & -        & -        \\
+        quadrature    & 0     & 50    & 40        & 10        & -        & -        \\
+        inst\_q       & 0     & 10    & 10        & 10        & -        & -        \\
+        avg\_energy   & 0     & 4e3   & 15        & 15        & 1        & 1        \\
+        rms\_amp      & 0     & 300   & 15        & 15        & 1        & 1        \\
+        semblance     & -     & -     & -         & -         & 40       & 20       \\
+        skewness      & 0     & 10    & 60        & 40        & 1        & 1        \\
+        kurtosis      & 0     & 5     & 60        & 40        & 1        & 1        \\
+        dip           & -     & -     & 40        & 40        & -        & -        \\
+        \hline
+    \end{tabular}
+    \caption{Parameterübersicht der Merkmale, Prozessierstufe 1\\
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt oder ein Merkmal auf einem Fenster berechnet wurde, stehen $X$ und $T$ für die Fensterabstände zum Sample (Bsp.: $X = T = 3 \rightarrow$ 7 x 7 Fenster).}
+    \label{tab:feature_params_1}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|R{1cm}|R{1cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|}
+        \hline
+        \multirow{2}{*}{\textbf{Merkmal}} & \multirow{2}{*}{$\mathbf{f_{min}}$} & \multirow{2}{*}{$\mathbf{f_{max}}$} & \multicolumn{2}{c|}{\textbf{Mittelungsfenster}} & \multicolumn{2}{c|}{\textbf{Berechnungsfenster}} \\
+        \cline{4-7}
+        & & & $X$ & $T$ & $X$ & $T$ \\
+        \hline
+        inst\_amp     & 0     & 300   & 15        & 15        & -        & -        \\
+        inst\_phase   & -     & -     & -         & -         & -        & -        \\
+        inst\_freq    & -3e8  & 3e8   & 10        & 10        & -        & -        \\
+        quadrature    & -     & -     & -         & -         & -        & -        \\
+        inst\_q       & 0     & 10    & 15        & 15        & -        & -        \\
+        abs\_grad     & -     & -     & 15        & 15        & -        & -        \\
+        avg\_energy   & 0     & 2e4   & 15        & 15        & 1        & 1        \\
+        rms\_amp      & 0     & 300   & 15        & 15        & 1        & 1        \\
+        semblance     & -     & -     & -         & -         & 40       & 20       \\
+        kurtosis      & 0     & 5     & 60        & 40        & 1        & 1        \\
+        dip           & -     & -     & 40        & 40        & -        & -        \\
+        \hline
+    \end{tabular}
+    \caption{Parameterübersicht der Merkmale, Prozessierstufe 2\\
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt oder ein Merkmal auf einem Fenster berechnet wurde, stehen $X$ und $T$ für die Fensterabstände zum Sample (Bsp.: $X = T = 3 \rightarrow$ 7 x 7 Fenster).}
+    \label{tab:feature_params_2}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|R{1cm}|R{1cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|}
+        \hline
+        \multirow{2}{*}{\textbf{Merkmal}} & \multirow{2}{*}{$\mathbf{f_{min}}$} & \multirow{2}{*}{$\mathbf{f_{max}}$} & \multicolumn{2}{c|}{\textbf{Mittelungsfenster}} & \multicolumn{2}{c|}{\textbf{Berechnungsfenster}} \\
+        \cline{4-7}
+        & & & $X$ & $T$ & $X$ & $T$ \\
+        \hline
+        inst\_amp     & 0     & 300   & 15        & 15        & -        & -        \\
+        inst\_phase   & -     & -     & -         & -         & -        & -        \\
+        inst\_freq    & -3e8  & 3e8   & 10        & 10        & -        & -        \\
+        sweetness     & 0     & 2e-6  & 10        & 10        & -        & -        \\
+        quadrature    & 0     & 50    & 40        & 10        & -        & -        \\
+        inst\_q       & 0     & 10    & 15        & 15        & -        & -        \\
+        abs\_grad     & -     & -     & 15        & 15        & -        & -        \\
+        avg\_energy   & 0     & 4e3   & 15        & 15        & 1        & 1        \\
+        rms\_amp      & 0     & 300   & 15        & 15        & 1        & 1        \\
+        coherence     & -100  & 10    & 100       & 100       & 100      & 100      \\
+        semblance     & -     & -     & -         & -         & 40       & 20       \\
+        skewness      & 0     & 10    & 60        & 40        & 1        & 1        \\
+        kurtosis      & 0     & 5     & 60        & 40        & 1        & 1        \\
+        dip           & -     & -     & 40        & 40        & -        & -        \\
+        \hline
+    \end{tabular}
+    \caption{Parameterübersicht der Merkmale, Prozessierstufe 3\\
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt oder ein Merkmal auf einem Fenster berechnet wurde, stehen $X$ und $T$ für die Fensterabstände zum Sample (Bsp.: $X = T = 3 \rightarrow$ 7 x 7 Fenster).}
+    \label{tab:feature_params_3}
+\end{table}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_raw/pairplot_overview.jpg}
+    \caption{Pairplot der Rohdaten-Merkmale, Prozessierstufe 1.}
+    \label{fig:pairplot_overview_raw}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots/pairplot_overview.jpg}
+    \caption{Pairplot der Merkmale, Prozessierstufe 2.}
+    \label{fig:pairplot_overview}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{feature_plots_khigh/pairplot_overview.jpg}
+    \caption{Pairplot der Merkmale, Prozessierstufe 3.}
+    \label{fig:pairplot_overview_khigh}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_amplitude.jpg}
+        \label{fig:inst_amp_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/average_energy.jpg}
+        \label{fig:avg_energy_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/rms_amplitude.jpg}
+        \label{fig:rms_amp_p1}
+    \end{subfigure}
+    \caption{Instantaneous Amplitude (oben), Average Energy (mittig) und RMS Amplitude (unten) in Prozessierstufe 1}
+    \label{fig:amps_p1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_phase.jpg}
+        \label{fig:inst_phase_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_q.jpg}
+        \label{fig:inst_q_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/semblance.jpg}
+        \label{fig:semblance_p1}
+    \end{subfigure}
+    \caption{Instantaneous Phase (oben), Instantaneous Q (mittig) und Semblance (unten) in Prozessierstufe 1}
+    \label{fig:phase_q_semblance_p1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/skewness.jpg}
+        \label{fig:skewness_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/kurtosis.jpg}
+        \label{fig:kurtosis_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/dip.jpg}
+        \label{fig:dip_p1}
+    \end{subfigure}
+    \caption{Skewness (oben), Kurtosis (mittig) und Dip (unten) in Prozessierstufe 1}
+    \label{fig:skewness_kurtosis_dip_p1}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/instantaneous_phase.jpg}
+        \label{fig:inst_phase_p2}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/instantaneous_frequency.jpg}
+        \label{fig:inst_freq_p2}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/instantaneous_q.jpg}
+        \label{fig:inst_q_p2}
+    \end{subfigure}
+    \caption{Instantaneous Phase (oben), Instantaneous Frequency (mittig) und Instantaneous Q (unten) in Prozessierstufe 2}
+    \label{fig:phase_freq_q_p2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/skewness.jpg}
+        \label{fig:skewness_p2}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/kurtosis.jpg}
+        \label{fig:kurtosis_p2}
+    \end{subfigure}
+    \caption{Skewness (oben), Kurtosis (unten) in Prozessierstufe 2}
+    \label{fig:skewness_kurtosis_p2}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_amplitude.jpg}
+        \label{fig:inst_amp_p3}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/average_energy.jpg}
+        \label{fig:avg_energy_p3}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/rms_amplitude.jpg}
+        \label{fig:rms_amp_p3}
+    \end{subfigure}
+    \caption{Instantaneous Amplitude (oben), Average Energy (mittig) und RMS Amplitude (unten) in Prozessierstufe 3}
+    \label{fig:amps_p3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_frequency.jpg}
+        \label{fig:inst_freq_p3}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/semblance.jpg}
+        \label{fig:semblance_p3}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/dip.jpg}
+        \label{fig:dip_p3}
+    \end{subfigure}
+    \caption{Instantaneous Frequency (oben), Semblance (mittig) und Dip (unten) in Prozessierstufe 3}
+    \label{fig:freq_semblance_dip_p3}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/quadrature.jpg}
+        \label{fig:quadrature_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/quadrature.jpg}
+        \label{fig:quadrature_p3}
+    \end{subfigure}
+    \caption{Quadrature in Prozessierstufe 1 (oben) und 3 (unten)}
+    \label{fig:quadrature_p1_p3}
+\end{figure}
+
+\subsection*{A3 Modelle}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|r|r|r|r|r|}
+        \hline
+        \textbf{Modell } & \textbf{Epochenanzahl} & \textbf{$QE$} & \textbf{$TE$} & \textbf{Anzahl der Merkmale} $\mathbf{K}$ \\
+        \hline
+        1 & 10 & 0.085 & 0.049 & 5 \\
+        1 & 30 & 0.085 & 0.059 & 5 \\
+        1 & 50 & 0.085 & 0.057 & 5 \\
+        2 & 50 & 0.084 & 0.064 & 5 \\
+        3 & 50 & 0.145 & 0.047 & 7 \\
+        4 & 50 & 0.023 & 0.094 & 3 \\
+        \hline
+    \end{tabular}
+    \caption{Übersicht der Modell e mit den zugehörigen Epochenanzahlen, dem Quantisierungsfehler $QE$, dem Topologiefehler $TE$ und der Anzahl der verwendeten Merkmale $K$.}
+    \label{tab:model_error_overview}
+\end{table}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R07/som_planes_07_full_on_rg_6.jpg}
+    \caption{Modell 1 Merkmal - Ebenen, $N=30$.}
+    \label{fig:model_1_planes_30}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R07/som_u_matrix_07_full_on_rg_6.jpg}
+    \caption{Modell 1 U-Matrix, $N=30$.}
+    \label{fig:model_1_u_matrix_30}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R05/som_hits_05_full_on_rg_6.jpg}
+    \caption{Modell 1 Hit Map, $N=10$.}
+    \label{fig:model_1_hits_10}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R05/bmu_radargram_05_full_on_rg_6.jpg}
+    \caption{Modell 1 BMU Radargram, $N=10$.}
+    \label{fig:model_1_bmu_radargram_10}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R07/som_hits_07_full_on_rg_6.jpg}
+    \caption{Modell 1 Hit Map, $N=30$.}
+    \label{fig:model_1_hits_30}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R07/bmu_radargram_07_full_on_rg_6.jpg}
+    \caption{Modell 1 BMU Radargram, $N=30$.}
+    \label{fig:model_1_bmu_radargram_30}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R08/som_hits_08_full_on_rg_6.jpg}
+    \caption{Modell 2: Die Trefferverteilung der Neuronen.}
+    \label{fig:model_2_hits}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R08/bmu_radargram_08_full_on_rg_6.jpg}
+    \caption{Modell 2: Die BMU-Verteilung der Neuronen für jedes Sample.}
+    \label{fig:model_2_bmu}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R13/som_hits_13_full_on_rg_6.jpg}
+    \caption{Modell 3: Die Trefferverteilung der Neuronen.}
+    \label{fig:model_3_hits}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R50/som_hits_50_full_on_rg_6_ziegler.jpg}
+    \caption{Modell 4: Die Trefferverteilung der Neuronen.}
+    \label{fig:model_4_hits}
+\end{figure}
+
+\clearpage
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R50/bmu_radargram_50_full_on_rg_4.jpg}
+    \caption{Modell 4: Die BMU-Verteilung der Neuronen für jedes Sample im Radargramm 30.}
+    \label{fig:model_4_bmu_test}
+\end{figure}

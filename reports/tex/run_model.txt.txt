@@ -1,0 +1,5 @@
+R09 Modell 1 (+ R05, R07 für weniger Epochen)
+R08 Modell 2
+R13 Modell 3
+R41 Modell 4
+R46 Modell 5?

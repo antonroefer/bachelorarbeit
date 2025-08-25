@@ -37,6 +37,8 @@ from numpy import (
     nanmin,
     isnan,
     zeros_like,
+    unique,
+    all,
 )
 from numpy.linalg import norm
 from collections import defaultdict, Counter
@@ -52,10 +54,21 @@ from numpy.testing import assert_almost_equal, assert_array_almost_equal
 from numpy.testing import assert_array_equal
 import unittest
 
+import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 from matplotlib.patches import RegularPolygon, Polygon
 from matplotlib.collections import PatchCollection
 from tqdm import tqdm
+
+from pycolormap_2d import (
+    ColorMap2DZiegler,
+    ColorMap2DBremm,
+    ColorMap2DCubeDiagonal,
+    ColorMap2DSchumann,
+    ColorMap2DSteiger,
+    ColorMap2DTeuling2,
+    BaseColorMap2D,
+)
 
 """
     Minimalistic implementation of the Self Organizing Maps (SOM).
@@ -97,12 +110,14 @@ def _wrap_index__in_verbose(iterations):
     stdout.write(progress)
     for i, it in enumerate(iterations):
         yield it
-        sec_left = ((m - i + 1) * (time() - beginning)) / (i + 1)
-        time_left = str(timedelta(seconds=sec_left))[:7]
-        progress = "\r [ {i:{d}} / {m} ]".format(i=i + 1, d=digits, m=m)
-        progress += " {p:3.0f}%".format(p=100 * (i + 1) / m)
-        progress += " - {time_left} left ".format(time_left=time_left)
-        stdout.write(progress)
+        # Only update progress every 100000 iterations
+        if (i + 1) % 100000 == 0 or i == m - 1:
+            sec_left = ((m - i + 1) * (time() - beginning)) / (i + 1)
+            time_left = str(timedelta(seconds=sec_left))[:7]
+            progress = "\r [ {i:{d}} / {m} ]".format(i=i + 1, d=digits, m=m)
+            progress += " {p:3.0f}%".format(p=100 * (i + 1) / m)
+            progress += " - {time_left} left ".format(time_left=time_left)
+            stdout.write(progress)
 
 
 def fast_norm(x):
@@ -232,7 +247,7 @@ class MiniSom(object):
         self._xx = self._xx.astype(float)
         self._yy = self._yy.astype(float)
         if topology == "hexagonal":
-            self._xx[::-2] -= 0.5
+            self._xx[1::2] += 0.5
             self._yy *= self.Y_HEX_CONV_FACTOR
             if neighborhood_function in ["triangle"]:
                 warn(
@@ -465,7 +480,13 @@ class MiniSom(object):
         winners_coords = argmin(self._distance_from_weights(data), axis=1)
         return self._weights[unravel_index(winners_coords, self._weights.shape[:2])]
 
-    def random_weights_init(self, data):
+    def normalize_random_weights_init(self, data):
+        """Initializes the weights of the SOM
+        picking random numbers between 0 and 1."""
+        self._check_input_len(data)
+        self._weights = self._random_generator.rand(*self._weights.shape)
+
+    def random_data_weights_init(self, data):
         """Initializes the weights of the SOM
         picking random samples from data."""
         self._check_input_len(data)
@@ -680,7 +701,9 @@ class MiniSom(object):
 
         return um / um.max()
 
-    def plot_u_matrix(self, figsize=(10, 8), cmap="hot", save=False):
+    def plot_u_matrix(
+        self, figsize=(10, 8), cmap="hot_r", save=True, appendix=None, name=None
+    ):
         """
         Visualisiert die Unified Distance Matrix (U-Matrix) des SOM.
         Die U-Matrix zeigt die durchschnittlichen Abstände zwischen einem Neuron
@@ -698,8 +721,8 @@ class MiniSom(object):
                 "This visualization currently supports hexagonal topology only."
             )
 
-        u_matrix = (
-            self.distance_map()
+        u_matrix = self.distance_map(
+            scaling="mean"
         )  # MiniSom's distance_map gibt bereits ein (x_dim, y_dim) Array zurück
         x_dim, y_dim = u_matrix.shape
 
@@ -747,19 +770,47 @@ class MiniSom(object):
 
         ax.set_xticks([])
         ax.set_yticks([])
-        ax.set_title("SOM U-Matrix")
+        # ax.set_title("SOM U-Matrix")
 
         # Colorbar hinzufügen
-        cbar = fig.colorbar(
-            mapper, ax=ax, orientation="vertical", fraction=0.046, pad=0.04
+        cax = fig.add_axes(
+            [
+                ax.get_position().x1 + 0.02,
+                ax.get_position().y0,
+                0.04,
+                ax.get_position().height,
+            ]
         )
-        cbar.set_label("Distance in Feature Space")
+        cbar = fig.colorbar(
+            mapper,
+            cax=cax,
+            orientation="vertical",
+            fraction=0.046,
+            pad=0.04,
+        )
+        cbar.set_label("Distance in Feature Space", fontsize=16)
+        cbar.ax.tick_params(labelsize=14)
 
-        plt.tight_layout()
-        plt.savefig("som_u_matrix.png", dpi=300) if save else None
+        # plt.tight_layout()
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            plt.savefig(
+                os.path.join(
+                    script_dir, "Runs", f"R{appendix}", f"som_u_matrix_{name}.png"
+                ),
+                dpi=300,
+            )
         # plt.show()
 
-    def plot_som_planes(self, figsize=(12, 12), cmap="hot", save=False):
+    def plot_som_planes(
+        self,
+        figsize=(12, 12),
+        cmap="jet",
+        fnames=None,
+        save=True,
+        appendix=None,
+        name=None,
+    ):
         """
         Visualisiert die einzelnen Feature-Ebenen (Component Planes) des SOM.
         Für jedes Feature wird ein separates Subplot erstellt, das die Gewichte
@@ -844,20 +895,42 @@ class MiniSom(object):
 
             ax.set_xticks([])
             ax.set_yticks([])
-            ax.set_title(f"Feature {feature_idx + 1}")
-
-            # Colorbar für jedes Subplot hinzufügen
-            cbar = fig.colorbar(
-                mapper, ax=ax, orientation="vertical", fraction=0.046, pad=0.04
+            ax.set_title(
+                fnames[feature_idx],
+                fontsize=16 if fnames else f"Feature {feature_idx + 1}",
             )
-            cbar.set_label(f"Feature {feature_idx + 1} Value")
+
+            cax = fig.add_axes(
+                [
+                    ax.get_position().x1 + 0.005,
+                    ax.get_position().y0,
+                    0.01,
+                    ax.get_position().height,
+                ]
+            )
+            cbar = fig.colorbar(
+                mapper,
+                cax=cax,
+                orientation="vertical",
+                fraction=0.046,
+                pad=0.04,
+            )
+            # cbar.set_label("Fea", fontsize=16)
+            cbar.ax.tick_params(labelsize=12)
 
         # Leere Subplots ausblenden, falls n_features keine perfekte Quadratzahl ist
         for k in range(n_features, len(axes)):
             axes[k].set_visible(False)
 
-        plt.tight_layout()
-        plt.savefig("som_planes.png", dpi=300) if save else None
+        # plt.tight_layout()
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            plt.savefig(
+                os.path.join(
+                    script_dir, "Runs", f"R{appendix}", f"som_planes_{name}.png"
+                ),
+                dpi=300,
+            )
         # plt.show()
 
     def plot_som_hits(
@@ -867,8 +940,11 @@ class MiniSom(object):
         hit_color="#666699",
         edge_color="white",
         text_color="white",
-        min_radius_ratio=0.4,
-        save=False,
+        min_radius_ratio=0.1,
+        save=True,
+        colormap=ColorMap2DZiegler,
+        appendix=None,
+        name=None,
     ):
         """
         Visualisiert die Anzahl der Treffer (BMU-Zuweisungen) pro Neuron im hexagonalen SOM-Gitter.
@@ -894,6 +970,19 @@ class MiniSom(object):
             Verhältnis des Mindestradius des Treffer-Hexagons zum vollen Neuron-Radius.
             Bei 1 Treffer ist der Radius min_radius_ratio * neuron_plot_radius.
         """
+
+        def getColor(bmu, colormap=ColorMap2DZiegler):
+            """Holt die Farbe aus dem Colormap-Objekt und gibt sie als hex Farbcode zurück."""
+            # Hole die euklidischen Koordinaten des BMU
+            x_coord, y_coord = self.get_euclidean_coordinates()
+            cmap = colormap(
+                range_x=(float(x_coord.min()), float(x_coord.max())),
+                range_y=(float(y_coord.min()), float(y_coord.max())),
+            )
+            color = cmap(bmu[0], bmu[1])
+            # Convert RGB array to hex string
+            return f"#{int(color[0]):02x}{int(color[1]):02x}{int(color[2]):02x}"
+
         if self.topology != "hexagonal":
             raise NotImplementedError(
                 "This visualization currently supports hexagonal topology only."
@@ -988,23 +1077,40 @@ class MiniSom(object):
                         numVertices=6,
                         radius=scaled_radius,
                         orientation=0,
-                        facecolor=hit_color,
-                        edgecolor=edge_color,
+                        facecolor=getColor((cx, cy), colormap),
+                        edgecolor=getColor((cx, cy), colormap),
                         linewidth=0.8,
                         zorder=1,
                     )  # Über dem Hintergrund-Hexagon
                     ax.add_patch(hit_hexagon_patch)
 
                     # Trefferanzahl als Text
+                    # Format numbers in compact scientific notation
+                    if hits >= 1000:
+                        exponent = len(str(int(hits))) - 1
+                        mantissa = hits // (10 ** (exponent - 1))
+                        hit_text = f"{mantissa}e{exponent - 1}"
+                    else:
+                        hit_text = str(int(hits))
+
+                    exponent = len(str(int(hits))) - 1
+                    hit_text = f"e{exponent}"
+
                     ax.text(
                         cx,
                         cy,
-                        str(int(hits)),
+                        hit_text,
                         color=text_color,
                         fontsize=10,
                         ha="center",
                         va="center",
                         zorder=2,
+                        path_effects=[
+                            pe.Stroke(
+                                linewidth=1, foreground="black"
+                            ),  # Schwarze Umrandung
+                            pe.Normal(),
+                        ],
                     )  # Über den Hexagonen
 
         # Achsenlimits dynamisch anpassen
@@ -1018,12 +1124,21 @@ class MiniSom(object):
 
         ax.set_xticks([])
         ax.set_yticks([])
-        ax.set_title("SOM Neuron Hits (Python)")
+        # ax.set_title("SOM Neuron Hits (Python)")
         plt.tight_layout()
-        plt.savefig("som_hits.png", dpi=300) if save else None
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            plt.savefig(
+                os.path.join(
+                    script_dir, "Runs", f"R{appendix}", f"som_hits_{name}.png"
+                ),
+                dpi=300,
+            )
         # plt.show()
 
-    def plot_som_neighbor_distances(self, cmap="hot", figsize=(10, 8), save=False):
+    def plot_som_neighbor_distances(
+        self, cmap="hot_r", figsize=(10, 8), save=True, appendix=None, name=None
+    ):
         if self.topology != "hexagonal":
             raise NotImplementedError(
                 "This visualization currently supports hexagonal topology only."
@@ -1300,9 +1415,248 @@ class MiniSom(object):
         ax.set_xticks([])
         ax.set_yticks([])
         ax.set_title("SOM Neighbor Weight Distances (Python)")
-        plt.tight_layout()
-        plt.savefig("som_nd.png", dpi=300) if save else None
+        # plt.tight_layout()
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            plt.savefig(
+                os.path.join(script_dir, "Runs", f"R{appendix}", f"som_nd_{name}.png"),
+                dpi=300,
+            )
         # plt.show()
+
+    def plot_bmu_radargram(
+        self,
+        data,
+        x,
+        t,
+        title=None,
+        cmap_2d_class=ColorMap2DZiegler,
+        save=True,
+        dpi=300,
+        appendix=None,
+        name=None,
+    ):
+        """
+        Stellt ein Radargramm dar, bei dem die Pixel nach den Koordinaten ihrer
+        Best Matching Unit (BMU) auf dem SOM-Gitter eingefärbt sind.
+
+        Diese Funktion berechnet die BMU-Karte intern aus den bereitgestellten Daten.
+
+        Parameter:
+        - data (numpy.ndarray): Das ursprüngliche Radargramm-Datenarray. Es sollte eine
+                                flache Ansicht des Radargramms sein, z.B. (Anzahl der Pixel, Anzahl der Features).
+                                Die Anzahl der Pixel muss len(x) * len(t) entsprechen.
+        - x (numpy.ndarray): 1D-Array der x-Achse (z.B. Distanz).
+        - t (numpy.ndarray): 1D-Array der y-Achse (z.B. Zeit).
+        - title (str): Titel des Plots.
+        - cmap_2d_class (pycolormap_2d.ColorMap2D): Die zu verwendende 2D-Colormap-Klasse.
+                                                Standardmäßig ColorMap2DZiegler.
+        - save (bool): True, wenn der Plot gespeichert werden soll.
+        - fname (str): Dateiname inkl. Pfad für den Export.
+        - dpi (int): Auflösung für den Export.
+        """
+        if self.topology != "hexagonal":
+            raise NotImplementedError(
+                "Diese Visualisierung unterstützt derzeit nur eine hexagonale Topologie."
+            )
+
+        # 1. BMU-Karte aus den Daten selbst erstellen
+        radargram_height = len(t)
+        radargram_width = len(x)
+
+        # Sicherstellen, dass die Daten die erwartete Anzahl von Samples haben
+        expected_samples = radargram_height * radargram_width
+        if data.shape[0] != expected_samples:
+            raise ValueError(
+                f"`data` muss {expected_samples} Samples enthalten, aber es wurden {data.shape[0]} gefunden. "
+                f"Stellen Sie sicher, dass `data` eine abgeflachte Ansicht des Radargramms ist (Höhe * Breite, Features)."
+            )
+
+        bmu_map_flat = zeros((expected_samples, 2), dtype=int)
+        for i, sample in tqdm(enumerate(data), desc="BMU Mapping"):
+            bmu_map_flat[i] = self.winner(sample)
+
+        bmu_map = bmu_map_flat.reshape(radargram_height, radargram_width, 2)
+
+        # Rest der ursprünglichen Funktion
+        # 1. Figur und Hauptachse erstellen
+        fig, ax = plt.subplots(figsize=(15, 7))
+
+        # 2. 2D-Colormap initialisieren
+        xx, yy = self.get_euclidean_coordinates()
+        range_x = (float(xx.min()), float(xx.max()))
+        range_y = (float(yy.min()), float(yy.max()))
+        colormap_2d = cmap_2d_class(range_x=range_x, range_y=range_y)
+
+        # 3. BMU-Koordinaten in ein RGB-Bild umwandeln (vektorisierter Ansatz)
+        radargram_rgb = zeros((bmu_map.shape[0], bmu_map.shape[1], 3))
+        # Using unique on a 2D array where rows are coordinates, returns unique rows
+        unique_bmus = unique(bmu_map.reshape(-1, 2), axis=0)
+
+        for bmu in unique_bmus:
+            cx, cy = self.convert_map_to_euclidean(tuple(bmu))
+            color = colormap_2d(cx, cy)
+            mask = all(bmu_map == bmu, axis=-1)
+            radargram_rgb[mask] = color
+
+        # 4. Das eingefärbte Radargramm anzeigen
+        ax.imshow(
+            radargram_rgb.astype(int),
+            aspect="auto",
+            extent=[x.min(), x.max(), t.max(), t.min()],
+        )
+
+        # ax.set_title(title, fontsize=22)
+        ax.set_xlabel("Distance (m)", fontsize=18)
+        ax.set_ylabel("Time (ns)", fontsize=18)
+        ax.tick_params(labelsize=14)
+
+        # # 5. KORRIGIERT: Eine benutzerdefinierte 2D-Colorbar manuell erstellen
+        # cbar_ax = fig.add_axes([0.9, 0.15, 0.08, 0.7])
+
+        # # Ein Gitter für die Colorbar mit einer Auflösung von 100x100 Pixeln erstellen
+        # cbar_resolution = 100
+        # x_grid = linspace(range_x[0], range_x[1], cbar_resolution)
+        # y_grid = linspace(range_y[0], range_y[1], cbar_resolution)
+        # xx_grid, yy_grid = meshgrid(x_grid, y_grid)
+
+        # # Die Colormap auf das Gitter anwenden, um ein RGB-Bild zu erzeugen.
+        # # pycolormap_2d-Objekte können nur einzelne tuple verarbeiten, deshalb iterieren wir über das Gitter.
+        # cbar_img = zeros((cbar_resolution, cbar_resolution, 3))
+        # for i in range(cbar_resolution):
+        #     for j in range(cbar_resolution):
+        #         cbar_img[i, j] = colormap_2d(xx_grid[i, j], yy_grid[i, j])
+
+        # cbar_ax.imshow(
+        #     cbar_img,
+        #     origin="lower",
+        #     extent=[range_x[0], range_x[1], range_y[0], range_y[1]],
+        #     aspect="auto",
+        # )
+        # cbar_ax.set_title("BMU Farb-Legende")
+        # cbar_ax.set_xlabel("SOM X")
+        # cbar_ax.set_ylabel("SOM Y")
+        # cbar_ax.tick_params(labelsize=10)
+        # cbar_ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True, nbins=4))
+        # cbar_ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True, nbins=4))
+
+        # # Layout anpassen
+        # fig.tight_layout(rect=[0, 0, 0.88, 1])
+
+        if save:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            fname = os.path.join(
+                script_dir, "Runs", f"R{appendix}", f"bmu_radargram_{name}.png"
+            )
+            plt.savefig(fname, dpi=dpi, bbox_inches="tight")
+            print(f"Plot gespeichert unter: {fname}")
+
+        # plt.show()
+
+    def save_model(self, filepath):
+        """
+        Saves the current SOM model to a file with all necessary parameters
+        for reconstruction.
+
+        Parameters
+        ----------
+        filepath : str
+            Path where the model should be saved (including filename and extension)
+        """
+        # Ensure directory exists
+        directory = os.path.dirname(filepath)
+        if directory and not os.path.exists(directory):
+            os.makedirs(directory)
+
+        # --- NEU: Reverse lookup, um die korrekten Funktionsnamen zu speichern ---
+
+        # Erstelle die Dictionaries für die umgekehrte Suche
+        distance_functions = {
+            "euclidean": self._euclidean_distance,
+            "cosine": self._cosine_distance,
+            "manhattan": self._manhattan_distance,
+            "chebyshev": self._chebyshev_distance,
+        }
+        neig_functions = {
+            "gaussian": self._gaussian,
+            "mexican_hat": self._mexican_hat,
+            "bubble": self._bubble,
+            "triangle": self._triangle,
+        }
+
+        # Finde den öffentlichen Schlüssel für die activation_distance
+        saved_activation_distance = "euclidean"  # Fallback
+        for key, func in distance_functions.items():
+            if func == self._activation_distance:
+                saved_activation_distance = key
+                break
+
+        # Finde den öffentlichen Schlüssel für die neighborhood_function
+        saved_neighborhood_function = "gaussian"  # Fallback
+        for key, func in neig_functions.items():
+            if func == self.neighborhood:
+                saved_neighborhood_function = key
+                break
+
+        model_data = {
+            "weights": self._weights,
+            "x_dim": self._weights.shape[0],
+            "y_dim": self._weights.shape[1],
+            "input_len": self._input_len,
+            "sigma": self._sigma,
+            "learning_rate": self._learning_rate,
+            "topology": self.topology,
+            "neighborhood_function": saved_neighborhood_function,
+            "activation_distance": saved_activation_distance,
+            "random_seed": None,  # Cannot reliably store random state
+        }
+
+        filepath_abs = os.path.abspath(filepath)
+        with open(filepath_abs, "wb") as f:
+            pickle.dump(model_data, f)
+
+        print(f"Model saved to {filepath_abs}")
+
+    @staticmethod
+    def load_model(filepath):
+        """
+        Loads a SOM model from a file and returns a fully initialized SOM instance.
+
+        Parameters
+        ----------
+        filepath : str
+            Path to the saved model file
+
+        Returns
+        -------
+        MiniSom
+            A fully initialized SOM instance with loaded weights
+        """
+        filepath_abs = os.path.abspath(filepath)
+        if not os.path.exists(filepath_abs):
+            raise FileNotFoundError(f"Model file not found: {filepath_abs}")
+
+        with open(filepath_abs, "rb") as f:
+            model_data = pickle.load(f)
+
+        # Create new SOM instance with saved parameters
+        som = MiniSom(
+            x=model_data["x_dim"],
+            y=model_data["y_dim"],
+            input_len=model_data["input_len"],
+            sigma=model_data["sigma"],
+            learning_rate=model_data["learning_rate"],
+            topology=model_data["topology"],
+            neighborhood_function=model_data["neighborhood_function"],
+            activation_distance=model_data["activation_distance"],
+            random_seed=model_data["random_seed"],
+        )
+
+        # Load the trained weights
+        som._weights = model_data["weights"]
+
+        print(f"Model loaded from {filepath_abs}")
+        return som
 
     def activation_response(self, data):
         """
@@ -1706,8 +2060,8 @@ class TestMinisom(unittest.TestCase):
         # and that its values range from 0 to num_epochs-1
         decay_factors = []
         for t, iteration in enumerate(iterations):
-            decay_factor = int(t / len_data)
-            decay_factors.append(decay_factor)
+            decay_rate = int(t / len_data)
+            decay_factors.append(decay_rate)
         for i in range(num_epochs):
             decay_factors_i_epoch = decay_factors[i * len_data : (i + 1) * len_data]
             assert decay_factors_i_epoch == [i] * len_data
