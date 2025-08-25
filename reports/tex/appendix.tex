@@ -44,11 +44,14 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
     \label{tab:feature_names}
 \end{table}
 
+
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|r|r|r|r|r|r|}
+    \begin{tabular}{|l|R{1cm}|R{1cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|}
         \hline
-        \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
+        \multirow{2}{*}{\textbf{Merkmal}} & \multirow{2}{*}{$\mathbf{f_{min}}$} & \multirow{2}{*}{$\mathbf{f_{max}}$} & \multicolumn{2}{c|}{\textbf{Mittelungsfenster}} & \multicolumn{2}{c|}{\textbf{Berechnungsfenster}} \\
+        \cline{4-7}
+        & & & $X$ & $T$ & $X$ & $T$ \\
         \hline
         inst\_amp     & 0     & 100   & 15        & 15        & -        & -        \\
         inst\_phase   & -     & -     & -         & -         & -        & -        \\
@@ -64,15 +67,17 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
         \hline
     \end{tabular}
     \caption{Parameterübersicht der Merkmale, Prozessierstufe 1\\
-    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt wurde, stehen $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ für die Fensterbstände zum Sample (Bsp.: $\mathbf{x_{mean}} = \mathbf{t_{mean}} = 3 \rightarrow$ 7 x 7 Fenster). Wird ein Merkmal auf einem Fenster berechnet, stehen $\mathbf{x_{window}}$ und $\mathbf{t_{window}}$ für die Fensterabstände zum Sample in x- und t-Richtung (analog wie $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$).}
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt oder ein Merkmal auf einem Fenster berechnet wurde, stehen $X$ und $T$ für die Fensterabstände zum Sample (Bsp.: $X = T = 3 \rightarrow$ 7 x 7 Fenster).}
     \label{tab:feature_params_1}
 \end{table}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|r|r|r|r|r|r|}
+    \begin{tabular}{|l|R{1cm}|R{1cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|}
         \hline
-        \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
+        \multirow{2}{*}{\textbf{Merkmal}} & \multirow{2}{*}{$\mathbf{f_{min}}$} & \multirow{2}{*}{$\mathbf{f_{max}}$} & \multicolumn{2}{c|}{\textbf{Mittelungsfenster}} & \multicolumn{2}{c|}{\textbf{Berechnungsfenster}} \\
+        \cline{4-7}
+        & & & $X$ & $T$ & $X$ & $T$ \\
         \hline
         inst\_amp     & 0     & 300   & 15        & 15        & -        & -        \\
         inst\_phase   & -     & -     & -         & -         & -        & -        \\
@@ -88,15 +93,17 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
         \hline
     \end{tabular}
     \caption{Parameterübersicht der Merkmale, Prozessierstufe 2\\
-    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt wurde, stehen $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ für die Fensterabstände zum Sample (Bsp.: $\mathbf{x_{mean}} = \mathbf{t_{mean}} = 3 \rightarrow$ 7 x 7 Fenster). Wird ein Merkmal auf einem Fenster berechnet, stehen $\mathbf{x_{window}}$ und $\mathbf{t_{window}}$ für die Fensterabstände zum Sample in x- und t-Richtung (analog wie $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$).}
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt oder ein Merkmal auf einem Fenster berechnet wurde, stehen $X$ und $T$ für die Fensterabstände zum Sample (Bsp.: $X = T = 3 \rightarrow$ 7 x 7 Fenster).}
     \label{tab:feature_params_2}
 \end{table}
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|r|r|r|r|r|r|}
+    \begin{tabular}{|l|R{1cm}|R{1cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|R{1.5cm}|}
         \hline
-        \textbf{Merkmal} & $\mathbf{f_{min}}$ & $\mathbf{f_{max}}$ & $\mathbf{x_{mean}}$ & $\mathbf{t_{mean}}$ & $\mathbf{x_{window}}$ & $\mathbf{t_{window}}$ \\
+        \multirow{2}{*}{\textbf{Merkmal}} & \multirow{2}{*}{$\mathbf{f_{min}}$} & \multirow{2}{*}{$\mathbf{f_{max}}$} & \multicolumn{2}{c|}{\textbf{Mittelungsfenster}} & \multicolumn{2}{c|}{\textbf{Berechnungsfenster}} \\
+        \cline{4-7}
+        & & & $X$ & $T$ & $X$ & $T$ \\
         \hline
         inst\_amp     & 0     & 300   & 15        & 15        & -        & -        \\
         inst\_phase   & -     & -     & -         & -         & -        & -        \\
@@ -115,9 +122,10 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
         \hline
     \end{tabular}
     \caption{Parameterübersicht der Merkmale, Prozessierstufe 3\\
-    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt wurde, stehen $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$ für die Fensterabstände zum Sample (Bsp.: $\mathbf{x_{mean}} = \mathbf{t_{mean}} = 3 \rightarrow$ 7 x 7 Fenster). Wird ein Merkmal auf einem Fenster berechnet, stehen $\mathbf{x_{window}}$ und $\mathbf{t_{window}}$ für die Fensterabstände zum Sample in x- und t-Richtung (analog wie $\mathbf{x_{mean}}$ und $\mathbf{t_{mean}}$).}
+    $\mathbf{f_{min}}$ und $\mathbf{f_{max}}$ sind die Minima und Maxima des Wertebereichs. Wenn um ein Sample innerhalb eines Fensters gemittelt oder ein Merkmal auf einem Fenster berechnet wurde, stehen $X$ und $T$ für die Fensterabstände zum Sample (Bsp.: $X = T = 3 \rightarrow$ 7 x 7 Fenster).}
     \label{tab:feature_params_3}
 \end{table}
+
 
 \begin{figure}[H]
     \centering
@@ -140,6 +148,164 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
     \label{fig:pairplot_overview_khigh}
 \end{figure}
 
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_amplitude.jpg}
+        \label{fig:inst_amp_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/average_energy.jpg}
+        \label{fig:avg_energy_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/rms_amplitude.jpg}
+        \label{fig:rms_amp_p1}
+    \end{subfigure}
+    \caption{Instantaneous Amplitude (oben), Average Energy (mittig) und RMS Amplitude (unten) in Prozessierstufe 1}
+    \label{fig:amps_p1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_phase.jpg}
+        \label{fig:inst_phase_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/instantaneous_q.jpg}
+        \label{fig:inst_q_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/semblance.jpg}
+        \label{fig:semblance_p1}
+    \end{subfigure}
+    \caption{Instantaneous Phase (oben), Instantaneous Q (mittig) und Semblance (unten) in Prozessierstufe 1}
+    \label{fig:phase_q_semblance_p1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/skewness.jpg}
+        \label{fig:skewness_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/kurtosis.jpg}
+        \label{fig:kurtosis_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/dip.jpg}
+        \label{fig:dip_p1}
+    \end{subfigure}
+    \caption{Skewness (oben), Kurtosis (mittig) und Dip (unten) in Prozessierstufe 1}
+    \label{fig:skewness_kurtosis_dip_p1}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/instantaneous_phase.jpg}
+        \label{fig:inst_phase_p2}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/instantaneous_frequency.jpg}
+        \label{fig:inst_freq_p2}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/instantaneous_q.jpg}
+        \label{fig:inst_q_p2}
+    \end{subfigure}
+    \caption{Instantaneous Phase (oben), Instantaneous Frequency (mittig) und Instantaneous Q (unten) in Prozessierstufe 2}
+    \label{fig:phase_freq_q_p2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/skewness.jpg}
+        \label{fig:skewness_p2}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots/kurtosis.jpg}
+        \label{fig:kurtosis_p2}
+    \end{subfigure}
+    \caption{Skewness (oben), Kurtosis (unten) in Prozessierstufe 2}
+    \label{fig:skewness_kurtosis_p2}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_amplitude.jpg}
+        \label{fig:inst_amp_p3}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/average_energy.jpg}
+        \label{fig:avg_energy_p3}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/rms_amplitude.jpg}
+        \label{fig:rms_amp_p3}
+    \end{subfigure}
+    \caption{Instantaneous Amplitude (oben), Average Energy (mittig) und RMS Amplitude (unten) in Prozessierstufe 3}
+    \label{fig:amps_p3}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/instantaneous_frequency.jpg}
+        \label{fig:inst_freq_p3}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/semblance.jpg}
+        \label{fig:semblance_p3}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/dip.jpg}
+        \label{fig:dip_p3}
+    \end{subfigure}
+    \caption{Instantaneous Frequency (oben), Semblance (mittig) und Dip (unten) in Prozessierstufe 3}
+    \label{fig:freq_semblance_dip_p3}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_raw/quadrature.jpg}
+        \label{fig:quadrature_p1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{\textwidth}
+        \includegraphics[width=\textwidth]{feature_plots_khigh/quadrature.jpg}
+        \label{fig:quadrature_p3}
+    \end{subfigure}
+    \caption{Quadrature in Prozessierstufe 1 (oben) und 3 (unten)}
+    \label{fig:quadrature_p1_p3}
+\end{figure}
+
 \subsection*{A3 Modelle}
 
 \begin{table}[H]
@@ -148,12 +314,12 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
         \hline
         \textbf{Modell } & \textbf{Epochenanzahl} & \textbf{$QE$} & \textbf{$TE$} & \textbf{Anzahl der Merkmale} $\mathbf{K}$ \\
         \hline
-        1 & 10 & 0.085339 & 0.049232 & 5 \\
-        1 & 30 & 0.085020 & 0.059034 & 5 \\
-        1 & 50 & 0.084581 & 0.057029 & 5 \\
-        2 & 50 & 0.084349 & 0.064219 & 5 \\
-        3 & 50 & 0.145045 & 0.047086 & 7 \\
-        4 & 50 & 0.023081 & 0.094487 & 3 \\
+        1 & 10 & 0.085 & 0.049 & 5 \\
+        1 & 30 & 0.085 & 0.059 & 5 \\
+        1 & 50 & 0.085 & 0.057 & 5 \\
+        2 & 50 & 0.084 & 0.064 & 5 \\
+        3 & 50 & 0.145 & 0.047 & 7 \\
+        4 & 50 & 0.023 & 0.094 & 3 \\
         \hline
     \end{tabular}
     \caption{Übersicht der Modell e mit den zugehörigen Epochenanzahlen, dem Quantisierungsfehler $QE$, dem Topologiefehler $TE$ und der Anzahl der verwendeten Merkmale $K$.}
@@ -238,4 +404,13 @@ Auf den Bildern sind teilweise die Pythonvariablen anstatt der Variablennamen zu
     \includegraphics[width=\textwidth]{som_runs_pics/R50/som_hits_50_full_on_rg_6_ziegler.jpg}
     \caption{Modell 4: Die Trefferverteilung der Neuronen.}
     \label{fig:model_4_hits}
+\end{figure}
+
+\clearpage
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{som_runs_pics/R50/bmu_radargram_50_full_on_rg_4.jpg}
+    \caption{Modell 4: Die BMU-Verteilung der Neuronen für jedes Sample im Radargramm 30.}
+    \label{fig:model_4_bmu_test}
 \end{figure}

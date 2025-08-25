@@ -30,8 +30,16 @@ maxbibnames=99,
 \usepackage{lipsum} % For dummy text
 \usepackage{times}
 \usepackage{float}
+\usepackage{multirow}
+\usepackage{subcaption}
+\usepackage{subfloat}
+
+\usepackage{tabularx}
+\usepackage{array}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 
 \usepackage[a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{hyperref}
 
 \title{Automatisierte Segmentierung von Radargrammen mittels Self-Organizing Maps}
 \author{Anton Röfer}
@@ -43,9 +51,17 @@ maxbibnames=99,
 \thispagestyle{empty}
 \clearpage
 
+\quad
+\thispagestyle{empty}
+\clearpage
+
+\thispagestyle{plain}
 \setcounter{page}{1}
 \pagenumbering{Roman}
 \input{abstract.tex}
+\clearpage
+
+\input{ack.tex}
 \clearpage
 
 \tableofcontents

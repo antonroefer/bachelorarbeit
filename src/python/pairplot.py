@@ -36,7 +36,7 @@ def min_max_scale(arr, new_min=0, new_max=1):
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors_new_AE.npz"
+data_file = "feature_vectors_khigh_AE.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
@@ -47,17 +47,17 @@ with np.load(data_path) as npzfile:
     # --- NEU: Feature-Auswahl ---
     # Liste der gewünschten Features
     desired_features = [
-        "inst_amp",
-        "avg_energy",
-        "rms_amp",
-        "quadrature",
+        # "inst_amp",
+        # "avg_energy",
+        # "rms_amp",
+        # "quadrature",
         # "inst_q",
         # "inst_phase_real",
         # "inst_phase_imag",
         # "inst_freq",
         # "semblance",
-        # "skewness",
-        # "kurtosis",
+        "skewness",
+        "kurtosis",
     ]
 
     # Annahme: Die Namen der Features sind in der .npz-Datei unter dem Schlüssel 'feature_names' gespeichert
@@ -102,8 +102,31 @@ data_2d = data_2d[::15]
 
 # Erstelle ein DataFrame aus den gewünschten Features
 df = pd.DataFrame(data_2d, columns=desired_features)
+#
+fdict = {
+    "original_data": "Originaldaten",
+    "inst_amp": "Instantaneous Amplitude",
+    "inst_phase": "Instantaneous Phase",
+    "inst_phase_real": "Instantaneous Phase Real",
+    "inst_phase_imag": "Instantaneous Phase Imaginär",
+    "inst_freq": "Instantaneous Frequency",
+    "inst_freq_raw": "Instantaneous Frequency (roh)",
+    "sweetness": "Sweetness",
+    "quadrature": "Quadrature",
+    "inst_q": "Instantaneous Q",
+    "abs_grad": "Absoluter Gradient",
+    "avg_energy": "Average Energy",
+    "rms_amp": "RMS-Amplitude",
+    "coherence": "Coherence",
+    "semblance": "Semblance",
+    "skewness": "Skewness",
+    "kurtosis": "Kurtosis",
+    "dip": "Dip",
+}
+
+df.rename(columns=fdict, inplace=True)
 
 # Pairplot mit Dichte-Diagonalen
 sns.pairplot(df, diag_kind="kde", plot_kws={"alpha": 0.3})
 # plt.suptitle("Seaborn Density Plot der Radargramm-Features", y=1.02, fontsize=16)
-plt.savefig("pairplot_amps.png", dpi=300)
+plt.savefig("pairplot_stats.png", dpi=300)

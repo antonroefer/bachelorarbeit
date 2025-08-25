@@ -5,36 +5,39 @@
 Ein typisches GPR-System besteht aus einer Sendeantenne, die kurze elektromagnetische Impulse in den Boden abstrahlt, und einer Empfängerantenne, die die vom Untergrund reflektierten Signale aufnimmt. Reflexionen entstehen an Materialgrenzen, wenn Unterschiede in Permittivität, Permeabilität oder Leitfähigkeit vorliegen. Je stärker der dadurch ausgelöste Impedanzkontrast ist, desto mehr Energie der elektromagnetischen Wellen wird reflektiert. Die Stärke und Form der reflektierten Signale liefern Hinweise auf die Eigenschaften und die Geometrie der jeweiligen Grenzflächen \parencite{annan_ground_2003}. \\
 Eine häufig verwendete Messanordnung ist die Zero-Offset-Methode, bei der Sender und Empfänger sich in unmittelbarer Nähe befinden und gemeinsam entlang eines Profils bewegt werden. Die Laufzeit der Signale zwischen Aussendung und Empfang sowie die Position der Antennen ermöglichen Rückschlüsse auf die Tiefe und Lage der reflektierenden Strukturen. Die Messergebnisse werden als Radargramme dargestellt: Die horizontale Achse zeigt die Position entlang des Messprofils, die vertikale Achse die Laufzeit der reflektierten Signale. Als Messposition wird üblicherweise der Mittelpunkt zwischen Sende- und Empfängerantenne gewählt. Die Intensität der Bildpunkte entspricht der Amplitude der empfangenen Reflexionen zu einer bestimmten Laufzeit \parencite{annan_ground_2003}. \\
 Radargramme liefern detaillierte Informationen über die innere Struktur des Bodens. Sie ermöglichen die Erkennung von Schichtgrenzen, Untergrundstrukturen, Leitungen oder archäologischen Objekten. Allerdings gibt es auch Artefakte, die nicht durch eine Reflexion entstehen, sondern durch Effekte wie Signalabschwächung, Mehrfachreflexionen oder Störsignale.\\
-Ein herausstechendes Signal in vielen Radargrammen ist die Luft- und Bodenwelle (siehe Abb. \ref{fig:example_radargram} \textbf{(A)}). Diese Welle verläuft ununterbrochen horizontal, da ihre Laufzeit konstant ist. Sie entsteht durch die Überlagerung der Luftwelle, die sich direkt von der Sende- zur Empfangsantenne ausbreitet, und der Bodenwelle, die entlang der Oberfläche läuft. Da die Laufzeitunterschiede beider Wellen sehr gering sind, sind sie oft nicht voneinander trennbar. Die kombinierte Welle ist in der Regel die stärkste Reflexion im Radargramm und kann bodennahe Signale verdecken. Die Zeit vor der Luft- und Bodenwelle wird auch als $t_0$-Zeit bezeichnet \parencite{slob_proceedings_2004}. Da die Amplituden EM Wellen mit der Zeit je nach Bodenbeschaffenheit abnehmen, werden die aufgenommen Signale in der Regel verstärkt. Dadurch wird auch das Hintergrundrauschen verstärkt, sodass bei großen Signallaufzeiten nur noch Rauschen (siehe Abb. \textbf{(B)}) zu erkennen ist. Aktive elektrische Geräte in der Umgebung erzeugen elektromagnetische Felder, welche mit der Antennenelektrik interferieren können und Störsignale in den Daten erzeugen (siehe Abb. \textbf{(C)}).
+Ein herausstechendes Signal in vielen Radargrammen ist die Luft- und Bodenwelle (siehe Abb. \ref{fig:example_radargram} \textbf{(A)}). Diese Welle verläuft ununterbrochen horizontal, da ihre Laufzeit konstant ist. Sie entsteht durch die Überlagerung der Luftwelle, die sich direkt von der Sende- zur Empfangsantenne ausbreitet, und der Bodenwelle, die entlang der Oberfläche läuft. Da die Laufzeitunterschiede beider Wellen sehr gering sind, sind sie oft nicht voneinander trennbar. Die kombinierte Welle ist in der Regel die stärkste Reflexion im Radargramm und kann bodennahe Signale verdecken. Die Zeit vor der Luft- und Bodenwelle wird auch als $t_0$-Zeit bezeichnet \parencite{slob_proceedings_2004}. Da die Amplituden EM Wellen mit der Zeit je nach Bodenbeschaffenheit abnehmen, werden die aufgenommen Signale in der Regel verstärkt. Dadurch wird auch das Hintergrundrauschen verstärkt, sodass bei großen Signallaufzeiten nur noch Rauschen \textbf{(B)} zu erkennen ist. Aktive elektrische Geräte in der Umgebung erzeugen elektromagnetische Felder, welche mit der Antennenelektrik interferieren können und Störsignale in den Daten erzeugen \textbf{(C)}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{radargram_plots/Radargram_1_cut.jpg}
-    \caption{Radargramm (Ausschnitt der ersten 60 m von Profil 1) mit Luft- und Bodenwelle (A), Rauschen (B) und Störsignalen (C)}
+    \includegraphics[width=\textwidth]{pictures/rg_1_cut.jpg}
+    \caption{Radargramm von Profil 1 (Ausschnitt der ersten 60 m) mit Luft- und Bodenwelle (A), Rauschen (B) und Störsignalen (C)}
     \label{fig:example_radargram}
 \end{figure}
 \noindent Der Datensatz, der in dieser Arbeit verwendet wird, besteht aus insgesamt 30 Radargrammen. Diese wurden im Rahmen archäologischer Untersuchungen aufgenommen, um unter anderem Siedlungsstrukturen im Umfeld der jungsteinzeitlichen Fundstelle Lüchow LA 11 (Ostholstein) zerstörungsfrei zu erfassen und zu dokumentieren. Das Untersuchungsgebiet umfasst den heute trockengelegten Duvensee \parencites{corradini_understanding_2020}{corradini_day_2023}, an dessen Ufer in der Jungsteinzeit gesiedelt wurde. Ziel der Messungen war es, mithilfe von Bodenradar (GPR) den damaligen Seeboden zu bestimmen und Hinweise auf prähistorische Siedlungsaktivitäten zu erhalten. Dafür wurde eine 200 MHz Antenne in Verbindung mit der SIR 4000 Apparatur von Geophysical Survey Solutions und für die Koordinatenbestimmung ein Stonex RTK-DGNSS Empfänger verwendet. Der Profilabstand betrug ca. 5 m. In Abbildung \ref{fig:map} sieht man die Profile, wobei Profil 1 und Profil 30 hervorgehoben sind. Profil 1 wurde als Trainingsdatensatz und Profil 30 als Testdatensatz ausgewählt. Die restlichen Profile wurden nicht verwendet.\\
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{../gis/übersicht_vers2_p1.jpg}
-    \caption{Übersichtskarte von Schleswig Holstein (links oben). Ausschnitt aus dem Kreis Herzogtum Lauenburg (links unten) einschließlich einer Detailansicht des Untersuchungsgebiets (rechts) mit den Radargrammprofilen des Datensatzes, hervorgehoben sind das Trainingsprofil 1 und das Testprofil 30. Hintergrundkarte: © \textcite{google_google_2021}. Flächen der Bundesländer und Kreise: © \textcite{bundesamt_fur_kartographie_und_geodasie_katasterflachen_2024}.}
+    \includegraphics[width=\textwidth]{pictures/übersicht_vers3.jpg}
+    \caption{Übersichtskarte von Schleswig Holstein mit dem Standort des Untersuchungsgebiets (links) und Detailansicht des Untersuchungsgebiets mit den Radargrammprofilen des Datensatzes (rechts) im Koordinaten-Referenzsystem EPSG:32632 (WGS 84 / UTM 32 N). Hervorgehoben sind das Trainingsprofil 1 und das Testprofil 30. \\
+    Hintergrundkarte links: © 2025 NASA, Kartendaten © 2025 GeoBasis-DE/BKG (©2009), Google. Hintergrundkarte rechts: © 2025 Airbus, GeoContent, Maxar Technologies, Kartendaten © 2025 GeoBasis-DE/BKG (©2009), Google. Flächen der Bundesländer und Landkreise: © BKG (2025) dl-de/by-2-0, Datenquellen: \url{https://sgx.geodatenzentrum.de/web\_public/gdz/datenquellen/datenquellen\_vg\_nuts.pdf}.}
     \label{fig:map}
 \end{figure}
+
 \noindent Der für diese Analyse verwendete Datensatz wurde bereits vorprozessiert bereitgestellt, wobei drei Prozessierstufen zugrunde liegen (siehe Abb. \ref{fig:preprocessing_steps}). \\
-\noindent Prozessierstufe 1 beinhaltet ein zeitliches Beschneiden der Radargramme, wobei die Totzeit entfernt wird und zu starkes Rauschen bei langen Laufzeiten abgeschnitten wird. Außerdem wird der Spurabstand auf konstante 2 cm gesetzt und bei Entstehung einer Lücke, dazwischen linear interpoliert. Die aufgezeichneten Amplitudenwerte werden dabei nicht bearbeitet. \\
+\noindent Prozessierstufe 1 beinhaltet ein zeitliches Beschneiden der Radargramme, wobei die $t_0$-Zeit entfernt wird und zu starkes Rauschen bei langen Laufzeiten abgeschnitten wird. Außerdem wird der Spurabstand auf konstante 2 cm gesetzt und bei Entstehung einer Lücke, dazwischen linear interpoliert. Die aufgezeichneten Amplitudenwerte werden dabei nicht bearbeitet. \\
 In Prozessierstufe 2 wird ein DC Offset, also ein Mittelwert über alle Daten, entfernt, sodass die Amplitudenwerte um den Nullpunkt zentriert sind. Desweiteren werden die Daten mit einem Medianfilter über fünf Samples in x-Richtung geglättet. Ebenso wird ein Bandpassfilter mit einem Bandpass von 25 MHz bis 500 MHz auf die Daten angewendet, um hochfrequentes Rauschen und langwellige Störungen zu reduzieren. Im Anschluss werden die Daten verstärkt. Dies passiert mit einer durch fünf Verstärkungspunkte definierten Verstärkungsfunktion. Die Punkte liegen bei -20, 0, 20, 25 und 30 dB und sind gleichmäßig über die Zeit verteilt. Das bedeutet, dass die zeitlich ersten Samples mit -20 dB und die zeitlich letzten Samples mit 30 dB verstärkt werden. Zuletzt wird noch ein Medianfilter über drei Samples in t-Richtung angewendet. \\
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{pictures/flow_chart.png}
-    \caption{Vorverarbeitungsschritte des Datensatzes mit den einzelnen Prozessierungsschritten (links) und den Prozessierstufen (rechts).}
+    \includegraphics[width=\textwidth]{../presentation/pics/vorlage.jpg}
+    \caption{Vorverarbeitungsschritte des Datensatzes mit den einzelnen Prozessierungsschritten und den Prozessierstufen.}
     \label{fig:preprocessing_steps}
 \end{figure}
-\noindent Die letzte Prozessierstufe beinhaltet einen Wellenzahlhochpassfilter mit einem Wert von 0,1 $\frac{1}{\,\mathrm{m}}$, da in den Daten in x-Richtung ein unerwünschtes langwelliges Signal zwischen 40 und 60 ns zu sehen war. Dies hatte auch zur Folge, dass die Luft-und Bodenwelle entfernt wurde. \\
+\noindent Die letzte Prozessierstufe beinhaltet einen Wellenzahlhochpassfilter mit einem Wert von 0,1 $\frac{1}{\,\mathrm{m}}$, da in den Daten in x-Richtung ein unerwünschtes langwelliges Signal zwischen 40 und 60 ns zu sehen war. Dies hatte auch zur Folge, dass die Luft-und Bodenwelle entfernt wurden. \\
 
 \subsection{Merkmale}
 
 In der Seismik beschreiben \textcite{chopra_seismic_2007} Merkmale als jede Form von seismischen Daten, die für die Interpretation interessante Eigenschaften visuell hervorheben oder quantifizieren. Die Auswahl geeigneter Merkmale ist entscheidend für die Qualität der Analyseergebnisse, da sie maßgeblich beeinflusst, wie gut die zugrunde liegenden physikalischen Prozesse erkannt und interpretiert werden können. Ein zentrales Problem bei der Merkmalsauswahl besteht darin, dass heutzutage eine enorme Vielfalt an seismischen Merkmalen existiert, die kaum noch zu überschauen ist \parencites{zhao_seismic_2018}{qi_seismic_2020}{barnes_too_2006}. Die stetige Entwicklung neuer Merkmale, oft auch durch Kombination von schon bekannten Merkmalen, und das Fehlen einer allgemein anerkannten Einteilung \parencite{roden_geologic_2015} führen dazu, dass es zunehmend schwieriger wird, eine gezielte und sinnvolle Auswahl zu treffen. Während einige Autoren, wie \textcite{zhao_seismic_2018}, eine mathematische und qualitative Merkmalsauswahl vorschlagen, beschreiben \textcite{chopra_seismic_2007} einen intuitiven Ansatz. Dazu ist es wichtig zu wissen, was eine gute Auswahl ausmacht. \textcite{barnes_too_2006} nennt drei Kriterien, die ein Merkmal erfüllen sollte. \\
+\newpage
 
 \begin{enumerate}
     \item Unabhängigkeit von anderen Merkmalen, um Redundanz zu vermeiden.
@@ -46,10 +49,16 @@ Um eine optimale Merkmalsauswahl zu gewährleisten, wurden in dieser Arbeit zun�
 \subsubsection{Amplitude}
 
 Als Amplitudenmerkmale wurden die Instantaneous Amplitude (Momentanamplitude) \parencite{taner_complex_1979}, die Average Energy (Durchschnittliche Energie) \parencites{roden_geologic_2015}{seg_wiki_average_2021}, die Root Mean Squared Amplitude (Effektive Amplitude oder auch Quadratischer Mittelwert der Amplitude) \parencites{roden_geologic_2015}{seg_wiki_rms_2022} und die Quadrature \parencites{taner_complex_1979}{seg_wiki_complex-trace_2024} berechnet. Alle diese Amplitudenmerkmale spiegeln die Reflexionsstärke der Signale wider, wobei hohe Werte auf starke Reflexionen hindeuten. \\
-Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} ist definiert als der Betrag des analytischen Signals $S_A(t)$, das aus der komplexen Hilbert-Transformation des Originalsignals gewonnen wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Sie gibt die momentane Stärke der Welle zu jedem Zeitpunkt an.
+Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} ist definiert als der Betrag des komplexen analytischen Signals $S_A(t)$, welches aus der Summe des Originalsignals $s(t)$ und der imaginären Hilbert-Transformation des Originalsignals $\hat{s}(t)$ besteht \parencite[S. 177]{sheriff_encyclopedic_2002}. 
 
 \begin{equation}
-    A_I(t) = |S_A(t)|
+    S_A(x,t) = s(x,t) + i \cdot \hat{s}(x,t)
+\end{equation}
+
+\noindent Die Instantaneous Amplitude $A_I$ gibt die momentane Stärke der Welle zu jedem Zeitpunkt an.
+
+\begin{equation}
+    A_I(x,t) = |S_A(x,t)|
 \end{equation}
 
 %\begin{figure}[H]
@@ -97,10 +106,10 @@ Die Instantaneous Amplitude $A_I$ \parencite[S. 191]{sheriff_encyclopedic_2002} 
 %    \label{fig:rms_amplitude}
 %\end{figure}
 
-\noindent Die Quadrature $Q$ \parencite{taner_complex_1979} ist definiert als der Imaginärteil des analytischen Signals $S_A(t)$, das aus der komplexen Hilbert-Transformation des Originalsignals gewonnen wird \parencite[S. 177]{sheriff_encyclopedic_2002}. Damit ist sie kein echtes Amplitudenmerkmal, zeigt aber trotzdem dort betragsmäßig hohe Werte, wo es eine hohe Reflexionsstärke gibt.
+\noindent Die Quadrature $q$ \parencite{taner_complex_1979} ist definiert als der Imaginärteil des analytischen Signals $S_A(t)$ und ist damit die Hilbert-Transformation des Originalsignals $\hat{s}(t)$ \parencite[S. 177]{sheriff_encyclopedic_2002}. Damit ist sie kein echtes Amplitudenmerkmal, zeigt aber trotzdem dort betragsmäßig hohe Werte, wo es eine hohe Reflexionsstärke gibt.
 
 \begin{equation}
-    Q(x,t) = \text{Im}(S_A(x,t))
+    q(x,t) = \text{Im}(S_A(x,t)) = \hat{s}(x,t)
 \end{equation}
 
 %\begin{figure}[H]
@@ -149,25 +158,25 @@ Die Instantaneous Frequency ist besonders nützlich, um Frequenzänderungen im S
 
 \subsubsection{Qualitätsfaktor}
 
-Der Qualitätsfaktor $Q$ \parencite{seg_wiki_instantaneous_2024} ist ein Maß für die Güte eines Signals und beschreibt, wie gut ein Signal in Bezug auf seine Frequenz und Dämpfung ist. Er wird aus der Instantaneous Frequency $f_I$, der Instantaneous Amplitude $A_I$ und dessen zeitlichen Ableitung $A_I'$ berechnet. Der Qualitätsfaktor ist definiert als: \\
+Der Instantaneous Q (Momentanqualitätsfaktor) $Q_I$ \parencite{seg_wiki_instantaneous_2024} ist ein Maß für die Güte eines Signals und beschreibt, wie gut ein Signal in Bezug auf seine Frequenz und Dämpfung ist. Er wird aus der Instantaneous Frequency $f_I$, der Instantaneous Amplitude $A_I$ und dessen zeitlichen Ableitung $A_I'$ berechnet. Der Instantaneous Q ist definiert als: \\
 
 \begin{equation}
-    Q = \frac{-\pi f_I(t) A_I(t)}{A_I'(t)}
+    Q_I = \frac{-\pi f_I(t) A_I(t)}{A_I'(t)}
 \end{equation}
 Ein hoher Qualitätsfaktor deutet auf ein gut definiertes Signal hin, während ein niedriger Qualitätsfaktor auf ein schwaches oder verrauschtes Signal hindeutet.
 
 %\begin{figure}[H]
 %    \centering
 %    \includegraphics[width=\textwidth]{feature_plots/instantaneous_q.jpg}
-%    \caption{Qualitätsfaktor des Radargramms 1, Prozessierstufe 1}
+%    \caption{Instantaneous Q des Radargramms 1, Prozessierstufe 1}
 %    \label{fig:quality_factor}
 %\end{figure}
 
 \subsubsection{Statistische Momente}
 
 Statistische Momente sind keine konventionellen seismischen Merkmale, sondern werden in der Regel in der Statistik verwendet, um die Verteilung von Daten zu beschreiben. Wobei die ersten beiden statistischen Momente Mittelwert $\mu_1$ und Varianz $\mu_2 = \epsilon^2$ mit $\epsilon$ als Standardabweichung oft genutzt werden, sind das dritte und das vierte statistische Moment, auch Skewness $\mu_3$ (Schiefe) und Kurtosis $\mu_4$ (Wölbung) genannt \parencite{guthrie_nistsematech_2020}, oft weniger bekannt. Als Merkmale werden diese genau so wie die Average Energy und die Root Mean Squared Amplitude über ein bestimmtes Zeit- und Wegfenster $F(x,t)$ (siehe Gleichungen \ref{eq:window_function} und \ref{eq:window_counts}) berechnet. \\
-Die beiden statistischen Momenten werden in dieser Arbeit verwendet, um schwache Signale von starken zu unterscheiden. Dabei sind sie nicht nur auf das starke Rauschen bei langen Laufzeiten sensitiv, sondern auch auf Bereiche zu kürzeren Laufzeiten, in denen es keine Reflexionen, aber dafür ein Hintergrundrauschen gibt. Dabei ist es wichtig, die Fenstergröße klein zu halten, in diesem Fall $X=T=1$ zu setzen. Für einen Datenpunkt mit einem klaren Signal werden die $W=9$ Samples $A(x,t)$ in diesem Bereich ähnliche Werte besitzen und somit eine sehr komprimierte, spitze Verteilung aufweisen. Bei verrauschten Datenpunkten hingegen sind diese Werte sehr unterschiedlich und die Verteilung ist breit und flach. \\
-Wäre das Fenster um einen Datenpunkt deutlich größer gewählt, gäbe es für ein klares Signal darin mehr unterschiedlich große Werte, was zu einer weniger spitzen Verteilung um den Datenpunkt führt. Damit würde Kontrast in den Skewness- und Kurtosiswerten zwischen Datenpunkten mit einem verrauschten und einem klaren Signal verloren gehen.\\
+Die statistischen Momente Skewness und Kurtosis werden in dieser Arbeit verwendet, um schwache Signale von starken zu unterscheiden. Dabei sind sie nicht nur auf das starke Rauschen bei langen Laufzeiten sensitiv, sondern auch auf Bereiche zu kürzeren Laufzeiten, in denen es keine Reflexionen, aber dafür ein Hintergrundrauschen gibt. Dabei ist es wichtig, die Fenstergröße klein zu halten, in diesem Fall $X=T=1$ zu setzen. Für einen Datenpunkt mit einem klaren Signal werden die $W=9$ Samples $A(x,t)$ in diesem Bereich ähnliche Werte besitzen und somit eine sehr komprimierte, spitze Verteilung aufweisen. Bei verrauschten Datenpunkten hingegen sind diese Werte sehr unterschiedlich und die Verteilung ist breit und flach. \\
+Wäre das Fenster um einen Datenpunkt deutlich größer gewählt, gäbe es für ein klares Signal darin mehr unterschiedlich große Werte, was zu einer weniger spitzen Verteilung um den Datenpunkt führt. Damit würde der Kontrast in den Skewness- und Kurtosiswerten zwischen Datenpunkten mit einem verrauschten und einem klaren Signal verloren gehen.\\
 Skewness und Kurtosis werden folgendermaßen berechnet: \\
 
 \begin{equation}
@@ -231,7 +240,7 @@ Alle benannten Ähnlichkeitsmerkmale liefern laut \textcite[Abb. 25]{chopra_seis
 
 \subsubsection{Neigung}
 
-Der Dip (Neigung) $D(x, t)$ wurde in dieser Arbeit basierend auf der Instantaneous Phase $\phi_I$ berechnet, da man die Strukturverläufe sehr gut innerhalb der Phasenplots (siehe Abbildungen \ref{fig:inst_phase_result}, \ref{fig:inst_phase_p1} und \ref{fig:inst_phase_p2}) erkennen kann. Aus vertikalen und horizontalen Phasenunterschieden lässt sich der Dip wie folgt berechnen:
+Der Dip (Neigung) $D(x, t)$ wurde in dieser Arbeit basierend auf der Instantaneous Phase $\phi_I$ berechnet, da man die Strukturverläufe sehr gut innerhalb der Phasenplots (siehe Abbildungen \ref{fig:inst_phase_result}, \ref{fig:phase_q_semblance_p1} und \ref{fig:phase_freq_q_p2}) erkennen kann. Aus vertikalen und horizontalen Phasenunterschieden lässt sich der Dip wie folgt berechnen:
 
 \begin{equation}
     D(x, t) = \arctan\left( \frac{\frac{\partial \phi_I(x, t)}{\partial x}}{\frac{\partial \phi_I(x, t)}{\partial t}} \right) \cdot \frac{180}{\pi}
@@ -249,7 +258,7 @@ Der Dip (Neigung) $D(x, t)$ wurde in dieser Arbeit basierend auf der Instantaneo
 \subsubsection{Definition und Funktionsweise der Self-Organizing Map}
 
 Die Self-Organizing Map (SOM) ist ein Algorithmus des unüberwachten maschinellen Lernens, der in seiner heutigen Form 1982 von Teuvo Kohonen entwickelt wurde \parencite{kohonen_self-organizing_2001}.
-Die SOM ist nach Definition des Entwicklers ein Neuronales Netz, da es aus einem regulären Gitter aus Neuronen besteht, die miteinander als Netz in Verbindung stehen \parencite{kohonen_self-organizing_2001}. Nach heutiger Definition von \textcite{ibm_data_and_ai_team_what_nodate} ist ein Neuronales Netz allerdings ein Algorithmus, der zwar Entscheidungen auf ähnliche Weise wie das menschliche Gehirn trifft, aber aus verschiedenen Ebenen, also einer Eingabeschicht, mehreren verborgenen Ebenen und einer Ausgabeschicht besteht. Nach dieser Definition ist die SOM kein Neuronales Netz, aber dennoch ist sie als wichtiger Bestandteil des machinellen Lernens in Büchern über Neuronale Netze zu finden \parencites{brause_neuronale_1995}{rojas_theorie_1993}{kinnebrock_neuronale_2018}.\\
+Die SOM ist nach Definition des Entwicklers ein Neuronales Netz, da es aus einem regulären Gitter aus Neuronen besteht, die miteinander als Netz in Verbindung stehen \parencite{kohonen_self-organizing_2001}. Nach heutiger Definition von \textcite{ibm_data_and_ai_team_what_nodate} ist ein Neuronales Netz ein Algorithmus, der zwar Entscheidungen auf ähnliche Weise wie das menschliche Gehirn trifft, aber aus verschiedenen Ebenen, also einer Eingabeschicht, mehreren verborgenen Ebenen und einer Ausgabeschicht besteht. Nach dieser Definition ist die SOM kein Neuronales Netz, aber dennoch ist sie als wichtiger Bestandteil des machinellen Lernens in Büchern über Neuronale Netze zu finden \parencites{brause_neuronale_1995}{rojas_theorie_1993}{kinnebrock_neuronale_2018}.\\
 Bei der Initialisierung einer SOM wird zunächst ein festes $I \text{x} J$ Neuronengitter ($I, J \in \mathbb{N}$) mit den Gitterkoordinaten $i \in \{0, ..., I\}$ und $j \in \{0, ..., J\}$ erstellt, indem die Neuronen $\chi_{ij}$ feste Distanzen zueinander besitzen \parencite{kohonen_self-organizing_2001}. Typischerweise ist die Anordnung entweder rechteckig oder hexagonal:\\
 
 \begin{equation}
@@ -289,104 +298,104 @@ Bei der Initialisierung einer SOM wird zunächst ein festes $I \text{x} J$ Neuro
     \mathbf{w}_{m}^c = {\operatorname{argmin}_{\mathbf{w}_{ij}}} \; d(\mathbf{w}_{ij},\mathbf{e}_m)
     \label{eq:bmu}
 \end{equation}
-Nach der Bestimmung der BMU verändern die Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der aktuellen Lernrate $\alpha$, dem aktuellen Nachbarschaftsradius $\sigma$, der Nachbarschaftsfunktion $h$, der euklidischen Distanz zum Eingabedatenpunkt $d$ und der euklidischen Distanz zur BMU $D$ im Neuronengitter. \\
-Die Lernrate $\alpha$ bestimmt, wie stark die Gewichte der Neuronen angepasst werden. Eine Lernrate von 1 würde bedeuten, dass die Gewichte des BMU direkt auf den Eingabepunkt $\mathbf{e}_m$ gesetzt werden. Eine Lernrate von 0 würde bedeuten, dass die Gewichte nicht angepasst werden. Die Lernrate wird in der Regel mit steigender Iterationszahl verringert, um eine Konvergenz zu erreichen \parencite{kohonen_self-organizing_2001}. Es gibt verschiedene Ansätze, die Lernrate zu verringern. \textcite{natita_appropriate_2016} beschreiben eine Abnahme invers proportional zur Anzahl der Iterationen $n$ (\ref{eq:inverse_learning_rate}), eine linear abnehmende Lernrate (\ref{eq:linear_learning_rate}) und eine exponentiell abnehmende Lernrate (\ref{eq:exponential_learning_rate}).
+Nach der Bestimmung der BMU verändern die Neuronen ihre Gewichte in Richtung des Eingabepunktes. Dabei ist die Stärke der Anpassung abhängig von der aktuellen Lernrate $\alpha$, dem aktuellen Nachbarschaftsradius $\sigma$, der Nachbarschaftsfunktion $h$, der euklidischen Distanz zum Eingabedatenpunkt $d$ im Merkmalsraum und der euklidischen Distanz zur BMU $D$ im Neuronengitter. \\
+Die Lernrate $\alpha$ bestimmt, wie stark die Gewichte der Neuronen angepasst werden. Eine Lernrate von 1 würde bedeuten, dass die Gewichte der BMU direkt auf den Eingabepunkt $\mathbf{e}_m$ gesetzt werden. Eine Lernrate von 0 würde bedeuten, dass die Gewichte nicht angepasst werden. Die Lernrate wird in der Regel mit steigender Iterationszahl verringert, um eine Konvergenz zu erreichen \parencite{kohonen_self-organizing_2001}. Eine Iteration ist dabei ein Trainingsschritt, in dem die SOM an einem Eingabedatenpunkt trainiert wird. Es gibt verschiedene Ansätze, die Lernrate zu verringern. \textcite{natita_appropriate_2016} beschreiben eine Abnahme invers proportional zur Anzahl der Iterationen $n_I$ (\ref{eq:inverse_learning_rate}), eine linear abnehmende Lernrate (\ref{eq:linear_learning_rate}) und eine exponentiell abnehmende Lernrate (\ref{eq:exponential_learning_rate}).
 
 \begin{equation}
-    \alpha_{\text{inv}}(n) = \alpha_0 \cdot \frac{1}{n}
+    \alpha_{\text{inv}}(n_I) = \alpha_0 \cdot \frac{1}{n_I}
     \label{eq:inverse_learning_rate}
 \end{equation}
 
 \begin{equation}
-    \alpha_{\text{lin}}(n, N) = \alpha_0 \cdot (1 - \frac{n}{N})
+    \alpha_{\text{lin}}(n_I, N_I) = \alpha_0 \cdot (1 - \frac{n_I}{N_I})
     \label{eq:linear_learning_rate}
 \end{equation}
 
 \begin{equation}
-    \alpha_{\text{exp}}(n, N) = \alpha_0 \cdot e^{-\frac{n}{N}}
+    \alpha_{\text{exp}}(n_I, N_I) = \alpha_0 \cdot e^{-\frac{n_I}{N_I}}
     \label{eq:exponential_learning_rate}
 \end{equation}
-$\alpha_0$ ist dabei die Anfangs-Lernrate, $n$ die aktuelle Iteration und $N$ die Gesamtanzahl der Iterationen. In dieser Arbeit wurde eine invers zur Iterationenzahl (\ref{eq:inverse_learning_rate}) abnehmende Lernrate verwendet.\\
-Der Nachbarschaftsradius $\sigma(n)$ bestimmt, wie viele Neuronen im Neuronengitter signifikant angepasst werden. Er wird in der Regel mit steigender Iterationszahl verringert, um die Anpassung auf die benachbarten Neuronen zu reduzieren und die SOM zu stabilisieren \parencite{kohonen_self-organizing_2001}. Auch hier gibt es verschiedene Ansätze, die Abnahme des Nachbarschaftsradius zu berechnen. \textcite{natita_appropriate_2016} beschreiben eine exponentiell abnehmende Nachbarschaftsgröße (\ref{eq:exponential_neighborhood_size}), aber auch linear (\ref{eq:linear_neighborhood_size}) und invers proportional zur Anzahl der Iterationenzahl (\ref{eq:inverse_neighborhood_size}) abnehmende Nachbarschaftsgrößen sind verbreitet \parencite{vettigli_minisom_2021}.
+$\alpha_0$ ist dabei die Anfangs-Lernrate, $n_I$ die aktuelle Iteration und $N_I$ die Gesamtanzahl der Iterationen. In dieser Arbeit wurde eine invers zur Iterationenzahl (\ref{eq:inverse_learning_rate}) abnehmende Lernrate verwendet.\\
+Der Nachbarschaftsradius $\sigma(n_I)$ bestimmt, wie viele Neuronen im Neuronengitter signifikant angepasst werden. Er wird in der Regel mit steigender Iterationszahl verringert, um die Anpassung auf die benachbarten Neuronen zu reduzieren und die SOM zu stabilisieren \parencite{kohonen_self-organizing_2001}. Auch hier gibt es verschiedene Ansätze, die Abnahme des Nachbarschaftsradius zu berechnen. \textcite{natita_appropriate_2016} beschreiben eine exponentiell abnehmende Nachbarschaftsgröße (\ref{eq:exponential_neighborhood_size}), aber auch linear (\ref{eq:linear_neighborhood_size}) und invers proportional zur Anzahl der Iterationenzahl (\ref{eq:inverse_neighborhood_size}) abnehmende Nachbarschaftsgrößen sind verbreitet \parencite{vettigli_minisom_2021}.
 
 \begin{equation}
-    \sigma_{\text{inv}}(n, N) = \frac{\sigma_0}{1 + \frac{n}{N} \cdot (\sigma_0 - 1)}
+    \sigma_{\text{inv}}(n_I, N_I) = \frac{\sigma_0}{1 + \frac{n_I}{N_I} \cdot (\sigma_0 - 1)}
     \label{eq:inverse_neighborhood_size}
 \end{equation}
 
 \begin{equation}
-    \sigma_{\text{lin}}(n, N) = \sigma_0 + \frac{n}{N} \cdot (1 - \sigma_0)
+    \sigma_{\text{lin}}(n_I, N_I) = \sigma_0 + \frac{n_I}{N_I} \cdot (1 - \sigma_0)
     \label{eq:linear_neighborhood_size}
 \end{equation}
 
 \begin{equation}
-    \sigma_{\text{exp}}(n, N) = \sigma_0 \cdot e^{-\frac{n}{N}}
+    \sigma_{\text{exp}}(n_I, N_I) = \sigma_0 \cdot e^{-\frac{n_I}{N_I}}
     \label{eq:exponential_neighborhood_size}
 \end{equation}
-Diese starten bei einem initialen Radius $\sigma_0$ und enden bei 1, sodass am Ende der SOM-Trainingsphase nur noch das BMU angepasst wird. In dieser Arbeit wurde eine invers zur Anzahl der Iterationenzahl abnehmende Nachbarschaftsgröße (\ref{eq:inverse_neighborhood_size}) verwendet.\\
-Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(D(\chi_{ij}, \chi_{m}^c), \sigma(n))$, wie stark die Gewichte der Neuronen in der Nachbarschaft des BMU angepasst werden und sind abhängig von der euklidischen Distanz $D(\chi_{ij}, \chi_{m}^c)$ der Neuronen zur BMU $\chi_{m}^c$ im Neuronengitter. Diese sind gängigerweise Gaussian (\ref{eq:gaussian}), Mexican Hat (\ref{eq:mexican_hat}), besser bekannt als Ricker Wavelet, Bubble (\ref{eq:bubble}) und Triangle (\ref{eq:triangle}) und werden wie folgt definiert \parencite{vettigli_minisom_2021}:
+Diese starten bei einem initialen Radius $\sigma_0$ und enden bei 1, sodass am Ende der SOM-Trainingsphase nur noch das BMU signifikant angepasst wird \parencite{kohonen_self-organizing_2001}. In dieser Arbeit wurde eine invers zur Anzahl der Iterationenzahl abnehmende Nachbarschaftsgröße (\ref{eq:inverse_neighborhood_size}) verwendet.\\
+Aufbauend darauf bestimmen die Nachbarschaftsfunktionen $h(D(\chi_{ij}, \chi_{m}^c), \sigma(n_I))$, wie stark die Gewichte der Neuronen in der Nachbarschaft des BMU angepasst werden und sind abhängig von der euklidischen Distanz $D(\chi_{ij}, \chi_{m}^c)$ der Neuronen $\chi_{ij}$ zur BMU $\chi_{m}^c$ im Neuronengitter. Diese sind gängigerweise Gaussian (\ref{eq:gaussian}), Mexican Hat (\ref{eq:mexican_hat}), besser bekannt als Ricker Wavelet, Bubble (\ref{eq:bubble}) und Triangle (\ref{eq:triangle}) und werden wie folgt definiert \parencite{vettigli_minisom_2021}:
 
 \begin{equation}
-    h_{\text{gaussian}}(D, \sigma(n)) = \exp\left(-\frac{D^2}{2\sigma(n)^2}\right)
+    h_{\text{gaussian}}(D, \sigma(n_I)) = \exp\left(-\frac{D^2}{2\sigma^2(n_I)}\right)
     \label{eq:gaussian}
 \end{equation}
 
 \begin{equation}
-    h_{\text{mexican hat}}(D, \sigma(n)) = \exp\left(-\frac{D^2}{2\sigma(n)^2}\right) \cdot \left(1 - \frac{D^2}{\sigma(n)^2}\right)
+    h_{\text{mexican hat}}(D, \sigma(n_I)) = \exp\left(-\frac{D^2}{2\sigma^2(n_I)}\right) \cdot \left(1 - \frac{D^2}{\sigma^2(n_I)}\right)
     \label{eq:mexican_hat}
 \end{equation}
 
 \begin{equation}
-    h_{\text{bubble}}(D, \sigma(n)) =
+    h_{\text{bubble}}(D, \sigma(n_I)) =
     \begin{cases}
-        1 & \text{falls } D < \sigma(n) \\
+        1 & \text{falls } D < \sigma(n_I) \\
         0 & \text{sonst}
     \end{cases}
     \label{eq:bubble}
 \end{equation}
 
 \begin{equation}
-    h_{\text{triangle}}(D, \sigma(n)) =
+    h_{\text{triangle}}(D, \sigma(n_I)) =
     \begin{cases}
-        1 - \frac{D}{\sigma(n)} & \text{falls } D < \sigma(n) \\
+        1 - \frac{D}{\sigma(n_I)} & \text{falls } D < \sigma(n_I) \\
         0 & \text{sonst}
     \end{cases}
     \label{eq:triangle}
 \end{equation}
 Während die Funktionen (\ref{eq:gaussian}) und (\ref{eq:mexican_hat}) eine kontinuierliche Anpassung der Gewichte ermöglichen, passen die Funktionen (\ref{eq:bubble}) und (\ref{eq:triangle}) die Gewichte nur für Neuronen an, die sich innerhalb des Nachbarschaftsradius befinden. In dieser Arbeit wurde die Gaussian-Funktion (\ref{eq:gaussian}) verwendet, da sie der Standard in vielen Anwendungen ist \parencite{kohonen_self-organizing_2001}.\\
-Am Ende einer Iteration $n$ werden alle Gewichte $\mathbf{w}_{ij}$ der Neuronen $\chi_{ij}$ mit dieser Formel angepasst \parencite{vettigli_minisom_2021}:
+Am Ende einer Iteration werden alle Gewichte $\mathbf{w}_{ij}$ der Neuronen $\chi_{ij}$ mit dieser Formel angepasst \parencite{vettigli_minisom_2021}:
 
 \begin{equation}
-    \mathbf{w}_{ij} \leftarrow \mathbf{w}_{ij} + \alpha(n) \cdot h(D(\chi_{ij}, \chi_{m}^c), \sigma(n)) \cdot d(\mathbf{w}_{ij}, \mathbf{e}_m)
+    \mathbf{w}_{ij} \leftarrow \mathbf{w}_{ij} + \alpha(n_I) \cdot h(D(\chi_{ij}, \chi_{m}^c), \sigma(n_I)) \cdot d(\mathbf{w}_{ij}, \mathbf{e}_m)
 \end{equation}
 
-\noindent Da alle wichtigen Hyperparameter mit der Zeit, also mit der Iterationenzahl $n$ abnehmen, wird die Stärke der Anpassung der Neuronengewichte immer geringer. Damit wird sichergestellt, dass die SOM am Anfang des Trainings schnell die grobe Struktur der Eingabedaten abbildet und sich gegen Ende des Trainings immer genauer an sie annähert. Wie gut das SOM Modell am Ende die Daten abbilden kann, wird mit Quantization Error $QE$ gemessen. Dieser wird berechnet, indem die durchschnittliche euklidische Distanz $d$ zwischen den Eingabedaten $\mathbf{e}_m$ und den zugehörigen BMUs $\mathbf{w}_m^c$ gemessen wird \parencites{natita_appropriate_2016}{vettigli_minisom_2021}.
+\noindent Da alle wichtigen Parameter mit der Zeit, also mit der Iterationenzahl $n_I$ abnehmen, wird die Stärke der Anpassung der Neuronengewichte immer geringer. Damit wird sichergestellt, dass die SOM am Anfang des Trainings schnell die grobe Struktur der Eingabedaten abbildet und sich gegen Ende des Trainings immer genauer an sie annähert. Wie gut das SOM Modell am Ende die Daten abbilden kann, wird mit Quantization Error $QE$ gemessen. Dieser wird berechnet, indem die durchschnittliche euklidische Distanz $d$ zwischen den Eingabedaten $\mathbf{e}_m$ und den Gewichten der zugehörigen BMUs $\mathbf{w}_m^c$ gemessen wird \parencites{natita_appropriate_2016}{vettigli_minisom_2021}.
 
 \begin{equation}
     QE = \frac{1}{M} \sum_{m=1}^{M} d(\mathbf{w}_{m}^c, \mathbf{e_m})
 \end{equation}
 
-\noindent Wie gut die SOM ihre Topologie erhält, wird mit dem Topographic Error $TE$ gemessen. Topologieerhaltung bedeutet dabei, dass im besten Fall Neuronen, die im Neuronengitter nah beieinander liegen, auch im Merkmalsraum ähnliche Gewichte besitzen. Der $TE$ wird dabei so berechnet, dass für jeden Eingabedatenpunkt $\mathbf{e}_m$ nicht nur die BMU sondern auch die SBMU (second best matching unit) berechnet wird. Sind diese nicht benachbart, wird dies als Fehler gewertet. Der $TE$ ist dann der Quotient aus Fehleranzahl $Q \in \mathbb{N}$ und Gesamtzahl der Samples $M$ \parencite{vettigli_minisom_2021}.
+\noindent Wie gut die SOM ihre Topologie erhält, wird mit dem Topographic Error $TE$ gemessen. Topologieerhaltung bedeutet dabei, dass im besten Fall Neuronen, die im Neuronengitter nah beieinander liegen, auch im Merkmalsraum ähnliche Gewichte besitzen. Der $TE$ wird dabei so berechnet, dass für jeden Eingabedatenpunkt $\mathbf{e}_m$ nicht nur die BMU sondern auch die SBMU (second best matching unit) berechnet wird. Sind diese im Neuronengitter nicht direkt benachbart, wird dies als Fehler gewertet. Der $TE$ ist dann der Quotient aus Fehleranzahl $\xi \in \mathbb{N}$ und Gesamtzahl der Samples $M$ \parencite{vettigli_minisom_2021}.
 
 \begin{equation}
-    TE = \frac{Q}{M}
+    TE = \frac{\xi}{M}
 \end{equation}
 %Wurden alle Eingabedaten $\mathbf{e}_m$ einmal durchlaufen, wird von einer Epoche gesprochen \parencite{kohonen_self-organizing_2001}.\\
 
 \subsubsection{Hyperparameter}
 
-Die Festlegung der Hyperparameter ist entscheidend dafür, ob die SOM ein gutes Ergebnis liefert. Dabei gibt es keine fundierte Theorie, wie man seine Modellparameter initial wählen sollte. Dies liegt vor allem daran, dass die Wahl der Parameter hochgradig abhängig von der Art der Eingabedaten, der Trainingsdauer und der Erwartung an die Genauigkeit des Modells sind. In dieser Arbeit wird mit der Python-Bibliothek \texttt{MiniSom} gearbeitet, in der \textcite{vettigli_minisom_2021} nützliche Empfehlungen für sinnvolle Startwerte für die Wahl der Hyperparameter innerhalb des Codes bereitstellt, an denen sich orientiert wurde. \\
+Bei Hyperparametern handelt es sich um externe Konfigurationsvariablen, die vor dem Training des Modells festgelegt werden und das Lernverhalten des Algorithmus steuern. Die Festlegung ist entscheidend dafür, ob die SOM ein gutes Ergebnis liefert. Dabei gibt es keine fundierte Theorie, wie man seine Hyperparameter initial wählen sollte. Dies liegt vor allem daran, dass die Wahl der Parameter hochgradig abhängig von der Art der Eingabedaten, der Trainingsdauer und der Erwartung an die Genauigkeit des Modells sind. In dieser Arbeit wird mit der Python-Bibliothek \texttt{MiniSom} gearbeitet, in der \textcite{vettigli_minisom_2021} nützliche Empfehlungen für sinnvolle Startwerte für die Wahl der Hyperparameter innerhalb des Codes bereitstellt, an denen sich orientiert wurde. \\
 Die Wahl der Kartengröße orientiert sich an einer Faustregel von \textcite{vettigli_minisom_2021} für Dimensionsreduktionsaufgaben. Demnach sollte die Anzahl der Neuronen $L = I \cdot J$ durch die Formel
 
 \begin{equation}
     L = 5 \cdot \sqrt{M}
 \end{equation}
-bestimmt werden, wobei $M$ für die Anzahl der Eingabedatenpunkte steht. Mit $M = 6.638.100$ ergibt sich eine Neuronenzahl von
+bestimmt werden, wobei $M$ für die Anzahl der Eingabedatenpunkte steht. Mit $M = 6.638.100$ (Anzahl der Eingabedatenpunkte des Trainingsprofils) ergibt sich eine Neuronenzahl von
 
 \begin{equation}
     L = 5 \cdot \sqrt{6.638.100} \approx 5 \cdot 2577 \approx 12885\text{,}
 \end{equation}
-was einem Gitter von etwa $113 \text{x} 114$ Neuronen entspricht. Da eine derart große SOM jedoch sehr lange Trainingszeiten erfordern würde, wurde stattdessen ein $30 \text{x} 30$ Neuronengitter gewählt. Diese Größe stellt einen praxisorientierten Kompromiss zwischen Trainingsdauer und Ergebnisqualität dar. Wichtig zu erwähnen ist, dass der $QE$ indirekt von der Anzahl der Neuronen abhängt. Würde man für einen gleichen Datensatz die Neuronenanzahl stumpf erhöhen, so würde der Fehler geringer werden, da die Abstände zur BMU bei mehr möglichen BMUs im Schnitt kleiner werden, und umgekehrt \parencite{polzlbauer_survey_2004}. Um eine Vergleichbarkeit von allen Modellen untereinander zu gewährleisten, wurde die Kartengröße für alle Tests konstant gelassen. \\
+was einem Gitter von etwa $113 \text{x} 114$ Neuronen entspricht. Da eine derart große SOM jedoch sehr lange Trainingszeiten erfordern würde, wurde stattdessen ein $30 \text{x} 30$ Neuronengitter gewählt. Diese Größe stellt einen praxisorientierten Kompromiss zwischen Trainingsdauer und Ergebnisqualität dar. Wichtig zu erwähnen ist, dass der $QE$ indirekt von der Anzahl der Neuronen abhängt. Würde man für einen gleichen Datensatz die Neuronenanzahl erhöhen, so würde der Fehler geringer werden, da die Abstände zur BMU bei mehr möglichen BMUs im Schnitt kleiner werden, und umgekehrt \parencite{polzlbauer_survey_2004}. Um eine Vergleichbarkeit von allen Modellen untereinander zu gewährleisten, wurde die Kartengröße für alle Tests konstant gelassen. \\
 Für die Lernrate wurde von \textcite{vettigli_minisom_2021} ein Startwert von  $\alpha_0 = 0,5$ vorgeschlagen. Für den Start - Nachbarschaftsradius $\sigma_0$ gibt der \texttt{MiniSom} - Entwickler eine maximale Größe von:
 
 \begin{equation}
@@ -399,8 +408,18 @@ Große Radien bedeuten eine stärkere Segmentierung von vor allem punktdichten C
     \item $\alpha_0 = 0,3$ und $\sigma_0 = 7$
     \item $\alpha_0 = 0,5$ und $\sigma_0 = 5$
 \end{enumerate}
-Die inversen Abnahmefunktionen von Lernrate $\alpha(n)$ und Nachbarschaftsradius $\sigma(n)$ (siehe Gleichungen \ref{eq:inverse_learning_rate} und \ref{eq:inverse_neighborhood_size}) besitzen das Problem, dass $\alpha$ und $\sigma$ bei einer großen Anzahl an Iterationen $N$, schon früh im Training sehr klein werden. Dafür gibt \textcite{vettigli_minisom_2021} in seiner \texttt{MiniSom} - Klasse die Möglichkeit, Lernrate und Nachbarschaftsradius abhängig von der Epochenzahl abnehmen zu lassen. Eine Epoche ist definiert als ein Trainingslauf indem alle Eingabedatenpunkte einmal durchlaufen wurden. Diese Funktion wurde in dieser Arbeit genutzt, womit $n$ innerhalb der Gleichungen \ref{eq:inverse_learning_rate} und \ref{eq:inverse_neighborhood_size} für die aktuelle Epoche und $N$ für die Gesamtanzahl der Epochen steht. \\
-Die Anzahl der Epochen $N$ wurde in dieser Arbeit intuitiv auf $N = 50$ gesetzt, was bei bei den ersten Läufen zu sehr guten Ergebnissen geführt hat. Außerdem wurde die Sortierung nach $10$ und $30$ Epochen angeschaut, um zu überprüfen, ob eine so hohe Epochenzahl überhaupt notwendig ist. \\
+Die inversen Abnahmefunktionen von Lernrate $\alpha(n_I)$ und Nachbarschaftsradius $\sigma(n_I)$ (siehe Gleichungen \ref{eq:inverse_learning_rate} und \ref{eq:inverse_neighborhood_size}) besitzen das Problem, dass $\alpha$ und $\sigma$ bei einer großen Anzahl an Iterationen $N_I$, schon früh im Training sehr klein werden. Dafür gibt \textcite{vettigli_minisom_2021} in seiner \texttt{MiniSom} - Klasse die Möglichkeit, Lernrate und Nachbarschaftsradius abhängig von der Epochenzahl $n_E$ abnehmen zu lassen. Eine Epoche ist definiert als ein Trainingslauf, in dem alle Eingabedatenpunkte einmal durchlaufen werden. Diese Funktion wurde in dieser Arbeit genutzt, womit $n_I$ innerhalb der Gleichungen \ref{eq:inverse_learning_rate} und \ref{eq:inverse_neighborhood_size} durch die aktuelle Epoche $n_E$ und $N_I$ durch die Gesamtanzahl der Epochen $N_E$ ersetzt wird. \\
+Die Anzahl der Epochen wurde in dieser Arbeit intuitiv auf $N_E = 50$ gesetzt, was bei bei den ersten Läufen zu sehr guten Ergebnissen geführt hat. Außerdem wurde die Sortierung nach $10$ und $30$ Epochen angeschaut, um zu überprüfen, ob eine so hohe Epochenzahl überhaupt notwendig ist. \\
+
+\subsubsection{Training}
+
+Nach der Festlegung der Hyperparameter und Initialisierung der Self-Organizing Map wurden die Merkmale für das Training vorbereitet. In dieser Arbeit wurde dafür der Merkmalsraum auf $[0, 1]^K$ skaliert. Die Merkmalsauswahl basierte auf den drei Kriterien von \textcite{barnes_too_2006}, sodass für jeden Trainingslauf die Self-Organizing Map auf mehreren unabhängigen Merkmalen trainiert wurde. Die Anzahl der Merkmale $K$ variiert in dieser Arbeit zwischen drei und sieben, wobei dies keinen merklichen Einfluss auf die Trainingsdauer hat. Die verwendete \texttt{MiniSom}-Bibliothek nutzt effiziente Vektoroperationen, wodurch die Dauer weniger von der Dimension der Vektoren als vielmehr von der Anzahl der Berechnungen und damit von der Gesamtzahl der Iterationen $N_I$ abhängt. Diese berechnen sich als Produkt der Epochenzahl $N_E$ und der Anzahl der Eingabedatenpunkte $M$.
+
+\begin{equation}
+    N_I = N_E \cdot M
+\end{equation}
+
+\noindent Bei einer Epochenzahl von $N_E = 50$ und $M = 6.638.100$ Eingabedatenpunkten ergibt sich eine Gesamtanzahl von $N_I = 331.905.000$ Iterationen, was zu einer langen Trainingsdauer führt. Um diese zu verkürzen, wurden die ersten Modelle nur auf den ersten 60 m des Radargramms von Profil 1 trainiert, was die Trainingszeit um einen Faktor 3 verkürzt hat. Im späteren Verlauf des Arbeitprozesses wurden die Modelle zwar auf der vollen Länge des Radargramms trainiert, aber dafür nur auf jedem fünften Datenpunkt. Von den vier Modellen, die im Ergebnisteil dieser Arbeit vorgestellt werden, wurden die Modelle 1 bis 3 auf den ersten 60 m trainiert und Modell 4 auf der vollen Länge des Radargramms.\\
 
 %\subsubsection{Visualisierung der SOM}
 %
