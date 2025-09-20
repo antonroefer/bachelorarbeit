@@ -701,6 +701,10 @@ class MiniSom(object):
 
         return um / um.max()
 
+    """
+    Self-written plotting functions for hexagonal topology down below
+    """
+
     def plot_u_matrix(
         self, figsize=(10, 8), cmap="hot_r", save=True, appendix=None, name=None
     ):
@@ -1553,6 +1557,10 @@ class MiniSom(object):
 
         # plt.show()
 
+    """
+    Self-written model saving and loading functions.
+    """
+
     def save_model(self, filepath):
         """
         Saves the current SOM model to a file with all necessary parameters
@@ -1657,6 +1665,10 @@ class MiniSom(object):
 
         print(f"Model loaded from {filepath_abs}")
         return som
+
+    """
+    original code below
+    """
 
     def activation_response(self, data):
         """

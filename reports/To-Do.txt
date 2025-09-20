@@ -1,6 +1,0 @@
-07.05.2025
-
-%Kohärenz adden
-%dissertation page 24 table features Attribute anschauen
-%Liste machen mit Augenmaßbewertung der Features
-%features gegeneinander plotten

@@ -563,35 +563,6 @@ class Radargram:
         coherence = np.nan_to_num(coherence, nan=0, posinf=1, neginf=0)
         return coherence
 
-    def calc_entropy(self, data=None, x_dis=1, y_dis=1, mode="mirror", bins=16):
-        """
-        Calculate the entropy within a window (optimized version).
-
-        Parameters:
-        -----------
-        data : ndarray, optional
-            2D radar amplitude data. If None, uses self.data
-        x_dis : int, optional
-            Distance to window edge in x-direction, defaults to 1
-        y_dis : int, optional
-            Distance to window edge in y-direction, defaults to 1
-        mode : str, optional
-            Padding mode for scipy.ndimage.filters, defaults to 'mirror'
-        bins : int, optional
-            Number of bins for histogram, reduced to 16 for performance, defaults to 16
-
-        Returns:
-        --------
-        ndarray
-            2D array of entropy
-        """
-
-        data = self._get_data(data)
-        window_size = (2 * y_dis + 1, 2 * x_dis + 1)
-
-        # Apply the filter
-        return generic_filter(data, entropy, size=window_size, mode=mode)
-
     def calc_semblance(self, data=None, x_dis=1, y_dis=1, mode="mirror"):
         """
         Calculate the semblance attribute within a window.
@@ -862,7 +833,7 @@ class Radargram:
         dip = np.arctan2(grad_y, grad_x)
         return dip
 
-    def calc_cwt(
+    def calc_cwt(  # wasnt used in the end
         self, data=None, widths=[5, 10, 20, 35, 55, 80], wavelet="ricker", axis=0
     ):
         """
@@ -918,7 +889,7 @@ class Radargram:
 
     # ---- Helper methods ----
 
-    def apply_gain(
+    def apply_gain(  # not practical yet
         self,
         data=None,
         method="exponential",

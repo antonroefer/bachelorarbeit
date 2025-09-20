@@ -39,7 +39,7 @@ def min_max_scale(arr, new_min=0, new_max=1):
 
 
 raw = False  # Use raw data or processed data
-i_rg = 4  # Radargram number
+i_rg = 4  # Radargram number in mat file
 
 # Load MAT file in v7.3 format using h5py
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -150,7 +150,7 @@ ratio = x.max() / t.max() * (9 / 16)
 
 # Eigene Daten laden
 script_dir = os.path.dirname(os.path.abspath(__file__))
-data_file = "feature_vectors_khigh_30.npz"
+data_file = "feature_vectors_khigh.npz"
 data_path = os.path.join(script_dir, data_file)
 with np.load(data_path) as npzfile:
     # Gib die Namen der Arrays in der .npz-Datei aus
